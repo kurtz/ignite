@@ -64,6 +64,23 @@ class FeedServiceController Extends TuiyoControllerServices{
 	 	
 	}	
 	
+	public function display(){
+		
+		$aModel 	= TuiyoLoader::model("applications" , true );
+		$aUser		= TuiyoAPI::get("user", null);
+		$aDocument  = TuiyoAPI::get("document", null);
+		
+		//Get the parameters of a single user application/service
+		$aParams 	= $aModel->getSingleUserPlugin($aUser->id , "feed" );
+		
+		//get the feedURl
+		//$aParams->get("feedURL", null);
+		
+		$view = $this->getView("feed", "html");
+		return $view->display();
+		
+	}
+	
 	/**
 	 * (non-PHPdoc)
 	 * @see components/com_tuiyo/controllers/TuiyoControllerServices::add()
