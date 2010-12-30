@@ -93,10 +93,19 @@ div.statusTools a.voteItem{background:url("../icons/featured_16.png") no-repeat 
 a.statustime span{color: #888}
 a.statustime span:hover{color: #888; text-decoration: underline}
 
-div.activityStreamItemTools{box-shadow: 0 0 30px #000000; -moz-box-shadow:0 0 30px #000000;-khtml-box-shadow:0 0 30px #000000;background:none repeat scroll 0 0 #F8F8F8;
-border:8px solid #C1D9FF; display:none; left:0; min-height:50px; padding:15px; position:absolute; text-align:left; top:0; z-index:4000;}
+
+div.activityStreamItemTools{display:none; background: #fff; height:16px; max-width: 100px; padding:10px 8px 0 8px; position:absolute; text-align:left; top:0; right:0; z-index:2000; whte-space: wrap; over-flow: auto;}
 div.activityStreamItemMainBody:hover div.activityStreamItemTools{}
 div.activityStreamItemMainBody:hover div.bodyDescr{}
+
+div.activityStreamItemTools a{ float: left; text-indent: -9999em; width:16px; height: 16px; margin: 1px }
+div.activityStreamItemTools a.comment{ background: transparent url(../icons/tuiyostreamicons.png) no-repeat scroll 0 -63px }
+div.activityStreamItemTools a.delete{background: transparent url(../icons/tuiyostreamicons.png) no-repeat scroll 0 0 }
+div.activityStreamItemTools a.repost{background: transparent url(../icons/tuiyostreamicons.png) no-repeat scroll 0 -20px}
+div.activityStreamItemTools a.voteLike{background: transparent url(../icons/tuiyostreamicons.png) no-repeat scroll 0 -42px }
+div.activityStreamItemTools a.voteDisLike{background: transparent url(../icons/tuiyostreamicons.png) no-repeat scroll 0 -83px }
+
+div.activityStreamItem:hover div.activityStreamItemTools{display: block}
 
 /**Uploader***/
 a.addFile{padding-left: 20px; background: transparent url(../icons/upload.png) no-repeat scroll 0 50% }
@@ -113,8 +122,6 @@ div.activityStreamItemMainBody div.public{background: none no-repeat scroll 2px 
 #streamPagination{ padding: 4px; background: transparent url(../images/ajaxmore.png) 0 0 repeat-x scroll; border: 1px solid #e1e1e1; -moz-border-radius: 5px; -webkit-border-radius: 5px; cursor: pointer; margin-bottom:14px; display: none  }
 #streamPagination a{font-weight: bold}
 
-a.votes span.dolike{background:url("../images/ratingsiconlike.png") no-repeat scroll 100% 42% transparent; font-size:13px; padding-right:13px; }
-a.votes span.dontlike{background:url("../images/ratingsicondontlike.png") no-repeat scroll 100% 42% transparent; font-size:13px; padding-right:13px;}
 div.windowOverlay{background: #000 none repeat fixed 0 0; position: fixed; top: 0; right: 0 ; left: 0; bottom: 0; min-height: 200px; z-index: 2000; opacity: 0.2; filter: alpha(opacity = 20); display: none}
 .col1img{
 margin-right:-1px;

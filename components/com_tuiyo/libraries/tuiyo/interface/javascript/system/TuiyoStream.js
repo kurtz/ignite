@@ -21,17 +21,43 @@
 				return mention;
 			},
 			newActivityTmpl = function(activity){
-                return $('<div class="tuiyoTable activityStreamItem activityItem" ></div>').attr("id", "s"+activity.id).appendDom([
+                return $('<div class="tuiyoTable activityStreamItem activityItem" style="position:relative" ></div>').attr("id", "s"+activity.id).appendDom([
                {tagName: 'div', className: 'tuiyoTableRow',childNodes: [
                    {tagName: 'div',className: 'tuiyoTableCell col1img', style:'width:10%;',childNodes: [
                        {tagName: 'div',className: 'activityStreamItemUserImage48',childNodes: [ 
                            {tagName: 'img', src:activity.userpic, width: '48', height:'48'}
-                       ]},                     
-                       {tagName: 'img',src: activity.icon16 ,width: '16', style:'float: left; position: relative; margin-top: -26px; margin-left: 3px;',  height:'16'}
+                       ]}
                    ]}, 
                    {tagName: 'div',className: 'tuiyoTableCell col2body',style: 'width: 90%',childNodes: [
                        {tagName: 'div',className: 'activityStreamItemActivityBody',childNodes: [
                            {tagName: 'div',className: 'activityStreamItemTools',align: 'center',childNodes: [
+                               {tagName:'a', className:'voteLike', href:'#', style:'', innerHTML: $.gt.gettext(' like '), click:function(e){
+                                   e.preventDefault();
+                                   var self = $(this);
+                                   var token = $("meta[name=_token]").attr("content") ;
+                                   $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
+                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':+1, token:'1' }, 
+                                       function(inResponse){
+                                    	   $("div#s"+activity.id ).find("a.votes").trigger( "click" );
+                                           var divBox = $("div#s"+activity.id ).find("div.likes:eq(0)");
+                                           
+                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , activity.id) );
+                                       },
+                                   'json');
+                               } },
+                               {tagName:'a', className:'voteDisLike', href:'#', style:'', innerHTML:$.gt.gettext(' dislike '), click:function(e){
+                                   e.preventDefault();
+                                   var self = $(this);
+                                   var token = $("meta[name=_token]").attr("content") ;
+                                   $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
+                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':-1 , token:'1' }, 
+                                       function(inResponse){
+                                    	   $("div#s"+activity.id ).find("a.votes").trigger( "click" );
+                                           var divBox = $("div#s"+activity.id ).find("div.dlikes:eq(0)");
+                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , activity.id ) );
+                                       },
+                                   'json');                                        
+                               }},
                                {tagName: 'a',href: '#',className: 'comment',innerHTML: 'comment', rel:'ccomment', click:function(c){
                                    c.preventDefault();
                                    if(!activity.cancomment) return false;
@@ -97,7 +123,7 @@
                                    .hide().appendTo( $(this).parent().parent().parent().parent().find("div[class=activityStreamItemComments]")  ).slideDown("fast");
                                    $('input.commentButton').val($.gt.gettext('Post') );
                                    $("textarea.commentTextArea").focus();
-                                   $("div.activityStreamItemTools").hide();
+                                   //$("div.activityStreamItemTools").hide();
                                    $("textarea.commentTextArea").bind("blur",function(e){
                                        e.preventDefault();
                                        if(!$.browser.msie && ( $(this).val() ).length < 1 ){ 
@@ -114,56 +140,15 @@
                                            $("#s"+activity.id).fadeOut("slow");
                                        },
                                    'json');
-                               }},
-                               {tagName: 'a',href: '#', className: 'hide', innerHTML: 'cancel',
-                                   click: function(a){
-                                       a.preventDefault();
-                                       $("div.activityStreamItemTools").hide();
-                                   }
-                               }
+                               }}
                            ]},                             
                            {tagName: 'div',className: 'activityBodyText',innerHTML: activity.bodytext },
                            {tagName: 'div', innerHTML: activity.body },
                            {tagName: 'div',className: 'bodyDescr' + ( (activity.isPublic > 0)?' public ': ' private ' ), title: ( (activity.isPublic > 0)? $.gt.gettext('This entry is Public'): $.gt.gettext('This entry is Private') ), childNodes:[
                                {tagName:'span', className:'descrInfo', innerHTML: ' By '},
                                {tagName:'a', href: $.TuiyoDefines.get("profilelink")+'&user='+activity.username, innerHTML:'<span>'+activity.username+' </span>'},
-                               {tagName:'a', className:'statustime', href: $.TuiyoDefines.get("statuslink")+'&user='+activity.username+'&id='+activity.id, innerHTML: '<span>'+activity.datetime+'</span>'},
-                               {tagName:'span', className:'voteSep', innerHTML: ' ¥ '},
-                               {tagName:'a', className:'voteLike', href:'#', style:'', innerHTML: $.gt.gettext('like '), click:function(e){
-                                   e.preventDefault();
-                                   var self = $(this);
-                                   var token = $("meta[name=_token]").attr("content") ;
-                                   $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':+1, token:'1' }, 
-                                       function(inResponse){
-                                           $(self).parent().find("a.votes").trigger( "click" );
-                                           var divBox = $("div#s"+activity.id ).find("div.likes:eq(0)");
-                                           
-                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , activity.id) );
-                                       },
-                                   'json');
-                               } },
-                               {tagName:'span', className:'voteSep', innerHTML: ' ¥ '},
-                               {tagName:'a', className:'voteDisLike', href:'#', style:'', innerHTML:$.gt.gettext(' dislike'), click:function(e){
-                                   e.preventDefault();
-                                   var self = $(this);
-                                   var token = $("meta[name=_token]").attr("content") ;
-                                   $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':-1 , token:'1' }, 
-                                       function(inResponse){
-                                           $(self).parent().find("a.votes").trigger( "click" );
-                                           var divBox = $("div#s"+activity.id ).find("div.dlikes:eq(0)");
-                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , activity.id ) );
-                                       },
-                                   'json');                                        
-                               }},
-                               {tagName:'span', className:'voteSep', innerHTML: ' ¥ '},
-                               {tagName:'a', className:'comment', href:'#', innerHTML:$.gt.gettext(' comment'), click:function(e){
-                                   e.preventDefault();
-                                   $("div.activityStreamItemTools").hide();
-                                   $(this).parent().parent().find("div.activityStreamItemTools").show()
-                               }},
-                               {tagName:'a', className:'votes', href:'#', style:'float: right', innerHTML: ( (activity.likes.length>0)? '<span style="color: green" class="dolike">'+activity.likes.length +'</span>' : '' )+((activity.dislikes.length>0)? ' <span style="color:red;" class="dontlike">'+activity.dislikes.length+'</span>':''), click:function(e){
+                               {tagName:'a', className:'statustime', href: $.TuiyoDefines.get("statuslink")+'&user='+activity.username+'&id='+activity.id, innerHTML: '<span>'+activity.datetime+' </span>'},
+                               {tagName:'a', className:'votes', href:'#', innerHTML: ( (activity.likes.length>0)? '<span style="color: green" class="dolike">'+activity.likes.length +' </span>' : '' )+((activity.dislikes.length>0)? ' <span style="color:red;" class="dontlike">'+activity.dislikes.length+'</span>':''), click:function(e){
                                    e.preventDefault();
                            
                                    $( $('<div class="activityStreamItemVotes tuiyoTable"></div>').appendDom([
@@ -277,7 +262,7 @@
 			},
 			newStatusTmpl = function( status ){
                 
-                return $('<div class="tuiyoTable activityStreamItem">').attr("id", "s"+status.statusID ).appendDom([
+                return $('<div class="tuiyoTable activityStreamItem" style="position:relative">').attr("id", "s"+status.statusID ).appendDom([
                     {tagName: 'div', className: 'tuiyoTableRow',childNodes: [               
                         {tagName: 'div',className: 'tuiyoTableCell col1img', style:'width:10%;',childNodes: [
                             {tagName: 'div',className: 'activityStreamItemUserImage48',childNodes: [ 
@@ -287,6 +272,33 @@
                         {tagName: 'div',className: 'tuiyoTableCell col2body',style: 'width: 90%',childNodes: [
                             {tagName: 'div',className: 'activityStreamItemMainBody',childNodes: [
                                 {tagName: 'div',className: 'activityStreamItemTools',align: 'center',childNodes: [
+                                    {tagName:'a', className:'voteLike', href:'#', innerHTML:$.gt.gettext(' like '), click:function(e){
+                                        e.preventDefault();
+                                        var self = $(this);
+                                        var token = $("meta[name=_token]").attr("content") ;
+                                        $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
+                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':+1, token:'1' }, 
+                                            function(inResponse){
+                                            	$("div#s"+status.statusID ).find("a.votes").trigger( "click" );
+                                                var divBox = $("div#s"+status.statusID ).find("div.likes:eq(0)");
+                                                
+                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , status.statusID ) );
+                                            },
+                                        'json');
+                                    } },
+                                    {tagName:'a', className:'voteDisLike', href:'#', style:'', innerHTML:$.gt.gettext(' dislike'), click:function(e){
+                                        e.preventDefault();
+                                        var self = $(this);
+                                        var token = $("meta[name=_token]").attr("content") ;
+                                        $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
+                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':-1 , token:'1' }, 
+                                            function(inResponse){
+                                            	$("div#s"+status.statusID ).find("a.votes").trigger( "click" );
+                                                var divBox = $("div#s"+status.statusID ).find("div.dlikes:eq(0)");
+                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , status.statusID ) );
+                                            },
+                                        'json');                                        
+                                    }},
                                     {tagName: 'a',href: '#',className: 'comment',innerHTML: 'comment', rel:'ccomment', click:function(c){
                                         c.preventDefault();
                                         if(!status.canComment) return false;
@@ -352,7 +364,7 @@
                                         .hide().appendTo( $(this).parent().parent().parent().parent().find("div[class=activityStreamItemComments]")  ).slideDown("fast");
                                         $('input.commentButton').val($.gt.gettext('Post') );
                                         $("textarea.commentTextArea").focus();
-                                        $("div.activityStreamItemTools").hide();
+                                        //$("div.activityStreamItemTools").hide();
                                         $("textarea.commentTextArea").bind("blur",function(e){
                                             e.preventDefault();
                                             if(!$.browser.msie && ( $(this).val() ).length < 1 ){ 
@@ -376,13 +388,7 @@
                                                 $("#s"+status.statusID).fadeOut("slow");
                                             },
                                         'json');
-                                    }},
-                                    {tagName: 'a',href: '#', className: 'hide', innerHTML: 'cancel',
-                                        click: function(a){
-                                            a.preventDefault();
-                                            $("div.activityStreamItemTools").hide();
-                                        }
-                                    }
+                                    }}
                                 ]},                         
                                 {tagName: 'div', className: 'bodyText', innerHTML: status.bodyText },
                                 {tagName: 'div',className: 'bodyAttachmentPlaceHolder', style:"display: none; cursor: pointer", innerHTML: $.gt.gettext('view attachement')}, 
@@ -390,42 +396,7 @@
                                     {tagName:'span', className:'descrInfo', innerHTML: ' By '},
                                     {tagName:'a', href: $.TuiyoDefines.get("profilelink")+'&user='+status.username, innerHTML:'<span>'+status.username+' </span>'},
                                     {tagName:'a', className:'statustime', href: $.TuiyoDefines.get("statuslink")+'&user='+status.username+'&id='+status.statusID, innerHTML: '<span>'+status.statusTime+'</span>'},
-                                    {tagName:'span', className:'voteSep', innerHTML: ' ¥ '},
-                                    {tagName:'a', className:'voteLike', href:'#', innerHTML:$.gt.gettext('like '), click:function(e){
-                                        e.preventDefault();
-                                        var self = $(this);
-                                        var token = $("meta[name=_token]").attr("content") ;
-                                        $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':+1, token:'1' }, 
-                                            function(inResponse){
-                                                $(self).parent().find("a.votes").trigger( "click" );
-                                                var divBox = $("div#s"+status.statusID ).find("div.likes:eq(0)");
-                                                
-                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , status.statusID ) );
-                                            },
-                                        'json');
-                                    } },
-                                    {tagName:'span', className:'voteSep', innerHTML: ' ¥ '},
-                                    {tagName:'a', className:'voteDisLike', href:'#', style:'', innerHTML:$.gt.gettext(' dislike'), click:function(e){
-                                        e.preventDefault();
-                                        var self = $(this);
-                                        var token = $("meta[name=_token]").attr("content") ;
-                                        $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':-1 , token:'1' }, 
-                                            function(inResponse){
-                                                $(self).parent().find("a.votes").trigger( "click" );
-                                                var divBox = $("div#s"+status.statusID ).find("div.dlikes:eq(0)");
-                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , status.statusID ) );
-                                            },
-                                        'json');                                        
-                                    }},
-                                    {tagName:'span', className:'voteSep', innerHTML: ' ¥ '},
-                                    {tagName:'a', className:'comment', href:'#', innerHTML:$.gt.gettext(' comment'), click:function(e){
-                                        e.preventDefault();
-                                        $("div.activityStreamItemTools").hide();
-                                        $(this).parent().parent().find("div.activityStreamItemTools").show()
-                                    }},                                 
-                                    {tagName:'a', className:'votes', href:'#', style:'float: right', innerHTML: ( (status.likes.length>0)? '<span style="color: green" class="dolike">'+ status.likes.length +'</span>' : '' )+((status.dislikes.length>0)? ' <span style="color:red;" class="dontlike">'+status.dislikes.length+'</span>':''), click:function(e){
+                                    {tagName:'a', className:'votes', href:'#', innerHTML: ( (status.likes.length>0)? '<span style="color: green" class="dolike"> '+ status.likes.length +'</span>' : '' )+((status.dislikes.length>0)? ' <span style="color:red;" class="dontlike">'+status.dislikes.length+'</span>':''), click:function(e){
                                         e.preventDefault();
                                 
                                         $( $('<div class="activityStreamItemVotes tuiyoTable"></div>').appendDom([
