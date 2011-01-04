@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard Profile Layout">
+		<message>
+				<![CDATA[STANDARD PROFILE LAYOUT]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard Profile Layout</name>
+		<description>The standard profile layout</description>	
+		<params>
+			<param name="do" type="list" default="homepage" label="Default Action" description="The default 'do' task of of the profile controller">
+					<option value="">default</option>
+					<option value="homepage">Homepage</option>
+					<option value="settings">Settings</option>
+					<option value="filemanager">File Manager</option>
+			</param>
+		</params>
+	</state>
+</metadata>
