@@ -56,13 +56,19 @@ class TuiyoControllerFriends extends JController
   		
 		$view 	= $this->getView('friends' , "html");
 		$model 	= $this->getModel('friends');
+		$rmodel  = $this->getModel("resources");
 			
 		$user	= $GLOBALS['API']->get("user", null);
         
         //get Friends lists;
         $friends= $model->getFriendLists( $user->id );
         $invites= $model->generateInviteHistory( $user->id );
-        
+		
+		$members= $rmodel->getAllMembers( ); 
+		$pages 	= $rmodel->getState( 'pagination' );
+		
+		$view->assignRef( "pagination" , $pages );
+        $view->assignRef( "members", $members );
 		$view->assignRef("invites" , $invites );
 		$view->assignRef("friends" , $friends );
 		$view->assignRef("user" , $user );

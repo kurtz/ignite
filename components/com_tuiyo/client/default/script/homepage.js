@@ -8,8 +8,15 @@
 		$("#userActivityStream").TuiyoStream();
 		$("#userActivityStream").TuiyoStreamLoad();		
 		$(document).data('dashboard' , $("#homepageContent").html() );
-        
+	    $("input[name=gSearchTuiyo]" ).unbind('focus').focus(function(e){
+			$( $( $(this).attr("value", "") ).css("color", "#666") ).unbind("blur").blur(function(){
+				if( $(this).attr("value") === ""){
+					$( $(this).attr("value", $.gt.gettext("Looking for Something?")) ).css("color", "#666");
+				}
+			})
+		});
     });
+
     function doFunction(E
     /*, hash */
     ) {

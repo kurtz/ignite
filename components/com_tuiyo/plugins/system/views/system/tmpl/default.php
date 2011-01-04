@@ -86,10 +86,12 @@
 			<div class="tuiyoColumn">
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems" id="publisherHp1">	                    
-	                  	<li style="padding: 0pt 20px; margin-left: -5px"><a href="#"><span><?php echo _('Public Room')?></span></a></li>
+	                  	<li style="padding: 0pt 20px; margin-left: -5px"><a href="#"><span><?php echo _('Create New Room')?></span></a></li>
+	                  	<li style="padding: 0pt 20px; margin-left: -5px" class="current"><a href="#"><span><?php echo _('Wall')?></span></a></li>
 	                </ul>
 	                <div class="tuiyoClearFloat"></div>
-                </div>				
+                </div>
+                <?php echo $this->activity ?>				
 			</div>
 		</div>
 		<div style="clear:both"></div>

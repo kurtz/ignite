@@ -44,7 +44,7 @@ class SystemServiceController Extends TuiyoControllerServices{
 		$method 	= strtolower( $server['REQUEST_METHOD'] );
 
 		$model		= &TuiyoLoader::model("messages", true);
-		$view 		= $this->getView("chat", "html");
+		$view 		= $this->getView("system", "html");
 		
 		$document 	= &$GLOBALS['API']->get("document" );
 		$user 		= &$GLOBALS['API']->get("user" , null );

@@ -9,6 +9,9 @@
 				limitstart: 0 ,
 				groupID : null,
 				userID: null,
+				profileID : null,
+				articleID : null,
+				resourceID : null,
 				postFormId: "TuiyoStreamUpdate",
 				attachmentCnfg : {embedMethod: "fill", maxWidth: 400, maxHeight: 400, vimeo: {color: "000000", portrait: false}}
 			},

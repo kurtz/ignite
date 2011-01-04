@@ -73,7 +73,7 @@ class TuiyoModelArticles extends JModel
 		
 		$rUser		= TuiyoAPI::get("user", null);
 		$model 		= TuiyoLoader::model("timeline", true);
-		$options 	= array("filter"=>"article");
+		$options 	= array("source"=>"article");
 		
 		$stream 	= array();
 		
@@ -178,7 +178,7 @@ class TuiyoModelArticles extends JModel
 		
 		
 		//Publish activity story
-		$aTimeline->publishOneLineStory($user, $aActivityTmpl, "article".$aTable->ID , NULL, NULL, array(), "article" );
+		$aTimeline->publishOneLineStory($user, $aActivityTmpl, "article", NULL, NULL, array(), "article".$aTable->ID  );
 		
 		return true;
 	}

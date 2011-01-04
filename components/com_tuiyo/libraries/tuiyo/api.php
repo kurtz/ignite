@@ -4,11 +4,10 @@
  *  API object for the Tuiyo platform                               *
  * ******************************************************************
  * @copyright : 2008 tuiyo Platform                                 *
- * @license   : http://platform.tuiyo.com/license   BSD License     * 
+ * @license   : http://platform.tuiyo.com/license   LGPL License    * 
  * @version   : Release: $Id$                                       * 
  * @link      : http://platform.tuiyo.com/                          * 
- * @author 	  : livingstone[at]drstonyhills[dot]com                 * 
- * @access 	  : Public                                              *
+ * @author 	  : livingstone[at]drstonyhills[dot]com                 *
  * @since     : 1.0.0 alpha                                         *   
  * @package   : tuiyo                                               *
  * ******************************************************************

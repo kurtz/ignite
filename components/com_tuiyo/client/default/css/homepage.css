@@ -61,7 +61,11 @@ div.dashboardHomePageTitle{background:none repeat scroll 0 0 #F7F7F7; height:82p
 
 .profileNoticeItem{line-height:220%;}
 .profileNoticeItem a.removelink{ float: right; background:url(../icons/delete.png) no-repeat scroll 100% 50% ; width: 16px; height: 23px; text-indent: -9999em }
-#notificationsWidget .unread{ color: #C30; font-weight: bold; background-color:#FAFEE2 }
+#notificationsWidget .unread{ background-color: #FAFEE2;
+    color: #CC3300;
+    font-weight: bold;
+    margin-bottom: 2px;
+    padding: 0 5px;}
 
 
 div.friendSuggest{border-bottom: 1px dotted #ccc; margin:7px; }
