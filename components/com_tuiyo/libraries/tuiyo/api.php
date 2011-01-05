@@ -265,16 +265,23 @@
 	    $fp 	= fsockopen($host, $port, $errno, $errstr, 30);
 		$content= null;
 		$body 	= false;
+		$header = "";
 	    
 		$bytes 	= fwrite($fp, $out);
-		    while (!feof($fp)) {
+		   do{
+		   		$header .= fgets ( $fp, 128);
+		   }while( strpos ( $header, "\r\n\r\n" ) === false );
+		   
+		   while (!feof($fp)) {
 		        $lfp = fgets($fp, $bytes);
-		        if ( $body ) $content.= $lfp;
-		        if ( $lfp == "\r\n" ) $body = true;
+		        $content .=$lfp;
+		        //if ( $body ) $content.= $lfp;
+		        //if ( $lfp == "\r\n" ) $body = true;
 		    }
 	    fclose($fp);
-	   
+	    
 	    return $content;
+	   
 	}
 	
 	/**
@@ -307,12 +314,17 @@
             return false;
         }
         $bytes 		= fputs($fp, "GET $URL HTTP/1.0\r\nHost: $proxyName\r\n\r\n");
-        	while (!feof($fp)) {
-	        	$lfp= fgets($fp, $bytes);
-		        if ( $body ) $content.= $lfp;
-		        if ( $lfp == "\r\n" ) $body = true;
-        	}
-        fclose($fp);
+		   do{
+		   		$header .= fgets ( $fp, 128);
+		   }while( strpos ( $header, "\r\n\r\n" ) === false );
+		   
+		   while (!feof($fp)) {
+		        $lfp = fgets($fp, $bytes);
+		        $content .=$lfp;
+		        //if ( $body ) $content.= $lfp;
+		        //if ( $lfp == "\r\n" ) $body = true;
+		    }
+	    fclose($fp);
         
         //$content 	= substr($content, strpos($content, "\r\n\r\n") + 4);
         
