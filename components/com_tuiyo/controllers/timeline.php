@@ -440,8 +440,7 @@ class TuiyoControllerTimeline extends JController{
 		
 		$resp["data"] = $model->getPublicTimeline( $thisUser->id, $options );
 		
-		//On Timeline Load
-		$GLOBALS["events"]->trigger( "onAfterTimelineLoad" , $resp['data']);
+		
 		
 		$resp["page"] = array( 
 			"total"	  => (int)$model->getState('total'),
@@ -451,7 +450,10 @@ class TuiyoControllerTimeline extends JController{
 		//5. Get all other updates since last time!	
 	
 		//6. Return results
-		$view->encode( $resp );				
+		$view->encode( $resp );	
+		
+		//On Timeline Load
+		$GLOBALS["events"]->trigger( "onAfterTimelineLoad" , $resp['data']);			
 	}
 	
 	public function suggestParticipant()
@@ -615,7 +617,12 @@ class TuiyoControllerTimeline extends JController{
 		
 		//6. Return results
 		$view->encode( $resp );	
-		    	
+		
+		flush();
+		
+		//On Timeline Load
+		$GLOBALS["events"]->trigger( "onAfterTimelineLoad" , $resp['data']);
+		 //echo "userTimelineLoaded";
     }
 	
 	/**

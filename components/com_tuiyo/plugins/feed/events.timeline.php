@@ -20,12 +20,39 @@ defined('TUIYO_EXECUTE') || die('You are not authorised to view this resource');
 class TuiyoPluginFeed extends TuiyoEventsListener{
 
 	public function onTimelineLoad(){}
-	public function onBeforeTimelineLoad( $args = null){
-		//print_r($args);
-		//$user = TuiyoAPI::getUser();
+	public function onAfterTimelineLoad( $args = null){
+		
+		$aModel 	= TuiyoLoader::model("applications" , true );
+		$aUser		= TuiyoAPI::get("user", null);
+		$aDocument  = TuiyoAPI::get("document", null);
+		$aXMLParser = new JSimpleXML();
+		
+		//Get the parameters of a single user application/service
+		$aParams 	= $aModel->getSingleUserPlugin($aUser->id , "feed" );
+		
+		//get the feedURl
+		$feedURL 	= $aParams->get("feedURL", null);
+		//$feedData   = TuiyoAPI::getURL( $feedURL );
+		
+		//$tempfilename = TUIYO_CACHE.DS.date("YmdHis")."feed.xml";
+		//$tempFeed 	  = fopen($tempfilename, 'w') ;
+		
+		//fwrite($tempFeed , trim($feedData));
+		//fclose($tempFeed);
+		
+	
+		
+		//echo $tempfilename;
+
+		//$feedXML 	= @$aXMLParser->loadFile($tempfilename);
+		
+		//unlink($tempfilename);
+		//print_R($aXMLParser);
+		
+		
 		
 	}
-	public function onAfterTimelineLoad(){}
+	public function onBeforeTimelineLoad(){}
 	public function onAddTimelinePost(){}
 	public function onAddTimelineComment(){}
 
