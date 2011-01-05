@@ -9,7 +9,7 @@
 	<authorUrl>www.tuiyo.co.uk</authorUrl>
 	<version>1.0.0</version>
 	<description>Twitter service and  Jommla</description>
-	<params group="privacy"></params>
+
 	<params group="profilepicture"></params>
 	
 </install>

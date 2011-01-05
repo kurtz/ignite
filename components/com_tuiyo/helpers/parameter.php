@@ -37,6 +37,7 @@ class TuiyoParameter extends JParameter{
 	public function __construct($data, $path = '')
 	{
 		parent::__construct($data, $path);
+		$this->addElementPath( TUIYO_HELPERS.DS."elements".DS );
 	}
 	
 	/**

@@ -83,13 +83,13 @@ class TuiyoEventLoader
     		
     		require_once($pFile);
 
-    		$pClassName = "TuiyoPlugin".ucfirst($plugin);
+    		$pClassName = "TuiyoPlugin".ucfirst($plugin).ucfirst($eventGroup);
     		
-    		$plugClass =  new $pClassName();
+    		if(class_exists($pClassName)):
+    			$plugClass =  new $pClassName();
+    		endif;
     		
     		//$PLUGIN_GROUPS[$eventGroup][$plugin] = $plugClass;
-    		
-    		
     	}
     	
     	//print_R($PLUGIN_GROUPS);

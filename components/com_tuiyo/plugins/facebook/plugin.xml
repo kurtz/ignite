@@ -9,18 +9,16 @@
 	<authorUrl>www.tuiyo.co.uk</authorUrl>
 	<version>1.0.0</version>
 	<description>Connect and share status updates between facebook and your profile</description>
-	<featurescope>
-		<scope name="administrator" path="" />
-		<scope name="timeline" path="" />
-	</featurescope>
-	<files>
-		<filename></filename>
-	</files>
-	<settings>
-		<params group="plugin">
-			<param name="connectWithFacebook" type="button"  label="Connect With Facebook"  />
-		</params>
-		<params group="privacy"></params>
-		<params group="profilepicture"></params>
-	</settings>
+
+	<params group="plugin">
+		<param name="connectWithFacebook" type="button"  label="Connect With Facebook"  />
+	</params>
+	<params group="privacy">
+		<param type="privacyel" name="viewFacebookFeed" label="Can View facebook feed"/>
+		<param type="privacyel" name="viewFacebookProfilePicture" label="View facebook Profile Pic" />
+		<param type="privacyel" name="postToFacebookProfile" label="Post to your facebook Profile" />
+		<param type="privacyel" name="replytoFacebookPost" label="Reply to facebook Posts" />
+	</params>
+	<params group="profilepicture"></params>
+
 </install>

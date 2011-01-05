@@ -53,6 +53,7 @@ class TuiyoPluginFeed extends TuiyoEventsListener{
 		
 	}
 	public function onBeforeTimelineLoad(){}
+	public function onAddToTimelineForm(){}
 	public function onAddTimelinePost(){}
 	public function onAddTimelineComment(){}
 

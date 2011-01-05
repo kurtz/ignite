@@ -209,6 +209,7 @@
 		<filename>files/policy.html</filename>
 		<filename>files/terms.html</filename>
 		<filename>files/timeline-link-error.png</filename>
+		<filename>helpers/elements/privacyel.php</filename>
 		<filename>helpers/defines.php</filename>
 		<filename>helpers/initiate.php</filename>
 		<filename>helpers/loader.php</filename>
@@ -586,7 +587,7 @@
 			<file charset="utf8" driver="mysql">uninstall.mysql.utf8.sql</file>
 			<file driver="mysql">install.mysql.utf8.sql</file>
 		</sql>
-	</uninstall>	
+	</uninstall>
 	<administration>
 		<menu>Tuiyo for Joomla!</menu>
 		<files>

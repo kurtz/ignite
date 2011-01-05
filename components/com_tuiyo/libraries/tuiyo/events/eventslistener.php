@@ -57,6 +57,7 @@ class TuiyoEventsListener{
 		$events->onBeforeTimelineLoad	= new TuiyoDelegate( $this, "onBeforeTimelineLoad" );
 		$events->onAddTimelineComment	= new TuiyoDelegate( $this, "onAddTimelineComment" );
 		$events->onAddTimelineVote		= new TuiyoDelegate( $this, "onAddTimelineVote" );
+		$events->onAddToTimelineForm    = new TuiyoDelegate( $this, "onAddToTimelineForm");
 		
 		/**
 		 * Login Event Handlers		

@@ -7,7 +7,6 @@
 					alert('send Message');
 					$(this)
 				}, childNodes:[
-					{tagName:'h3', innerHTML: 'direct message to '+to, style:'margin-bottom: 4px; margin-top: -10px;' },
 					{tagName:'div', 'class':'tuiyoTableRow', childNodes:[
 						{tagName:'div', 'class':'tuiyoTableCell', style:'width: 90%', childNodes:[
 							{tagName:'textarea', 'class':'TuiyoFormTexArea', style:'width: 97%; font-size: 13px; font-family: segoe UI', innerHTML: body }
@@ -44,4 +43,4 @@
 		  .hide().insertAfter(".homepagePublisherContainer, profilepagePublisher" )
 		  .slideDown("slow");
 	});
-})(jQuery)
+})(jQuery);

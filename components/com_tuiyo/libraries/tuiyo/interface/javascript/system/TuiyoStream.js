@@ -489,7 +489,7 @@
 				if(command !== null){
 					if (typeof $("#plugin-"+[command[1] ]).val() !== 'undefined') {
 						if(typeof loadedPlugins[command[1]] === 'undefined'){
-							$.getScript('components/com_tuiyo/plugins/commands/'+$("#plugin-"+[command[1] ]).val(),function(){
+							$.getScript($("#plugin-"+[command[1] ]).val(),function(){
 								runPlugin(command[1])
 							}) ;
 							loadedPlugins[command[1]] = $("#plugin-"+[command[1] ]).val();

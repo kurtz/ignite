@@ -552,7 +552,27 @@
 		                            <div class="tuiyoClearFloat"></div>
 		                         </div>  
 		                    </fieldset>
-		    			</div>                         	 
+		    			</div>  
+		    			<div id="pluginsPrivacySettignsDiv">
+		                    <fieldset>
+		                        <div class="tuiyoTableRow" style="border-bottom: 2px solid #ccc; margin-bottom: 7px; margin-top: 7px">                      	
+		                            <div class="tuiyoTableCell privacyFieldTask">&nbsp;</div>
+		                            <div class="tuiyoTableCell privacyField" align="center"><?php echo _('Only me' ); ?></div>
+		                            <div class="tuiyoTableCell privacyField" align="center"><?php echo _('Friends' ); ?></div>
+		                            <div class="tuiyoTableCell privacyField" align="center"><?php echo _('Registered' ); ?></div>
+		                            <div class="tuiyoTableCell privacyField" align="center"><?php echo _('Anybody' ); ?></div>
+		                            <div class="tuiyoClearFloat"></div>
+		                        </div>
+		                        <?php foreach($this->myplugins as $p) :?>
+		                        	<div class="tuiyoTableCell" style="background: #F8F8F8;border-bottom: 2px dashed #DDD;padding: 5px;width: 97%;">
+			             				<div class="tuiyoTableCell" style="width: 25px"><img src="<?php echo $p['serviceLivePath'].'/'.$p['serviceID'] ?>-16x16.png" /></div>
+			             				<div class="tuiyoTableCell" style="width: 80%"><?php echo sprintf( _('%s privacy settings'), ucfirst($p['serviceID']) ); ?></div>
+			             			</div>
+			             			<div class="tuiyoClearFloat"></div>
+		                        	<?php echo $p['settings_privacy_html']?>
+		                        <?php endforeach; ?>
+		                 	</fieldset> 
+		                </div>                           	 
 		    			<div class="tuiyoTableRow" style="margin-top: 10px">
 		                    <div class="tuiyoTableCell" style="width: 40%; padding: 4px 0"></div>
 		                    <div class="tuiyoTableCell" style="width: 60%">

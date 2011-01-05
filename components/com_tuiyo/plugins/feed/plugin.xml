@@ -9,8 +9,12 @@
 	<authorUrl>www.tuiyo.co.uk</authorUrl>
 	<version>1.0.0</version>
 	<description>Add a custom Feed to your Tuiyo timeline</description>
+
 	<params group="plugin">
 		<param name="feedURL" type="text" default="" label="Feed URL" />
 	</params>
-	<params group="privacy"></params>
+	<params group="privacy">
+		<param name="viewFeed" type="privacyel" label="Who can view your Feed" />
+		<param name="rateFeed" type="privacyel" label="Who can view your Feed" />
+	</params>
 </install>

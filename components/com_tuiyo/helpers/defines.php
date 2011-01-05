@@ -46,6 +46,7 @@
  define('TUIYO_CONFIG',			JPATH_COMPONENT_ADMINISTRATOR.DS.'config');
  define('TUIYO_MACROS', 		JPATH_COMPONENT_ADMINISTRATOR.DS.'macros');
  define('TUIYO_TABLES',			TUIYO_LIBRARIES.DS.TUIYO_LIB.DS.'database'.DS.'tables' );
+ define('TUIYO_CACHE',   		JPATH_CACHE);
  
  
 /**

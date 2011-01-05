@@ -1,5 +1,5 @@
 <div class="windowOverlay">&nbsp;</div>
-<?php if((int)$canPost !== 0 ) : ?>
+<?php if((int)$canPost !== 0 ) : TuiyoEventLoader::preparePlugins("timeline" ); ?>
 	<?php $document = TuiyoAPI::get("document",null); $document->addJS('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true'); $document->addJS( JURI::root().'components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/google/gmap.js')?>
     <form name="TuiyoStreamUpdate" id="TuiyoStreamUpdate" action="<?php echo( JURI::root().TUIYO_INDEX.'&format=json'); ?>" class="TuiyoForm" method="post">
         <div class="homepagePublisherContainer">
@@ -33,9 +33,7 @@
                     <input type="hidden" name="embedable[title]" value="" />
                     <input type="hidden" name="embedable[thumb]" value="" />                    
                     <input type="hidden" name="embedable[description]" value="" />
-                    <input type="hidden" name="plugin-do" id="plugin-do" value="do.js"  />
-                    <input type="hidden" name="plugin-dm" id="plugin-dm" value="dm.js"  />
-                    <input type="hidden" name="plugin-attach" id="plugin-attach" value="attach.js"  />
+					<?php $GLOBALS["events"]->trigger( "onAddToTimelineForm" , $this );?>
                 </div>               
             </div>
 	       	<div class="uploadResourceFiles statusToolEl" style="border-bottom: 1px dotted #eee; display:none; padding: 10px 0;">  

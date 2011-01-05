@@ -155,9 +155,10 @@ class TuiyoModelApplications extends JModel{
 			$newPluginSpec['serviceExecuteJS']		= $newPluginLivePath.'/'.$newPluginID.'.js';
 			
 			$newPluginSpec['settings_default_html'] = $pluginParams->renderHTML("params", "plugin");
+			$newPluginSpec['settings_privacy_html'] = $pluginParams->renderHTML("params", "privacy");
 			$newPluginSpec['settings_administrator_html'] = $pluginParams->renderHTML("params", "administrator");
 			$newPluginSpec['settings_photos_html'] 	= $pluginParams->renderHTML("params", "photos");
-			$newPluginSpec['settings_privacy_html'] = $pluginParams->renderHTML("params", "privacy");
+
 			$newPluginSpec['serviceParams']			= "";
 			
 			$_pluginsSpec[$newPluginID] = $newPluginSpec ;
