@@ -34,13 +34,13 @@ class TuiyoVersion
     var $PRODUCT = 'Tuiyo';
     /**
      *  *  * @var int Main Release Level */
-    var $RELEASE = '2.0';
+    var $RELEASE = '2.0.0';
     /**
      *  *  * @var string Development Status */
-    var $DEV_STATUS = 'alpha 1';
+    var $DEV_STATUS = 'alpha 2';
     /**
      *  *  * @var int Sub Release Level */
-    var $DEV_LEVEL = '0';
+    var $DEV_LEVEL = '2';
     /**
      *  *  * @var int build Number */
     var $BUILD = '0';
@@ -58,7 +58,7 @@ class TuiyoVersion
     var $RELTZ = 'GMT';
     /**
      *  *  * @var string Copyright Text */
-    var $COPYRIGHT = 'Copyright (C) 2006 , 2007, 2008 , 2009 , 2010 Doctor Stonyhills. All rights reserved.';
+    var $COPYRIGHT = 'Copyright (C) 2006 , 2007, 2008 , 2009 , 2010, 2011 Doctor Stonyhills. All rights reserved.';
     /**
      *  *  * @var string URL */
     var $URL = '<a href="http://www.tuiyo.co.uk">Tuiyo</a> is Free community building component for joomla released under the GNU General Public License v3';

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com_tuiyo>
+   <ProductInformation>
+        <Name>Tuiyo</Name>
+        <Version>2.0.0</Version>
+        <DevLevel>2</DevLevel>
+        <Build>0</Build>
+        <Copyright>'Copyright (C) 2006 , 2007, 2008 , 2009 , 2010, 2011 Doctor Stonyhills. All rights reserved.'</Copyright>
+        <Comments></Comments>
+        <CodeName>Zanya</CodeName>
+        <UpdateURL>https://github.com/Tuiyo/ignite/zipball/master</UpdateURL>
+   </ProductInformation>
+   <Changes>
+        <Change>
+            <Version>4.3.2.1</Version>
+            <Date>1 Feb 2005</Date>
+            <Desc>The changes for the current release.</Desc>
+        </Change>
+        <Change>
+            <Version>4.3.2.0</Version>
+            <Date>1 Jan 2005</Date>
+            <Desc>The changes text.</Desc>
+        </Change>
+   </Changes>
+</com_tuiyo>
