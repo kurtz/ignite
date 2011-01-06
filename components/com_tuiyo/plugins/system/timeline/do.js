@@ -8,13 +8,29 @@
 		 var words 			= string.split(/[\s,-]+/);
 		 var methods 		= {
 			"alert":{
-		 		"date": function(){
+		 		"date": function(words){
+			 		
+			 		words.splice(0, 2);
+			 		
 					 var mydate= new Date();
 					 var theyear=mydate.getFullYear();
 					 var themonth=mydate.getMonth()+1;
 					 var thetoday=mydate.getDate();
 					 var thetime= mydate.getTime();
-			 		 alert('Date : '+theyear+"-"+themonth+"-"+thetoday+" "+thetime); 
+					 
+			 		if(words.length<1){
+				 		 alert('Date : '+theyear+"-"+themonth+"-"+thetoday+" "+thetime); 
+			 		}else{
+			 			fx = words.join("");
+			 			switch(fx){
+			 			case 'tommorrow':
+			 					alert('Date Tommorrow: '+theyear+"-"+themonth+"-"+(thetoday+1)+" "+thetime)
+			 				break
+		 				case 'now':
+		 					alert('Date Now: '+theyear+"-"+themonth+"-"+thetoday+" "+thetime);
+		 				break;
+			 			}
+			 		}
 			 	},
 		 	},
 		 	"math":function(words){

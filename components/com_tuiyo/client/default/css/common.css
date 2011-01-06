@@ -420,8 +420,13 @@ ul.publisherTabItems{margin: 5px; /*margin-right:15px*/}
 ul.publisherTabItems li a{text-decoration: none}
 .pagePublisherTabs{border-bottom:1px solid #ccc; background: none repeat scroll 0 0 #EEEEEE; padding-top: 1px; margin-bottom: 10px}
 
-.plusbliserTabsItemDrop{ margin: 0; position: absolute}
-.plusbliserTabsItemDrop li{ background: none; }
+.pusblisherTabsItemDrop{ display:none; margin: 0; position: absolute; background: #fff; border: 1px solid #eee; z-index:2000; top: 0; left: 0; width: auto}
+.pusblisherTabsItemDrop li{ background: none; }
+.publisherTabsItemsDropLiHover:hover .pusblisherTabsItemDrop{display:block}
+
+ul.publisherTabItemsSub{padding:0; margin: 0; position: absolute; left: 0; top:0; background: #fff}
+ul.publisherTabItemsSub li{display: block; background: none; border: 1px solid transparent; clear:both; padding: 0pt 20px}
+ul.publisherTabItemsSub li:hover{border:1px solid transparent; background: none; clear: both;}
 
 .servicePluginPublisher{ background: #ECF0F8; margin:1px 1px 1px 0px;; padding: 4px; width: 48%}
 .servicePluginPublisher:hover{background:#FDF9E6}
