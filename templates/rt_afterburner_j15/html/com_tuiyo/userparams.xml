@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+    <name>Tuiyo.Bellesa</name>
+    <version>1.0.1</version>
+    <creationDate>12/01/10</creationDate>
+    <author>drstonyhills</author>
+    <authorEmail>hello@tuiyo.co.uk</authorEmail>
+    <authorUrl>http://apps.tuiyo.co.uk</authorUrl>
+    <copyright>Copyright 2007-2008 - Tuiyo</copyright>
+    <license>GNU/GPL</license>
+	<params>
+		<param name="bgImgURL" type="text" class="TuiyoFormText" label="Background Image" default="" />
+		<param name="sideColumn" type="text" default="25%" class="TuiyoFormText" label="Side Column Width" description="with in px or %" />
+		<param name="templateWidth" type="text" default="#2c8216" class="colorPick" label="Template Width" description="Width in px for Fixed Template Width Style" />
+		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="menuType" type="list" default="splitmenu" class="TuiyoFormDropDown" label="Menu Type" description="Type of menu for main navigation">
+			<option value="splitmenu">SplitMenu</option>
+			<option value="module">Toolbar Module Position</option>
+		</param>
+		<param name="menuName" type="text" default="mainmenu" class="TuiyoFormText" label="Menu Name" description="Name of Joomla! menu for the main navigation" />
+		<param name="@spacer" type="spacer" default="" label="Font Size Variations" description="" />
+		<param name="defaultFont" type="list" default="default" class="TuiyoFormDropDown" label="Font Size" description="Font size variation to use">
+			<option value="smaller">Smaller</option>
+			<option value="default">Default</option>
+			<option value="larger">Larger</option>
+		</param>
+		<param name="showBreadcrumbs" type="radio" default="0" label="Show Breadcrumbs" description="Show/Hide the Breadcrumbs">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="iepngFix" type="radio" default="0" label="IE PNG Fix" description="Enable / Disable the IE PNG Fix">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+    </params>
+</install>

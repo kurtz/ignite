@@ -1,0 +1,20 @@
+<?php
+/**                                          
+ * ******************************************************************
+ * @copyright : 2008 tuiyo Platform                                 *
+ * @license   : http://platform.tuiyo.com/license   BSD License     * 
+ * @version   : Release: $Id$                                       * 
+ * @link      : http://platform.tuiyo.com/                          * 
+ * @author 	  : livingstone[at]drstonyhills[dot]com                 * 
+ * @access 	  : Public                                              *
+ * @since     : 1.0.0 alpha                                         *   
+ * @package   : tuiyo                                               *
+ * ******************************************************************
+ */
+
+defined('_JEXEC') or die('Restricted access');
+ 
+$TUIYO_ASSETS = array(
+	//"client/default/script/welcomepage.js" => "live/path/to/overwrittenfile.js"
+);
+	

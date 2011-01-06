@@ -1,0 +1,8 @@
+#userActivityStream .activityStreamItem {border-bottom:1px solid #eee;
+margin:0 -15px;
+padding:10px 15px 0;}
+
+#activityUpdateTools{margin: 0 -15px; padding: 0 15px}
+
+#userActivityStream .compliment{ background:url("../images/award_star_gold_3.png") no-repeat scroll 98% 50% transparent; }
+#userActivityStream .compliment:hover{ background: #f8f8f8 url(../images/award_star_gold_3.png) no-repeat scroll 98% 50% }
