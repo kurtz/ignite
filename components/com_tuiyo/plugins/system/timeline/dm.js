@@ -31,11 +31,11 @@
 		 
 		 var text = $("#ptext").val();
 		 var toRegExp  = /[\@]+([A-Za-z0-9-_]+)/;
-		 var cmdRegExp = /[\$]+([A-Za-z0-9-_]+)[:]/ ;
+		 var cmdRegExp = /[\$]+([A-Za-z0-9-_]+)/ ;
 		 
 		 var toAr   = text.match( toRegExp );
 		 var to     = (toAr !== null)?  toAr[1] : "nobody? (Message cannot be sent)";
-		 var body   = ( text.replace( cmdRegExp , 'Hi, ' ) ).replace( toRegExp , "$1");
+		 var body   = ( text.replace( cmdRegExp , '' ) ).replace( toRegExp , "$1");
 		 
 		 //Show the form
 		 //$("#directMessageForm").remove();

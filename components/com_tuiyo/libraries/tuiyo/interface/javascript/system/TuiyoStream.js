@@ -483,7 +483,7 @@
 				return statusText;
 			},
 			findCommand = function(text ){
-				var regExp = /[\$]+([A-Za-z0-9-_]+)[:]/ ;
+				var regExp = /[\$]+([A-Za-z0-9-_]+)/ ;
 				var command = text.match( regExp );
 				
 				if(command !== null){
