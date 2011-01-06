@@ -13,15 +13,21 @@
 					 var theyear=mydate.getFullYear();
 					 var themonth=mydate.getMonth()+1;
 					 var thetoday=mydate.getDate();
-			 		 alert('Date : '+theyear+"-"+themonth+"-"+thetoday); 
+					 var thetime= mydate.getTime();
+			 		 alert('Date : '+theyear+"-"+themonth+"-"+thetoday+" "+thetime); 
 			 	},
 		 	},
-		 	"math":{}
+		 	"math":function(words){
+		 		words.splice(0, 1);
+		 		fx = words.join("");
+		 		
+		 		alert( eval(fx) );
+		 	}
 		 }
 		 for(i=0;i<words.length; i++){
 			 searchMethod +='.'+words[i];
 			 if(typeof eval(searchMethod) === 'function'){
-				 eval(searchMethod+'()');
+				 eval(searchMethod+'( words )');
 				 break; //pass the remainder of the words as params
 			 }
 		}
