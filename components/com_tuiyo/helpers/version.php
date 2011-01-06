@@ -34,13 +34,13 @@ class TuiyoVersion
     var $PRODUCT = 'Tuiyo';
     /**
      *  *  * @var int Main Release Level */
-    var $RELEASE = '2.0.0';
+    var $RELEASE = '2.0';
     /**
      *  *  * @var string Development Status */
-    var $DEV_STATUS = 'alpha 2';
+    var $DEV_STATUS = 'a1';
     /**
      *  *  * @var int Sub Release Level */
-    var $DEV_LEVEL = '2';
+    var $DEV_LEVEL = '0';
     /**
      *  *  * @var int build Number */
     var $BUILD = '0';

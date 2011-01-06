@@ -26,7 +26,7 @@ defined('TUIYO_EXECUTE') || die;
  * @version $Id$
  * @access public
  */
-class TuiyoPluginSystem extends TuiyoEventsListener{
+class TuiyoPluginSystemAdministrator extends TuiyoEventsListener{
 		
 	/**
 	 * TuiyoPluginCheckUpdate::onAdminStart()
@@ -39,20 +39,22 @@ class TuiyoPluginSystem extends TuiyoEventsListener{
 		//die;
 		
 		$version 	= TuiyoLoader::helper("parameter");
-		$version 	= TuiyoLoader::helper("version");		
+		$version 	= TuiyoLoader::helper("version");
+		$versionXML = new JSimpleXML();		
 		$document 	= $GLOBALS['API']->get("document");
 		
-		$url 		= "http://tuiyo.co.uk/version.ini";
+		$url 		= "https://github.com/Tuiyo/ignite/raw/master/VERSION.XML";
 		$updateUrl  = 'index.php?option=com_tuiyo&context=SystemTools&do=autoCenter&run=systemupdate' ; 
 		$vParams	= TuiyoAPI::getURL( $url );
 		
-		$vData		= new TuiyoParameter( $vParams );
+		//print_r($vParams);
+		
+		$vData		= new TuiyoParameter();
 		$version 	=& new TuiyoVersion() ;
 		
 		$latest		 = $vData->get("release").'.'.$vData->get("devlevel").'.'.$vData->get("devstatus") ;
 		
 		if( $version->isOutDated( $latest ) ) :
-		
 			$document->enqueMessage( sprintf(  _('Your version of Tuiyo is outdated. <a href="%s">Please click here to automatically upgrated to Tuiyo %2s</a>')  , $updateUrl, $latest ) , "notice" );
 			
 		endif ;
