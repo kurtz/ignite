@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="xmlrpc">
+	<name>XML-RPC - Tuiyo API</name>
+	<author>Livingstone Fultang</author>
+	<creationDate>January 2011</creationDate>
+	<copyright>
+		Copyright (C) 2005 - 2011 dr.stonyhills. All rights reserved.
+	</copyright>
+	<license>http://www.gnu.org/licenses/lgpl-2.1.html GNU/LGPL</license>
+	<authorEmail>livingstonefultang@gmail.com</authorEmail>
+	<authorUrl>www.drstonyhills.com</authorUrl>
+	<version>1.0</version>
+	<description>Tuiyo! XML-RPC API</description>
+	<files>
+		<filename plugin="tuiyo">tuiyo.php</filename>
+		<filename>tuiyo/methods.php</filename>
+	</files>
+	<params />
+</install>
