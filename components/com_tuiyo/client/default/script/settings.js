@@ -170,7 +170,7 @@
 				$.getJSON('index.php?'+$token+"=1",{'option': 'com_tuiyo', 'do': 'getSessionId', 'controller': 'resources', 'format': 'json'},function(resource){
 					$.getScript( $tuiyoAyncPath+'asyncupload.js', function(){		
 						$("#userAvatarUpload").makeAsyncUploader({
-				            upload_url: "http://localhost/joomla/"+$.TuiyoDefines.get("componentIndex")+"&controller=resources&do=uploadResources&format=json&resourceType=avatar&jsid="+resource.sid+"&jsname="+resource.sname,
+				            upload_url: $.TuiyoDefines.get("componentIndex")+"&controller=resources&do=uploadResources&format=json&resourceType=avatar&jsid="+resource.sid+"&jsname="+resource.sname,
 							post_params: resource.post, 
 							debug: false,
 							file_size_limit : "15 MB",
