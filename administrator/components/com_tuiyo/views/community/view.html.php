@@ -38,12 +38,45 @@ class TuiyoViewCommunity extends JView{
 			"data"		=>(!is_null($data))? $data : "" 
 		);
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."community".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("default" , $tmplPath , $tmplVars);
+		$action 		= JRequest::getVar("action", null);
+		$tmplFile		= "default";
+		
+		switch($action){
+			case "create":
+				$tmplFile = "createnew";
+			break;
+			case "reports":
+				return "community reports";
+			break;
+			case "viewpending":
+				$tmplFile = "pendingmembers";
+			break;
+			case "statistics":
+				return "community statistics";
+			break;
+			default:
+				$tmplVars["lists"] = $this->buildUserList();
+				$tmplFile = "default" ;
+			break;
+		}
+		
+		$tmplData 	    = $TMPL->parseTmpl($tmplFile, $tmplPath , $tmplVars);
 		
 		return $tmplData;
 	}
 	
-	public function buildUserList( $userListData ){
+	public function buildUserList( $userListData = null ){
+		
+		$cmtyModel	=new TuiyoModelCommunityManagement();
+		
+		/*Do Some Plugin Majical Stuff Here */
+		if(empty($userListData)){
+			$fields 		= array( 
+				"u"=>array( "id", "name", "email", "username",  "gid",  "lastVisitDate"),
+		   		"p"=>array("profileId", "dateCreated", "sex",  "suspended")
+			);
+			$userListData	= $cmtyModel->getUsers( $fields , true );
+		}
 		
 		$TMPL = $GLOBALS["API"]->get("document");
 

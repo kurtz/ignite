@@ -1,7 +1,7 @@
 <?php  defined('TUIYO_EXECUTE' ) || die; ?>
 
 <div class="tuiyoTable">
-	<form class="TuiyoForm" action="index.php" method="post">
+	<form action="index.php" method="post">
         <div class="tuiyoTableHeaderRow" style="padding: 0 4px; height: 41px;">
             <div class="tuiyoTableCell" style="width: 5%" align="center">
             <input type="checkbox" name="masterCheckBox" id="masterCheckBox" style="margin-top: 15px" /></div>

@@ -15,4 +15,12 @@
 	</params>
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
+	<params group="administrator">
+			<param type="text" class="TuiyoFormText" name="gMapAPIKey" label="Google Maps API Key" />
+			<param type="text" class="TuiyoFormText" name="gAnalyticsAccountName" label="Google Analytics Account Name"  />
+			<param type="text" class="TuiyoFormText" name="gAnalyticsAccountID" label="Google Analytics Account ID" />
+			<param type="text" class="TuiyoFormText" name="gAnalyticsWebPropertyID" label="Google Analytics WebPropertyID"  />
+			<param type="text" class="TuiyoFormText" name="gBuzzAPI" label="Google Buzz API" />
+			<param type="text" class="TuiyoFormText" name="gTranslateAPI" label="Google Translate API" />
+	</params>
 </install>

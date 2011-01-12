@@ -77,8 +77,7 @@ class TuiyoControllerCommunityManagement extends JController{
 		$tabgroup  = array( 
 			"_autocenter" => array(
 				_("User Reports") 		=> "&action=reports", //Determine which tab is active by comparing referers
-				_("Delete Request")		=> "&action=bucketlist",
-				_("Pending Approvals")	=> "&action=pending",
+				_("Moderation Logs")	=> "&action=logs",
 				_("Announcements")		=> "&action=announcements",
 			 )
 		);
@@ -96,6 +95,7 @@ class TuiyoControllerCommunityManagement extends JController{
 		
 		$adminView 		= $this->getView("tuiyo", "html");
 		$communityView 	= $this->getView("community" , "html");
+		$cmtyModel		= $this->getModel("communityManagement" );
 		
 		$userMgmnt 		= $communityView->display( );
 		
@@ -104,6 +104,7 @@ class TuiyoControllerCommunityManagement extends JController{
 				_("Members") 			=> "", //Determine which tab is active by comparing referers
 				_("Create New Users")	=> "&action=create",
 				_("Pending Members")	=> "&action=viewpending",
+				_("Delete Request")		=> "&action=bucketlist",
 				_("Reports")			=> "&action=reports",
 				_("Statistics")			=> "&action=statistics",
 			 )
