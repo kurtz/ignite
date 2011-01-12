@@ -37,6 +37,56 @@ class TuiyoControllerCommunityManagement extends JController{
 		parent::__construct();
 	}
 	
+	public function editpermissions(){
+		
+		$view = $this->getView("tuiyo", "html");
+
+		$tabgroup  = array( 
+			"_autocenter" => array(
+				_("Permission Groups") 		=> "&action=groups", //Determine which tab is active by comparing referers
+				_("Generic Roles")		=> "&action=create",
+				_("Assign Roles")			=> "&action=roles",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("Permission Manager", '_autocenter');
+	}
+	
+	public function filemanager(){
+		
+		$view = $this->getView("tuiyo", "html");
+
+		$tabgroup  = array( 
+			"_autocenter" => array(
+				_("User uploaded files") 		=> "&action=lists", //Determine which tab is active by comparing referers
+				_("Pending Approval")		=> "&action=pending",
+				_("Warnings")			=> "&action=warning",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("File Manager", '_autocenter');
+	}
+
+	
+	public function moderator(){
+		
+		$view = $this->getView("tuiyo", "html");
+
+		$tabgroup  = array( 
+			"_autocenter" => array(
+				_("User Reports") 		=> "&action=reports", //Determine which tab is active by comparing referers
+				_("Delete Request")		=> "&action=bucketlist",
+				_("Pending Approvals")	=> "&action=pending",
+				_("Announcements")		=> "&action=announcements",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("Moderator", '_autocenter');
+	}
+	
 	/**
 	 * Default community managment action
 	 * TuiyoControllerCommunityManagement::display()
@@ -49,7 +99,18 @@ class TuiyoControllerCommunityManagement extends JController{
 		
 		$userMgmnt 		= $communityView->display( );
 		
-		$adminView->display( $userMgmnt );
+		$tabgroup  = array( 
+			"_users" => array(
+				_("Members") 			=> "", //Determine which tab is active by comparing referers
+				_("Create New Users")	=> "&action=create",
+				_("Pending Members")	=> "&action=viewpending",
+				_("Reports")			=> "&action=reports",
+				_("Statistics")			=> "&action=statistics",
+			 )
+		);
+		$adminView->addTabGroup( $tabgroup );
+		
+		$adminView->display( $userMgmnt  , "_users");
 		$this->docu->addScript( "components/com_tuiyo/style/script/community.js" ); 
 	}
 	
@@ -81,8 +142,17 @@ class TuiyoControllerCommunityManagement extends JController{
 		
 		$adminView 	= $this->getView("tuiyo" , "html");
 		$adminWindow= $adminView->categoryManager();
+		$tabgroup  = array( 
+			"_categories" => array(
+				_("Categories") => "&action=lists", //Determine which tab is active by comparing referers
+				_("Add New Category")=> "&action=create",
+				_("Attributes")=> "&action=attributes",
+				_("Statistics")=> "&action=statistics",
+			 )
+		);
+		$adminView->addTabGroup( $tabgroup );
 		
-		return $adminView->display( $adminWindow );
+		return $adminView->display( $adminWindow , "_categories");
 	}
 	
 	
@@ -116,8 +186,17 @@ class TuiyoControllerCommunityManagement extends JController{
         /** Do nothing majical **/
 
         $groups = $cmtyView->showGroupWindow( );
+		$tabgroup  = array( 
+			"_groups" => array(
+				_("Member Groups") 		=> "&action=lists", //Determine which tab is active by comparing referers
+				_("Create New Group")	=> "&action=new",
+				_("Groups By Category")	=> "&action=categories",
+				_("Statistics")			=> "&action=statistics",
+			 )
+		);
+		$adminView->addTabGroup( $tabgroup );
 
-        $adminView->display( $groups );
+        $adminView->display( $groups , "_groups");
         //Add JS
 		$this->docu->addScript( "components/com_tuiyo/style/script/community.js" ); 
 	}

@@ -45,7 +45,7 @@ class TuiyoPluginSystemAdministrator extends TuiyoEventsListener{
 		
 		$url 		= "https://github.com/Tuiyo/ignite/raw/master/VERSION.XML";
 		$updateUrl  = 'index.php?option=com_tuiyo&context=SystemTools&do=autoCenter&run=systemupdate' ; 
-		$vParams	= TuiyoAPI::getURL( $url );
+		//$vParams	= TuiyoAPI::getURL( $url );
 		
 		//print_r($vParams);
 		

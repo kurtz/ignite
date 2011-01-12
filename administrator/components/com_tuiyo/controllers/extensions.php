@@ -194,6 +194,23 @@ class TuiyoControllerExtensions extends JController{
 	
 		/*Do Some Plugin Majical Stuff Here */
 		
+	}
+	
+	public function extensionmgr(){
+		
+		$view = $this->getView("tuiyo", "html");
+
+		$tabgroup  = array( 
+			"_ext" => array(
+				_("Extensions") 			=> "&action=lists", //Determine which tab is active by comparing referers
+				_("Events Profiler")		=> "&action=events",
+				_("Extension Editor")			=> "&action=editor",
+				_("Statistics")			=> "&action=statistics",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("Extension mgr", '_ext');
 	}	
 	
 	/**

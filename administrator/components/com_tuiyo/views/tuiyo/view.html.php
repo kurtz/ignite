@@ -31,6 +31,11 @@ jimport( 'joomla.application.component.view' );
  */
 class TuiyoViewTuiyo extends JView
 {
+	var $menu 		= array();
+	var $tabgroup	= "_default";
+	var $tabgroups  = array();
+	var $tabactive  = null;
+
 	/**
 	 * TuiyoViewTuiyo::categoryManager
 	 * Default function to display the category manager
@@ -60,16 +65,63 @@ class TuiyoViewTuiyo extends JView
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
 		$tmplData 	    = $TMPL->parseTmpl("categories" , $tmplPath , $tmplVars);
 		
+		
 		return $tmplData;		
 		
 	}
+	
+	public function generatePageTabs(){
+		
+		$tablists = (isset($this->tabgroups[$this->tabgroup])) ?$this->tabgroups[$this->tabgroup]:$this->tabgroups['_default'];
+		
+		foreach($tablists as $tab=>$href){
+			echo('<li><a href="'.$href.'">'.$tab.'</a></li>');
+		}
+	}
+	
+	public function addTabGroup( $group ){
+		//get the refferer
+		$ref = JRequest::getURI();
+		$act = JRequest::getVar("action", null);
+		$ctx = JRequest::getVar("context", null);
+		$do  = JRequest::getVar("do", null);
+
+		foreach($group as $groupi=>$groupj){
+			foreach($groupj as $title=>$href){
+				$url = TUIYO_INDEX ;
+				$url.= !empty($ctx)?"&context=".$ctx : null ;
+				$url.= !empty($do)?"&do=".$do : null ;
+				$group[$groupi][$title] = $url.$href;
+			}
+		}
+		$this->tabgroups = array_merge( (array)$group , $this->tabgroups);
+	}
+	
+	public function getMenu(){
+		
+		$TMPL = $GLOBALS["API"]->get("document");
+		$TMPL->IconPath = $iconPath;
+		
+		$tmplVars 		= array(
+			"styleDir"	=>$livestyle,
+			"livePath"	=>TUIYO_LIVE_PATH,
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
+			"user"		=>JFactory::getUser()
+		);
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl("menu" , $tmplPath , $tmplVars);
+		
+		return $tmplData;
+	}
+	
+	
 	/**
 	 * TuiyoViewTuiyo::display()
 	 * Default welcome page for admin view
 	 * @param mixed $tpl
 	 * @return
 	 */
-	public function display( $tpl = null )
+	public function display( $tpl = null , $tabgroup = "", $tabactive="")
 	{
 
 		$TMPL 		=   $GLOBALS['API']->get( 'document' );
@@ -77,6 +129,20 @@ class TuiyoViewTuiyo extends JView
 		$DOCU 		=   JFactory::getDocument();
 		$MODEL 		= 	TuiyoLoader::model('applications', true );
 		$APPS		=   $MODEL->getApplicationExtendedList();
+		
+		$defaultTabGroup  = array( 
+			"_default" => array(
+				_("Welcome") => "&action=welcome", //Determine which tab is active by comparing referers
+				_("QuickTools")=> "&action=controlpanel",
+				_("News & Updates")=> "&action=rss",
+				_("Statistics & Logs")=> "&action=logs",
+			 )
+		);
+		
+		$this->addTabGroup( $defaultTabGroup );
+		$this->tabgroup  = $tabgroup;
+		$this->tabactive = $tabactive;
+		
 		
 		$DOCU->addStyleSheet('components/com_tuiyo/style/css/common.css' );
 		$DOCU->addScript( 'components/com_tuiyo/style/script/global.js' );
@@ -108,8 +174,10 @@ class TuiyoViewTuiyo extends JView
 			"apps"		=>$APPS,
 			"activity"	=>$activity,
 			"styleDir"	=>$livestyle,
+			"user"		=>$USER,
 			"livePath"	=>TUIYO_LIVE_PATH,
-			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/'
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
+			"view"		=> $this
 		);		
 		
 		$tmplVars["version"]	=	$longVersion;
@@ -121,7 +189,21 @@ class TuiyoViewTuiyo extends JView
 		
 		$content 	    = $TMPL->parseTmpl("admin" , $tmplPath , $tmplVars);
 		
+		$header = $DOCU->getHeadData();
+		
+		reset($header['styleSheets']);
+		
+		foreach ($header['styleSheets'] as $css=>$attr) {
+		    if (strpos($css,'general.css') ) {
+		        unset($header['styleSheets'][$css]);
+		    }
+		}
+
+		$DOCU->setHeadData($header);
+		
 		echo $content;
+		
+		
 	}
 	
 	/**
@@ -246,6 +328,8 @@ class TuiyoViewTuiyo extends JView
 		$TMPL = $GLOBALS["API"]->get("document");
 		$TMPL->IconPath = $iconPath;
 		
+		$action = JRequest::getVar("action" , null);
+		
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
 			"livePath"	=>TUIYO_LIVE_PATH,
@@ -255,8 +339,52 @@ class TuiyoViewTuiyo extends JView
 			"e"			=>$data["params"]
 		);
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
+		$tmplFile    	= "config";	 
+		//Switch;
+		switch($action){
+			case "params":
+				return "parameter page";
+			break;
+			case "tables":
+				return "mysql table settings";
+			break;
+			case "utilities":
+				return "utitilities page";
+			break;
+			case "info":
+				return "system information page";
+			break;
+			case "global":
+			default:
+				//Import the Joomla Folder Library
+				jimport('joomla.filesystem.folders');
+				jimport('joomla.filesystem.file');
+
+				//Import the Tuiyo Alias of JParameter
+				TuiyoLoader::helper("parameter");
+				$tmplFile = "config";
+				
+				$configsXML = array("global.xml");
+				$sections   = array();
+				$appModel   = TuiyoLoader::model("applications", true);
+				
+				foreach($configsXML as $element){
+					$section 	= array();
+					$iniFile 	= JFile::stripExt($element);
+					$iniParams 	= JFile::read( TUIYO_CONFIG.DS.$iniFile.".ini" );
+					if(!$iniParams){
+						$iniParams = "";
+					}
+					$section["title"] = ucfirst($iniFile);
+					$section["params"] = new TuiyoParameter($iniParams, TUIYO_CONFIG.DS.$element);
+					$sections[] = $section;
+				}
+				$tmplVars["elements"] = $sections;
+				$tmplVars["plugins"]  = $appModel->getAllSystemPlugins(services , true );
+			break;
+		}
 		
-		$tmplData 	    = $TMPL->parseTmpl("config" , $tmplPath , $tmplVars);
+		$tmplData 	    = $TMPL->parseTmpl($tmplFile , $tmplPath , $tmplVars);
 		
 		return $tmplData;
 		

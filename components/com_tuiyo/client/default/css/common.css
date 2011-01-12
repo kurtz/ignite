@@ -119,7 +119,7 @@ div.activityStreamItemMainBody div.private{background: none no-repeat scroll 2px
 div.activityStreamItemActivityBody div.public,
 div.activityStreamItemMainBody div.public{background: none no-repeat scroll 2px 48% }
 .activityStreamItem a.activityProfile{background: #DFFFDF none no-repeat 1% 55% scroll; padding:0 3px }
-#streamPagination{ padding: 4px; background: transparent url(../images/ajaxmore.png) 0 0 repeat-x scroll; border: 1px solid #e1e1e1; -moz-border-radius: 5px; -webkit-border-radius: 5px; cursor: pointer; margin-bottom:14px; display: none  }
+#streamPagination{ padding: 7px; background: transparent url(../images/ajaxmore.png) 0 0 repeat-x scroll; border: 1px solid #e1e1e1; cursor: pointer; margin-bottom:14px; display: none  }
 #streamPagination a{font-weight: bold}
 
 div.windowOverlay{background: #000 none repeat fixed 0 0; position: fixed; top: 0; right: 0 ; left: 0; bottom: 0; min-height: 200px; z-index: 2000; opacity: 0.2; filter: alpha(opacity = 20); display: none}

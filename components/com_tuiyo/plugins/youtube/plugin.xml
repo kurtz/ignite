@@ -15,4 +15,9 @@
 	</params>
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
+	<params group="administrator">
+			<param type="text" class="TuiyoFormText" name="youtubeDevKey" label="Youtube Developer Key" />
+			<param type="text" class="TuiyoFormText" name="youtubeClientId" label="Youtube Client ID" />
+			<param type="text" class="TuiyoFormText" name="youtubeApplicationId" label="Youtube Application ID" />
+	</params>
 </install>

@@ -64,6 +64,7 @@ class TuiyoControllerTuiyo extends JController
     	$this->redirect();
 	 	
 	 }
+	
 	 
 	/**
 	 * TuiyoController::display()
@@ -72,8 +73,9 @@ class TuiyoControllerTuiyo extends JController
 	public function display()
 	{
 		//onAdminStart
+		$adminView 		= $this->getView("tuiyo", "html");
 		$GLOBALS["events"]->trigger( "onAdminStart"  );
 				
-		parent::display( );
+		$adminView->display( null, "_default" );
 	}
 }

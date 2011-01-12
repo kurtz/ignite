@@ -62,7 +62,17 @@ class TuiyoControllerSystemTools extends JController
 
         $form 	= $view->showSystemEmailForm( );
 
-        $view->display($form );
+		$tabgroup  = array( 
+			"_email" => array(
+				_("Email Templates") 	=> "&action=template", //Determine which tab is active by comparing referers
+				_("Mass Mailer")		=> "&action=create",
+				_("Email Blocks Editor")=> "&action=editor",
+				_("Reports")			=> "&action=reports & Logs"
+			 )
+		);
+		$view->addTabGroup( $tabgroup );
+
+        $view->display($form , "_email");
     }
 
     /**
@@ -76,7 +86,19 @@ class TuiyoControllerSystemTools extends JController
         $data 	= null;
         $stats 	= $view->showStatsWindow( $data );
 
-        $view->display( $stats );
+		$tabgroup  = array( 
+			"_statistics" => array(
+				_("Summary") 	=> "&action=summary", //Determine which tab is active by comparing referers
+				_("Page Views")		=> "&action=pageviews",
+				_("Referrers")=> "&action=referers",
+				_("Bounce Rates")			=> "&action=bouncers",
+				_("Member Statistics") => "&action=members",
+				_("User Agent") => "&action=useragents"
+			 )
+		);
+		$view->addTabGroup( $tabgroup );
+
+        $view->display( $stats , "_statistics");
         $this->docu->addScript("components/com_tuiyo/style/script/config.js");
     }
 
@@ -94,7 +116,17 @@ class TuiyoControllerSystemTools extends JController
         $stats 	= $view->showFieldsManager( $data );
 		$doc 	= $this->docu;
 		
-        $view->display( $stats );
+		$tabgroup  = array( 
+			"_userfields" => array(
+				_("Custom Fields") 	=> "&action=list", //Determine which tab is active by comparing referers
+				_("Create New")		=> "&action=create",
+				_("Preview Output") => "&action=view",
+			 )
+		);
+		$view->addTabGroup( $tabgroup );
+				
+		
+        $view->display( $stats , "_userfields");
         
 		$doc->addScript( TUIYO_JS.'/includes/jqueryui/ui.core.js' );
 		$doc->addScript( TUIYO_JS.'/includes/jqueryui/ui.draggable.js' );
@@ -138,7 +170,18 @@ class TuiyoControllerSystemTools extends JController
         /** Do nothing majical **/
         $form 	= $view->showConfigWindow($data);
 
-        $view->display($form);
+		$tabgroup  = array( 
+			"_settings" => array(
+				_("Configurations") 	=> "&action=global", //Determine which tab is active by comparing referers
+				_("Parameters")		=> "&action=params",
+				_("Tables") => "&action=tables",
+				_("Utilities") => "&action=utilities",
+				_("Information") => "&action=info"
+			 )
+		);
+		$view->addTabGroup( $tabgroup );
+
+        $view->display($form, "_settings");
         $this->docu->addScript("components/com_tuiyo/style/script/config.js");
 
     }
@@ -254,6 +297,23 @@ class TuiyoControllerSystemTools extends JController
     	return $view->encode( $resp );
 	}
     
+	public function layoutmgr(){
+		
+		$view = $this->getView("tuiyo", "html");
+
+		$tabgroup  = array( 
+			"_" => array(
+				_("Layouts") 			=> "&action=lists", //Determine which tab is active by comparing referers
+				_("Create Layout")		=> "&action=create",
+				_("Layout editor")		=> "&action=edit",
+				_("Modules")			=> "&action=modules",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("Layoutmanager", '_');
+	}
+	
     /**
      * TuiyoControllerSystemTools::saveCustomFields()
      * @return json
@@ -291,6 +351,7 @@ class TuiyoControllerSystemTools extends JController
     	//Return JSON
     	$view->encode( $resp ); 
     }
+
     
     /**
      * TuiyoControllerSystemTools::deleteCustomField()
@@ -382,7 +443,7 @@ class TuiyoControllerSystemTools extends JController
 
         $form = $view->showBugReportForm();
 
-        $view->display($form);
+        $view->display( $form);
     }
 
     /**
@@ -394,13 +455,44 @@ class TuiyoControllerSystemTools extends JController
     {
         $view 	= $this->getView("tuiyo", "html");
 		$macro 	= JRequest::getVar("run", null );
-		
+		$action = JRequest::getVar("action", null);
         /** Do something majical **/
+		switch($action){
+			case "updater":
+				return $this->sysUpdater();
+			break;
+		}
 
         $form = $view->showAutoCenter( $macro );
+		
+		$tabgroup  = array( 
+			"_autocenter" => array(
+				_("Package Installer") 		=> "&action=installer", //Determine which tab is active by comparing referers
+				_("Updates")		=> "&action=updater",
+				_("Discover")		=> "&action=plugins",
+				_("Create Plugin")		=> "&action=create",
+			 )
+		);
+		$view->addTabGroup( $tabgroup );
 
-        $view->display( $form );
+        $view->display( $form , "_autocenter");
     }
+
+	public function languagemgr(){
+		
+		$view = $this->getView("tuiyo", "html");
+
+		$tabgroup  = array( 
+			"_autocenter" => array(
+				_("Installed Languages") 		=> "&action=list", //Determine which tab is active by comparing referers
+				_("Edit Translations")			=> "&action=edit",
+				_("Create New Language")		=> "&action=create",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("Language Manager", '_autocenter');
+	}
 
     /**
      * TuiyoControllerSystemTools::sysUpdater()
@@ -411,7 +503,16 @@ class TuiyoControllerSystemTools extends JController
     {
         $view = $this->getView("tuiyo", "html");
 
-        $view->display("system updater");
+		$tabgroup  = array( 
+			"_autocenter" => array(
+				_("Installer") 		=> "&action=installer", //Determine which tab is active by comparing referers
+				_("AutoUpdate")		=> "&action=updater",
+				_("Plugins")	=> "&action=plugins",
+			 )
+		);
+		$view->addTabGroup( $tabgroup  );
+
+        $view->display("system updater", '_autocenter');
     }
 
 

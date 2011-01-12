@@ -148,7 +148,7 @@ class TuiyoParameter extends JParameter{
 			$html[] = '<div class="tuiyoTableRow" style="padding: 4px 0px">';
 
 			if ($param[0]) {
-				$html[] = '<div style="width: 35%" class="paramlist_key tuiyoTableCell"><span class="editlinktip">'.$param[0].'</span></div>';
+				$html[] = '<div style="width: 35%" class="paramlist_key tuiyoTableCell">'.$param[0].'</div>';
 				$html[] = '<div style="width: 65%" class="paramlist_value tuiyoTableCell">'.$param[1].'</div>';
 			} else {
 				$html[] = '<div class="paramlist_value tuiyoTableCell" style="width: 100%">'.$param[1].'</div>';

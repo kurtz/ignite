@@ -19,6 +19,9 @@
 		<param type="privacyel" name="postToFacebookProfile" label="Post to your facebook Profile" />
 		<param type="privacyel" name="replytoFacebookPost" label="Reply to facebook Posts" />
 	</params>
-	<params group="profilepicture"></params>
+	<params group="administrator">
+			<param type="text" class="TuiyoFormText" name="siteFBKey" label="Facebook API Key"  description="Visit developers.facebook.com for more details" />
+			<param type="text" class="TuiyoFormText" name="siteFBSecret" label="Facebook API Secret"  description="Visit developers.facebook.com for more details" />
+	</params>
 
 </install>

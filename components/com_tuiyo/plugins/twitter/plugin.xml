@@ -12,4 +12,10 @@
 
 	<params group="profilepicture"></params>
 	
+	<params group="administrator">
+			<param type="text" class="TuiyoFormText" name="twitterCallback" label="Twitter Callback URL"  description="Visit developers.twitter.com for more details" />
+			<param type="text" class="TuiyoFormText" name="twitterConsumerKey" label="Twitter Consumer Key"  description="Visit developers.twitter.com for more details" />
+			<param type="text" class="TuiyoFormText" name="twitterConsumerSecret" label="Twitter ConsumerSecret"  description="Visit developers.twitter.com for more details" />
+	</params>
+	
 </install>
