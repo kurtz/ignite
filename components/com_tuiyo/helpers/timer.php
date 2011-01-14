@@ -72,7 +72,7 @@ class TuiyoTimer
             }
             $diff -= $x * $value;
         }
-        $opt['distance'] && $str .= ($str && $opt['to'] > $time) ? ' ago' : ' away';
+        $opt['distance'] && $str .= ($str && $opt['to'] > $time) ? ' ago' : ' ago'; //($str && $opt['to'] > $time) ? ' ago' : ' away';
 
         return $str;
     }    
