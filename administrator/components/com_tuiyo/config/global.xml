@@ -69,5 +69,30 @@
 			<option value="R">R</option>
 			<option value="X">X</option>
 		</param>
+		<param type="list" class="TuiyoFormDropDown" name="autosuggestFriends" label="AutoSuggest Friends" default="1">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param type="list" class="TuiyoFormDropDown" name="notifyOnRelationship" label="Notify on friend requests" default="1">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param type="checkgroup" class="TuiyoFormDropDown" name="searchSiteContexts" label="Enable search context" default="1">
+			<option value="users">Users</option>
+			<option value="customfieds">Profiles</option>
+			<option value="plugins">Plugins</option>
+			<option value="groups">Groups</option>
+			<option value="timeline">Timeline</option>
+			<option value="messages">Messages</option>
+			<option value="photos">Photos</option>
+		</param>
+		<param type="list" class="TuiyoFormDropDown" name="enableProfileRating" label="Enable Profile Rating" default="1">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param type="list" class="TuiyoFormDropDown" name="enablePrivacy" label="Enable Privacy" default="1">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
     </params>
 </systemparams>

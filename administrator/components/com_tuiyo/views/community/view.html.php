@@ -28,8 +28,8 @@ class TuiyoViewCommunity extends JView{
 	
 	public function display( $data = null ){
 		
-		$TMPL = $GLOBALS["API"]->get("document");
-		
+		$TMPL 			= $GLOBALS["API"]->get("document");
+		$USER			= 	TuiyoAPI::get("user");
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
 			"livePath"	=>TUIYO_LIVE_PATH,
@@ -43,6 +43,10 @@ class TuiyoViewCommunity extends JView{
 		
 		switch($action){
 			case "create":
+				$ACL 	 =  JFactory::getACL();
+				$gtree 	 = $ACL->get_group_children_tree( null, 'USERS', false );
+				$aroGrps = JHTML::_('select.genericlist',   $gtree, 'gid', 'class="TuiyoFormDropDown"', 'value', 'text');
+				$tmplVars["arogrp"] = $aroGrps;
 				$tmplFile = "createnew";
 			break;
 			case "reports":

@@ -102,6 +102,7 @@ header, article, section, aside { display:block; }
 	.TuiyoForm textarea.TuiyoFormTextArea,.TuiyoForm select.TuiyoFormDropDown option, .TuiyoForm select.TuiyoFormDropDown,.TuiyoForm select.TuiyoFormDropDown,.TuiyoForm input.TuiyoFormText, input.TuiyoFormRadio{font-family:segoe UI;font-size:13px; margin-bottom: 5px}
 	button{font-size: 12px !important }
 	.TuiyoForm input[type=radio], .TuiyoForm select.TuiyoFormDropDown, .TuiyoForm button{margin-left: 15px;}
+	.TuiyoForm input[type=checkbox], .TuiyoForm input[type=checkbox]{margin: 10px 5px 10px 15px;}
 	.formTip{font-size: 11px; font-style: italic}
 	
 	

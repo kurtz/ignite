@@ -198,7 +198,17 @@ class TuiyoControllerExtensions extends JController{
 	
 	public function extensionmgr(){
 		
-		$view = $this->getView("tuiyo", "html");
+		global $mainframe;
+		
+		$view 	= $this->getView("tuiyo", "html");
+		$action = JRequest::getVar("action",null);
+		
+		switch($action){
+			case "installer":
+				$installer = JRoute::_(TUIYO_INDEX."&context=systemtools&do=autocenter", false);
+				$mainframe->redirect( $installer );
+			break;
+		} 
 
 		$tabgroup  = array( 
 			"_ext" => array(
@@ -206,6 +216,7 @@ class TuiyoControllerExtensions extends JController{
 				_("Events Profiler")		=> "&action=events",
 				_("Extension Editor")			=> "&action=editor",
 				_("Statistics")			=> "&action=statistics",
+				_("Installer")			=> "&action=installer",
 			 )
 		);
 		$view->addTabGroup( $tabgroup  );

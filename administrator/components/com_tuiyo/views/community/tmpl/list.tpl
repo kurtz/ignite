@@ -2,6 +2,7 @@
 
 <div class="tuiyoTable">
 	<form action="index.php" method="post">
+		<fieldset style='border:none'>
         <div class="tuiyoTableHeaderRow" style="padding: 0 4px; height: 41px;">
             <div class="tuiyoTableCell" style="width: 5%" align="center">
             <input type="checkbox" name="masterCheckBox" id="masterCheckBox" style="margin-top: 15px" /></div>
@@ -42,5 +43,6 @@
         <?php endforeach; ?>
         <input type="hidden" name="option" value="com_tuiyo" />
     	<?php echo JHTML::_('form.token'); ?>
+		</fieldset>
     </form>
 </div>

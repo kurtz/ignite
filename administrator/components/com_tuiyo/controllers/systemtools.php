@@ -480,8 +480,8 @@ class TuiyoControllerSystemTools extends JController
 
 	public function languagemgr(){
 		
-		$view = $this->getView("tuiyo", "html");
-
+		$view 	= $this->getView("tuiyo", "html");
+		$lview 	= $this->getView("localemanager", "html" ); 
 		$tabgroup  = array( 
 			"_autocenter" => array(
 				_("Installed Languages") 		=> "&action=list", //Determine which tab is active by comparing referers
@@ -489,9 +489,10 @@ class TuiyoControllerSystemTools extends JController
 				_("Create New Language")		=> "&action=create",
 			 )
 		);
+		$content = $lview->display();
 		$view->addTabGroup( $tabgroup  );
 
-        $view->display("Language Manager", '_autocenter');
+        $view->display($content, '_autocenter');
 	}
 
     /**
