@@ -1,6 +1,6 @@
 <div class="windowOverlay">&nbsp;</div>
-<?php if((int)$canPost !== 0 ) : TuiyoEventLoader::preparePlugins("timeline" ); ?>
-	<?php $document = TuiyoAPI::get("document",null); $document->addJS('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true'); $document->addJS( JURI::root().'components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/google/gmap.js')?>
+<?php if((int)$canPost !== 0 ) : TuiyoEventLoader::preparePlugins("timeline" );  ?>
+	<?php $document = TuiyoAPI::get("document",null); ?>
     <form name="TuiyoStreamUpdate" id="TuiyoStreamUpdate" action="<?php echo( JURI::root().TUIYO_INDEX.'&format=json'); ?>" class="TuiyoForm" method="post">
         <div class="homepagePublisherContainer">
             <div class="statusTools" style="">
@@ -8,7 +8,20 @@
             	<a href="#" class="updatestatus" rel="updateStatus"><?php echo _('Status')?></a>
 	        	<a href="#" class="filter" rel="filterNewsFeed"><?php echo _('Sort feeds')?></a>
 	        	<a href="#" class="upload" rel="uploadFiles"><?php echo _('Files')?></a>
-	        	<a href="#" class="location" rel="shareLocation"><?php echo _('Location')?></a>
+				<?php 
+					$gLocationModel = TuiyoLoader::model("applications", true); 
+					$googleService  = $gLocationModel->getSingleUserPlugin( $user->id, "google");
+					if($googleService!==false) :
+						
+						$mapkey = $googleService->get("gMapAPIKey", null);
+						$mapkey = !empty($mapkey)? "&amp;key=".$mapkey : null;
+						$document->addJS('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true'.$mapkey); 
+						$document->addJS( JURI::root().'components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/google/gmap.js')
+					?>
+						<a href="#" class="location" rel="shareLocation"><?php echo _('Location')?></a>
+					<?php	
+					endif;
+				?>
 	        </div>
             <div class="tuiyoTable publisher statusToolEl" style="display: none">
                 <div class="tuiyoTableRow" >            	

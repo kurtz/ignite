@@ -179,6 +179,9 @@ class TuiyoModelApplications extends JModel{
 		$userPlugin 	= (array)$upTable->findUserPlugin($userId,$pluginName);
 		
 		//print_R($userPlugin);
+		if(empty($userPlugin)){
+			return false; //The user does not have the plugin installed
+		}
 		
 		//Scan the plugin folder
 		$exclude 		= array("system");
@@ -204,6 +207,12 @@ class TuiyoModelApplications extends JModel{
 		$pluginParams   = new TuiyoParameter($userPlugin['params'], $newPluginXMLf );
 		
 		$pluginParams->setXML( $newPluginXML->file->document );
+		
+		static $globalINI 	;
+		
+		$globalINI = file_get_contents( TUIYO_CONFIG.DS.'global.ini');
+		
+		$pluginParams->bind( $globalINI );
 		
 		return $pluginParams;
 		
@@ -270,11 +279,16 @@ class TuiyoModelApplications extends JModel{
 			$newPluginSpec['serviceDescription']	= $root->description[0]->_data;
 			$newPluginSpec['serviceLivePath']		= $newPluginLivePath;
 			$newPluginSpec['serviceExecuteJS']		= $newPluginLivePath.'/'.$newPluginID.'.js';
-			
 			$newPluginSpec['settings_default_html'] = $pluginParams->renderHTML("params", "plugin");
-			$newPluginSpec['settings_administrator_html'] = $pluginParams->renderHTML("params", "administrator");
 			$newPluginSpec['settings_photos_html'] 	= $pluginParams->renderHTML("params", "photos");
 			$newPluginSpec['settings_privacy_html'] = $pluginParams->renderHTML("params", "privacy");
+			
+			static $globalINI 	;
+			
+			$globalINI = file_get_contents( TUIYO_CONFIG.DS.'global.ini');
+			
+			$pluginParams->bind( $globalINI );
+			$newPluginSpec['settings_administrator_html'] = $pluginParams->renderHTML("params", "administrator");
 			
 			$pluginsSpec[$newPluginID] = $newPluginSpec ;
 			

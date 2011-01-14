@@ -342,17 +342,11 @@ class TuiyoViewTuiyo extends JView
 		$tmplFile    	= "config";	 
 		//Switch;
 		switch($action){
-			case "params":
-				return "parameter page";
-			break;
-			case "tables":
-				return "mysql table settings";
-			break;
 			case "utilities":
 				return "utitilities page";
 			break;
 			case "info":
-				return "system information page";
+				return $this->showSystemParams();
 			break;
 			case "global":
 			default:
@@ -388,6 +382,25 @@ class TuiyoViewTuiyo extends JView
 		
 		return $tmplData;
 		
+	}
+	
+	public function showSystemParams(){
+		
+		$TMPL = $GLOBALS["API"]->get("document");
+		$TMPL->IconPath = $iconPath;
+		
+		$tmplVars 		= array(
+			"styleDir"	=>$livestyle,
+			"livePath"	=>TUIYO_LIVE_PATH,
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
+			"user"		=>JFactory::getUser(),
+			"apps"		=>$data["APPS"] ,
+			"e"			=>$this->e 
+		);
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl("information" , $tmplPath , $tmplVars);
+		
+		return $tmplData;
 	}
 	
 	/**

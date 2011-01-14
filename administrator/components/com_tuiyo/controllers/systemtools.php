@@ -173,8 +173,6 @@ class TuiyoControllerSystemTools extends JController
 		$tabgroup  = array( 
 			"_settings" => array(
 				_("Configurations") 	=> "&action=global", //Determine which tab is active by comparing referers
-				_("Parameters")		=> "&action=params",
-				_("Tables") => "&action=tables",
 				_("Utilities") => "&action=utilities",
 				_("Information") => "&action=info"
 			 )
