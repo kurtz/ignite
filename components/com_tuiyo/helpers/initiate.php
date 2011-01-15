@@ -227,6 +227,14 @@ class TuiyoInitiate{
 			if( file_exists($administrator) ){
 				$groups["administrator"][$service]=$administrator;
 			}
+			//Messafes
+			if( file_exists($messages)){
+				$groups['messages'][$service]=$messages;
+			}
+			//Authentication
+			if( file_exists($authentication)){
+				$groups['authentication'][$service]=$authentication;
+			}
 			
 		}
 		

@@ -17,8 +17,12 @@
 defined('TUIYO_EXECUTE') || die('You are not authorised to view this resource');
  
 
-class TuiyoPluginFeed extends TuiyoEventsListener{
+class TuiyoPluginFeedTimeline extends TuiyoEventsListener{
 
+	/**
+	 * Feed Plugin onTimelineLoad Event
+	 *  
+	 */
 	public function onTimelineLoad(){}
 	public function onAfterTimelineLoad( $args = null){
 		
@@ -31,7 +35,7 @@ class TuiyoPluginFeed extends TuiyoEventsListener{
 		$aParams 	= $aModel->getSingleUserPlugin($aUser->id , "feed" );
 		
 		//get the feedURl
-		$feedURL 	= $aParams->get("feedURL", null);
+		//$feedURL 	= $aParams->get("feedURL", null);
 		//$feedData   = TuiyoAPI::getURL( $feedURL );
 		
 		//$tempfilename = TUIYO_CACHE.DS.date("YmdHis")."feed.xml";

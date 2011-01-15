@@ -71,9 +71,7 @@ class TuiyoViewExtensions extends JView
 		$APP  			= TuiyoLoader::model("applications", true );	
 		$TMPL 			= $API->get("document");
 		$TMPL->IconPath = $iconPath;
-		
-		
-		
+
 		$tmplVars 		= array(
 			"apps"		=>$APP->getAllSystemPlugins("services",true), 
 			"styleDir"	=>$livestyle,
@@ -96,7 +94,7 @@ class TuiyoViewExtensions extends JView
 				return $this->getApplicationList() ;
 			break;
 			case "events":
-				return "events mgr";
+				return $this->eventsProfiler();
 			break;
 			case "statistics":
 				return "plugin stats";
@@ -111,6 +109,27 @@ class TuiyoViewExtensions extends JView
 			
 		} 
 		
+	}
+	
+	public function eventsProfiler(){
+		
+		global $PLUGIN_GROUPS;
+		
+		$TMPL = $GLOBALS["API"]->get("document");
+		$TMPL->IconPath = $iconPath;
+		
+		$tmplVars 		= array(
+			"events"	=>$PLUGIN_GROUPS,
+			"styleDir"	=>$livestyle,
+			"livePath"	=>TUIYO_LIVE_PATH,
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/'
+		);
+		
+		
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."extensions".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl("events" , $tmplPath , $tmplVars);
+		
+		return $tmplData;
 	}
 	
 	

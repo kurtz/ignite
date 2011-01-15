@@ -26,7 +26,7 @@
   * @version $Id$
   * @access public
   */
- class TuiyoPluginSystem extends TuiyoEventsListener{
+ class TuiyoPluginSystemProfile extends TuiyoEventsListener{
  	
  	
  	public function onProfileHomePageBuild( $args ){

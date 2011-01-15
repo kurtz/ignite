@@ -17,7 +17,7 @@
 defined('TUIYO_EXECUTE') || die('You are not authorised to view this resource');
  
 
-class TuiyoPluginSystem extends TuiyoEventsListener{
+class TuiyoPluginSystemMessages extends TuiyoEventsListener{
 	
 	public function onRegisterPlugins(){} 
 	public function onNewMessage(){}
