@@ -85,15 +85,15 @@
     settings: {
       opacity      : 0.2,
       overlay      : true,
-      loadingImage : "components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/facebox/loading.gif",
-      closeImage   : "components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/facebox/closelabel.png",
+      loadingImage : $.TuiyoDefines.get('siteDomain')+"components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/facebox/loading.gif",
+      closeImage   : $.TuiyoDefines.get('siteDomain')+"components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/facebox/closelabel.png",
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
       <div class="popup"> \
         <div class="content"> \
         </div> \
-        <a href="#" class="close"><img src="components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/facebox/closelabel.png" title="close" class="close_image" /></a> \
+        <a href="#" class="close"><img src="'+$.TuiyoDefines.get('siteDomain')+'components/com_tuiyo/libraries/tuiyo/interface/javascript/includes/facebox/closelabel.png" title="close" class="close_image" /></a> \
       </div> \
     </div>'
     },

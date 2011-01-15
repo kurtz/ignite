@@ -16,7 +16,6 @@
                     <option value="unistall">Deactivate</option>
                 </select>
             </div>
-            <div class="tuiyoClearFloat"></div>
         </div>
         <?php foreach($apps as $app) :?>
         <div class="tuiyoTableRow tuiyoListRow">

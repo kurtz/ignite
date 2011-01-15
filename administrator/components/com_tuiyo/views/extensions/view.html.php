@@ -64,13 +64,18 @@ class TuiyoViewExtensions extends JView
 	 * @param mixed $data
 	 * @return
 	 */
-	public function getApplicationList( $data ){
-			
-		$TMPL = $GLOBALS["API"]->get("document");
+	public function getApplicationList( $data= array() ){
+		
+		global $API;
+		
+		$APP  			= TuiyoLoader::model("applications", true );	
+		$TMPL 			= $API->get("document");
 		$TMPL->IconPath = $iconPath;
 		
+		
+		
 		$tmplVars 		= array(
-			"apps"		=>$data, 
+			"apps"		=>$APP->getAllSystemPlugins("services",true), 
 			"styleDir"	=>$livestyle,
 			"livePath"	=>TUIYO_LIVE_PATH,
 			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/'
@@ -80,6 +85,31 @@ class TuiyoViewExtensions extends JView
 		$tmplData 	    = $TMPL->parseTmpl("list" , $tmplPath , $tmplVars);
 		
 		return $tmplData;	
+		
+	}
+	
+	public function display(){
+		global $mainframe;
+		$action = JRequest::getVar("action",null);
+		switch(strtolower($action) ){
+			case "lists":
+				return $this->getApplicationList() ;
+			break;
+			case "events":
+				return "events mgr";
+			break;
+			case "statistics":
+				return "plugin stats";
+			break;
+			case "editor":
+				return "editor";
+			break;
+			case "installer":
+				$installer = JRoute::_(TUIYO_INDEX."&context=systemtools&do=autocenter", false);
+				$mainframe->redirect( $installer );
+			break;
+			
+		} 
 		
 	}
 	

@@ -74,5 +74,7 @@ $DOCU->addJSDefines();
 
 $controller->execute( JRequest::getVar( 'do' ) );
 
+$GLOBALS['mainframe']->setPageTitle( _("Tuiyo | Administrator Panel") );
+
 // Redirect if set by the controller
 $controller->redirect();

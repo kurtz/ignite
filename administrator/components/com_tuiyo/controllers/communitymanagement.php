@@ -147,7 +147,6 @@ class TuiyoControllerCommunityManagement extends JController{
 			"_categories" => array(
 				_("Categories") => "&action=lists", //Determine which tab is active by comparing referers
 				_("Add New Category")=> "&action=create",
-				_("Attributes")=> "&action=attributes",
 				_("Statistics")=> "&action=statistics",
 			 )
 		);

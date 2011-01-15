@@ -47,11 +47,12 @@ class TuiyoViewTuiyo extends JView
 		$TMPL 	= 	$GLOBALS["API"]->get("document");
 		$MODEL 	=	TuiyoLoader::model("categories", true);	
 		$USER	= 	TuiyoAPI::get("user");
+		$ACTION = 	JRequest::getVar("action",null);
 		$ACL 	=   JFactory::getACL();
 	
 		//Get the Categories		
 		$gtree 	= $ACL->get_group_children_tree( null, 'USERS', false );
-		$aroGrps= JHTML::_('select.genericlist',   $gtree, 'gid', 'class="TuiyoFormDropDown"', 'value', 'text', $USER->joomla->get('gid') );
+		$aroGrps= JHTML::_('select.genericlist',   $gtree, 'gid', 'class="TuiyoFormDropDown"', 'value', 'text' );
 			
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
@@ -61,9 +62,25 @@ class TuiyoViewTuiyo extends JView
 			"nodes"		=>$MODEL->getCategories(),
 			"arogrps"	=>$aroGrps
 		);
+		
+		switch($ACTION){
+			case "create":
+				$tmplfile = "createcategory";
+			break;
+			case "attributes":
+				return "attributes";
+			break;
+			case "statistics";
+				return "Statistics";
+			break;
+			case "list":
+			default:
+				$tmplfile = "categories";
+			break;
+		}
 	
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("categories" , $tmplPath , $tmplVars);
+		$tmplData 	    = $TMPL->parseTmpl($tmplfile, $tmplPath , $tmplVars);
 		
 		
 		return $tmplData;		
@@ -294,7 +311,14 @@ class TuiyoViewTuiyo extends JView
 	public function showAutoCenter( $macro = null){
 		
 		$TMPL = $GLOBALS["API"]->get("document");
-		$TMPL->IconPath = $iconPath;			
+		$TMPL->IconPath = $iconPath;	
+		$action = JRequest::getVar("action", null);
+        /** Do something majical **/
+		switch($action){
+			case "updater":
+				return "Updater Page";
+			break;
+		}		
 		
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,

@@ -2,8 +2,9 @@
         <nav>
           <?php  echo $view->getmenu(); ?>
         </nav>
-        <header>
-           	<a href="index.php?option=com_tuiyo" ><img style="margin: 10px 20px"src="<?php echo $iconPath ?>/images/logo2.png"  /></a>
+        <header style="position: relative">
+           	<a href="index.php?option=com_tuiyo"><img style="margin: 10px 20px"src="<?php echo $iconPath ?>/images/logo2.png"  /></a>
+			<div class="reporter" style="position:absolute; top: 10px; left: 130px"><jdoc:include type="message" /></div>
             <div>
                 <ul id="tabs">
 					<?php $i=0;  $active=false; $act = JRequest::getVar("action", null); $tablists = (isset($view->tabgroups[$view->tabgroup])) ?$view->tabgroups[$view->tabgroup]:$view->tabgroups['_default'];
@@ -30,11 +31,9 @@
                     <p>Put your website in development mode (offline) for maintainance</p>
 					<h3>Members Online</h3>
 					<p>There are currently no members online</p>
-                </div>
-				                                                    
+                </div>                                             
             </section>
             <section id="page">
-				<div class="reporter"><jdoc:include type="message" /></div>
 				<?php echo $adminPage ?>
             </section>
         </div>

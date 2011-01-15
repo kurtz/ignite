@@ -282,6 +282,7 @@ class TuiyoModelApplications extends JModel{
 			$newPluginSpec['settings_default_html'] = $pluginParams->renderHTML("params", "plugin");
 			$newPluginSpec['settings_photos_html'] 	= $pluginParams->renderHTML("params", "photos");
 			$newPluginSpec['settings_privacy_html'] = $pluginParams->renderHTML("params", "privacy");
+			$newPluginSpec['serviceXML']			= $newPluginXML;
 			
 			static $globalINI 	;
 			

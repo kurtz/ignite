@@ -453,13 +453,6 @@ class TuiyoControllerSystemTools extends JController
     {
         $view 	= $this->getView("tuiyo", "html");
 		$macro 	= JRequest::getVar("run", null );
-		$action = JRequest::getVar("action", null);
-        /** Do something majical **/
-		switch($action){
-			case "updater":
-				return $this->sysUpdater();
-			break;
-		}
 
         $form = $view->showAutoCenter( $macro );
 		
@@ -500,18 +493,7 @@ class TuiyoControllerSystemTools extends JController
      */
     public function sysUpdater()
     {
-        $view = $this->getView("tuiyo", "html");
-
-		$tabgroup  = array( 
-			"_autocenter" => array(
-				_("Installer") 		=> "&action=installer", //Determine which tab is active by comparing referers
-				_("AutoUpdate")		=> "&action=updater",
-				_("Plugins")	=> "&action=plugins",
-			 )
-		);
-		$view->addTabGroup( $tabgroup  );
-
-        $view->display("system updater", '_autocenter');
+        return $this->autocenter();
     }
 
 

@@ -404,6 +404,9 @@
  		 
 		 $doc->addJS( TUIYO_JQUERY );
 		 $doc->addJS( TUIYO_GETTEXT_JS );
+		
+		 $doc->addJSDefines(); //The user params
+		
 		 $doc->addJS( TUIYO_FACEBOX );
 		 $doc->addJS( TUIYO_APPENDDOM );
 		 $doc->addJS( TUIYO_JS_COMMON );

@@ -198,18 +198,10 @@ class TuiyoControllerExtensions extends JController{
 	
 	public function extensionmgr(){
 		
-		global $mainframe;
-		
 		$view 	= $this->getView("tuiyo", "html");
-		$action = JRequest::getVar("action",null);
+		$eView  = $this->getView("extensions", 'html');
 		
-		switch($action){
-			case "installer":
-				$installer = JRoute::_(TUIYO_INDEX."&context=systemtools&do=autocenter", false);
-				$mainframe->redirect( $installer );
-			break;
-		} 
-
+		
 		$tabgroup  = array( 
 			"_ext" => array(
 				_("Extensions") 			=> "&action=lists", //Determine which tab is active by comparing referers
@@ -220,8 +212,8 @@ class TuiyoControllerExtensions extends JController{
 			 )
 		);
 		$view->addTabGroup( $tabgroup  );
-
-        $view->display("Extension mgr", '_ext');
+		$page 	= $eView->display();
+        $view->display($page, '_ext');
 	}	
 	
 	/**

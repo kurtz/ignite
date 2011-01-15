@@ -141,7 +141,7 @@
  /**
   * Localization
   */
-define('TUIYO_DEFAULT_LOCALE', 'en');
+define('TUIYO_DEFAULT_LOCALE', 'en_GB');
 define('TUIYO_DEFAULT_ENCODING', 'UTF-8'); 
 
  

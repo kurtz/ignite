@@ -151,7 +151,8 @@ class TuiyoViewCommunity extends JView{
 	
 	public function showGroupWindow($data = NULL){
 		
-		$TMPL = $GLOBALS["API"]->get("document");
+		$TMPL 	= $GLOBALS["API"]->get("document");
+		$action = JRequest::getVar("action", null ); 
 		
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
@@ -159,8 +160,20 @@ class TuiyoViewCommunity extends JView{
 			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
 			"user"		=>JFactory::getUser()
 		);
+		switch($action){
+			case "statistics":
+				return "group statistics";
+			break;
+			case "new":
+				$tmplfile = "creategroup";
+			break;
+			case "list":
+			default:
+				$tmplfile = "groups"; 
+			break;
+		}
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."community".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("groups" , $tmplPath , $tmplVars);
+		$tmplData 	    = $TMPL->parseTmpl($tmplfile, $tmplPath , $tmplVars);
 		
 		return $tmplData;
 	}

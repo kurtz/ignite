@@ -89,7 +89,6 @@ TuiyoAPI::close();
 /**
  * Redirect if specified
  */
-$document->addJSDefines();
 $document->finishBuild();
 $controller->redirect();
 
