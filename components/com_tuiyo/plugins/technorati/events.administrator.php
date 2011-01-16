@@ -19,7 +19,6 @@ defined('TUIYO_EXECUTE') || die('You are not authorised to view this resource');
 
 class TuiyoPluginTechnoratiAdministrator extends TuiyoEventsListener{
 	
-	public function onRegisterPlugins(){} 
 	public function onAdminStart(){
 		//echo "from the technorati plugin";
 	}

@@ -108,6 +108,8 @@ class TuiyoModelTuiyo extends JModel
 		}
 	}
 	
+	
+	
 	/**
 	 * TuiyoModelTuiyo::deleteField()
 	 * Deletes a field from the database

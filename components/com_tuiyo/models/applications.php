@@ -187,6 +187,7 @@ class TuiyoModelApplications extends JModel{
 		$exclude 		= array("system");
 		
 		$plugin 		= $userPlugin['name'];
+		$lastUpdated 	= $userPlugin['lastupdated'];
 		
 		$newPluginSpec  = array();
 			
@@ -213,9 +214,21 @@ class TuiyoModelApplications extends JModel{
 		$globalINI = file_get_contents( TUIYO_CONFIG.DS.'global.ini');
 		
 		$pluginParams->bind( $globalINI );
+		$pluginParams->set("lastupdated", $lastUpdated );
 		
 		return $pluginParams;
 		
+	}
+	public function setUserPluginLastUpdateID($userID, $pluginname, $lastId){
+		
+		$dbo 	= $this->_db;
+		$query  = "UPDATE #__tuiyo_userplugins"
+				. "\nSET lastupdated =".$lastId
+				. "\nWHERE userid=".$dbo->Quote( (int)$userID )
+				. "\nAND name=".$dbo->Quote($pluginname );
+		$dbo->setQuery( $query );
+		$dbo->query(); 
+
 	}
 	
 	public function getSinglePlugin($pluginName, $pluginXML = true, $pluginType="services"){}

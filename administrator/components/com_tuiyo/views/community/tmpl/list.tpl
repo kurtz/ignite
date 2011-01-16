@@ -23,7 +23,7 @@
         </div>
         <?php foreach($users as $user) :?>
         
-        <div id="<?php echo $user['id'] ?>" class="tuiyoTableRow tuiyoListRow">
+        <div id="<?php echo $user['id'] ?>" class="tuiyoTableRow tuiyoListRow" style="line-height: 28px">
             <div class="tuiyoTableCell" style="width: 6%" align="center">
             	<input type="checkbox" name="userID[]" value="<?php echo $user['id'] ?>" style="margin-top: 3px" class="childSelector"/></div>
             <div class="tuiyoTableCell profileView" style="width: 6%;"><?php echo $user["id"] ?></div>

@@ -357,7 +357,7 @@ CREATE TABLE  `#__tuiyo_userplugins` (
   `name` varchar(45) NOT NULL,
   `type` varchar(45) DEFAULT NULL,
   `userid` varchar(45) NOT NULL DEFAULT '0',
-  `lastupdated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastupdated` varchar(100) DEFAULT NULL,
   `privacy` tinyint(10) NOT NULL DEFAULT '0',
   `params` text,
   PRIMARY KEY (`id`),

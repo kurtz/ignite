@@ -3,7 +3,7 @@
     <div class="windowWrapper">
         <div class="window" style="background: #fff">
             <div class="windowTitleBar">
-                <img src="<?php echo $iconPath ?>/icons/inbox_16.png" alt="hpemail16" style="cursor: pointer" />
+                <img src="<?php echo $iconPath ?>/icons/appengine_16.png" alt="hpemail16" style="cursor: pointer" />
                 <strong>System Email alerts</strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">

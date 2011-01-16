@@ -189,11 +189,111 @@ class TuiyoControllerExtensions extends JController{
 	 */
 	public function doInstall(){
 
+		global $mainframe;
+		
 		$adminView 	= $this->getView("tuiyo" , "html");
 		$extView 	= $this->getView("extensions" , "html" );
-	
-		/*Do Some Plugin Majical Stuff Here */
+		$extPost 	= JRequest::get("post");
+		$extFile 	= JRequest::get("files");
+		$document   = TuiyoAPI::get("document");
 		
+		jimport('joomla.filesystem.file');
+		jimport('joomla.filesystem.folder');
+		jimport('joomla.filesystem.path');
+		jimport('joomla.filesystem.archive');
+		
+		/*Do Some Plugin Majical Stuff Here and redirect back to install page */
+		$redirect 	= JRoute::_(TUIYO_INDEX."&context=systemtools&do=autocenter", false);
+		
+		$this->setRedirect( $redirect );
+		
+		//STEP1: Upload the file
+		$uploadedZIP = JPATH_CACHE.DS."upload".time().$extFile["pluginfile"]["name"];
+		
+		JFile::upload($extFile["pluginfile"]["tmp_name"], $uploadedZIP );
+		
+		//STEP2: Extract the archive
+		$uploadedFolder = JPATH_CACHE.DS.JFile::stripExt( JFile::getName( $uploadedZIP ) );
+	    
+		if(!JArchive::extract($uploadedZIP, $uploadedFolder )){
+			$document->enqueMessage( _("Failed to extract the extension archive"), "error");
+			JFile::delete( $uploadedZIP );
+			return $this->redirect();;
+		}
+		JFile::delete( $uploadedZIP );
+		
+		//STEP3: Find the PluginXML file and define the root!
+		$pluginXML = JFolder::files($uploadedFolder, "plugin.xml", true , true );
+		$pluginXMLFile = null;
+		
+		foreach($pluginXML as $tempXMLfile){
+			if(file_exists($tempXMLfile) && JFile::getName($tempXMLfile)==="plugin.xml"){
+				$pluginXMLFile = $tempXMLfile;
+				break;
+			}
+		}
+		
+		if(empty($pluginXML)||empty($pluginXMLFile)){
+			$document->enqueMessage( _("Could not find a valid plugin.xml definition in the uploaded package"), "error");
+			JFile::delete( $uploadedFolder );
+			return $this->redirect();;	
+		}
+		
+		$pluginDir = str_replace("plugin.xml", "", $pluginXMLFile);
+	    $xmlParser = &JFactory::getXMLParser('Simple');
+		
+	    if (!$xmlParser->loadFile($pluginXMLFile)) {
+			$document->enqueMessage( _("Could not load the plugin.xml definition file in the uploaded package"), "error");
+			JFile::delete( $uploadedFolder );
+			return $this->redirect();
+	    }
+	    $root 		= &$xmlParser->document;
+		$validTypes = array("plugin");
+		$extType 	= $root->attributes('type');
+		$extName	= $root->attributes("key");
+		
+	    if (!is_object($root) || !in_array($extType, $validTypes) || empty($extName)) {
+			$document->enqueMessage( _("The uploaded package is not a valid extensionfile"), "error");
+			JFile::delete( $uploadedFolder );
+			unset($xmlParser);
+			return $this->redirect();
+	    }
+
+		//STEP4: Move the files to the requested director;
+		$moved 		= array();
+		chmod(JPATH_CACHE, 0777);
+		chmod(TUIYO_PLUGINS.DS, 0777);
+		switch($extType):
+			case "plugin":
+				$destination = TUIYO_PLUGINS.DS.strtolower($extName);
+			break;
+		endswitch;
+		
+		$pluginFiles = JFolder::files( $pluginDir , "", true, true, array('.DS_Store','.svn', 'CVS'));
+
+		foreach($pluginFiles as $k=>$pluginFile):
+			$destFileName = $destination.str_replace( $pluginDir, "", $pluginFile);
+			echo $destFileName."<br />";
+			if(!JFile::copy($pluginFile, $destFileName) ):
+				foreach($moved as $key=>$reverse):
+					JFile::delete($reverse);
+				endforeach;
+				echo $pluginFile; die;
+				$document->enqueMessage( _("Could not upload files"), "error");
+				JFile::delete( $uploadedFolder );
+				unset($xmlParser);
+				return $this->redirect();
+			endif;
+
+			$moved[] = $destFileName;
+		endforeach;
+		
+		//SETP5: CleanUP
+		JFile::delete( $uploadedFolder );
+		unset($xmlParser);
+		chmod(TUIYO_PLUGINS.DS, 0755);
+		
+		$this->redirect();
 	}
 	
 	public function extensionmgr(){

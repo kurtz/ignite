@@ -46,7 +46,7 @@ class TuiyoActivity
     {}
     
     
-    public function publishMultiLineStory($thisUser, $storyTitle, $storyBody, $source, $thatUser=NULL, $tmplID = NULL, $tmplVars = array(), $rURLs = array() )
+    public function publishMultiLineStory($thisUser, $storyTitle, $storyBody, $source, $thatUser=NULL, $tmplID = NULL, $tmplVars = array(), $rURLs = array() , $updateType="activity", $overwriteTime = null )
 	{
 		$mTimeline 		= &TuiyoLoader::model("timeline", TRUE );
 		$tTemplate		= &TuiyoLoader::table("timelinetmpl", TRUE );
@@ -115,7 +115,7 @@ class TuiyoActivity
      * @param mixed $tmplVars
      * @return void
      */
-    public function publishOneLineStory($thisUser, $storyLine, $source, $thatUser=NULL, $tmplID= NULL, $tmplVars = array(), $type="activity")
+    public function publishOneLineStory($thisUser, $storyLine, $source, $thatUser=NULL, $tmplID= NULL, $tmplVars = array(), $type="activity" , $ovewritetime = null )
 	{
 		$mTimeline		= &TuiyoLoader::model("timeline", true );
 		$tTemplate		= &TuiyoLoader::table("timelinetmpl", true);

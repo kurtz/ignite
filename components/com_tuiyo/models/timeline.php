@@ -450,7 +450,7 @@ class TuiyoModelTimeline extends JModel{
 	 * @param mixed $options
 	 * @return void
 	 */
-	public function setStatus($userID, $postData, $type="status", $options = array()){
+	public function setStatus($userID, $postData, $type="status", $options = array(), $time=null){
 		
 		$table 		=& TuiyoLoader::table("timeline" );
 		$appTable 	=& TuiyoLoader::table("applications");
@@ -520,7 +520,7 @@ class TuiyoModelTimeline extends JModel{
 		$table->mentions = (sizeof($mentions[1])>0)? json_encode( $mentions[1] ) : null;
 		$table->userID	 = (int)$userID;
 		$table->template = $template;
-		$table->datetime = date('Y-m-d H:i:s');
+		$table->datetime = empty($time) ? date('Y-m-d H:i:s') : date('Y-m-d H:i:s', strtotime($time) );
 		$table->data 	 = $statusText;
 		$table->type 	 = $type;
 		$table->appID	 = is_array($app)&&!empty($app) ? $app[0]["extID"] : null ;

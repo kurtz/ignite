@@ -12,15 +12,12 @@
 						<fieldset style='border:none'>
 				        <div class="tuiyoTableHeaderRow" style="padding: 0 4px; height: 38px;">
 				            <div class="tuiyoTableCell" style="width: 5%" align="center">&nbsp;</div>
-							<div class="tuiyoTableCell" style="width: 15%;padding-top: 10px">Event Type</div>
+							<div class="tuiyoTableCell" style="width: 15%;padding-top: 10px">Event Group</div>
 				            <div class="tuiyoTableCell" style="width: 15%;padding-top: 10px">Extension Name</div>
-				            <div class="tuiyoTableCell" style="width: 50%;padding-top: 10px" align="center">Methods</div>
+				            <div class="tuiyoTableCell" style="width: 50%;padding-top: 10px">Methods</div>
 				            <div class="tuiyoTableCell" style="width: 15%">
 				                <select name="masterAction" class="TuiyoFormDropDown" style="margin-top: 10px">
 				                	<option value="">Select an Action</option>
-				                	<option value="unistall">Uninstall</option>
-				                    <option value="reset">Reset Users</option>
-				                    <option value="update">Check &amp; Update</option>
 									<option value="refresh">Refresh data events</option>
 				                </select>
 				            </div>

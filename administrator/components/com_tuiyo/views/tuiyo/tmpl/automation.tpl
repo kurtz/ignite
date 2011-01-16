@@ -21,21 +21,21 @@
 					    	<div class="tuiyoTableRow" style="padding: 4px 0">
 					        	<div class="tuiyoTableCell" style="width: 35%;"><p>Install Extension</p></div>
 					            <div class="tuiyoTableCell" style="width: 65%;">
-					              <p><input type="file" name="applicationfile" id="pluginfile" class="TuiyoFormText" size="80" value=""></p>
+					              <p><input type="file" name="pluginfile" id="pluginfile" class="TuiyoFormText" size="80" value=""></p>
 					            </div>
 					            <div class="tuiyoClearFloat"></div>
 					        </div>
 					         <div class="tuiyoTableRow" style="padding: 4px 0">
 					        	<div class="tuiyoTableCell" style="width: 35%;"><p>Install from directory</p></div>
 					            <div class="tuiyoTableCell" style="width: 65%;">
-					            	<p><input type="text" name="applicationfiledir" id="pluginfiledir" class="TuiyoFormText" value=""></p>
+					            	<p><input type="text" name="pluginfiledir" id="pluginfiledir" class="TuiyoFormText" value=""></p>
 					            </div>
 					            <div class="tuiyoClearFloat"></div>
 					        </div>
 					         <div class="tuiyoTableRow" style="padding: 4px 0">
 					        	<div class="tuiyoTableCell" style="width: 35%;"><p>Install from url</p></div>
 					            <div class="tuiyoTableCell" style="width: 65%;">
-					              <p><input type="text" name="applicationfiledirurl" id="pluginfiledirurl" class="TuiyoFormText" value=""></p>
+					              <p><input type="text" name="pluginfiledirurl" id="pluginfiledirurl" class="TuiyoFormText" value=""></p>
 					            </div>
 					            <div class="tuiyoClearFloat"></div>
 
@@ -50,8 +50,8 @@
 					    </div>
 					</div>
 					<input type="hidden" name="option" value="com_tuiyo">
-					<input type="hidden" name="context" value="systemtools">
-					<input type="hidden" name="do" value="autocenter">
+					<input type="hidden" name="context" value="extensions">
+					<input type="hidden" name="do" value="doInstall">
 					<input type="hidden" name="action" value="installer">
 					<?php JHTML::_('form.token') ?>
 					</fieldset>

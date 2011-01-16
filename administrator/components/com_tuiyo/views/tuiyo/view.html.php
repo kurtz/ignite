@@ -261,6 +261,17 @@ class TuiyoViewTuiyo extends JView
 			
 		$TMPL = $GLOBALS["API"]->get("document");
 		$TMPL->IconPath = $iconPath;
+		$action = JRequest::getVar("action", null);
+		
+		
+		switch($action):
+			case "view":
+				return "preview the fields output";
+			break;
+			case "create":
+				return "create a new profile fields";
+			break;
+		endswitch;
 		
 		//Google Analytics stats
 		$GAPI = TuiyoLoader::loadAPI( );
@@ -315,6 +326,12 @@ class TuiyoViewTuiyo extends JView
 		$action = JRequest::getVar("action", null);
         /** Do something majical **/
 		switch($action){
+			case "discover":
+				return "discover plugins";
+			break;
+			case "updater":
+				return "update plugins";
+			break;
 			case "updater":
 				return "Updater Page";
 			break;
@@ -437,6 +454,18 @@ class TuiyoViewTuiyo extends JView
 
 		$TMPL = $GLOBALS["API"]->get("document");
 		$TMPL->IconPath = $iconPath;
+		$action  = JRequest::getVar("action", null);
+		
+		switch($action){
+			case "template":
+			break;
+			case "create":
+				return "create mass emailer";
+			break;
+			case "reports":
+				return "mass email report";
+			break;
+		}
 		
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,

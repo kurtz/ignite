@@ -100,7 +100,7 @@ class TuiyoViewExtensions extends JView
 				return "plugin stats";
 			break;
 			case "editor":
-				return "editor";
+				return $this->plugineditor();
 			break;
 			case "installer":
 				$installer = JRoute::_(TUIYO_INDEX."&context=systemtools&do=autocenter", false);
@@ -139,20 +139,21 @@ class TuiyoViewExtensions extends JView
 	 * @param mixed $data
 	 * @return void
 	 */
-	public function appEditPage( $data = null )
+	public function plugineditor( $data = null )
 	{
 		$TMPL = $GLOBALS["API"]->get("document");
+		$APP  			= TuiyoLoader::model("applications", true );	
 		$TMPL->IconPath = $iconPath;
 		
 		$tmplVars 		= array(
-			"appData"	=>$data, 
+			"plugins"	=>$APP->getAllSystemPlugins("services", true),  
 			"styleDir"	=>$livestyle,
 			"livePath"	=>TUIYO_LIVE_PATH,
 			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/'
 		);
 		
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."extensions".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("application" , $tmplPath , $tmplVars);
+		$tmplData 	    = $TMPL->parseTmpl("editor" , $tmplPath , $tmplVars);
 		
 		return $tmplData;	
 	}

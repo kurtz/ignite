@@ -23,7 +23,7 @@
 					endif;
 				?>
 	        </div>
-            <div class="tuiyoTable publisher statusToolEl" style="display: none">
+            <div class="tuiyoTable publisher statusToolEl" >
                 <div class="tuiyoTableRow" >            	
 	                <div class="tuiyoTableCell" style="width: 11%" >
 	            		<img alt="actTmpAt" width="50" height="50" src="<?php echo($user->getUserAvatar()->thumb70 ) ?>" class="TuiyoAvatar" />
@@ -77,7 +77,7 @@
 				<div id="map_location_canvas" style="width: 100%; height:300px; margin-bottom: 5px;">Map Here</div>
     		</div>
     		
-   			<div class="tuiyoTableRow statusToolEl" id="activityUpdateTools" style="border-bottom: 1px solid #eee ; display: none">
+   			<div class="tuiyoTableRow statusToolEl" id="activityUpdateTools" style="border-bottom: 1px solid #eee ;">
 	        	<div class="tuiyoTableCell" style="width: 67%;">
 	        		<div class="tuiyoTableRow sharePrivacy" style="margin: 5px 0" title="<?php echo _('Sharing with..') ?>">
 			        	<div class="tuiyoClearFloat"></div>

@@ -55,7 +55,7 @@ class TwitterServiceController Extends TuiyoControllerServices{
 		$aParams 	= $aModel->getSingleUserPlugin($aUser->id , "twitter" );
 		
 		if(!is_object($aParams)){
-			$aDocument->enqueMessage(_("Cannot Load the service for this user"),"error");
+		   //User does not have the service Enabled
 			return false;
 		}
 		
@@ -125,15 +125,17 @@ class TwitterServiceController Extends TuiyoControllerServices{
 		
 		/* Save temporary credentials to session. */
 		$_SESSION['oauth_token'] = $token = $request_token['oauth_token'];
-		$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
+		$_SESSION['oauth_token_secret'] = $secret = $request_token['oauth_token_secret'];
 		
 		/* Get the AuthorizeURL */
-		$authUrl 	= $connection->getAuthorizeURL( $token );
+		$authUrl 	= $connection->getAuthorizeURL( $request_token );
 		
 	 	$resp = array(
 			"code" 	=> TUIYO_OK, 
 			"error" => null, 
-	 		"data"  => $authUrl
+	 		"data"  => $authUrl,
+	 		"token" => $token,
+	 		"secret"=> $secret
  		);
  		
  		echo $view->encode($resp);
@@ -156,7 +158,8 @@ class TwitterServiceController Extends TuiyoControllerServices{
 		$auth->requireAuthentication( 'post' );
 		
 		$user 	 	= TuiyoAPI::get('user');
-		$post 		= &Jrequest::get("post");
+		$tempPost 	= &JRequest::get("post");
+		$post 		= &JRequest::getVar('params', array(), 'post', 'array');
 		
 		$model		= &$this->getModel("twitter" );
 		$view		= &$this->getView("twitter", "json");
@@ -168,12 +171,22 @@ class TwitterServiceController Extends TuiyoControllerServices{
 			"extra" => null
 	 	);
 	 	
+	 	$tempCredentials = $tempPost["temporary"]; 
+
+		$connection 		= new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $tempCredentials['oauth_token'], $tempCredentials['oauth_token_secret']);
+		$token_credentials	= $connection->getAccessToken( $post["oauth_verfier"] );
+		 
+		foreach($token_credentials as $key=>$value){
+			$post[$key] = $value;
+		}
+	 	
 	 	if($model->addService( $post, $user->id) ){
 	 		$resp = array(
 				"code" 	=> TUIYO_OK, 
 				"error" => null, 
 	 		);
 	 	}
+		
 	 	return $view->encode($resp);
 		
 	}

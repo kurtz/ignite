@@ -66,8 +66,7 @@ class TuiyoControllerSystemTools extends JController
 			"_email" => array(
 				_("Email Templates") 	=> "&action=template", //Determine which tab is active by comparing referers
 				_("Mass Mailer")		=> "&action=create",
-				_("Email Blocks Editor")=> "&action=editor",
-				_("Reports")			=> "&action=reports & Logs"
+				_("Reports")			=> "&action=reports"
 			 )
 		);
 		$view->addTabGroup( $tabgroup );
@@ -90,7 +89,7 @@ class TuiyoControllerSystemTools extends JController
 			"_statistics" => array(
 				_("Summary") 	=> "&action=summary", //Determine which tab is active by comparing referers
 				_("Page Views")		=> "&action=pageviews",
-				_("Referrers")=> "&action=referers",
+				_("Referrers")	=> "&action=referers",
 				_("Bounce Rates")			=> "&action=bouncers",
 				_("Member Statistics") => "&action=members",
 				_("User Agent") => "&action=useragents"
@@ -111,7 +110,7 @@ class TuiyoControllerSystemTools extends JController
     public function userFields()
     {
         $view 	= $this->getView("tuiyo", "html");
-        $view 	= $this->getView("tuiyo", "html");
+
         $data 	= null;
         $stats 	= $view->showFieldsManager( $data );
 		$doc 	= $this->docu;
@@ -460,8 +459,7 @@ class TuiyoControllerSystemTools extends JController
 			"_autocenter" => array(
 				_("Package Installer") 		=> "&action=installer", //Determine which tab is active by comparing referers
 				_("Updates")		=> "&action=updater",
-				_("Discover")		=> "&action=plugins",
-				_("Create Plugin")		=> "&action=create",
+				_("Discover")		=> "&action=discover"
 			 )
 		);
 		$view->addTabGroup( $tabgroup );

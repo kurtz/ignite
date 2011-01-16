@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install type="plugin" version="2.0.0">
+<install type="plugin" key="twitter" version="2.0.0">
 	<name>Twitter</name>
 	<author>Tuiyo Project</author>
 	<creationDate>December 2010</creationDate>

@@ -43,6 +43,7 @@ class TwitterServiceModelTwitter extends JModel{
 		return $table->deleteService( $service , $userid );   //blank 
 	}
 	
+	
 	/**
 	 * Adds the twitter service to user tables;
 	 * @param unknown_type $post
@@ -62,7 +63,7 @@ class TwitterServiceModelTwitter extends JModel{
 		
 		//get parameters;
 		$registry	= new JRegistry();
-		$postParams	= JRequest::getVar('params', array(), 'post', 'array');
+		$postParams	= $post;
 		
 		if(count($postParams)){
 			$registry->loadArray( $postParams );

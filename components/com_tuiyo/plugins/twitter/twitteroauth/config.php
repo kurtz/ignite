@@ -1,10 +1,14 @@
 <?php
+defined('TUIYO_EXECUTE') || die('You are not authorised to view this resource');
 
-/**
- * @file
- * A single location to store configuration.
- */
+TuiyoLoader::helper("parameter");
+$globalCfg = TuiyoParameter::load("global");
 
-define('CONSUMER_KEY', 'J1yrLUCMMN97BoUTxW5Q');
-define('CONSUMER_SECRET', 'pfQKMup5499F3xrAZHqkqPPd9fvisnwSHQdjFpCr0LU');
-define('OAUTH_CALLBACK', 'http://localhost.dev/joomla/index.php?option=com_tuiyo&view=services&service=twitter&Itemid=53');
+$CONSUMER_KEY 		= $globalCfg->get("twitterConsumerKey", null);
+$CONSUMER_SECRET 	= $globalCfg->get("twitterConsumerSecret", null);
+$OAUTH_CALLBACK		= $globalCfg->get("twitterCallback", null);
+
+define('CONSUMER_KEY', $CONSUMER_KEY);
+define('CONSUMER_SECRET',$CONSUMER_SECRET);
+define('OAUTH_CALLBACK', $OAUTH_CALLBACK);
+

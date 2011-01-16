@@ -28,18 +28,19 @@
 						  
 						$twitterAuthWindow.moveTo(wleft, wtop);
 						$authInterval = window.setInterval(function(){
-							$location   = $twitterAuthWindow.location.href+"";
-							$isInternal = $location.search( $.TuiyoDefines.get("siteDomain") )
-				            if ($isInternal != -1) {
-				                
-				            	alert( $location );
-				                
+							var $location   = $twitterAuthWindow.location.href+"";
+							var $isInternal = $location.search( $.TuiyoDefines.get("siteDomain") );
+							var $hasVerifier = $.getUrlParam('oauth_verifier', $location);
+				            if ( $hasVerifier !== 0) {
+				            
 				                $twitterAuthWindow.close();
 				                window.clearInterval( $authInterval );
 				                
 				                var $oauth_token = $.getUrlParam('oauth_token',$location),
-			                		$oauth_verifier =  $.getUrlParam('oauth_verifier',$location);
-			                
+			                		$oauth_verifier =  $.getUrlParam('oauth_verifier',$location),
+			                		$oauth_username ="";
+				                $('<input type="hidden" name="temporary[oauth_token]" value="'+response.token+'" />').appendTo( $form );
+				                $('<input type="hidden" name="temporary[oauth_token_secret]" value="'+response.secret+'" />').appendTo( $form );
 				                $('<input type="hidden" name="params[oauth_token]" value="'+$oauth_token+'" />').appendTo( $form );
 				                $('<input type="hidden" name="params[oauth_verifier]" value="'+$oauth_verifier+'" />').appendTo( $form );
 			                
@@ -54,7 +55,7 @@
 									}
 								},'json');
 				            }
-				        }, 1000);
+				        }, 500);
 						
 					});
 					
