@@ -466,20 +466,6 @@
 			},
 			
 			findEmoticons = function(statusText){
-				var 
-					smileyPath = "components/com_tuiyo/client/emoticons/",
-					emoticons = {"emoticon":{"::smile":{"image":"smile.png","emotes":{":-)":"",":)":"",":]":"","=]":"","=)":"",}},"::bigSmile":{"image":"bigsmile.png","emotes":{":D":"","=D":"",":-D":"","XD":"","BD":""}},"::shock":{"image":"shock.png","emotes":{":O":"",":0":"","=O":"",":-0":"",":-O":""}},"::frown":{"image":"frown.png","emotes":{":-(":"","=(":"",":[":"",":<":"","=[":"",":(":"",":-\\":""}},"::tongue":{"image":"tongue.png","emotes":{":P":"","=P":"","XP":"",}},"::bored":{"image":"bored.png","emotes":{"=I":"",":/":"",":-\\":"",":|":""}},"::wink":{"image":"wink.png","emotes":{";-)":"",";)":"",";]":""}},"::love":{"image":"love.png","emotes":{"<3":"","<3":"","S2":"",":3":""}},"::confused":{"image":"confused.png","emotes":{":S":"","=S":"",":\?":""}}}}
-				;
-				var regExp = function( emoteObj ){
-					''
-				};
-				for( var a in emoticons.emoticon ) {
-					emoticon = emoticons.emoticon[a];
-					for( var emote in emoticon.emotes ) {
-						var escapedEmote = regExp(emote);
-						statusText = statusText.replace( new RegExp( escapedEmote, 'gi' ), '<img  src="'+smileyPath + emoticon.image + '" />');
-					}
-				}
 				return statusText;
 			},
 			findCommand = function(text ){
@@ -727,7 +713,7 @@
 					    zoom:                   15,
 					    scrollwheel:            false,
 					    controls:               ["GSmallZoomControl3D", "GMapTypeControl"],
-					    scrollwheel:            true,
+					    scrollwheel:            true
 					};
 					if(navigator.geolocation) { 
 						  navigator.geolocation.getCurrentPosition(function(position) { 
