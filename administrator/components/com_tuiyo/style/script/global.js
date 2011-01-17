@@ -72,8 +72,10 @@
 				}
 			})
 		});
+		
 		$("#userActivityStream").TuiyoStream();
 		$("#userActivityStream").TuiyoStreamLoad();
+		
 		$(document).click(function(f){
 			$("ul#TuiyoAdminMenu li.level1 ul.level2").hide();
 		});

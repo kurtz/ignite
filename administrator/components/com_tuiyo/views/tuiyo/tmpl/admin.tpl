@@ -2,7 +2,7 @@
         <div id="nav">
           <?php  echo $view->getmenu(); ?>
         </div>
-        <header style="position: relative">
+        <div id="header" style="position: relative">
            	<a href="index.php?option=com_tuiyo"><img style="margin: 10px 20px"src="<?php echo $iconPath ?>/images/logo2.png"  /></a>
 			<div class="reporter" style="position:absolute; top: 10px; left: 130px"><jdoc:include type="message" /></div>
             <div>
@@ -23,21 +23,21 @@
                     <li><form id="searchForm" class="TuiyoForm"><input type="text" name="search" style="padding: 7px;width: 230px;"placeholder="search" /></form></li>
                 </ul>
             </div>
-        </header>
+        </div>
         <div id="main">
-            <section id="sidebar">
+            <div id="sidebar">
                 <div class="section">
                     <h3>System Mode</h3>
                     <p>Put your website in development mode (offline) for maintainance</p>
 					<h3>Members Online</h3>
 					<p>There are currently no members online</p>
                 </div>                                             
-            </section>
-            <section id="page">
+            </div>
+            <div id="page">
 				<?php echo $adminPage ?>
-            </section>
+            </div>
         </div>
-        <footer>
+        <div id="footer">
 			<p>&copy; 2006, 2007, 2008, 2009, 2010, 2011 <a href="http://www.drstonyhills.com/">dr.stonyhills</a> and Powered by Joomla</p>
             <p><?php echo $version ?> Licensed as GPLv2.1 </p>
-        </footer>
+        </div>

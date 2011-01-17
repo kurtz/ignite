@@ -765,7 +765,7 @@
 												flash_url: $tuiyoAyncPath+'swfupload.swf',
 									            button_image_url: $tuiyoAyncPath+'blankButton.png',
 									            
-												upload_url: "http://localhost/joomla/"+$.TuiyoDefines.get("componentIndex")+"&controller=resources&do=uploadResources&format=json&jsid="+resource.sid+"&jsname="+resource.sname,
+												upload_url: $.TuiyoDefines.get("componentIndex")+"&controller=resources&do=uploadResources&format=json&jsid="+resource.sid+"&jsname="+resource.sname,
 												post_params: resource.post, 
 												file_types : "*.jpg;*.gif;*.png;*.jpeg;*.JPEG;*.PNG;*.GIF;*.mp3;*.MP3",
 												file_size_limit : '15 MB',
