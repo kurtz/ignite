@@ -1,7 +1,7 @@
 
-        <nav>
+        <div id="nav">
           <?php  echo $view->getmenu(); ?>
-        </nav>
+        </div>
         <header style="position: relative">
            	<a href="index.php?option=com_tuiyo"><img style="margin: 10px 20px"src="<?php echo $iconPath ?>/images/logo2.png"  /></a>
 			<div class="reporter" style="position:absolute; top: 10px; left: 130px"><jdoc:include type="message" /></div>

@@ -20,7 +20,7 @@
 	                  	<li style="padding: 0pt 20px;" class="current" id="homepageMainPage"><a href="#"><span><?php echo _('Dashboard')?></span></a></li>
 	                  	<li style="padding: 0pt 20px;"  id="notificationMainPage"><a href="#"><span><?php echo _('Notifications')?></span></a><span class="commentCount" style="display:none">11</span></li>
 	                  	<li style="border: none; padding: 0pt 7px; background: none" id="searchMainPage">
-	                  		<form method="post" class="TuiyoForm"><input type="text" name="gSearchTuiyo" id="gSearchTuiyo" style="padding: 4px; width: 195px" value="<?php echo _('Looking for Something?') ?>" /></form>
+	                  		<form method="post" class="TuiyoForm"><input type="text" name="gSearchTuiyo" id="gSearchTuiyo" style="padding: 4px; width: 195px" placeholder="<?php echo _('Looking for Something?') ?>" value="" /></form>
 	                  	</li>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>

@@ -14,21 +14,22 @@ header, article, section, aside { display:block; }
     input:focus { outline:none; background:#ffc; }
 	p{margin:1em 0px;}
     /* NAV should be on top */
-    nav { /*height:1.5em; background:#333;*/ color:#fff; padding-top:0.2em; -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 1px 2px;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#111));
+    #nav { background: none repeat scroll 0 0 black; color:#fff; padding-top:0.2em; -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 1px 2px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#111));background: -moz-linear-gradient(top, #333333, #111111); filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#333333', EndColorStr='#111111', GradientType=0);
+	-moz-box-shadow: rgba(0, 0, 0, 0.496094) 0px 1px 2px; box-shadow: rgba(0, 0, 0, 0.496094) 0px 1px 2px;
 	height: 28px;
 	z-index: 5000;}
-    nav ul li { display:inline; margin:0px 2px; font-size:12px; line-height:28px; position:relative; }
-	nav ul li ul{display:none;}
-	nav ul li ul li{display:block;}
-    nav ul li span { font-weight:bold; }
-    nav ul li a:link, nav ul li a:visited, nav ul li a:active { display:inline-block; padding:0px 5px; color:#ddd; text-decoration:none; }
-    nav ul li a:hover, nav ul li a:focus { color:#fff; }
+    #nav ul li { display:inline; margin:0px 2px; font-size:12px; line-height:28px; position:relative; }
+	#nav ul li ul{display:none;}
+	#nav ul li ul li{display:block;}
+    #nav ul li span { font-weight:bold; }
+    #nav ul li a:link, #nav ul li a:visited, #nav ul li a:active { display:inline-block; padding:0px 5px; color:#ddd; text-decoration:none; }
+    #nav ul li a:hover, #nav ul li a:focus { color:#fff; }
     ul#menu { float:left; margin-left:22px; }
     ul#session { float:right; margin-right: 22px; }
 
 	/* Sub Navs and more; Maximum depth 3; */
-	nav ul li.parent:hover ul.child1{display : block; z-index: 2000; position: absolute; left: -4px; -webkit-box-shadow: #111; background: #272727; padding: 0 6px; width: auto; min-width: 150px; }
+	#nav ul li.parent:hover ul.child1{display : block; z-index: 2000; position: absolute; left: -4px; -webkit-box-shadow: #111; background: #272727; padding: 0 6px; width: auto; min-width: 150px; }
 	
     /* Header should be second */
     header { background:#333; color:#fff; }

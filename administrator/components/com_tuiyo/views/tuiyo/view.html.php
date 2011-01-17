@@ -452,20 +452,11 @@ class TuiyoViewTuiyo extends JView
 	 */
 	public function showSystemEmailForm($data = null){
 
+		jimport('joomla.filesystem.file');
+						
 		$TMPL = $GLOBALS["API"]->get("document");
 		$TMPL->IconPath = $iconPath;
 		$action  = JRequest::getVar("action", null);
-		
-		switch($action){
-			case "template":
-			break;
-			case "create":
-				return "create mass emailer";
-			break;
-			case "reports":
-				return "mass email report";
-			break;
-		}
 		
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
@@ -475,8 +466,29 @@ class TuiyoViewTuiyo extends JView
 			"apps"		=>$data["APPS"] ,
 			"e"			=>$this->e 
 		);
+		
+		switch($action){
+			default:
+			case "template":
+				TuiyoLoader::helper("parameter");
+				$tmplFile 	= "emails";
+				$element    = "emails.xml";
+				$iniFile 	= JFile::stripExt($element);
+				$iniParams 	= JFile::read( TUIYO_CONFIG.DS.$iniFile.".ini" );
+				
+				$tmplVars["emailparams"] = new TuiyoParameter($inParams , TUIYO_CONFIG.DS.$element );
+			break;
+			case "create":
+				return "create mass emailer";
+			break;
+			case "reports":
+				return "mass email report";
+			break;
+		}
+		
+
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("emails" , $tmplPath , $tmplVars);
+		$tmplData 	    = $TMPL->parseTmpl($tmplFile , $tmplPath , $tmplVars);
 		
 		return $tmplData;		
 		
