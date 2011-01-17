@@ -40,14 +40,14 @@ form.TuiyoForm, form{ }
 
 .rImg{padding: 2px; margin: 2px; border: 1px solid #e1e1e1; }
 #embedable{background:none repeat scroll 0 0 #F5F5F5;
-border:1px solid #EEEEEE;
-color:#888888;
-font-size:11px;
-font-style:italic;
-line-height:17px;
-margin-left:12%;
-margin-top:-1px;
-max-width:73%;
+border: 1px solid #EEE;
+color: #888;
+font-size: 11px;
+font-style: italic;
+line-height: 17px;
+margin-top: 11px;
+max-width: 100%;
+padding: 6px;;
 padding:6px;}
 #embedable embed, #embedable object {width: 100% !important }
 #embedable img, .bodyAttachment img { max-width: 100% }

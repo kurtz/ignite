@@ -102,9 +102,11 @@ class TuiyoInitiate{
 		$params 	= &$path->getParams( (int)$itemID );
 		$doFoo		= JRequest::getVar("do" , $params->get("do") );
 		$app		= JRequest::getVar("app", $params->get("redirect") );
+		$service	= JRequest::getVar("service", $params->get("service"));
 		$extApp		= JRequest::getVar("redirect" , $app );
 		
 		JRequest::setVar("do" , $doFoo );
+		JRequest::setVar("service" , $service );
 		JRequest::setVar("redirect" , !empty($extApp) ? $extApp : null );
 																		
 	}

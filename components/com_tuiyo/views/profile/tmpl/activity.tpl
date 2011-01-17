@@ -23,7 +23,7 @@
 					endif;
 				?>
 	        </div>
-            <div class="tuiyoTable publisher statusToolEl" >
+            <div class="tuiyoTable publisher" >
                 <div class="tuiyoTableRow" >            	
 	                <div class="tuiyoTableCell" style="width: 11%" >
 	            		<img alt="actTmpAt" width="50" height="50" src="<?php echo($user->getUserAvatar()->thumb70 ) ?>" class="TuiyoAvatar" />
@@ -72,11 +72,6 @@
 		             <div class="tuiyoClearFloat"></div>
 				</div>
 			</div>
-			<div class="shareCurrentLocation statusToolEl" style="border-bottom: 1px dotted #eee; display:none; padding: 10px 0">
-				<input type="text" class="TuiyoFormText" value="<?php echo _('Enter Location..') ?>" style="width: 98%; margin-bottom: 5px" name="geolocation" />
-				<div id="map_location_canvas" style="width: 100%; height:300px; margin-bottom: 5px;">Map Here</div>
-    		</div>
-    		
    			<div class="tuiyoTableRow statusToolEl" id="activityUpdateTools" style="border-bottom: 1px solid #eee ;">
 	        	<div class="tuiyoTableCell" style="width: 67%;">
 	        		<div class="tuiyoTableRow sharePrivacy" style="margin: 5px 0" title="<?php echo _('Sharing with..') ?>">
@@ -101,7 +96,10 @@
 	            	<button type="submit"><?php echo _('Update')?></button>
 	            </div>
 	            <div class="tuiyoClearFloat" ></div>          
-	        </div>   
+	        </div>
+			<div class="shareCurrentLocation statusToolEl" style="border-bottom: 1px dotted #eee; display:none; padding: 10px 0">
+				<div id="map_location_canvas" style="width: 100%; height:300px; margin: 0 auto;">Map Here</div>
+    		</div>   
 	        <div class="publisherTabEl timelineFilters statusToolEl" style="display: none; border-bottom: 1px solid #eee; margin-bottom: 10px; padding: 10px 0">
 				<div class="tuiyoTableRow">
 					<?php if(count($plugins) < 1): ?>

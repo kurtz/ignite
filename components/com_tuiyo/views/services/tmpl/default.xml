@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Services (Plugins or Applications)">
+		<message>
+				<![CDATA[STANDARD SEVICE LAYOUT]]>
+		</message>
+	</layout>
+	<state>
+		<name>Extensions</name>
+		<description>3rd Party Extensions</description>	
+		<params>
+			<param name="service" type="folderlist" default="" label="Select an Extension" directory="components/com_tuiyo/plugins" filter="" exclude="system" stripext="" hide_default="true" hide_none="true" />
+		</params>
+	</state>
+</metadata>

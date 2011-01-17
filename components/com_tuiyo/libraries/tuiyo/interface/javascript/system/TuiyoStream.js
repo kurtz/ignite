@@ -265,7 +265,7 @@
 			},
 			newStatusTmpl = function( status ){
                 
-                return $('<div class="tuiyoTable activityStreamItem" style="position:relative">').attr("id", "s"+status.statusID ).appendDom([
+                return $('<div class="tuiyoTable activityStreamItem '+status.data.source+' '+status.data.itemType+'" style="position:relative">').attr("id", "s"+status.statusID ).appendDom([
                     {tagName: 'div', className: 'tuiyoTableRow',childNodes: [               
                         {tagName: 'div',className: 'tuiyoTableCell col1img', style:'width:10%;',childNodes: [
                             {tagName: 'div',className: 'activityStreamItemUserImage48',childNodes: [ 
@@ -398,8 +398,8 @@
                                 {tagName: 'div',className: 'bodyDescr' + ( (status.data.isPublic > 0)?' public ': ' private ' ), title: ( (status.data.isPublic > 0)? $.gt.gettext('This entry is Public'): $.gt.gettext('This entry is Private') ), childNodes:[
                                     {tagName:'span', className:'descrInfo', innerHTML: ' By '},
                                     {tagName:'a', href: $.TuiyoDefines.get("profilelink")+'&user='+status.username, innerHTML:'<span>'+status.username+' </span>'},
-                                    {tagName:'a', className:'statustime', href: $.TuiyoDefines.get("statuslink")+'&user='+status.username+'&id='+status.statusID, innerHTML: '<span>'+status.statusTime+'</span>'},
-                                    {tagName:'a', className:'votes', href:'#', innerHTML: ( (status.likes.length>0)? '<span style="color: green" class="dolike"> '+ status.likes.length +'</span>' : '' )+((status.dislikes.length>0)? ' <span style="color:red;" class="dontlike">'+status.dislikes.length+'</span>':''), click:function(e){
+                                    {tagName:'a', className:'statustime', href: $.TuiyoDefines.get("statuslink")+'&user='+status.username+'&id='+status.statusID, innerHTML: '<span>'+status.statusTime+' </span>'},
+                                    {tagName:'a', className:'votes', href:'#', innerHTML: ( (status.likes.length>0)? '<span style="color: green" class="dolike"> '+ status.likes.length +'</span>' : ' ' )+((status.dislikes.length>0)? ' <span style="color:red;" class="dontlike">'+status.dislikes.length+'</span>':''), click:function(e){
                                         e.preventDefault();
                                 
                                         $( $('<div class="activityStreamItemVotes tuiyoTable"></div>').appendDom([
@@ -723,24 +723,20 @@
 				$("a[rel=shareLocation]").bind('click',function(e){
 					e.preventDefault();
 					//Google Maps
-					
+					var viewPoint = {
+					    zoom:                   15,
+					    scrollwheel:            false,
+					    controls:               ["GSmallZoomControl3D", "GMapTypeControl"],
+					    scrollwheel:            true,
+					};
 					if(navigator.geolocation) { 
-						var viewPoint = {
-						    zoom:                   10,
-						    scrollwheel:            false,
-						    maptype:                G_NORMAL_MAP,
-						    controls:               ["GSmallZoomControl3D", "GMapTypeControl"],
-						    scrollwheel:            true,
-						}
 						  navigator.geolocation.getCurrentPosition(function(position) { 
 							  
 							  viewPoint.latitude  = position.coords.latitude;
 							  viewPoint.longitude = position.coords.longitude;
-							  
-							   var $city = "Newcastle", $country ="United Kingdom" ;
 							  	
-						  	  viewPoint.markers   = [{latitude: position.coords.latitude, longitude: position.coords.longitude, html: $city + ', ' + $country}]
-						  	  $('input[name=geolocation]').val( $city + ', ' + $country);
+						  	  viewPoint.markers   = [{latitude: position.coords.latitude, longitude: position.coords.longitude}]
+
 						      $("#map_location_canvas").gMap( viewPoint )
 								
 								$('.statusToolEl').hide();

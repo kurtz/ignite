@@ -6,3 +6,6 @@ padding:10px 15px 0;}
 
 #userActivityStream .compliment{ background:url("../images/award_star_gold_3.png") no-repeat scroll 98% 50% transparent; }
 #userActivityStream .compliment:hover{ background: #f8f8f8 url(../images/award_star_gold_3.png) no-repeat scroll 98% 50% }
+
+
+#userActivityStream .tweet .bodyDescr{ padding-left: 20px; background:url("../images/icons/twitter-16x16.png") no-repeat scroll 5px 50% transparent; margin-top: 5px }

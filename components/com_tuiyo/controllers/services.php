@@ -47,9 +47,12 @@ class TuiyoControllerServices extends JController
 		
 		//Load the service controller
 		$service	= JRequest::getString('service', null);
-		$doTask 	= JRequest::getString('do' , null);
+		$doTask 	= JRequest::getString('do' , "display");
 		
-		if(empty($service)) throw new Exception(_('undefined service'));
+		//Attempt to get it from the menu
+        if(empty($service)):
+		 	throw new Exception(_('undefined service'));
+		endif;
 
 		//Require service Controller
 		$this->_serviceController = &TuiyoLoader::plugin( (string)$service, true );
