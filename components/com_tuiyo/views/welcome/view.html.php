@@ -84,6 +84,7 @@ class TuiyoViewWelcome extends JView
 		
 		$sysCfg			= TuiyoParameter::load("global");
 	
+		$this->assignRef("user", $user);
 		$this->assignRef("settings" , $sysCfg );	
 		$this->assignRef("allarticles", $allarticles);	
 		$this->assignRef("activity", $activity );

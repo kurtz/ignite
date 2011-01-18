@@ -1,0 +1,84 @@
+<?php  defined('TUIYO_EXECUTE' ) || die; ?>
+<div id="w1" class="windowWrapperShadow">
+    <div class="windowWrapper">
+        <div class="window" style="background: #fff">
+            <div class="windowTitleBar">
+                <img src="<?php echo $iconPath ?>/icons/dashboard_16.png" alt="hpact16" style="cursor: pointer" />
+                <strong><?php echo _('QuickTools and Utilities'); ?></strong>
+            </div>
+            <div class="windowBody" id="cpanel" style="padding: 18px; margin-top: 5px;">
+				 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Create a new user' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=display&amp;action=create')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/profile.png" align="middle"  /> 
+                            <span><?php echo _('New User'); ?></span>
+                        </a>
+                    </div>
+                </div>
+                 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Send out global messages to all site members' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=systemTools&amp;do=editEmails&amp;action=create')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/diary.png" align="middle"  /> 
+                            <span><?php echo _('Mass mail'); ?></span>
+                        </a>
+                    </div>
+                </div>
+	            
+				 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('View reports pending moderation and more' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=moderator')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/pencil.png" align="middle"  /> 
+                            <span><?php echo _('View Reports'); ?></span>
+                        </a>
+                    </div>
+                </div>
+                 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Edit the layout of your site' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=layoutmgr&amp;action=lists')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/applications.png" align="middle"  /> 
+                            <span><?php echo _('Edit Layout'); ?></span>
+                        </a>
+                    </div>
+                </div>
+		           
+				 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Manage plugins' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=extensions&amp;do=extensionmgr&amp;action=lists')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/plugin.png" align="middle"  /> 
+                            <span><?php echo _('Extensions'); ?></span>
+                        </a>
+                    </div>
+                </div>
+                 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Post a site announcement' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=moderator&amp;action=announcements')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/forum.png" align="middle"  /> 
+                            <span><?php echo _('Announce'); ?></span>
+                        </a>
+                    </div>
+                </div>
+
+				 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Check for updates' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;view=articles')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/macros.png" align="middle"  /> 
+                            <span><?php echo _('Updates'); ?></span>
+                        </a>
+                    </div>
+                </div>
+                 <div style="float: left;">
+                    <div class="icon" align="center" title="<?php echo _('Change the global settings of your site' ) ;?>">
+                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=globalConfig')  ?>">
+                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/settings.png" align="middle"  /> 
+                            <span><?php echo _('Settings'); ?></span>
+                        </a>
+                    </div>
+                </div>
+
+				<div class="tuiyoClearFloat"></div>
+				<h3>Macros &amp;  Scripts</h3>
+				<div class="TuiyoNotification TuiyoInformation" style="margin: 10px 0">There are no installed macros on this site</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -190,7 +190,7 @@ class TuiyoViewTuiyo extends JView
 		$tmplVars 		= array(
 			"apps"		=>$APPS,
 			"activity"	=>$activity,
-			"styleDir"	=>$livestyle,
+			"styleDir"	=>TUIYO_STYLEDIR,
 			"user"		=>$USER,
 			"livePath"	=>TUIYO_LIVE_PATH,
 			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
@@ -199,8 +199,25 @@ class TuiyoViewTuiyo extends JView
 		
 		$tmplVars["version"]	=	$longVersion;
 		
+		$action 		= JRequest::getVar("action", null);
+		switch($action):
+			case "logs":
+				$tmplFile = "statistics";
+			break;
+			case "rss":
+				$tmplFile = "newsupdates";
+			break;
+			case "controlpanel":
+				$tmplFile = "controlpanel";
+			break;
+			case "welcome":
+			default:
+				$tmplFile = "default";
+			break;
+		endswitch;
+		
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
-		$tplData		= (!is_null($tpl)) ? $tpl : $TMPL->parseTmpl( "default", $tmplPath, $tmplVars );
+		$tplData		= (!is_null($tpl)) ? $tpl : $TMPL->parseTmpl( $tmplFile, $tmplPath, $tmplVars );
 		
 		$tmplVars["adminPage"]	=	$tplData;
 		

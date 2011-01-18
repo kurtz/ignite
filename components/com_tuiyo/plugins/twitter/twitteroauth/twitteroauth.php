@@ -20,9 +20,9 @@ class TwitterOAuth {
   /* Set up the API root URL. */
   public $host = "https://api.twitter.com/1/";
   /* Set timeout default. */
-  public $timeout = 30;
+  public $timeout = 15;
   /* Set connect timeout. */
-  public $connecttimeout = 30; 
+  public $connecttimeout = 15; 
   /* Verify SSL Cert. */
   public $ssl_verifypeer = FALSE;
   /* Respons format. */
