@@ -15,4 +15,13 @@
 	</params>
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
+	<params group="administrator">
+		<param type="text" class="TuiyoFormText" name="updateServer" label="Update Server" default="http://update.tuiyo.co.uk" />
+		<param type="list" class="TuiyoFormDropDown" name="updateSatus" label="Update Development Status" default="stable">
+			<option value="nightly">Nightly</option>
+			<option value="alpha">Alpha</option>
+			<option value="beta">Beta</option>
+			<option value="stable">Stable</option>
+		</param>
+	</params>
 </install>

@@ -53,6 +53,11 @@ class TuiyoVersion
     /**
      *  *  * @var string Time */
     var $RELTIME = '00:00';
+
+	/**
+	 *  *  * @var string Revision */
+	var $REVISION = '';
+	
     /**
      *  *  * @var string Timezone */
     var $RELTZ = 'GMT';
@@ -119,7 +124,8 @@ class TuiyoVersion
     	$current = $this->getShortVersion();
     	
         return (version_compare($current, $latest, '<') == 1);
-    }    
+    }
+
 
     /**
      * TuiyoVersion::getInstance()

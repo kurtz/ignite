@@ -258,8 +258,10 @@ class TuiyoModelApplications extends JModel{
 			$userPlugins = $this->getAllUserPlugins($userID , $type , false);
 			$exclude 	= array_merge($exclude, (array)$userPlugins );
 		}
-		
-		$plugins = array_diff($plugins, $exclude); 
+		//Exclude system Plugin
+		if(!$incSystem):
+			$plugins = array_diff($plugins, $exclude); 
+		endif;
 		
 		if(!$pluginXML) return $plugins ;
 		

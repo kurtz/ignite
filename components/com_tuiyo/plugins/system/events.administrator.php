@@ -35,28 +35,49 @@ class TuiyoPluginSystemAdministrator extends TuiyoEventsListener{
 	 * @return void
 	 */
 	public function onAdminStart( $args = null ){
+	
+		
+		$version 		= TuiyoLoader::helper("parameter");
+		$versionHelper 	= TuiyoLoader::helper("version" , true);
+		$versionXML 	= new JSimpleXML();		
+		$document 		= $GLOBALS['API']->get("document");
+		
+		$config			= TuiyoParameter::load("global");
+		
+		$updateServer	= $config->get("updateServer", "http://update.tuiyo.co.uk");
+		$updateStatus	= $config->get("updateStatus", "stable");
+		$updateURL 		= JRoute::_(TUIYO_INDEX."&amp;context=systemtools&amp;do=autocenter&amp;run=systemupdate");
+		
+		$versionXMLstr 	= file_get_contents($updateServer."/version.xml");
+		
+		$versionXMLObj 	= $versionXML->loadString($versionXMLstr);
+		
+		$root			= $versionXML->document;
 		
 		//die;
+		$versionStr 		= $root->getElementByPath('version')->data();
+		$versionDevLevel	= $root->getElementByPath('devlevel')->data();
+		$versionDevStatus	= $root->getElementByPath('devstatus')->data();
+		$versionBuildStr	= $root->getElementByPath('build')->data();
 		
-		$version 	= TuiyoLoader::helper("parameter");
-		$version 	= TuiyoLoader::helper("version");
-		$versionXML = new JSimpleXML();		
-		$document 	= $GLOBALS['API']->get("document");
+		$latest 		= $versionStr.'.'.$versionDevLevel.'.'.$versionDevStatus ;
+		$outdate 		= true; 
 		
-		$url 		= "https://github.com/Tuiyo/ignite/raw/master/VERSION.XML";
-		$updateUrl  = 'index.php?option=com_tuiyo&context=SystemTools&do=autoCenter&run=systemupdate' ; 
-		//$vParams	= TuiyoAPI::getURL( $url );
-		
-		//print_r($vParams);
+		switch($updateStatus):
+			case "nightly":
+				$outdated   = $versionHelper->isOutDated( $latest ) ;
+			break;
+			default:
+			case "stable":
+				$outdated   = $versionHelper->isOutDated( $latest ) ;
+			break;
+		endswitch;
 		
 		$vData		= new TuiyoParameter();
 		$version 	=& new TuiyoVersion() ;
 		
-		$latest		 = $vData->get("release").'.'.$vData->get("devlevel").'.'.$vData->get("devstatus") ;
-		
-		if( $version->isOutDated( $latest ) ) :
-			$document->enqueMessage( sprintf(  _('Your version of Tuiyo is outdated. <a href="%s">Please click here to automatically upgrated to Tuiyo %2s</a>')  , $updateUrl, $latest ) , "notice" );
-			
+		if( $outdated ) :
+			$document->enqueMessage( sprintf(  _('Your version of Tuiyo is outdated.<a href="%s" style="background: none;color: red;">Please click here to automatically update to Tuiyo %2s</a>')  , $updateURL, $latest ) , "notice" );
 		endif ;
 		
 	}

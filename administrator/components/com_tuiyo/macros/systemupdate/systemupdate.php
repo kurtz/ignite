@@ -28,36 +28,58 @@ class TuiyoMacroSystemUpdate{
 	
 	public function run(){
 		
-		//flush();
-		global $mainframe;
-		
-		//Use Flush to out put
-		$params = array(
-			'template' 	=> $mainframe->getTemplate(),
-			'file'		=> 'index.php',
-			'directory'	=> JPATH_THEMES
-		);
-
-		$document 	=& JFactory::getDocument();
-		$data 		= $document->render($mainframe->getCfg('caching'), $params );
+		$version 		= TuiyoLoader::helper("parameter");
+		$versionHelper 	= TuiyoLoader::helper("version" , true);	
+		$config			= TuiyoParameter::load("global");
 		
 		echo _("Welcome to the system update macro...")."<br />";
 		 
 		ob_flush();
 		flush();
-		 		
 		
-		echo _("Preparing to upgrade....")."<br />";
+		$updateServer	= $config->get("updateServer", "http://update.tuiyo.co.uk");
+		$updateStatus	= $config->get("updateStatus", "stable");
+		$updateURL 		= JRoute::_(TUIYO_INDEX."&amp;context=systemtools&amp;do=autocenter&amp;run=systemupdate");
 		
+		$versionXMLstr 	= file_get_contents($updateServer."/version.xml");
+		$versionXML 	= new JSimpleXML();	
+		$versionXMLObj 	= $versionXML->loadString($versionXMLstr);
+		$root			= $versionXML->document;
 		
-		$url 		= "http://www.tuiyo.co.uk/version.ini";
+		echo _("Checking for Updates...")."<br />";
 		 
-		
-		//$vParams	= TuiyoAPI::getURL( $url );
 		ob_flush();
 		flush();
+		
+		//die;
+		$versionStr 	= $root->getElementByPath('version')->data();
+		$versionDevLevel= $root->getElementByPath('devlevel')->data();
+		$versionDevStatus= $root->getElementByPath('devstatus')->data();
+		$versionBuildStr = $root->getElementByPath('build')->data();
+		$versionDldURL 	= $root->getElementByPath("updateurl")->data();
+		
+		$latest 		= $versionStr.'.'.$versionDevLevel.'.'.$versionDevStatus ;
+		$outdated   	= $versionHelper->isOutDated( $latest ) ;
+		
+		if(!$outdated){
+			echo "There was nothing to update <br />";
+			return true;
+		}
+		
+		echo _("Downloading Update file from <strong>$versionDldURL</strong>....")."<br />";
+		ob_flush();
+		flush();
+		
+		$this->downloadFile( $versionDldURL, TUIYO_CACHE );
 
 	}
+	
+	public function downloadFile($source, $target) {
+		
+	       	//$file = system('wget '.$source);
+			//file_put_contents($file, $target.DS."updater.zip");
+	        //return false;
+	   }
 	
 	/**
 	 * TuiyoMacroSystemUpdate::getInstance()
