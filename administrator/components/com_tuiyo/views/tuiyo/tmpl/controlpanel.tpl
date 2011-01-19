@@ -76,8 +76,22 @@
                 </div>
 
 				<div class="tuiyoClearFloat"></div>
+				
+				
 				<h3>Macros &amp;  Scripts</h3>
-				<div class="TuiyoNotification TuiyoInformation" style="margin: 10px 0">There are no installed macros on this site</div>
+				<div style="margin-top: 15px">
+					<?php foreach ($macros as $i=>$macro): ?>
+						 <div style="float: left;">
+		                    <div class="icon" align="center" title="<?php echo _('Run Macro' ) ;?>">
+		                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=autocenter&amp;run='.$macro)  ?>">
+		                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/macros.png" align="middle"  /> 
+		                            <span><?php echo ucfirst($macro); ?></span>
+		                        </a>
+		                    </div>
+		                </div>
+					<?php endforeach; ?>
+					<div class="tuiyoClearFloat"></div>
+				</div>
 			</div>
 		</div>
 	</div>

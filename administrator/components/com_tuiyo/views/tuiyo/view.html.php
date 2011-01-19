@@ -160,11 +160,7 @@ class TuiyoViewTuiyo extends JView
 		$this->tabgroup  = $tabgroup;
 		$this->tabactive = $tabactive;
 		
-		
 		$DOCU->addStyleSheet('components/com_tuiyo/style/css/common.css' );
-		$DOCU->addScript( 'components/com_tuiyo/style/script/global.js' );
-		$DOCU->addScript( TUIYO_OEMBED );
-		$DOCU->addScript( TUIYO_STREAM );
 		
 		$version 		= TuiyoLoader::helper("version");		
 		$document 		= $GLOBALS['API']->get("document");
@@ -174,22 +170,9 @@ class TuiyoViewTuiyo extends JView
 		}
 		$longVersion	= $version->getLongVersion();
 		
-		$plugins		= $MODEL->getAllSystemPlugins("services", false); 
-		
-		$tmplPath2 		= TUIYO_VIEWS.DS."profile".DS."tmpl" ;
-		$tmplVars2 		= array(
-			"styleDir"	=>TUIYO_STYLEDIR,
-			"user"		=>$USER,
-			"sharewith" =>array("p00"=>"@everyone"),
-		    "plugins"   => $plugins,
-			"canPost"	=> 0 			
-		);
-		$activity 		= $TMPL->parseTmpl("activity" , $tmplPath2 , $tmplVars2);
-		
 
 		$tmplVars 		= array(
 			"apps"		=>$APPS,
-			"activity"	=>$activity,
 			"styleDir"	=>TUIYO_STYLEDIR,
 			"user"		=>$USER,
 			"livePath"	=>TUIYO_LIVE_PATH,
@@ -208,10 +191,31 @@ class TuiyoViewTuiyo extends JView
 				$tmplFile = "newsupdates";
 			break;
 			case "controlpanel":
+				//Get All Macros;
+				jimport('joomla.filesystem.file');
+				jimport('joomla.filesystem.folder');
+				
+				$tmplVars["macros"] = JFolder::folders( TUIYO_MACROS );
+				
 				$tmplFile = "controlpanel";
 			break;
 			case "welcome":
 			default:
+				$DOCU->addScript( 'components/com_tuiyo/style/script/global.js' );
+				$DOCU->addScript( TUIYO_OEMBED );
+				$DOCU->addScript( TUIYO_STREAM );
+				$plugins		= $MODEL->getAllSystemPlugins("services", false); 
+
+				$tmplPath2 		= TUIYO_VIEWS.DS."profile".DS."tmpl" ;
+				$tmplVars2 		= array(
+					"styleDir"	=>TUIYO_STYLEDIR,
+					"user"		=>$USER,
+					"sharewith" =>array("p00"=>"@everyone"),
+				    "plugins"   => $plugins,
+					"canPost"	=> 0 			
+				);
+				$activity 		= $TMPL->parseTmpl("activity" , $tmplPath2 , $tmplVars2);
+				$tmplVars["activity"] = $activity;
 				$tmplFile = "default";
 			break;
 		endswitch;
@@ -341,35 +345,53 @@ class TuiyoViewTuiyo extends JView
 		$TMPL = $GLOBALS["API"]->get("document");
 		$TMPL->IconPath = $iconPath;	
 		$action = JRequest::getVar("action", null);
-        /** Do something majical **/
-		switch($action){
-			case "discover":
-				return "discover plugins";
-			break;
-			case "updater":
-				return "update plugins";
-			break;
-			case "updater":
-				return "Updater Page";
-			break;
-		}		
 		
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
 			"livePath"	=>TUIYO_LIVE_PATH,
 			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
-			"user"		=>JFactory::getUser()
-		);		
+			"user"		=>$GLOBALS["API"]->get("user")
+		);
+		
+        /** Do something majical **/
+		switch($action){
+			case "discover":
+				return "discover plugins";
+			break;
+			case "macro":
+				return $this->runmacropage($macro);
+			break;
+			case "updater":
+				return "Updater Page";
+			break;
+		}			
+		
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl("automation" , $tmplPath , $tmplVars);
+		
+		return $tmplData;
+	}
+	
+	public function runmacropage( $macro ){
+		
+		$TMPL = $GLOBALS["API"]->get("document");
+		
+		$tmplVars 		= array(
+			"styleDir"	=>$livestyle,
+			"livePath"	=>TUIYO_LIVE_PATH,
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
+			"user"		=>$GLOBALS["API"]->get("user")
+		);
 		
 		if(!empty($macro)):			
 			$macroObj 	= TuiyoLoader::macro( (string)$macro , true );
 			if(is_object($macroObj)):	
-				$tmplVars["macro"] = $macroObj;
+				$tmplVars["macro"] = $macro;
 			endif; 			
 		endif ;
 		
-		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."tuiyo".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("automation" , $tmplPath , $tmplVars);
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."extensions".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl("runmacro" , $tmplPath , $tmplVars);
 		
 		return $tmplData;
 	}
@@ -400,9 +422,6 @@ class TuiyoViewTuiyo extends JView
 		$tmplFile    	= "config";	 
 		//Switch;
 		switch($action){
-			case "utilities":
-				return "utitilities page";
-			break;
 			case "info":
 				return $this->showSystemParams();
 			break;
@@ -496,10 +515,14 @@ class TuiyoViewTuiyo extends JView
 				$tmplVars["emailparams"] = new TuiyoParameter($inParams , TUIYO_CONFIG.DS.$element );
 			break;
 			case "create":
-				return "create mass emailer";
+				$ACL 	 =  JFactory::getACL();
+				$gtree 	 = $ACL->get_group_children_tree( null, 'USERS', false );
+				$aroGrps = JHTML::_('select.genericlist',   $gtree, 'gid', 'class="TuiyoFormDropDown"', 'value', 'text');
+				$tmplVars["arogrp"] = $aroGrps;
+				$tmplFile = "massmailer";
 			break;
 			case "reports":
-				return "mass email report";
+				$tmplFile = "emailreports";
 			break;
 		}
 		

@@ -7,7 +7,7 @@
                 <strong>Create New User</strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
-				<div class="createForm" style="width: 75%">
+				<div class="createForm" style="width: 100%">
 					<form name="newUser" id="newUser" class="TuiyoForm" method="post" action="index.php">
 						<fieldset>
                         <div class="tuiyoTableRow" style="padding: 4px 0">

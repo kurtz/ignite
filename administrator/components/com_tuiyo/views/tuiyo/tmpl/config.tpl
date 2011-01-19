@@ -7,7 +7,7 @@
 						<img src="<?php echo $iconPath ?>/icons/control_16.png" alt="hpact16" style="cursor: pointer"> <strong>Global Configuration</strong>
 					</div>
 					<div class="windowBody" style="padding: 18px; margin-top: 5px;">
-						<div class="tuiyoTableCell" style="width: 75%">
+						<div class="tuiyoTableCell" style="width: 100%">
 							<form method="post" class="TuiyoForm" action="<?php echo JRoute::_(TUIYO_INDEX) ?>">
 								<?php foreach ($elements as $element):?>
 								<fieldset>
@@ -29,11 +29,6 @@
 									<div class="tuiyoClearFloat"></div>
 								</div><?php echo JHTML::_('form.token') ?><input type="hidden" name="option" value="com_tuiyo"> <input type="hidden" name="context" value="systemTools"> <input type="hidden" name="do" value="saveConfig"> <input type="hidden" name="configType" value="system"> <input type="hidden" name="configKey" value="global">
 							</form>
-						</div>
-						<div class="tuiyoTableCell" style="width: 25%; border-left: 1px solid #ccc">
-							<div class="instructions" style="margin-left: 5px;">
-								<a href="#"><?php echo _('Reset to factory settings') ?></a>
-							</div>
 						</div>
 						<div class="tuiyoClearFloat"></div>
 					</div>

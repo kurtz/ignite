@@ -14,8 +14,8 @@
 								<textarea style="width:90%!important" class="TuiyoFormTextArea" rows="25" placeholder="select an extension from the drop downlist, then chose a file to edit"></textarea>
 							</div>
 							<div class="tuiyoTableCelle" style="float:left;width: 30%">
-								<select class="TuiyoFormDropDown">
-									<option>...</option>
+								<select class="TuiyoFormDropDown" name="plugintoedit" id="plugintoedit">
+									<option><?php echo _('Select plugin to edit...') ?></option>
 									<?php foreach($plugins as $plugin ): ?>
 									<option value="<?php echo $plugin['serviceID'] ?>">
 										Plugins/<?php echo $plugin['serviceID'] ?>/

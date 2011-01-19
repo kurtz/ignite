@@ -452,9 +452,6 @@ class TuiyoControllerSystemTools extends JController
     {
         $view 	= $this->getView("tuiyo", "html");
 		$macro 	= JRequest::getVar("run", null );
-
-        $form = $view->showAutoCenter( $macro );
-		
 		$tabgroup  = array( 
 			"_autocenter" => array(
 				_("Package Installer") 		=> "&action=installer", //Determine which tab is active by comparing referers
@@ -462,8 +459,15 @@ class TuiyoControllerSystemTools extends JController
 				_("Discover")		=> "&action=discover"
 			 )
 		);
+		
+		//If we are running a macro;
+		if(!empty($macro)){
+			JRequest::setVar("action", "macro");
+			$tabgroup['_autocenter'][sprintf(_("Run %s Macro"), ucfirst($macro) )] = "&action=macro";
+		}
 		$view->addTabGroup( $tabgroup );
-
+		
+		$form = $view->showAutoCenter( $macro );
         $view->display( $form , "_autocenter");
     }
 

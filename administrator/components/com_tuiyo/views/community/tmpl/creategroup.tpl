@@ -7,7 +7,7 @@
                 <strong>Create New Group</strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
-            	<div class="tuiyoTable" style="width: 70%">
+            	<div class="tuiyoTable" style="width: 100%">
 					<form name="newGroup" id="newGroup" method="post" class="TuiyoForm" action="index2.php" >
 						<fieldset>
 					  	<div class="tuiyoTableRow" style="padding: 4px 0">

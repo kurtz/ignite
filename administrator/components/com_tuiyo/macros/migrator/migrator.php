@@ -24,6 +24,12 @@ class TuiyoMacroMigrator{
 	
 	public function run(){
 		//Use Flush to out put
+		for($i=0; $i<5; $i++){
+			echo "I am a process..... <br />";
+			usleep(200000);
+			ob_flush();
+			flush();
+		}
 	}
 	
 }

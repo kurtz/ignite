@@ -7,7 +7,7 @@
                 <strong>Create new translation</strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
-				<div style="width: 70%">
+				<div style="width: 100%">
 				<form action="index.php" method="post" class="TuiyoForm">
 					<fieldset style="margin-bottom: 15px">
 						<div class="tuiyoTableRow" style="padding: 4px 0">

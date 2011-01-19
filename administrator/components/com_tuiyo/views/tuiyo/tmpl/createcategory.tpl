@@ -7,7 +7,7 @@
                 <strong><?php echo _('Create a new category'); ?></strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
-				<div class="tuiyoTable" style="width: 70%">
+				<div class="tuiyoTable" style="width: 100%">
 					<!-- Create a new  form-->
             		<form name="configureStatistics" id="configureStatistics" method="post" class="TuiyoForm" action="index2.php" >
             		<fieldset>

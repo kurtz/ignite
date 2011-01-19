@@ -28,6 +28,8 @@ class TuiyoViewCommunity extends JView{
 	
 	public function display( $data = null ){
 		
+		global $API, $mainframe;
+		
 		$TMPL 			= $GLOBALS["API"]->get("document");
 		$USER			= 	TuiyoAPI::get("user");
 		$tmplVars 		= array(
@@ -50,13 +52,11 @@ class TuiyoViewCommunity extends JView{
 				$tmplFile = "createnew";
 			break;
 			case "reports":
-				return "community reports";
+				$refer = JRoute::_(TUIYO_INDEX."&amp;context=communityManagement&amp;do=moderator", false);
+				$mainframe->redirect( $refer );
 			break;
-			case "viewpending":
-				$tmplFile = "pendingmembers";
-			break;
-			case "statistics":
-				return "community statistics";
+			case "bucketlist":
+				$tmplFile = "deleterequest";
 			break;
 			default:
 				$tmplVars["lists"] = $this->buildUserList();
@@ -98,9 +98,10 @@ class TuiyoViewCommunity extends JView{
 		
 	}
 	
-	public function buildUserReportList( $userReports ){
+	public function moderatorPanel( $userReports ){
 		
-		$TMPL = $GLOBALS["API"]->get("document");
+		$action 	= JRequest::getVar("action", null);
+		$TMPL 		= $GLOBALS["API"]->get("document");
 
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
@@ -109,8 +110,22 @@ class TuiyoViewCommunity extends JView{
 			"users"		=>$userListData 
 		);
 		
+		switch($action):
+			case "logs":
+				$tmplFile = "moderatorlogs";
+			break;
+			case "announcements":
+				$tmplFile = "announcements";
+			break;
+			case "reports":
+			default:
+				$tmplVars["reports"] = array();
+				$tmplFile = "reportlist";
+			break;
+		endswitch;
+		
 		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."community".DS."tmpl" ;
-		$tmplData 	    = $TMPL->parseTmpl("reportlist" , $tmplPath , $tmplVars);	
+		$tmplData 	    = $TMPL->parseTmpl($tmplFile , $tmplPath , $tmplVars);	
 		
 		return $tmplData;
 	}
@@ -161,14 +176,16 @@ class TuiyoViewCommunity extends JView{
 			"user"		=>JFactory::getUser()
 		);
 		switch($action){
-			case "statistics":
-				return "group statistics";
-			break;
 			case "new":
 				$tmplfile = "creategroup";
 			break;
+			case "categories":
+					$tmplVars["pagetitle"] = _("Groups By Category");
+					$tmplfile = "groups";
+			break;
 			case "list":
 			default:
+				$tmplVars["pagetitle"] = _("All Member Groups");
 				$tmplfile = "groups"; 
 			break;
 		}

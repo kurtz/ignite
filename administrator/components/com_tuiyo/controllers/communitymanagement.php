@@ -61,7 +61,7 @@ class TuiyoControllerCommunityManagement extends JController{
 			"_autocenter" => array(
 				_("User uploaded files") 		=> "&action=lists", //Determine which tab is active by comparing referers
 				_("Pending Approval")		=> "&action=pending",
-				_("Warnings")			=> "&action=warning",
+				_("Warnings")			=> "&action=warning"
 			 )
 		);
 		$view->addTabGroup( $tabgroup  );
@@ -73,17 +73,19 @@ class TuiyoControllerCommunityManagement extends JController{
 	public function moderator(){
 		
 		$view = $this->getView("tuiyo", "html");
-
+		$communityView 	= $this->getView("community" , "html");
+		
 		$tabgroup  = array( 
 			"_autocenter" => array(
 				_("User Reports") 		=> "&action=reports", //Determine which tab is active by comparing referers
 				_("Moderation Logs")	=> "&action=logs",
-				_("Announcements")		=> "&action=announcements",
+				_("Announcements")		=> "&action=announcements"
 			 )
 		);
 		$view->addTabGroup( $tabgroup  );
 
-        $view->display("Moderator", '_autocenter');
+		$page = $communityView->moderatorPanel();
+        $view->display( $page, '_autocenter');
 	}
 	
 	/**
@@ -103,10 +105,8 @@ class TuiyoControllerCommunityManagement extends JController{
 			"_users" => array(
 				_("Members") 			=> "", //Determine which tab is active by comparing referers
 				_("Create New Users")	=> "&action=create",
-				_("Pending Members")	=> "&action=viewpending",
 				_("Delete Request")		=> "&action=bucketlist",
-				_("Reports")			=> "&action=reports",
-				_("Statistics")			=> "&action=statistics",
+				_("Reports")			=> "&action=reports"
 			 )
 		);
 		$adminView->addTabGroup( $tabgroup );
@@ -146,8 +146,7 @@ class TuiyoControllerCommunityManagement extends JController{
 		$tabgroup  = array( 
 			"_categories" => array(
 				_("Categories") => "&action=lists", //Determine which tab is active by comparing referers
-				_("Add New Category")=> "&action=create",
-				_("Statistics")=> "&action=statistics",
+				_("Add New Category")=> "&action=create"
 			 )
 		);
 		$adminView->addTabGroup( $tabgroup );
@@ -190,8 +189,7 @@ class TuiyoControllerCommunityManagement extends JController{
 			"_groups" => array(
 				_("Member Groups") 		=> "&action=lists", //Determine which tab is active by comparing referers
 				_("Create New Group")	=> "&action=new",
-				_("Groups By Category")	=> "&action=categories",
-				_("Statistics")			=> "&action=statistics",
+				_("Groups By Category")	=> "&action=categories"
 			 )
 		);
 		$adminView->addTabGroup( $tabgroup );

@@ -41,17 +41,21 @@ class TuiyoMacroSystemUpdate{
 		$document 	=& JFactory::getDocument();
 		$data 		= $document->render($mainframe->getCfg('caching'), $params );
 		
-		echo _("Welcome to the system update macro...")."\n";
+		echo _("Welcome to the system update macro...")."<br />";
 		 
-		 //ob_flush();
+		ob_flush();
+		flush();
 		 		
 		
-		echo _("Preparing to upgrade. reading information....")."\n";
+		echo _("Preparing to upgrade....")."<br />";
 		
 		
 		$url 		= "http://www.tuiyo.co.uk/version.ini";
-		$updateUrl  = 'index.php?option=com_tuiyo&context=SystemTools&do=autoCenter&run=systemupdate' ; 
+		 
+		
 		//$vParams	= TuiyoAPI::getURL( $url );
+		ob_flush();
+		flush();
 
 	}
 	

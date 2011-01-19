@@ -113,6 +113,44 @@ class TuiyoControllerExtensions extends JController{
 				
 		$adminView->encode( $resp );
 	}
+	
+	public function runMacroScript(){
+			
+		$document = TuiyoAPI::get("document");
+												//Must be logged IN
+		$raw   = JRequest::setVar("tmpl", "component"); //Must be raw/
+		$macro = JRequest::getString("i", null);
+		
+		ob_start();
+		ob_flush();
+		flush();
+		
+		echo "Initiating the $i macro script...<br /><br />\n";
+		
+		if(!empty($macro)):			
+			$macroObj 	= TuiyoLoader::macro( (string)$macro , true );
+			if(is_object($macroObj)):	
+				
+				//Just before the process starts;
+				ob_flush();
+				flush();
+				
+				//RUN the macro here;
+				$macroObj->run();
+				//Use Flush to out put
+				
+				//One Last Time
+				ob_flush();
+				flush();
+			endif; 			
+		endif ;
+		
+		echo "<br />Complete!!\n";
+		
+		ob_end_flush();
+		jexit(0);
+		
+	}
 
 	/**
 	 * TuiyoControllerExtensions::getPlugins()
@@ -307,7 +345,6 @@ class TuiyoControllerExtensions extends JController{
 				_("Extensions") 			=> "&action=lists", //Determine which tab is active by comparing referers
 				_("Events Profiler")		=> "&action=events",
 				_("Extension Editor")			=> "&action=editor",
-				_("Statistics")			=> "&action=statistics",
 				_("Installer")			=> "&action=installer",
 			 )
 		);

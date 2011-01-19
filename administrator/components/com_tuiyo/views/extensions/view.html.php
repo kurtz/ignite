@@ -87,17 +87,16 @@ class TuiyoViewExtensions extends JView
 	}
 	
 	public function display(){
-		global $mainframe;
-		$action = JRequest::getVar("action",null);
+		global $mainframe, $API;
+		$action 	= JRequest::getVar("action",null);
+		$document	= $API->get("document");
+		$document->addJS( 'components/com_tuiyo/style/script/extensions.js' );
 		switch(strtolower($action) ){
 			case "lists":
 				return $this->getApplicationList() ;
 			break;
 			case "events":
 				return $this->eventsProfiler();
-			break;
-			case "statistics":
-				return "plugin stats";
 			break;
 			case "editor":
 				return $this->plugineditor();

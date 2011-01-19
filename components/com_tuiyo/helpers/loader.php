@@ -142,7 +142,6 @@ class TuiyoLoader{
 			"elibrary"	=> TUIYO_LIBRARIES,
 			"helper" 	=> TUIYO_HELPERS,
 			"model"  	=> TUIYO_MODELS,
-			"macro"		=> TUIYO_MACROS,
 			"controller"=> TUIYO_CONTROLLERS,
 			"table"		=> TUIYO_TABLES,
 			"component"	=> TUIYO_APPLICATIONS,			
@@ -152,6 +151,8 @@ class TuiyoLoader{
 		$parts 		= explode('.', $dotPath);
 		$cparts 	= count($parts);
 		$counter	= ((int)$cparts > 1 || ($type!=='library'))?($cparts-1):$cparts;
+		
+		$iTypes["macro"] = TUIYO_MACROS.DS.$parts[$cparts-1] ;
 		
 		if($ext == 'php' || $ext == 'inc'){
 			$filename = $parts[$cparts-1];
