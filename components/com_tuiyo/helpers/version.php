@@ -37,7 +37,7 @@ class TuiyoVersion
     var $RELEASE = '2.0';
     /**
      *  *  * @var string Development Status */
-    var $DEV_STATUS = 'a1';
+    var $DEV_STATUS = 'a2';
     /**
      *  *  * @var int Sub Release Level */
     var $DEV_LEVEL = '0';
