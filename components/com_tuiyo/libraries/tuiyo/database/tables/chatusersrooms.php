@@ -62,7 +62,7 @@ class TuiyoTableChatUsersRooms extends JTable{
     public function hasMember( $userid, $roomid )
 	{
 		$dbo 	= $this->_db ;
-		$query 	= "SELECT COUNT(1) FROM #__tuiyo_chat_users_rooms AS cr".
+		$query 	= "SELECT COUNT(1) FROM #__tuiyo_chat_rooms_users AS cr".
 				  "\nWHERE cr.userid=".$dbo->quote( (int)$userid ).
 				  "\nAND cr.room=".$dbo->quote( (int)$roomid )
 				  ;

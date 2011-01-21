@@ -459,11 +459,21 @@
 			findSearchLinks = function( text ){
 				//var hasTag = $(text).find("a.activityTag");
 				//if( hasTag ){ return text };				
-		        var regExp = / [\#]+([A-Za-z0-9-_]+)/gi;
-		        var searchLInked =  text.replace(regExp, ' <a class="activityTag" href="'+$('meta[name="_searchurl"]').attr("content")+'&searchword=$1">#$1</a>');
+		        var regExp = / [\??]+([A-Za-z0-9-_]+)/gi;
+		        var searchLInked =  text.replace(regExp, ' <a class="activitySearchTag" href="'+$('meta[name="_searchurl"]').attr("content")+'&searchword=$1">$1</a>');
 				
-				return searchLInked ;
+				return findChatLinks( searchLInked ) ;
 			},
+			
+			findChatLinks = function( text ){
+				//var hasTag = $(text).find("a.activityTag");
+				//if( hasTag ){ return text };				
+		        var regExp = / [\#]+([A-Za-z0-9-_]+)/gi;
+		        var chatLInked =  text.replace(regExp, ' <a class="activityChatTag" target="blank" href="'+$('meta[name="_chaturl"]').attr("content")+'&room=$1">$1</a>');
+				
+				return chatLInked ;
+			},
+			
 			
 			findEmoticons = function(statusText){
 				return statusText;

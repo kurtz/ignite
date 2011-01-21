@@ -205,6 +205,9 @@ class SystemServiceController Extends TuiyoControllerServices{
 		$model		= &$this->getModel("systemchat" );
 		$view 		= $this->getView("system", "html");
 		
+		//huh?
+		$table 		= TuiyoLoader::table('chatrooms', true );
+		
 		$document 	= &$GLOBALS['API']->get("document" );
 		$user 		= &$GLOBALS['API']->get("user" , null );
 		
@@ -213,10 +216,17 @@ class SystemServiceController Extends TuiyoControllerServices{
 			JError::raiseError( TUIYO_BAD_REQUEST, _("Invalid user ID") );
 		}
 		
-		$chatRoom  = array(); //$model->initiateChatRoom( $user->id, $participant );
-
+		$rooms 		= array();
+		$rooms		= $table->getChatRoom();
+		
+		if(!empty($chatRoomN)):
+			$chatRoomObj= $table->getChatRoom( $chatRoomN );
+			$view->assignRef("chatroom" , $chatRoomObj);
+		endif;
+		
+		$view->assignRef("rooms", $rooms);
 		$view->assignRef("user", $user);
-		$view->assignRef("chatroom" , $chatRoom);
+		
 		
 		
 		$view->showChatBox();

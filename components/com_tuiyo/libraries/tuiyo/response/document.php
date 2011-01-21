@@ -493,7 +493,10 @@
 			. "&amp;areas[1]=groups&amp;areas[2]=articles&amp;areas[3]=applications&amp;areas[0]=profiles"
 			. "&amp;areas[4]=photos&amp;areas[5]=resources&amp;areas[6]=content&amp;areas[7]=web" ) ;
 			
+		$chatURL 	= JRoute::_( TUIYO_INDEX."&amp;view=services&amp;service=system&amp;do=chatbox");
+		
 		$GLOBALS['mainframe']->addMetaTag( "_searchurl",$hashURL );
+		$GLOBALS['mainframe']->addMetaTag( "_chaturl",$chatURL );
 		
 		return true;
  	}

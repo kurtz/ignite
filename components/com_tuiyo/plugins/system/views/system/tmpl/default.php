@@ -4,8 +4,10 @@
 			<div class="tuiyoColumn" id="tuiyoColumn1Pad">
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems" id="publisherHp1">	                    
-	                  	<li style="padding: 0pt 20px;" class="current" id="timelineReload"><a href="#"><span><?php echo _('Public Room')?></span></a></li>
-						<li style="padding: 0pt 20px;"><a href="#"><span><?php echo _('#joomla')?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" id="timelineReload"><a href="#"><span><?php echo _('Public Room')?></span></a></li>
+						<?php if(isset($this->chatroom[0])): ?>
+							<li style="padding: 0pt 20px;"><a href="#" rel="<?php echo "#".$this->chatroom[0]->name ?>"><span><?php echo "#".$this->chatroom[0]->name ?></span></a></li>
+						<?php endif; ?>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>
 	             </div>
@@ -39,7 +41,10 @@
                 </div>
 				<div class="TuiyoApiChatRoomPanel">
 					<div class="pageEl" id="chatRoomDirectory" style="display: block">
-						<div class="aTAHead dashBoardWidgetBodySubHead">My Rooms</div>
+						<div class="aTAHead dashBoardWidgetBodySubHead">All Rooms</div>
+						<?php foreach((array)$this->rooms as $room) : ?>
+							<a href="<?php echo JRoute::_( TUIYO_INDEX."&view=services&service=system&do=chatbox&room=".$room->name , false); ?>" class="chatRoomTag"><span ><?php echo $room->name ?></span></a>
+						<?php endforeach;  ?>
 					</div>
 					<div class="pageEl" id="chatRoomCreator" style="display: none">Settings</div>
 

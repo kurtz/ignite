@@ -43,6 +43,28 @@ class TuiyoTableChatRooms extends JTable{
     {
         return parent::__construct("#__tuiyo_chat_rooms", "id", $db );
     }
+
+	public function getChatRoom($roomName = null){
+		
+		$dbo 	= 	$this->_db;
+		$user 	= 	TuiyoAPI::get("user");	 
+		$where  =   null;
+		
+		if(!empty($roomName)){
+			$where = "\nWHERE r.name=".$dbo->Quote( (string)$roomName );
+		}
+		
+		$query  =  "SELECT r.*, m.* FROM #__tuiyo_chat_rooms as r"
+				.  "\nLEFT JOIN #__tuiyo_chat_rooms_users as m ON r.id=m.room"
+				.  $where
+				;
+				
+		$dbo->setQuery( $query );
+		
+		$rows = $dbo->loadObjectList();
+		
+		return $rows;
+	}
 	
 	/**
 	 * TuiyoTableChatRooms::loadIfExistsBetweenMembers()
