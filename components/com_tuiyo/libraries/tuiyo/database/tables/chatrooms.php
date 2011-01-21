@@ -88,20 +88,29 @@ class TuiyoTableChatRooms extends JTable{
 		$query 		= "SELECT r.id FROM #__tuiyo_chat_rooms as r WHERE r.name =".$dbo->quote($roomName);
 		
 		$dbo->setQuery( $query );	
-		
-		echo $dbo->getQuery();
 			
 		$roomID 	= $dbo->loadResult();
-		
-		echo $roomID;
 		
 		if(!empty($roomID)){
 			return $this->load( (int)$roomID ) ;
 		}
+		
+		$opentokConfig 	= new API_Config;
+		$opentokAPI 	= new OpenTokSDK($opentokConfig->API_KEY, $opentokConfig->API_SECRET);
+        $opentokSession = $opentokAPI->create_session( $_SERVER["REMOTE_ADDR"] ,
+			array(
+				//SessionPropertyConstants::MULTIPLEXER_NUMOUTPUTSTREAMS=>10,
+		        //SessionPropertyConstants::ECHOSUPPRESSION_ENABLED=>"true",
+		        //SessionPropertyConstants::MULTIPLEXER_SWITCHTYPE=>1,
+		        //SessionPropertyConstants::MULTIPLEXER_SWITCHTIMEOUT=>5000
+			)
+		);
+		$opentokSessionId = $opentokSession->getSessionId();
+		
 		//Create the room;
 		$this->load( null );
 		$this->name 	= str_replace( array(" ","(",")","-","&","%",",","#" ), "", $roomName );
-		$this->datafile	= $this->name.date('YmdHis').'.txt';
+		$this->datafile	= "".$opentokSessionId ;
 		$this->status	= 0 ;
 		$this->usercount= 1;
 		
@@ -109,6 +118,7 @@ class TuiyoTableChatRooms extends JTable{
 			JError::raiseError(TUIYO_SERVER_ERROR , $this->getError() );
 			return false;
 		}	
+		
 		//Save Author
 		$curTable 	= TuiyoLoader::table('chatusersrooms', true );
 		$curTable->load( null );

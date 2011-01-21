@@ -405,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `usercount` int(10) NOT NULL,
-  `datafile` varchar(30) NOT NULL,
+  `datafile` varchar(255) NOT NULL,
   `status` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `UNIQUE2` (`name`)

@@ -41,6 +41,24 @@
                 </div>
 				<div class="TuiyoApiChatRoomPanel">
 					<div class="pageEl" id="chatRoomDirectory" style="display: block">
+						
+						<?php if(isset($this->chatroom[0]) ): ?>
+							<div class="aTAHead dashBoardWidgetBodySubHead"><?php echo sprintf(_('Video and audio feeds for #%s channel'), $this->chatroom[0]->name ) ?></div>
+							<div id="videoframe">
+								
+								<div class="tuiyoClearFloat">&nbsp;</div>
+							</div>
+							<div id="tokbox_console"></div>
+							<div class="tuiyoClearFloat" style="clear:both"></div>
+						   	<div class="dashboardWidgetFooter tuiyoTable" style="margin-bottom: 10px">
+		                    	<div class="tuiyoTableRow">
+		                    		<div class="tuiyoTableCell" style="width: 50%"><a href="#" class="connectToFeed"><?php echo _('Connect')?></a></div>
+		                    		<div class="tuiyoTableCell" style="width: 50%" align="right"><a href="#" style="display:none" class="publishToFeed"><?php echo _('Publish') ?></a></div>
+		                    		<div style="clear: both"></div>
+		                    	</div>
+		                    </div>
+						<?php endif;  ?>
+						
 						<div class="aTAHead dashBoardWidgetBodySubHead">All Rooms</div>
 						<?php foreach((array)$this->rooms as $room) : ?>
 							<a href="<?php echo JRoute::_( TUIYO_INDEX."&view=services&service=system&do=chatbox&room=".$room->name , false); ?>" class="chatRoomTag"><span ><?php echo $room->name ?></span></a>

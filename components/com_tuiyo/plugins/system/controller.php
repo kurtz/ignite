@@ -18,6 +18,12 @@
  */
 defined('TUIYO_EXECUTE') || die('Restricted access');
 
+
+require_once TUIYO_PLUGINS.DS.'system'.DS.'chat'.DS.'opentok'.DS.'API_Config.php';
+require_once TUIYO_PLUGINS.DS.'system'.DS.'chat'.DS.'opentok'.DS.'OpenTokSDK.php';
+require_once TUIYO_PLUGINS.DS.'system'.DS.'chat'.DS.'opentok'.DS.'SessionPropertyConstants.php';
+
+
 /**
  * 
  * System Controller.
@@ -192,6 +198,8 @@ class SystemServiceController Extends TuiyoControllerServices{
 	
 	public function chatBox( $chatRoom = null ){
 		
+		global $mainframe;
+		
 		//0. Must be logged in
 		$authenticate = TuiyoAPI::get("authentication");
 		$authenticate->requireAuthentication();	
@@ -222,6 +230,26 @@ class SystemServiceController Extends TuiyoControllerServices{
 		if(!empty($chatRoomN)):
 			$chatRoomObj= $table->getChatRoom( $chatRoomN );
 			$view->assignRef("chatroom" , $chatRoomObj);
+			
+			$opentokConfig 	= new API_Config;
+			$opentokAPI 	= new OpenTokSDK($opentokConfig->API_KEY, $opentokConfig->API_SECRET);
+	        $opentokSession = $opentokAPI->create_session( $_SERVER["REMOTE_ADDR"] ,
+				array(
+					//SessionPropertyConstants::MULTIPLEXER_NUMOUTPUTSTREAMS=>10,
+			        //SessionPropertyConstants::ECHOSUPPRESSION_ENABLED=>"true",
+			        //SessionPropertyConstants::MULTIPLEXER_SWITCHTYPE=>1,
+			        //SessionPropertyConstants::MULTIPLEXER_SWITCHTIMEOUT=>5000
+				)
+			);
+			$opentokSessionId = isset($chatRoomObj[0]->datafile) ? $chatRoomObj[0]->datafile : $opentokSession->getSessionId(); 
+			$document->addJS("http://staging.tokbox.com/v0.91/js/TB.min.js");
+			
+			$mainframe->addMetaTag( "opentokAPIKey", 	$opentokConfig->API_KEY );
+			$mainframe->addMetaTag( "opentokSessionID", $opentokSessionId );
+			$mainframe->addMetaTag( "opentokSessionToken", $opentokAPI->generate_token() );
+			
+			
+	
 		endif;
 		
 		$view->assignRef("rooms", $rooms);

@@ -11,6 +11,7 @@
 			"ajaxImg_16" 		: "<?php echo $ajaxIMG_16 ?>",
 			"token"				: $('meta[name="_token"]').attr("content") ,
 			"userid"			: "<?php echo JFactory::getUser()->id ?>",
+			"username"			: "<?php echo JFactory::getUser()->username ?>",
 			"profilelink"		: "<?php echo JROUTE::_(TUIYO_INDEX.'&amp;view=profile&amp;do=view');  ?>",
 			"statuslink"		: "<?php echo TUIYO_INDEX.'&amp;view=profile&amp;do=viewStatus'; ?>",
 			"componentIndex" 	: "<?php echo TUIYO_INDEX ?>",
