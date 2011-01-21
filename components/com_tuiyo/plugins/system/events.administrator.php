@@ -50,7 +50,9 @@ class TuiyoPluginSystemAdministrator extends TuiyoEventsListener{
 		
 		$versionXMLstr 	= file_get_contents($updateServer."/version.xml");
 		
-		$versionXMLObj 	= $versionXML->loadString($versionXMLstr);
+		if($versionXMLstr === false) return false; //We could not get the version update file 
+		
+		$versionXMLObj 	= $versionXML->loadString( $versionXMLstr );
 		
 		$root			= $versionXML->document;
 		
