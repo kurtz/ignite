@@ -3,7 +3,7 @@
 
     *, html { padding:0; margin:0px; }
     html { background:#ddd; color:#333;font-size:67.5%; }
-    body, iframe body{ font-size:13px !important; }
+    body, iframe body{ font-size:13px !important; overflow-x: hidden;}
 
 	body.contentpane, iframe body{font-family:"Kalinga",Segoe UI,Lucida Grande,Verdana,DejaVu Sans,sans-serif; font-size:0.8em; margin:0px; color:#555555 !important; min-height:100%; background: none; }
 	body.contentpane a, iframe body a{color:#356AA0; text-decoration:none}

@@ -114,6 +114,20 @@ class TuiyoControllerExtensions extends JController{
 		$adminView->encode( $resp );
 	}
 	
+	public function extensionmgreditsave(){
+		
+		global $mainframe;
+		
+		$file 		= JRequest::getString("pfile" );
+		$plugin 	= JRequest::getString("plugin");
+		
+		
+		
+		$redirect 	= JRoute::_(TUIYO_INDEX."&context=extensions&do=extensionmgr&action=editor",false);
+		
+		$mainframe->redirect($redirect);
+	}
+	
 	public function runMacroScript(){
 			
 		$document 	= TuiyoAPI::get("document");							//Must be logged IN

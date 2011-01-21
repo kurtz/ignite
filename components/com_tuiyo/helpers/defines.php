@@ -127,6 +127,7 @@
  define('TUIYO_TOOLTIP' ,		TUIYO_JS.'/includes/simpletip/simpletip.js' );
  define('TUIYO_WIDGET' ,		TUIYO_JS.'/system/TuiyoWidgets.js' );
  define('TUIYO_STREAM' ,		TUIYO_JS.'/system/TuiyoStream.js' );
+ define('TUIYO_CHAT' ,			TUIYO_JS.'/system/TuiyoChat.js' );
  define('TUIYO_APPENDDOM' ,		TUIYO_JS.'/includes/appenddom/appenddom.js' );
  define('TUIYO_CSS_COMMON',		TUIYO_LIVE_PATH.'/client/default/css/common.css');
  define('TUIYO_JS_COMMON',		TUIYO_LIVE_PATH.'/client/default/script/common.js');

@@ -4,7 +4,7 @@
         <div class="window" style="background: #fff">
             <div class="windowTitleBar">
                 <img src="<?php echo $iconPath ?>/icons/plugins_16.png" alt="hpact16" style="cursor: pointer" />
-                <strong>Extension Editor <?php if(isset($pluginID)){echo "/".$pluginID; } ?> <?php if(isset($file)){echo "/".$file; } ?></strong>
+                <strong>Extension Editor <?php if(isset($pluginID)){echo "/".$pluginID; } ?> <?php if(isset($pfile)){echo "/".$pfile; } ?></strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
 				<div class="tuiyoTable">
@@ -25,12 +25,21 @@
 								<?php if(isset($filelist)) : ?>
 									<ul>
 										<?php foreach($filelist as $file): ?>
-											<li><a href="<?php echo JRoute::_(TUIYO_INDEX."&amp;context=extensions&amp;do=extensionmgr&amp;action=editor&amp;plugin=".$pluginID."&amp;file=".$file); ?>"><?php echo $file ?></a></li>
+											<li><a href="<?php echo JRoute::_(TUIYO_INDEX."&amp;context=extensions&amp;do=extensionmgr&amp;action=editor&amp;plugin=".$pluginID."&amp;pfile=".$file); ?>"><?php echo $file ?></a></li>
 										<?php endforeach; ?>
 									</ul>
 								<?php endif; ?>
 							</div>
 							<div class="tuiyoClearFloat"></div>
+							
+							<input type="hidden" value="com_tuiyo" name="option" />
+							<input type="hidden" value="extensionmgreditsave" name="do" />
+							<input type="hidden" value="extensions" name="context" />
+							<input type="hidden" value="editor" name="action" />
+							<input type="hidden" name="plugin" value="<?php echo $pluginID ?>" />
+							<input type="hidden" name="pfile" value="<?php echo $pfile ?>" />
+							<?php echo JHTML::_('form.token') ?>
+							<button type="submit"><?php echo sprintf(_('Save %s file'), $pfile) ?></button>
 						</div>
 					</form>
 				</div>

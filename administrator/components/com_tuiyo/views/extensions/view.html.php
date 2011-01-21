@@ -143,14 +143,16 @@ class TuiyoViewExtensions extends JView
 		$TMPL = $GLOBALS["API"]->get("document");
 		$APP  			= TuiyoLoader::model("applications", true );	
 		$TMPL->IconPath = $iconPath;
-		$plugin 		= JRequest::getString("plugin", "noplugin" );
-		$file 			= JRequest::getString("file", null);
+		$plugin 		= JRequest::getVar("plugin", "noplugin" );
+		$p_file 			= JRequest::getVar("pfile", null);
+		
 				
 		$tmplVars 		= array(
 			"plugins"	=>$APP->getAllSystemPlugins("services", true),  
 			"styleDir"	=>$livestyle,
 			"livePath"	=>TUIYO_LIVE_PATH,
-			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/'
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
+			"pfile"		=> null
 		);
 		
 		//Import the Joomla Folder Library
@@ -158,13 +160,15 @@ class TuiyoViewExtensions extends JView
 		
 		if(isset($plugin)){
 			$dir = TUIYO_PLUGINS.DS.$plugin;
-			if(is_dir( TUIYO_PLUGINS.DS.$plugin )){
+			if(file_exists( TUIYO_PLUGINS.DS.$plugin.DS."plugin.xml" )){
 				$tmplVars["pluginID"]	  = $plugin;
 				$tmplVars["filelist"] = JFolder::files( $dir, ".", true , false , array(".gitinore",".cvs",".svn",".DS_Store"));
 			}
 			//Read the file
-			if(!empty($file) && file_exists( $dir.DS.$file )){
-				$tmplVars["filecontent"] = file_get_contents($dir.DS.$file);
+			//@TODO need to get a better path solvency or else files wont load
+			if(!empty($p_file) && file_exists( $dir.DS.$p_file )){
+				$tmplVars["filecontent"] = file_get_contents($dir.DS.$p_file);
+				$tmplVars["pfile"]	= $p_file;
 			}
 		}
 		
