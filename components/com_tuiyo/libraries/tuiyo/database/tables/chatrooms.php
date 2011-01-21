@@ -51,68 +51,51 @@ class TuiyoTableChatRooms extends JTable{
 	 * @param mixed $member
 	 * @return void
 	 */
-	public function loadIfExistsBetweenMembers($initiator, $member)
+	public function checkIfRoomExists($roomName, $initiator=null)
 	{
 		$dbo 	= $this->_db;
-		$userA 	= $dbo->quote( (int)$initiator );
-		$userB	= $dbo->quote( (int)$member );
-		$query 	= "SELECT j.room FROM #__tuiyo_chat_users_rooms AS j".
-				"\nLEFT JOIN #__tuiyo_chat_users_rooms AS s ON j.room = s.room".
-				"\nWHERE j.userid = {$userA} AND s.userid = {$userB}"
-				; 
-		$dbo->setQuery( $query );		
-		$roomID = $dbo->loadResult();
+		$user	= TuiyoAPI::get("user", null);
 		
-		if(!empty($roomID)){
-			return (int)$roomID ;
-		}
-		return false;		
-	}	
-	
-	/**
-	 * TuiyoTableChatRooms::createRoomBetweenParticipants()
-	 * Creates a new chat room
-	 * @param mixed $initiator
-	 * @param mixed $member
-	 * @return void
-	 */
-	public function createRoomBetweenParticipants($initiator, $member)
-	{	
-		$initiator		= (int)$initiator ;
-		$member			= (int)$member ;
-		
-		//Chat Room Users Table
-		$curTable 	= TuiyoLoader::table('chatusersrooms', true );
-		$user1Obj	= TuiyoAPI::get("user" , $initiator );
-		$user2Obj	= TuiyoAPI::get("user" , $member );	
-		
-		//1st we have to create a room;
-		if(empty($initiator) || empty($member)){
-			JError::raiseError(TUIYO_SERVER_ERROR , _('Could not find particpants, imposible to create room'));
+		if(empty($roomName)){
 			return false;
 		}
-
+		
+		$initiator 	=  !empty($initiator) ? $dbo->quote( (int)$initiator ) : $user->id;
+		$roomName	=   (string)$roomName;
+		
+		$query 		= "SELECT r.id FROM #__tuiyo_chat_rooms as r WHERE r.name =".$dbo->quote($roomName);
+		
+		$dbo->setQuery( $query );	
+		
+		echo $dbo->getQuery();
+			
+		$roomID 	= $dbo->loadResult();
+		
+		echo $roomID;
+		
+		if(!empty($roomID)){
+			return $this->load( (int)$roomID ) ;
+		}
+		//Create the room;
 		$this->load( null );
-		$this->name 	= $initiator.$member.date('YmdHis');
-		$this->datafile	= $this->name.'.txt';
+		$this->name 	= str_replace( array(" ","(",")","-","&","%",",","#" ), "", $roomName );
+		$this->datafile	= $this->name.date('YmdHis').'.txt';
 		$this->status	= 0 ;
-		$this->usercount= 2;
+		$this->usercount= 1;
 		
 		if(!$this->store()){
 			JError::raiseError(TUIYO_SERVER_ERROR , $this->getError() );
 			return false;
-		}		
-		
-		//2nd Add Participants
+		}	
+		//Save Author
+		$curTable 	= TuiyoLoader::table('chatusersrooms', true );
 		$curTable->load( null );
 		
 		$roomID 	   		= $this->id; 
-				
 		$userA 				= clone $curTable ;
-		$userB				= clone $curTable ;
 		
-		$userA->username 	= $user1Obj->username ;
-		$userA->userid		= $user1Obj->id ;
+		$userA->username 	= $user->username ;
+		$userA->userid		= $user->id ;
 		$userA->room		= $roomID ;
 		
 		if(!$userA->store()){
@@ -121,39 +104,11 @@ class TuiyoTableChatRooms extends JTable{
 			return false;
 		}
 		
-		$userB->username 	= $user2Obj->username;
-		$userB->userid		= $user2Obj->id ; 
-		$userB->room		= $roomID ;
-		
-		if(!$userB->store()){
-			$this->delete();
-			$userA->delete();
-			JError::raiseError( TUIYO_SERVER_ERROR , $userB->getError( ) );
-			return false;
-		} 
-		
-		unset($curTable);
-		
-		//3rd Create a data file; //joomla !!
-		jimport('joomla.filesystem.file');
-		jimport('joomla.filesystem.path');
-		
-		$path 		= TUIYO_FILES.DS.'chat';
-		$filename 	= $path.DS.$this->datafile ;
-		
-		if(!JFile::exists( $filename ) ){
-			JFile::write( $filename , '' );
-			if(!JFile::exists( $filename )){
-				$this->delete();
-				$userA->delete();
-				$userB->delete();
-				JError::raiseError( TUIYO_SERVER_ERROR , _('Could not create chat Log'));
-			}
-			//JPath::setPermissions( $filename , 0777 , 0777 );	
-		}
-		
-		return $this ;			
-	}
+		return $this;
+	}	
+	
+	public function getChatRoomCurator()
+	{}
 
     /**
      * TuiyoTableChatUsers::getInstance()

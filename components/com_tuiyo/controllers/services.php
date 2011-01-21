@@ -58,6 +58,10 @@ class TuiyoControllerServices extends JController
 		$this->_serviceController = &TuiyoLoader::plugin( (string)$service, true );
 		$this->_serviceView		  = &$this->getView("services", "html");
 		
+		//SET MODEL/VIEW PATH
+		$this->addViewPath(TUIYO_PLUGINS.DS.strtolower($service).DS.'views'.DS);
+		$this->addModelPath(TUIYO_PLUGINS.DS.strtolower($service).DS.'models'.DS);
+		
 		//Check that the service has the requested method and register call!
 		if(!empty($doTask) && method_exists($this->_serviceController, $doTask)){
 			//echo "method exists";

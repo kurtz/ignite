@@ -59,44 +59,24 @@ class SystemServiceController Extends TuiyoControllerServices{
 		
 		$document 	= &$GLOBALS['API']->get("document" );
 		$user 		= &$GLOBALS['API']->get("user" );
-
+		
+		if(empty($post['nTuiyoChat'])){
+			JError::raiseError( TUIYO_BAD_REQUEST, _('You must specify a valid name for the chat room'));
+			return false;
+		}
 
 		/** Check we have a valid token and Check we have a valid token***/
 		if( empty($user->id) || $user->joomla->get('guest') ){
 			JError::raiseError( TUIYO_BAD_REQUEST, _("Invalid user ID") );
 		}
 		
-		print_R($post);
-		die;
+		//Start the chatRoom;
+		$chatRoom  = $model->initiateChatRoom( $post['nTuiyoChat'] );
+		$redirect  = JRoute::_( TUIYO_INDEX."&view=services&service=system&do=chatbox&room=".$chatRoom->name , false); 
 		
-
-		$chatRoom  = $model->initiateChatRoom( $user->id  );			
-		$view->assignRef( "chatroom" , $chatRoom);
-
-		//2. prepare a standard response Array
-  		$resp = array(
-			"code" 	=> TUIYO_OK, 
-			"error" => null, 
-			"data" 	=> null, 
-			"html"  => $view->drawChatHtml()
-		);
-
-		if($document->getDOCTYPE() !== "json"){
-			$resp["code"] 	= TUIYO_BAD_REQUEST;
-			$resp["error"]	= _("Invalid Request format. JSON only");
-			//dump
-			$view->encode( $resp );
-			return false;	
-		}		
-
-		//3. Model and store status
-		//4. Get all other updates since last time!	
-
-
-
-		//5. Return results
-		$view->encode( $resp );
-
+		$this->setRedirect( $redirect );
+		$this->redirect();
+		
 	}
 
 
@@ -119,8 +99,8 @@ class SystemServiceController Extends TuiyoControllerServices{
 		/** we are dealing with only post data***/
 		if( $method !== 'post' ) JError::raiseError( TUIYO_BAD_REQUEST , _("Invalid request. Method accepts only post data"));
 
-		$model		= &$this->getModel("messages" );
-		$view 		= &$this->getView("messages", "json");
+		$model		= &$this->getModel("systemchat" );
+		$view 		= &$this->getView("system", "json");
 		$document 	= &$GLOBALS['API']->get("document" );
 		$user 		= &$GLOBALS['API']->get("user" );
 
@@ -171,8 +151,8 @@ class SystemServiceController Extends TuiyoControllerServices{
 		/** we are dealing with only post data***/
 		if( $method !== 'post' ) JError::raiseError( TUIYO_BAD_REQUEST , _("Invalid request. Method accepts only post data"));
 
-		$model		= &$this->getModel("messages" );
-		$view 		= &$this->getView("messages", "json");
+		$model		= &$this->getModel("system" );
+		$view 		= &$this->getView("systemchat", "json");
 		$document 	= &$GLOBALS['API']->get("document" );
 		$user 		= &$GLOBALS['API']->get("user" );
 
@@ -206,11 +186,12 @@ class SystemServiceController Extends TuiyoControllerServices{
 	}
 	
 	public function display(){
-		//Just so we dont get silly view errors
+		
 		return $this->chatBox();
 	}
 	
-	public function chatBox(){
+	public function chatBox( $chatRoom = null ){
+		
 		//0. Must be logged in
 		$authenticate = TuiyoAPI::get("authentication");
 		$authenticate->requireAuthentication();	
@@ -218,14 +199,14 @@ class SystemServiceController Extends TuiyoControllerServices{
 		//1. Get Pre-requisites;
 		$participant= JRequest::getVar("participant" , null );
 		$server 	= JRequest::get("server");
+		$chatRoomN  = JRequest::getVar("room", $chatRoom);
 		$method 	= strtolower( $server['REQUEST_METHOD'] );
 
-		$model		= &TuiyoLoader::model("messages", true);
+		$model		= &$this->getModel("systemchat" );
 		$view 		= $this->getView("system", "html");
 		
 		$document 	= &$GLOBALS['API']->get("document" );
 		$user 		= &$GLOBALS['API']->get("user" , null );
-		
 		
 		/** Check we have a valid token and Check we have a valid token***/
 		if( empty($user->id) || $user->joomla->get('guest') ){

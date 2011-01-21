@@ -400,3 +400,23 @@ CREATE TABLE  `#__tuiyo_widgets` (
   `ordering` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `usercount` int(10) NOT NULL,
+  `datafile` varchar(30) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UNIQUE2` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms_users` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `room` int(10) NOT NULL,
+  `lastupdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userid` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UNIQUE` (`userid`,`room`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;

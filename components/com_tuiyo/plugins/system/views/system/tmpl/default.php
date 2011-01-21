@@ -33,13 +33,15 @@
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems" id="publisherHp2">	                    
 	                  	<li style="padding: 0pt 20px;" class="current"><a href="#"><span><?php echo _('Browse live chats')?></span></a></li>
-						<li style="border: none; padding: 0pt 7px; background: none"><form method="post" class="TuiyoForm" action="<?php echo JRoute::_(TUIYO_INDEX."&view=services&do=startChatRoom&service=system") ?>"><input type="text" name="nTuiyoChat" id="nTuiyoChat" style="padding: 4px; width: 195px" placeholder="<?php echo _('Create a new #hashtag live chat') ?>" value="" /><button type="submit">Create</button><?php echo JHTML::_('form.token')?></form></li>
+						<li style="border: none; padding: 0pt 7px; background: none"><form method="post" class="TuiyoForm" action="<?php echo JRoute::_(TUIYO_INDEX."&view=services&do=startChatRoom&service=system") ?>"><input type="text" name="nTuiyoChat" id="nTuiyoChat" style="padding: 4px; width: 100px" placeholder="<?php echo _('Enter #hashtag') ?>" value="" /><button type="submit">Start</button><?php echo JHTML::_('form.token')?></form></li>
 	                </ul>
 	                <div class="tuiyoClearFloat"></div>
                 </div>
 				<div class="TuiyoApiChatRoomPanel">
-					<div class="pageEl" id="chatRoomDirectory" style="display: block">Directory</div>
-					<div class="pageEl" id="chatRoomCreator" style="display: block">Settings</div>
+					<div class="pageEl" id="chatRoomDirectory" style="display: block">
+						<div class="aTAHead dashBoardWidgetBodySubHead">My Rooms</div>
+					</div>
+					<div class="pageEl" id="chatRoomCreator" style="display: none">Settings</div>
 
 				</div>
 			</div>

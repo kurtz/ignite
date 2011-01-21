@@ -69,6 +69,7 @@ class SystemServiceViewSystem extends TuiyoViewServices
 		);
 		$activity 		= $document->parseTmpl("activity" , $tmplPath , $tmplVars);
 		
+		$GLOBALS['mainframe']->setPageTitle( _("Live Chat") );
 		$this->assignRef("activity", $activity );
 		
 		parent::display( $tpl );

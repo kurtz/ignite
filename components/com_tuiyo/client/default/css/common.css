@@ -90,7 +90,7 @@ div.statusTools a.voteItem{background:url("../icons/featured_16.png") no-repeat 
 .activityStreamItemToolsCommenter{margin-bottom: 2px}
 .activityStreamItemToolsPanel{border-bottom:1px solid #CCCCCC; margin-bottom:8px; padding-bottom:5px;}
 .activityStreamItemUserImage48:hover .activityStreamItemTools a{display:block}
-.activityStreamItem a.activityTag{-moz-border-radius:6px 6px 6px 6px; background:#E2FEFB url(../icons/tagged_16.png) no-repeat 1% 50% scroll; padding:1px 5px 1px 17px;}
+.activityStreamItem a.activityTag{-moz-border-radius:6px 6px 6px 6px; background:#E2FEFB url(../icons/tagged_16.png) no-repeat 3% 50% scroll; padding:1px 5px 1px 17px;}
 .bodyAttachmentPlaceHolder{border-left:2px solid #356AA0; background: #E6F3FC url(../icons/attach.png) no-repeat 1% 55% scroll; font-size: 12px; padding-left: 19px; margin: 5px 0 ; width: 25%}
 a.statustime span{color: #888}
 a.statustime span:hover{color: #888; text-decoration: underline}

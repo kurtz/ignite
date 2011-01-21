@@ -49,7 +49,7 @@ class TuiyoTableChatUsersRooms extends JTable{
      */
     public function __construct($db = null)
     {
-        return parent::__construct("#__tuiyo_chat_users_rooms", "id", $db );
+        return parent::__construct("#__tuiyo_chat_rooms_users", "id", $db );
     }	
     
     /**
