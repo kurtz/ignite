@@ -89,10 +89,10 @@
 			            <div class="tuiyoClearFloat"></div>
 			        </div>
 				</div>
-	            <div class="tuiyoTableCell" style="width: 20%" align="right">
+	            <div class="tuiyoTableCell" style="width: 18%" align="right">
 	            	<input type="text" class="pchars" name="pchars" style="padding: 8px 0" id="pchars" disabled="disabled" readonly="readonly" value="140" /> 
 	            </div>
-	            <div class="tuiyoTableCell" style="width: 13%; margin: 3px 0" align="right">
+	            <div class="tuiyoTableCell" style="width: 15%; margin: 3px 0" align="right">
 	            	<button type="submit"><?php echo _('Update')?></button>
 	            </div>
 	            <div class="tuiyoClearFloat" ></div>          

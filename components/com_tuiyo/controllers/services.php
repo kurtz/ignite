@@ -51,7 +51,7 @@ class TuiyoControllerServices extends JController
 		
 		//Attempt to get it from the menu
         if(empty($service)):
-		 	throw new Exception(_('undefined service'));
+		 	JError::raiseError(_('undefined service'));
 		endif;
 
 		//Require service Controller

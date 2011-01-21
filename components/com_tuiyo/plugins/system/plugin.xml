@@ -16,6 +16,8 @@
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
 	<params group="administrator">
+		<param type="text" class="TuiyoFormText" name="opentokAPIKey" label="OpenTok API key" default="" />
+		<param type="text" class="TuiyoFormText" name="opentokAPISecret" label="OpenTok API Secret" default="" />
 		<param type="text" class="TuiyoFormText" name="updateServer" label="Update Server" default="http://update.tuiyo.co.uk" />
 		<param type="list" class="TuiyoFormDropDown" name="updateSatus" label="Update Development Status" default="stable">
 			<option value="nightly">Nightly</option>

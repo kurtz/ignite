@@ -36,6 +36,7 @@ class TuiyoPluginSystemAdministrator extends TuiyoEventsListener{
 	 */
 	public function onAdminStart( $args = null ){
 	
+		return false;
 		
 		$version 		= TuiyoLoader::helper("parameter");
 		$versionHelper 	= TuiyoLoader::helper("version" , true);

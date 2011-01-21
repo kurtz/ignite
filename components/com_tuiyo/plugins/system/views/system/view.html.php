@@ -55,6 +55,7 @@ class SystemServiceViewSystem extends TuiyoViewServices
         //parent::display($tpl);
         $document->addJS( TUIYO_OEMBED );
 		$document->addJS( TUIYO_STREAM );
+		$document->addJS( TUIYO_CHAT );
         
     	$plugins	= $plugModel->getAllSystemPlugins("services", false); 
 		

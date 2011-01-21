@@ -19,6 +19,8 @@
  */
 defined('TUIYO_EXECUTE') || die('Restricted access');
 
+jimport('joomla.application.component.model');
+
 /**
  * TuiyoModelMessages
  * @package tuiyo
