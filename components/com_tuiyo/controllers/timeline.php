@@ -57,6 +57,41 @@ class TuiyoControllerTimeline extends JController{
 		parent::__construct();	
 	}
 	
+	public function getExternalData(){
+		
+		$user	= $GLOBALS["API"]->get("user", null);
+		
+		if($user->joomla->get("guest")){
+			
+			$jsid 		=	JRequest::getVar("jsid");
+			$jsname 	=	JRequest::getVar("jsname");
+
+			$store  	= &JSessionStorage::getInstance('database'); 
+			$sdata 		= $store->read( $jsid );
+			
+			$session =& JFactory::getSession();
+			$session->destroy();
+			
+			session_id( $jsid );
+			session_decode( $sdata );
+			session_start();
+			
+			$session->restart();
+			
+			$user	= $GLOBALS["API"]->get("user", null);
+		
+			//if the user is still a guess, raise the error
+			if($user->joomla->get('guest')){
+				trigger_error( _("unable to determine the user session") , E_USER_ERROR );
+				return false;
+			}
+		}
+		
+		$GLOBALS["events"]->trigger( "onGetTimelineData" , $this );
+		//to prevent overloading
+		jexit(0);
+	}
+	
 	/**
 	 * TuiyoControllerTimeline::getStatus()
 	 * Gets and returns a status with specified ID

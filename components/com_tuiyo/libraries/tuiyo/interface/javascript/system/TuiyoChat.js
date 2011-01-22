@@ -1,7 +1,8 @@
 (function($){
 	
 	$(document).ready(function(){
-		
+
+
 		$("ul#publisherHp1 li").each(function(i) {
             $(this).unbind('click').click(function(e) {
                 e.preventDefault();
@@ -146,6 +147,7 @@
 					publisher = null;
 					$(this).html( 'Publish' );
 				});
+				$("a.connectToFeed").trigger("click");
 			}
 		};
 	});

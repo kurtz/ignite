@@ -69,6 +69,10 @@ class SystemServiceViewSystem extends TuiyoViewServices
 		);
 		$activity 		= $document->parseTmpl("activity" , $tmplPath , $tmplVars);
 		
+		$document->addCSS( TUIYO_JS.'/includes/jqueryui/smoothness/ui.smoothness.css'  );
+		$document->addJS( TUIYO_JS.'/includes/jqueryui/ui.all.js' );
+
+		
 		$GLOBALS['mainframe']->setPageTitle( _("Live Chat") );
 		$this->assignRef("activity", $activity );
 		

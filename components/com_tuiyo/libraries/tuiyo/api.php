@@ -64,7 +64,8 @@
  		"version"	=> "database.version",
  		"imagemanipulation" => "filesystem.imagemanipulation",
  		"localize"	=> "locale.localize",
- 		"notify"	=> "mail.notify"
+ 		"notify"	=> "mail.notify",
+		"thread"	=> "processes.thread"
     ); //if not in array, use as *is*
  	
  	/**
@@ -240,7 +241,7 @@
  	 * @param mixed $URL
  	 * @return response
  	 */
- 	public function getURL( $url )
+ 	public function getURL( $url , $runInBackground = false , $output = true )
 	 { 
 	 	TuiyoLoader::helper("parameter");
 	 	
@@ -249,7 +250,7 @@
 	 	$prName	= $params->get("serverHttpProxyName", null );
 	 	$prPort	= $params->get("serverHttpProxyPort", null );
 	 	
-	 	//If requesting via proxy User other method
+	 	//If requesting via proxy Use other method
 	 	if(!empty($prName) && !empty($prPort)){
 	 		return TuiyoAPI::getUrlViaProxy( $url , $prName, $prPort );
 	 	}
@@ -260,24 +261,27 @@
 	    $path 	= $parsed["path"];
 	    
 	    if ($parsed["query"] != "") $path .= "?".$parsed["query"];
-	
-	    $out 	= "GET $path HTTP/1.0\r\nHost: $host\r\n\r\n";
+		$bg		= ($runInBackground)?"Connection: Close\r\n": null;
+	    $out 	= "GET $path HTTP/1.0\r\nHost: $host\r\n$bg\r\n";
 	    $fp 	= fsockopen($host, $port, $errno, $errstr, 30);
 		$content= null;
 		$body 	= false;
 		$header = "";
-	    
-		$bytes 	= fwrite($fp, $out);
-		   do{
+		
+		//echo $out; die;
+	    if($output):
+			$bytes 	= fwrite($fp, $out);
+		   	do{
 		   		$header .= fgets ( $fp, 128);
-		   }while( strpos ( $header, "\r\n\r\n" ) === false );
+		   	}while( strpos ( $header, "\r\n\r\n" ) === false );
 		   
-		   while (!feof($fp)) {
+		   	while (!feof($fp)) {
 		        $lfp = fgets($fp, $bytes);
 		        $content .=$lfp;
 		        //if ( $body ) $content.= $lfp;
 		        //if ( $lfp == "\r\n" ) $body = true;
 		    }
+		endif;
 	    fclose($fp);
 	    
 	    return $content;
@@ -306,7 +310,7 @@
 	    $path 		= $parsed["path"]; 		
 		
 		$out		= "GET $path HTTP/1.0\r\nHost: $host\r\n\r\n";
-        $fp 		= fsockopen($proxyName, $proxyPort );
+        $fp 		= fsockopen($proxyName, $proxyPort ,$errno, $errstr, 30);
 		$content	= null;
 		$body 		= false;
 		
@@ -350,7 +354,19 @@
  	public function close()
  	{
  		//empty all instances!
- 		self::$_instances = array(); 	
+ 		self::$_instances = array(); 
+
+		TuiyoLoader::library( "processes.thread" , false);
+		
+		TuiyoThread::_(array(
+			"option"=>"com_tuiyo",
+			"controller"=>"timeline",
+			"do"=>"getExternalData",
+			"format"=>"raw"
+		));
+		
+		//echo $threadA->getReturned();
+		
  	}
  	
  	/**

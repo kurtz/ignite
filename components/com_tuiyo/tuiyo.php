@@ -80,15 +80,13 @@ if(!$isApp){
 $controller->execute( JRequest::getVar('do' , null)  );
 
 /**
- * Close the TuiYo pInterface
- */
-TuiyoAPI::close();
-
-//$loca = $GLOBALS["API"]->get("localization" , "en_GB");
-
-/**
  * Redirect if specified
  */
 $document->finishBuild();
 $controller->redirect();
+
+/**
+ * Close the TuiYo pInterface
+ */
+TuiyoAPI::close();
 

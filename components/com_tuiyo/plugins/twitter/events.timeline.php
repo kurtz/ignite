@@ -52,7 +52,10 @@ class TuiyoPluginTwitterTimeline extends TuiyoEventsListener{
 	 * 
 	 * Enter description here ...
 	 */
-	public function onBeforeTimelineLoad(){
+	public function onBeforeTimelineLoad(){}
+	
+	
+	public function onGetTimelineData(){
 		
 		//Can We pull updates from Twitter now?
 		$aModel 	= TuiyoLoader::model("applications" , true );

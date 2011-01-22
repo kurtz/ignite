@@ -4,7 +4,9 @@
 			<div class="tuiyoColumn" id="tuiyoColumn1Pad">
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems" id="publisherHp1">	                    
-	                  	<li style="padding: 0pt 20px;" id="timelineReload"><a href="#"><span><?php echo _('Public Room')?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" id="timelineReload">
+							<a href="<?php echo JRoute::_( TUIYO_INDEX."&view=services&service=system&do=chatbox");  ?>"><span><?php echo _('Public Room')?></span></a>
+						</li>
 						<?php if(isset($this->chatroom[0])): ?>
 							<li style="padding: 0pt 20px;"><a href="#" rel="<?php echo "#".$this->chatroom[0]->name ?>"><span><?php echo "#".$this->chatroom[0]->name ?></span></a></li>
 						<?php endif; ?>
@@ -12,7 +14,6 @@
 	             	<div class="tuiyoClearFloat"></div>
 	             </div>
 				 <div id="TuiyoApiBarChatRoom" class="TuiyobarItemDiv">
-					<div class="pageEl" id="chatRoomSettings" style="display: block; padding: 0 0 10px 0">RealTime Settings</div>
 				    <div class="pageEl"><?php echo $this->activity ?></div>
 				 </div>
 				

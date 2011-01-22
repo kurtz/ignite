@@ -45,6 +45,8 @@ class TuiyoControllerServices extends JController
 		
 		parent::__construct( $config );
 		
+		//TuiyoControllerCore::init( "Services", false );
+		
 		//Load the service controller
 		$service	= JRequest::getString('service', null);
 		$doTask 	= JRequest::getString('do' , "display");

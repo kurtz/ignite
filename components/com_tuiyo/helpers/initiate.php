@@ -254,6 +254,8 @@ class TuiyoInitiate{
 	 */
 	public function start()
 	{
+		ob_start();
+		
 		static $instance;
 		
 		if( is_object($instance) ){
