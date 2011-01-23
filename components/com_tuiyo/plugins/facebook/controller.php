@@ -40,16 +40,33 @@ class FacebookServiceController Extends TuiyoControllerServices{
 	public function __construct(){
 		
 		//SET MODEL/VIEW PATH
-		$this->_setPath('view', TUIYO_PLUGINS.DS.'facebook'.DS.'views');
+		$this->addViewPath(TUIYO_PLUGINS.DS.'facebook'.DS.'views');
 		$this->addModelPath(TUIYO_PLUGINS.DS.'facebook'.DS.'models');
 		
 		// Create our Application instance (replace this with your appId and secret).
+		TuiyoLoader::helper("parameter");
+		$globalCfg = TuiyoParameter::load("global");
+		
 		$this->fbConnect = new Facebook(array(
-		  'appId'  => '137036213017875',
-		  'secret' => 'ba046722e4d5c45032ec15779f53ad6d',
+		  'appId'  => $globalCfg->get("siteFBAppId"),
+		  'secret' => $globalCfg->get("siteFBAppSecret"),
 		  'cookie' => true,
 		));
 		//parent::__construct();
+		
+		$this->globalCfg = $globalCfg;
+	}
+	
+	public function getAppKey(){
+		$auth 	= TuiyoAPI::get( 'authentication' );		//Must be loggedIN
+		$auth->requireAuthentication();
+		
+		$view	=  $this->getView("facebook", "json");
+		$resp 	= array(
+			"code" 	=> 200, 
+			"data" 	=> $this->globalCfg->get("siteFBKey"), 
+	 	);
+	 	return $view->encode($resp);
 	}
 	
 	public function remove(){
@@ -63,7 +80,7 @@ class FacebookServiceController Extends TuiyoControllerServices{
 		$user 	 	= TuiyoAPI::get('user');
 		
 		$model		= &$this->getModel("facebook" );
-		$view		= &$this->getView("facebook", "json");
+		$view		= $this->getView("facebook", "json");
 		
 		$resp = array(
 			"code" 	=> 505, 
@@ -111,43 +128,5 @@ class FacebookServiceController Extends TuiyoControllerServices{
 	 		);
 	 	}
 	 	return $view->encode($resp);
-	}
-	
-	public function getData(){
-		
-		//have to check for privacy;
-		// Check for request forgeries
-		//JRequest::checkToken( "request" ) or jexit( 'Invalid Token' );
-		
-		$auth 	 = TuiyoAPI::get( 'authentication' );		//Must be loggedIN
-		$auth->requireAuthentication('request');
-		
-		$user 	 	= TuiyoAPI::get('user');
-		$model		= &$this->getModel("facebook" );
-		$view		= &$this->getView("facebook", "json");
-		
-		$session 	= $this->fbConnect->getSession();
-
-		$fbUser 	= null;
-		// Session based API call.
-		if ($session) {
-			  try {
-			    $api_call = array(
-			        'method' => 'users.getinfo',
-			        'uids' => (int)$uid,
-			        'fields' => 'uid, first_name, last_name, pic_square, pic_big, sex'
-			    );
-		  		$fbUserFeed = $this->fbConnect->api($api_call);
-		  		
-			  } catch (FacebookApiException $e) {
-			    JError::raiseError(404, $e);
-			  }
-		}
-		
-		print_r( $fbUserFeed ) ;
-		
-		die;
-		
-	}
-		
+	}	
 }

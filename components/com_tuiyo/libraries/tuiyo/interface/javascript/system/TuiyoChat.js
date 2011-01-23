@@ -5,7 +5,7 @@
 
 		$("ul#publisherHp1 li").each(function(i) {
             $(this).unbind('click').click(function(e) {
-                e.preventDefault();
+                //e.preventDefault();
                 $("ul#publisherHp1 li.current").removeClass('current');
                 $(this).addClass('current');
             });
@@ -13,13 +13,24 @@
 		
 		$("ul#publisherHp1 li:last").click();
 		
-		$("#userActivityStream").TuiyoStream();
-		$("#userActivityStream").TuiyoStreamLoad();
-		
 		//IF we are in a stream, check for video streams;
 		var inChatRoom = $('meta[name="opentokapikey"]').attr("content");
-		
+		var chatRoomID = $('meta[name="chatroomid"]').attr("content");
 		if(inChatRoom){
+			
+			$("#userActivityStream").TuiyoStream();
+			$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID});
+			
+			//Update the timer every
+			$(":range").rangeinput();
+			$("input.range").tooltip({
+			   offset: [-5, -300],
+			});
+			$("input.range").bind("change",function(e){
+				//alert($(this).val());
+				//$("#userActivityStream").TuiyoStream();
+				$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID});
+			})
 			
 			var apiKey = inChatRoom; 
 			var sessionId = $('meta[name="opentoksessionid"]').attr("content"); 
@@ -149,7 +160,10 @@
 				});
 				$("a.connectToFeed").trigger("click");
 			}
-		};
+		}else{
+			$("#userActivityStream").TuiyoStream();
+			$("#userActivityStream").TuiyoStreamLoad();
+		}
 	});
 	
 })(jQuery);

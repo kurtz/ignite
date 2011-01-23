@@ -9,12 +9,17 @@
 				limitstart: 0 ,
 				groupID : null,
 				userID: null,
+				//channel : null,
+				loadInterval : 0,
+				realTime : false,
+				sinceID : 0,
 				profileID : null,
 				articleID : null,
 				resourceID : null,
 				postFormId: "TuiyoStreamUpdate",
 				attachmentCnfg : {embedMethod: "fill", maxWidth: 400, maxHeight: 400, vimeo: {color: "000000", portrait: false}}
 			},
+			intervalCounter = null,
 			loadedPlugins = [],
 			findMentions = function( text ){
 							
@@ -544,7 +549,9 @@
 				var group 	 	= $("meta[name=gid]").attr("content");
 				var sid 		= $("meta[name=sid]").attr("content");
 				var filter 		= "";
+				var channel     = "";
 				var source		= "";
+				var realtime    = "";
 							
 				if(typeof profile !== 'undefined'){
 					addQuery = "&do=getUserTimeline&ps=1&pid="+profile+( (typeof sid!== 'undefined')? "&sid="+sid:"" );
@@ -558,36 +565,62 @@
 					//alert(settings.filter)
 				}
 				
+				if(typeof settings.channel !=='undefined'){
+					channel = "&channel="+settings.channel ;
+					//alert(settings.filter)
+				}
+				
 				if(typeof settings.source !=='undefined'){
 					source = "&sourcetype="+settings.source ;
 					//alert(settings.filter)
 				}
 				
-				//alert('index.php?'+$('meta[name=_token]').attr("content")+'=1' + addQuery+filter+source);
+				if(settings.realTime){
+					if(settings.loadInterval < 1){
+						//ClearIntervalFunction
+						clearInterval(intervalCounter);
+					}else{
+						realtime = "&sinceid="+settings.sinceID;
+						if(settings.sinceID>0){
+							settings.clearPrevious = false;
+						}else{
+							intervalCounter=setInterval(function(){ TuiyoStream.load( settings ) }, settings.loadInterval*1000)
+						}
+					}
+				}
 				
-				$.getJSON($.TuiyoDefines.get("siteIndex")+'?'+$('meta[name=_token]').attr("content")+'=1' + addQuery+filter+source+"&controller=timeline&format=json" ,
+				$.getJSON($.TuiyoDefines.get("siteIndex")+'?'+$('meta[name=_token]').attr("content")+'=1' + addQuery+filter+source+channel+realtime+"&controller=timeline&format=json" ,
 					{"option":"com_tuiyo", "controller":"timeline", "paginate" : settings.paginateItems, "limitstart": settings.limitstart,
 					 "userID": (!settings.userID)? $.TuiyoDefines.get('userid'):settings.userID, "format":"json"   },
 					function(inResponse){						
-						$("#ptext").val("");
+						//$("#ptext").val("");
 						//$("#psubmit").attr('disabled' , true );
 						
 						if (settings.clearPrevious) {
 							$("#userActivityStream").empty();
 						}
 						if(inResponse.data.length > 0){
+							
+							//Determine the last loaded item;
+							var lastItem 	 = inResponse.data[inResponse.data.length-1]; //Sounds illogical but actually because the object is flipped on the server, the first item, is actually the last
+							settings.sinceID = lastItem.id;
+							
+							//alert(settings.sinceID);
+							
 							$.each(inResponse.data, function(i, story){	
 							    var provider = getProviderLink( story.bodytext ) ;
 								var text	 = findLinks( story.bodytext );
 									text  	 = findMentions( text );
 									text 	 = findSearchLinks( text );
 									//text 	 = findEmoticons( text );
+							    
+							    
 								
 								//if type is activity;
 								if (story.itemType === "activity") {
 									story.bodytext = text ;
 									story.statusID = story.id;
-									$(newActivityTmpl(story)).hide().appendTo("#userActivityStream").show();
+									$(newActivityTmpl(story)).hide().prependTo("#userActivityStream").show();
 									if(provider){                                       
                                         $('<div><img src="components/com_tuiyo/client/default/images/loading.gif"  /></div>').addClass("bodyAttachment").hide()
                                         .insertBefore( $("div#s"+story.id).find("a[rel=embedPlaceHolder]") );                                       
@@ -613,7 +646,7 @@
 										canDelete: story.candelete,
 										canComment: story.cancomment,
 										data: story
-									})).hide().appendTo("#userActivityStream").show();
+									})).hide().prependTo("#userActivityStream").show();
 									
 									if(provider){
                                         
@@ -663,8 +696,10 @@
 								}
 							});
 						}else{
-							$("#userActivityStream").html('<div class="TuiyoNotification TuiyoInformation" style="margin-top: 8px">There is are no posts to display. Check back again shortly</div>');
-							//TuiyoStream.alert( $.gt.gettext("There are no post to display. Check back again shortly", "message"));
+							if(settings.clearPrevious){
+								$("#userActivityStream").html('<div class="TuiyoNotification TuiyoInformation" style="margin-top: 8px">There is are no posts to display. Check back again shortly</div>');
+								//TuiyoStream.alert( $.gt.gettext("There are no post to display. Check back again shortly", "message"));
+							}
 						}
 						//LIMITS
 						if (settings.paginateItems) {
@@ -989,38 +1024,11 @@
 		TuiyoStreamLoad : TuiyoStream.load
 	});
 	$(document).ready(function(){
+		clearInterval(TuiyoStream.intervalCounter);
         $("div#TuiyoStreamAjaxActivity").ajaxStart(function() {
             $(this).show();
         }).ajaxStop(function() {
             $(this).hide();
         });
 	});
-  // getPageScroll() by quirksmode.com
-  function getPageScroll() {
-    var xScroll, yScroll;
-    if (self.pageYOffset) {
-      yScroll = self.pageYOffset;
-      xScroll = self.pageXOffset;
-    } else if (document.documentElement && document.documentElement.scrollTop) {	 // Explorer 6 Strict
-      yScroll = document.documentElement.scrollTop;
-      xScroll = document.documentElement.scrollLeft;
-    } else if (document.body) {// all other Explorers
-      yScroll = document.body.scrollTop;
-      xScroll = document.body.scrollLeft;
-    }
-    return new Array(xScroll,yScroll)
-  }
-
-  // Adapted from getPageSize() by quirksmode.com
-  function getPageHeight() {
-    var windowHeight
-    if (self.innerHeight) {	// all except Explorer
-      windowHeight = self.innerHeight;
-    } else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
-      windowHeight = document.documentElement.clientHeight;
-    } else if (document.body) { // other Explorers
-      windowHeight = document.body.clientHeight;
-    }
-    return windowHeight
-  }
 })(jQuery);

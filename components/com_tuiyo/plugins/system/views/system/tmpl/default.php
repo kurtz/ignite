@@ -14,6 +14,13 @@
 	             	<div class="tuiyoClearFloat"></div>
 	             </div>
 				 <div id="TuiyoApiBarChatRoom" class="TuiyobarItemDiv">
+					<?php if(isset($this->chatroom[0])): ?>
+						<div class="pageEl" style="display: block; margin-bottom: 10px">
+							<input type="range" name="updateterval" min="0" step="5" max="100" value="0" />
+							<div class="tooltip">Update every x seconds</div>
+							<div class="tuiyoClearFloat" style="clear:both;"></div>
+						</div>
+					<?php endif; ?>
 				    <div class="pageEl"><?php echo $this->activity ?></div>
 				 </div>
 				

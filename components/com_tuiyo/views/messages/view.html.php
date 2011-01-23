@@ -140,12 +140,10 @@ class TuiyoViewMessages extends JView
         $bc->addItem( _("Calendar") );
         
 		#$doc->addStyleSheet(TUIYO_LIVE_PATH.'/client/default/css/messages.css');
-		
-		$doc->addCSS( TUIYO_JS.'/includes/jqueryui/smoothness/ui.smoothness.css'  );
-		$doc->addJS( TUIYO_JS.'/includes/jqueryui/ui.core.js' );
-		$doc->addJS( TUIYO_JS.'/includes/jqueryui/ui.datepicker.js' );
+		$doc->addJS(TUIYO_JS.'/includes/tools/dateinput.min.js');
 		$doc->addCSS(TUIYO_LIVE_PATH.'/client/default/css/calendar.css');
-		$doc->addJS(TUIYO_LIVE_PATH.'/client/default/script/calendar.js');		
+		$doc->addJS(TUIYO_LIVE_PATH.'/client/default/script/calendar.js');	
+			
 
 		$livestyle = TUIYO_LIVE_PATH.'/client/default/';
 		

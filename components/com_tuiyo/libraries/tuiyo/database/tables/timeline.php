@@ -114,6 +114,14 @@ class TuiyoTableTimeline extends JTable{
 		
 		$dbo 		= $this->_db;
 		
+		//CHANNEL SPECIFIC?
+		$channel 	= JRequest::getString("channel", null);
+		$sinceID	= JRequest::getVar("sinceid" , 0 , "default", int);
+		
+		$channel	= (!empty($channel) ) 
+					? "\nAND t.tags LIKE ".$dbo->quote("%".$channel."%") 
+					: null;
+		
 		$inReplyTo 	= (!empty($storyID)&&(int)$storyID > 0) 
 					? "\nAND t.inreplyto=".$dbo->Quote( (int)$storyID ) 
 					: "\nAND t.inreplyto='0'";
@@ -145,10 +153,11 @@ class TuiyoTableTimeline extends JTable{
 				. "\nLEFT JOIN #__tuiyo_applications a ON t.appID = a.extID"
 				. "\nLEFT JOIN #__tuiyo_timelinetmpl s ON t.template = s.ID"
 				. "\nLEFT JOIN #__users u  ON t.userID = u.id"
-				. "\nWHERE t.state='1'"
+				. "\nWHERE t.state='1' AND t.ID > {$sinceID}"
 				. ( !is_null($statusID)? $statusID : $inReplyTo.$userID.$isPublic.$groupID )
 				. $filterType
 				. $sourceType
+				. $channel
 				. $order
 				;
 				
@@ -159,7 +168,8 @@ class TuiyoTableTimeline extends JTable{
 		
 		$dbo->setQuery('SELECT FOUND_ROWS();'); 
 		
-		return (array)$rows;
+		$rows = (array)$rows;
+		return array_reverse($rows);
 	}
 	
 	/**

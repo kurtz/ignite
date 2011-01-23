@@ -37,6 +37,24 @@ $doc->setMimeEncoding("application/json");
  */
 class TuiyoViewServices extends JView
 {	
+	public function __construct(){
+		
+		parent::__construct();
+		
+		$service = JRequest::getString("service");
+		
+		if(!empty($service)){  //if we know what service add search paths
+			
+			$serviceDir 	= TUIYO_PLUGINS.DS.strtolower( $service ).DS ;
+			$this->serviceViewDir = $serviceDir.'views'.DS ;
+			$serviceTmplDir = $serviceDir.'views'.DS.$service.DS.'tmpl'.DS;
+			
+			$this->addTemplatePath( $serviceDir );
+	    	$this->addTemplatePath( $serviceTmplDir );
+		}
+    	
+	}
+	
 	/**
 	 * @param mixed $data
 	 * @return void

@@ -245,6 +245,7 @@ class SystemServiceController Extends TuiyoControllerServices{
 			$document->addJS("http://staging.tokbox.com/v0.91/js/TB.min.js");
 			
 			$mainframe->addMetaTag( "opentokAPIKey", 	$opentokConfig->API_KEY );
+			$mainframe->addMetaTag( "chatRoomID", 	$chatRoomObj[0]->name );
 			$mainframe->addMetaTag( "opentokSessionID", $opentokSessionId );
 			$mainframe->addMetaTag( "opentokSessionToken", $opentokAPI->generate_token() );
 			

@@ -1,7 +1,7 @@
 <?php
 /**
  * ******************************************************************
- * Class/Object for the Tuiyo platform                           *
+ * Sample Profile Plugin                                            *
  * ******************************************************************
  * @copyright : 2008 tuiyo Platform                                 *
  * @license   : http://platform.tuiyo.com/license   BSD License     * 
@@ -13,32 +13,26 @@
  * @package   : tuiyo                                               *
  * ******************************************************************
  */
- /**
- * no direct access
- */
-defined('TUIYO_EXECUTE') || die('Restricted access');
+ 
+defined('TUIYO_EXECUTE') || die('You are not authorised to view this resource');
+
 
 /**
- * joomla utitlies
+ *Import the api file 
  */
-jimport( 'joomla.application.component.view');
+require_once TUIYO_PLUGINS.DS.'facebook'.DS.'connect'.DS.'facebook.php';
 
-$doc = JFactory::getDocument();
-$doc->setMimeEncoding("application/json");
 
-/**
- * 
- * Facebook Controller.
- * @author livingstonefultang
- */
-class FacebookServiceViewFacebook extends TuiyoViewServices{
-    /**
-     * @param mixed $data
-     * @return
-     */
-    function encode($jdata)
-    {
-        echo json_encode($jdata);
-    }
+class TuiyoPluginFacebookTimeline extends TuiyoEventsListener{
+
+	public function onTimelineLoad(){}
+	public function onAfterTimelineLoad( $args = null){}
+	public function onBeforeTimelineLoad(){}
 	
+	public function onGetTimelineData(){}
+	public function onAddToTimelineForm($object=null){}
+	
+	public function onAddTimelinePost(){}
+	public function onAddTimelineComment(){}
+
 }

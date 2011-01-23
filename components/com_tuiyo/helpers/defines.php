@@ -107,7 +107,7 @@
  *  File Includes
  */
  define('TUIYO_JS' , 			TUIYO_LIVE_PATH.'/libraries/'.strtolower(TUIYO_LIB).'/interface/javascript' );
- define('TUIYO_JQUERY',			TUIYO_JS.'/frameworks/jquery.js');
+ define('TUIYO_JQUERY',			TUIYO_JS.'/frameworks/jquery-1.4.4.min.js'); //-1.4.4.min
 
  define('TUIYO_SYSTEM_JS' , 	TUIYO_LIBRARIES.DS.TUIYO_LIB.DS.'interface'.DS.'javascript'.DS.'system');
  define('TUIYO_MOOTOOLS',		TUIYO_JS.'/frameworks/mootools.js');
@@ -121,6 +121,7 @@
  define('TUIYO_EASING_EFFECT', 	TUIYO_JS.'/includes/easing/easing.js');
  define('TUIYO_OEMBED', 		TUIYO_JS.'/includes/oembed/jquery.oembed.min.js');
  define('TUIYO_GROUP_LOGO',		TUIYO_LIVE_PATH.'/files/groupthumb70.jpg');
+ define('TUIYO_UI_TOOLS',		TUIYO_JS.'/includes/tools/tools.js');
 
  define('TUIYO_FACEBOX_CSS' ,	TUIYO_JS.'/includes/facebox/facebox.css' );
  define('TUIYO_PURE' ,			TUIYO_JS.'/includes/pure/pure.js' );

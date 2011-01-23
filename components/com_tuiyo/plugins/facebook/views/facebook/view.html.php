@@ -22,10 +22,6 @@ defined('TUIYO_EXECUTE') || die('Restricted access');
  * joomla utitlies
  */
 jimport( 'joomla.application.component.view');
-
-$doc = JFactory::getDocument();
-$doc->setMimeEncoding("application/json");
-
 /**
  * 
  * Facebook Controller.
@@ -40,5 +36,4 @@ class FacebookServiceViewFacebook extends TuiyoViewServices{
     {
         echo json_encode($jdata);
     }
-	
 }

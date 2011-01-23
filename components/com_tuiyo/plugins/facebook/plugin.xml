@@ -10,9 +10,7 @@
 	<version>1.0.0</version>
 	<description>Connect and share status updates between facebook and your profile</description>
 
-	<params group="plugin">
-		<param name="connectWithFacebook" type="button"  label="Connect With Facebook"  />
-	</params>
+	<params group="plugin"></params>
 	<params group="privacy">
 		<param type="privacyel" name="viewFacebookFeed" label="Can View facebook feed"/>
 		<param type="privacyel" name="viewFacebookProfilePicture" label="View facebook Profile Pic" />
@@ -22,6 +20,7 @@
 	<params group="administrator">
 			<param type="text" class="TuiyoFormText" name="siteFBAppId" label="Facebook App ID"  description="Visit developers.facebook.com for more details" />
 			<param type="text" class="TuiyoFormText" name="siteFBSecret" label="Facebook API Secret"  description="Visit developers.facebook.com for more details" />
+			<param type="text" class="TuiyoFormText" name="siteFBKey" label="Facebook API Key"  description="Visit developers.facebook.com for more details" />
 	</params>
 
 </install>

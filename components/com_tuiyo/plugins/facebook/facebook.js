@@ -6,7 +6,11 @@
 				$('#fb-root').remove();
 				$('<div id="fb-root" />').prependTo( $("body") );
 				$.getScript('http://connect.facebook.net/en_US/all.js', function(){
-					FB.init({ apiKey: '2ee08c9ecc66c3c6bfd2a4db66f41f14' });
+					var $indexURL = $.TuiyoDefines.get('componentIndex'),
+						$token	  = $.TuiyoDefines.get('token');
+					$.post( $indexURL+'&'+$token+'=1',{'view':'services','service':'facebook','do':'getAppKey','format':'json'}, function(response){
+						FB.init({ apiKey: response.data });
+					},'json' );
 				});
 			},
 			"install":function(){
