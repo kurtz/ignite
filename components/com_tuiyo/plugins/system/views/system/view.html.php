@@ -70,7 +70,7 @@ class SystemServiceViewSystem extends TuiyoViewServices
 		$activity 		= $document->parseTmpl("activity" , $tmplPath , $tmplVars);
 		
 		$document->addJS(TUIYO_JS.'/includes/tools/rangeinput.min.js');
-		$document->addJS(TUIYO_JS.'/includes/tools/tooltip.min.js');
+		//$document->addJS(TUIYO_JS.'/includes/tools/tooltip.min.js');
 
 		
 		$GLOBALS['mainframe']->setPageTitle( _("Live Chat") );

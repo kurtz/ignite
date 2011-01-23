@@ -60,8 +60,8 @@
 							<div class="tuiyoClearFloat" style="clear:both"></div>
 						   	<div class="dashboardWidgetFooter tuiyoTable" style="margin-bottom: 10px">
 		                    	<div class="tuiyoTableRow">
-		                    		<div class="tuiyoTableCell" style="width: 50%"><a href="#" class="connectToFeed"><?php echo _('Connect')?></a></div>
-		                    		<div class="tuiyoTableCell" style="width: 50%" align="right"><a href="#" style="display:none" class="publishToFeed"><?php echo _('Publish') ?></a></div>
+		                    		<div class="tuiyoTableCell" style="width: 50%"><button class="connectToFeed"><?php echo _('Connect')?></button></div>
+		                    		<div class="tuiyoTableCell" style="width: 50%" align="right"><button style="display:none" class="publishToFeed"><?php echo _('Publish') ?></button></div>
 		                    		<div style="clear: both"></div>
 		                    	</div>
 		                    </div>
@@ -69,7 +69,7 @@
 						
 						<div class="aTAHead dashBoardWidgetBodySubHead">All Rooms</div>
 						<?php foreach((array)$this->rooms as $room) : ?>
-							<a href="<?php echo JRoute::_( TUIYO_INDEX."&view=services&service=system&do=chatbox&room=".$room->name , false); ?>" class="chatRoomTag"><span ><?php echo $room->name ?></span></a>
+							<a href="<?php echo JRoute::_( TUIYO_INDEX."&view=services&service=system&do=chatbox&room=".$room->name , false); ?>" class="chatRoomTag" style="line-height: 30px; padding: 2px 5px 5px 25px; border: 1px solid #ccc"><?php echo $room->name ?></a>
 						<?php endforeach;  ?>
 					</div>
 					<div class="pageEl" id="chatRoomCreator" style="display: none">Settings</div>

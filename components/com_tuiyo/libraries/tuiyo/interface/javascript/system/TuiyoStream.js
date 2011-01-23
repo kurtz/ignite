@@ -99,6 +99,7 @@
                                                        .appendTo( $( $("#s"+activity.id)
                                                        .find("div[class=activityStreamItemComments]") ) )
                                                        .fadeIn("fast");
+														
                                                    }
                                                ,'json');
                                                
@@ -594,7 +595,7 @@
 					 "userID": (!settings.userID)? $.TuiyoDefines.get('userid'):settings.userID, "format":"json"   },
 					function(inResponse){						
 						//$("#ptext").val("");
-						//$("#psubmit").attr('disabled' , true );
+						$("#psubmit").attr('disabled' , true );
 						
 						if (settings.clearPrevious) {
 							$("#userActivityStream").empty();
@@ -694,6 +695,7 @@
 										if(!comment.candelete) $( $("#c"+comment.id).find("a[rel=ccommentdel]") ).remove();										
 									});
 								}
+								$("#psubmit").attr('disabled' , false );
 							});
 						}else{
 							if(settings.clearPrevious){
@@ -992,6 +994,8 @@
 									canComment : true,
 									data: inResponse.data 
 								})).hide().prependTo("#userActivityStream").slideDown("fast");
+								
+								settings.sinceID = inResponse.data.statusID;
 								
 								$("#userActivityStream").find('div.TuiyoNotification').remove();
 								
