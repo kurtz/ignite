@@ -84,9 +84,10 @@
  						</fieldset>
                         <?php echo JHTML::_('form.token'); ?>
                         <input type="hidden" name="format" value="json" />
-                        <input type="hidden" name="context" value="communityManagement" />
+                        <input type="hidden" name="context" value="users" />
                         <input type="hidden" name="option" value="com_tuiyo" />
-                        <input type="hidden" name="do" value="createNewUser" />                                                                   
+                        <input type="hidden" name="do" value="save" /> 
+						<input type="hidden" name="xdo" value="save" />                                                                    
                     </form>
 				</div>
             </div>
