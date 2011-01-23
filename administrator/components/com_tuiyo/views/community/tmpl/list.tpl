@@ -3,16 +3,16 @@
 <div class="tuiyoTable">
 	<form action="index.php" method="post">
 		<fieldset style='border:none'>
-        <div class="tuiyoTableHeaderRow" style="padding: 0 4px; height: 41px;">
+        <div class="tuiyoTableHeaderRow" style="padding: 0 4px; height: 31px;">
             <div class="tuiyoTableCell" style="width: 5%" align="center">
-            <input type="checkbox" name="masterCheckBox" id="masterCheckBox" style="margin-top: 15px" /></div>
+            <input type="checkbox" name="masterCheckBox" id="masterCheckBox" style="margin-top: 10px" /></div>
             <div class="tuiyoTableCell" style="width: 7%;padding-top: 10px">&nbsp;</div>
             <div class="tuiyoTableCell" style="width: 30%;padding-top: 10px">Full Name</div>
             <div class="tuiyoTableCell" style="width: 15%;padding-top: 10px">Nick name</div>
             <div class="tuiyoTableCell" style="width: 10%;padding-top: 10px">Profile</div>
             <div class="tuiyoTableCell" style="width: 15%;padding-top: 10px">Last seen</div>
             <div class="tuiyoTableCell" style="width: 15%">
-                <select name="masterAction" class="TuiyoFormDropDown" >
+                <select name="masterAction" class="TuiyoFormDropDown" style="margin-top: 10px " >
                 	<option value="">Mass action</option>
                 	<option value="unistall">Suspend User</option>
                     <option value="unistall">Delete Profile</option>

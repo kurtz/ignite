@@ -66,8 +66,12 @@ class TuiyoViewCommunity extends JView{
 			case "bucketlist":
 				$tmplFile = "deleterequest";
 			break;
-			default:
+			case "systemusers":
 				$tmplVars["lists"] = $this->buildUserList();
+				$tmplFile = "default" ;
+			break;
+			default:
+				$tmplVars["lists"] = $this->buildUserList( true );
 				$tmplFile = "default" ;
 			break;
 		}
@@ -77,17 +81,21 @@ class TuiyoViewCommunity extends JView{
 		return $tmplData;
 	}
 	
-	public function buildUserList( $userListData = null ){
+	public function buildUserList( $activeOnly = false, $userListData = null ){
 		
 		$cmtyModel	=new TuiyoModelCommunityManagement();
 		
 		/*Do Some Plugin Majical Stuff Here */
 		if(empty($userListData)){
 			$fields 		= array( 
-				"u"=>array( "id", "name", "email", "username",  "gid",  "lastVisitDate"),
-		   		"p"=>array("profileId", "dateCreated", "sex",  "suspended")
+				"u"=>array( "id", "name", "email", "username",  "gid",  "lastVisitDate")
+		   		//"p"=>array("profileId", "dateCreated", "sex",  "suspended")
 			);
-			$userListData	= $cmtyModel->getUsers( $fields , true );
+			if($activeOnly){
+				$fields["p"] = array("profileId", "dateCreated", "sex",  "suspended");
+			}
+		
+			$userListData	= $cmtyModel->getUsers( $fields , $activeOnly );
 		}
 		
 		$TMPL = $GLOBALS["API"]->get("document");
