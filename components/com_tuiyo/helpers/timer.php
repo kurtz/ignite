@@ -40,6 +40,11 @@ class TuiyoTimer
      */
     public function diff($time, $opt = array())
     {
+		//Solve the 4 decades issue 
+		if (date('Y-m-d H:i:s', $time) == "0000-00-00 00:00:00" || empty($time)) {
+			return _( 'Never' );
+		}
+		
         $defOptions = array(
 			'to' 	=> 0, 
 			'parts' => 1, 
