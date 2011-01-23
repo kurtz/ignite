@@ -358,10 +358,7 @@
  		self::$_instances = array(); 
 
 		TuiyoLoader::library( "processes.thread" , false);
-		
 		TuiyoThread::_(array("option"=>"com_tuiyo","controller"=>"timeline","do"=>"getExternalData","format"=>"raw"));
-		
-		//echo $threadA->getReturned();
 		
  	}
  	
