@@ -48,6 +48,14 @@ class TuiyoViewCommunity extends JView{
 				$ACL 	 =  JFactory::getACL();
 				$gtree 	 = $ACL->get_group_children_tree( null, 'USERS', false );
 				$aroGrps = JHTML::_('select.genericlist',   $gtree, 'gid', 'class="TuiyoFormDropDown"', 'value', 'text');
+				// build the html select list
+				$blockList 	 = JHTML::_('select.booleanlist',  'block', 'class="TuiyoFormRadio" size="1"' );
+
+				// build the html select list
+				$sendMailList = JHTML::_('select.booleanlist',  'sendEmail', 'class="inputbox" size="1"' );
+				
+				$tmplVars["blocklist"] = $blockList;
+				$tmplVars["sendmaillist"] = $sendMailList;
 				$tmplVars["arogrp"] = $aroGrps;
 				$tmplFile = "createnew";
 			break;

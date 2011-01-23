@@ -52,45 +52,11 @@
                             </div>
                             <div class="tuiyoClearFloat"></div>
                         </div> 
-                        <div class="tuiyoTableRow" style="padding: 4px 0">
-                        	<div class="tuiyoTableCell" style="width: 35%">Back-end Language</div>
-                            <div class="tuiyoTableCell" style="width: 65%">
-                            	<?php echo $arogrp ?>
-                            </div>
-                            <div class="tuiyoClearFloat"></div>
-                        </div>
-                        <div class="tuiyoTableRow" style="padding: 4px 0">
-                        	<div class="tuiyoTableCell" style="width: 35%">Front-end Language</div>
-                            <div class="tuiyoTableCell" style="width: 65%">
-                            	<?php echo $arogrp ?>
-                            </div>
-                            <div class="tuiyoClearFloat"></div>
-                        </div>
-                        <div class="tuiyoTableRow" style="padding: 4px 0">
-                        	<div class="tuiyoTableCell" style="width: 35%">Editor</div>
-                            <div class="tuiyoTableCell" style="width: 65%">
-                            	<?php echo $arogrp ?>
-                            </div>
-                            <div class="tuiyoClearFloat"></div>
-                        </div>
-                        <div class="tuiyoTableRow" style="padding: 4px 0">
-                        	<div class="tuiyoTableCell" style="width: 35%">Help Server</div>
-                            <div class="tuiyoTableCell" style="width: 65%">
-                            	<?php echo $arogrp ?>
-                            </div>
-                            <div class="tuiyoClearFloat"></div>
-                        </div>
-                        <div class="tuiyoTableRow" style="padding: 4px 0">
-                        	<div class="tuiyoTableCell" style="width: 35%">Time Zone</div>
-                            <div class="tuiyoTableCell" style="width: 65%">
-                            	<?php echo $arogrp ?>
-                            </div>
-                            <div class="tuiyoClearFloat"></div>
-                        </div>
+
                         <div class="tuiyoTableRow" style="padding: 4px 0">
                         	<div class="tuiyoTableCell" style="width: 35%">Recieve System Emails</div>
                             <div class="tuiyoTableCell" style="width: 65%">
-                            	<select class="TuiyoFormDropDown">
+                            	<select class="TuiyoFormDropDown" name="sendEmail">
 									<option value="0">No</option>
 									<option value="1">Yes</option>
 								</select>
@@ -100,7 +66,7 @@
                         <div class="tuiyoTableRow" style="padding: 4px 0">
                         	<div class="tuiyoTableCell" style="width: 35%">Block this user</div>
                             <div class="tuiyoTableCell" style="width: 65%">
-                            	<select class="TuiyoFormDropDown">
+                            	<select class="TuiyoFormDropDown" name="block">
 									<option value="0">No</option>
 									<option value="1">Yes</option>
 								</select>
