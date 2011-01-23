@@ -51,6 +51,9 @@ class TuiyoModelCommunityManagement extends JModel{
 				;
 				
 		$dbo->setQuery( $query );
+		
+		//echo $dbo->getQuery();
+		
 		$rows 	=  $dbo->loadAssocList( );
 		
 		return $rows;
