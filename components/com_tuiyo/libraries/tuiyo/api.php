@@ -268,9 +268,10 @@
 		$body 	= false;
 		$header = "";
 		
+		//stream_set_timeout($fp, 2);
+		$bytes 	= fputs($fp, $out);
 		//echo $out; die;
-	    if($output):
-			$bytes 	= fwrite($fp, $out);
+	    if($output&&!$runInBackground):
 		   	do{
 		   		$header .= fgets ( $fp, 128);
 		   	}while( strpos ( $header, "\r\n\r\n" ) === false );
@@ -358,12 +359,7 @@
 
 		TuiyoLoader::library( "processes.thread" , false);
 		
-		TuiyoThread::_(array(
-			"option"=>"com_tuiyo",
-			"controller"=>"timeline",
-			"do"=>"getExternalData",
-			"format"=>"raw"
-		));
+		TuiyoThread::_(array("option"=>"com_tuiyo","controller"=>"timeline","do"=>"getExternalData","format"=>"raw"));
 		
 		//echo $threadA->getReturned();
 		
