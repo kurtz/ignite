@@ -149,7 +149,7 @@
 					publisher = null;
 					$(this).html( 'Publish' );
 				});
-				$("a.connectToFeed").trigger("click");
+				$(".connectToFeed").trigger("click");
 			}
 		}else{
 			$("#userActivityStream").TuiyoStream();
