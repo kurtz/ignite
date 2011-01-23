@@ -15,6 +15,7 @@
 				sinceID : 0,
 				profileID : null,
 				articleID : null,
+				animateBackgroundColor: null, //'#FBF9EA'
 				resourceID : null,
 				postFormId: "TuiyoStreamUpdate",
 				attachmentCnfg : {embedMethod: "fill", maxWidth: 400, maxHeight: 400, vimeo: {color: "000000", portrait: false}}
@@ -385,7 +386,7 @@
                                         a.preventDefault();
                                         $("#ptext").val( '[via  @'+status.username+'] '+( status.bodyText ).replace(/<\/?[^>]+>/gi, '') );
                                         $("#ptext").trigger("focus");
-                                        $("div.activityStreamItemTools").hide();
+                                       //$("div.activityStreamItemTools").hide();
                                     }}, 
                                     {tagName: 'a',href: '#',className: 'delete', rel:'cdelete', innerHTML: 'delete',click:function(p){
                                         if(!status.canComment) return false;
@@ -978,6 +979,7 @@
 								text   	= findLinks( inResponse.data.status );
 								text  	= findMentions( text );
 								text 	= findSearchLinks( text );
+								
 								$("#ptext").val("");
 								$("#embedable").empty().hide();
 								$("#psubmit").attr('disabled' , false );						
@@ -993,7 +995,7 @@
 									dislikes : [],
 									canComment : true,
 									data: inResponse.data 
-								})).hide().prependTo("#userActivityStream").slideDown("fast");
+								})).hide().prependTo("#userActivityStream").slideDown("fast"); 
 								
 								settings.sinceID = inResponse.data.statusID;
 								
