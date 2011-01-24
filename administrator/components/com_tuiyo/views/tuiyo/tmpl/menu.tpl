@@ -3,7 +3,7 @@
     <li class="parent"><a href="#">Manage</a>
 		<ul class="child1">
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=display' );?>">Members</a></li>
-			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=editpermissions' );?>">Permission Levels</a></li>
+			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=editpermissions' );?>">Permission &amp; Roles</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=getGroups' );?>">Member Groups</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&do=moderator' );?>">Moderation Queue</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=languagemgr' ); ?>">Language Manager</a></li>						

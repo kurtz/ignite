@@ -146,6 +146,42 @@ class TuiyoViewCommunity extends JView{
 		return $tmplData;
 	}
 	
+	public function permissionrolesmanager( $pModel ){
+		
+		$action 	= JRequest::getVar("action", null);
+		$TMPL 		= $GLOBALS["API"]->get("document");
+		$tmplVars 		= array(
+			"styleDir"	=>$livestyle,
+			"livePath"	=>TUIYO_LIVE_PATH,
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/'
+		);
+		
+		switch($action):
+			case "levels":
+				$tmplFile = "permissionlevels";
+			break;
+			case "roles":
+				$groupID 	= JRequest::getInt("gid", 18, '', 'int');
+				
+				$groupTree 	= $pModel->getPermissionGroupTree();
+				$tmplVars["arogroupid"] = (int)$groupID;
+				$tmplVars["arogroups"] 	= $groupTree;
+				$tmplFile = "permissionroles";
+			break;
+			case "groups":
+			default:
+				$groupTree 	= $pModel->getPermissionGroupTree();
+				$tmplVars["arogroups"] = $groupTree;
+				$tmplFile 	= "permissiongroups";
+			break;
+		endswitch;
+		
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."community".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl($tmplFile , $tmplPath , $tmplVars);	
+		
+		return $tmplData;
+	}
+	
 	public function buildUserMiniProfile( $userData ){
 		
 		$TMPL = $GLOBALS["API"]->get("document");

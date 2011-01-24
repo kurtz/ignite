@@ -14,7 +14,7 @@ CREATE TABLE  `#__tuiyo_albums` (
   `photocount` int(10) unsigned NOT NULL DEFAULT '0',
   `privacy` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `#__tuiyo_applications`;
 CREATE TABLE  `#__tuiyo_applications` (
@@ -420,3 +420,133 @@ CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms_users` (
   PRIMARY KEY (`id`),
   KEY `UNIQUE` (`userid`,`room`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acl`
+--
+
+CREATE TABLE `#__core_acl_acl` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(230) NOT NULL DEFAULT 'system',
+  `allow` int(11) NOT NULL DEFAULT '0',
+  `enabled` int(11) NOT NULL DEFAULT '0',
+  `return_value` text,
+  `note` text,
+  `updated_date` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `enabled_acl` (`enabled`),
+  KEY `section_value_acl` (`section_value`),
+  KEY `updated_date_acl` (`updated_date`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acl_sections`
+--
+
+CREATE TABLE `#__core_acl_acl_sections` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `value` varchar(230) NOT NULL,
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(230) NOT NULL,
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `value_acl_sections` (`value`),
+  KEY `hidden_acl_sections` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aco`
+--
+
+CREATE TABLE `#__core_acl_aco` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(240) NOT NULL DEFAULT '0',
+  `value` varchar(240) NOT NULL,
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL,
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `section_value_value_aco` (`section_value`,`value`),
+  KEY `hidden_aco` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aco_map`
+--
+
+CREATE TABLE `#__core_acl_aco_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `section_value` varchar(230) NOT NULL DEFAULT '0',
+  `value` varchar(230) NOT NULL,
+  PRIMARY KEY (`acl_id`,`section_value`,`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aco_sections`
+--
+
+CREATE TABLE `#__core_acl_aco_sections` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `value` varchar(230) NOT NULL,
+  `order_value` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(230) NOT NULL,
+  `hidden` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `value_aco_sections` (`value`),
+  KEY `hidden_aco_sections` (`hidden`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
+
+-- --------------------------------------------------------
+--
+-- ALREADY IN JOOMLA CORE
+--
+-- TABLE structure for table `#__core_acl_aro` 
+-- 
+-- Table structure for table `#__core_acl_aro_groups`
+--
+-- Table structure for table `#__core_acl_groups_aro_map`
+--
+-- Table structure for table `#__core_acl_aro_sections`
+--
+-- Table structure for table `#__core_acl_aro_map`
+--
+-- -------------------------------------------------------
+
+--
+-- Table structure for table `#__core_acl_aro_groups_map`
+--
+
+CREATE TABLE `#__core_acl_aro_groups_map` (
+  `acl_id` int(11) NOT NULL DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`acl_id`,`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
+
+-- --------------------------------------------------------
+--
+-- TWO DIMENSIONAL PERMISSION CONTROL DOES NOT NEED EXTENSION OBJECTS
+--
+-- Table structure for table `#__core_acl_axo`
+--
+-- Table structure for table `#__core_acl_axo_groups`
+--
+-- Table structure for table `#__core_acl_axo_groups_map`
+--
+-- Table structure for table `#__core_acl_axo_map`
+--
+-- Table structure for table `#__core_acl_axo_sections`
+--
+-- Table structure for table `#__core_acl_groups_axo_map`
+--
+-- --------------------------------------------------------

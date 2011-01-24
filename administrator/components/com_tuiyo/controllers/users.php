@@ -229,6 +229,68 @@ class TuiyoControllerUsers extends JController
 				break;
 		}
 	}
+	
+	public function removePermissionGroup(){
+		
+		$gid 			= JRequest::getInt('gid', null, '', 'int' );
+		$redirect 		= TUIYO_INDEX.'&context=communityManagement&do=editpermissions';
+		$pModel 		= $this->getModel("permissions");
+		
+		$groupID = intval( $gid );
+		$msg			= "";
+		if( $groupID > 30 ){				
+			if( $pModel->deleteThenRestructureGroups( (int)$groupID ) ){
+				$msg = _("Successfully removed the group");
+			}
+			else{
+				$msg = _("Could not remove the group");
+			}								
+		}
+
+		$this->setRedirect( $redirect, $msg);
+		$this->redirect();
+	}
+	
+	public function savePermissionGroup(){
+		
+		global $mainframe;
+
+		JRequest::checkToken() or jexit( 'Invalid Token' );
+
+		$USER		=& JFactory::getUser();
+		$ACL        =& JFactory::getACL();
+		
+		$post 		= JRequest::get('post');
+		$groupID 	= JRequest::getInt( 'id', 0, 'post', 'int');
+		$parentID 	= JRequest::getInt( 'parent_id', 28, 'post', 'int');
+		$groupName 	= JRequest::getVar('name', null);
+		
+		$redirect 	= TUIYO_INDEX.'&context=communityManagement&do=editpermissions';
+		
+		if(empty($groupName)){
+			$msg = _( 'You must specify a group name' );
+			$this->setRedirect( $redirect, $msg );	
+		}
+		
+		if( $groupID == 0 ){
+			
+			$ACL->add_group($groupName, $groupName, $parentID);
+			
+			$msg = _( 'Successfully added the group' );
+			$this->setRedirect( $redirect, $msg );
+
+		}else {
+			
+			$ACL->edit_group( $groupID, $groupName, $groupName, $parentID);
+			
+			$msg = _( 'Successfully edited the group' );
+			$this->setRedirect( $redirect, $msg );
+			
+		}
+		//Redirect the user
+		$this->redirect();
+		
+	}
 
 	/**
 	 * remove record(s)

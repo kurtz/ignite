@@ -13,6 +13,62 @@
 		<param name="username" type="text" default="" label="Username"  />
 		<param name="password" type="password" default="" label="Password"  />
 	</params>
+	<params group="acl">
+		<param type="acosection" name="moderator" label="Moderator Panel">
+			<option value="access">Add</option>
+			<option value="allow">Allow</option> 
+			<option value="approve">Approve</option> 
+			<option value="delete">Delete</option>
+			<option value="edit">Edit</option>
+			<option value="manage">Manage</option> 
+			<option value="view">View</option>   
+		</param>
+		<param type="acosection" name="chat" label="Chat">
+			<option value="access">Add</option>
+			<option value="allow">Allow</option> 
+			<option value="approve">Approve</option> 
+			<option value="delete">Delete</option>
+			<option value="edit">Edit</option>
+			<option value="manage">Manage</option> 
+			<option value="view">View</option>
+		</param>
+		<param type="acosection" name="photo" label="Photos">
+			<option value="access">Add</option>
+			<option value="allow">Allow</option> 
+			<option value="approve">Approve</option> 
+			<option value="delete">Delete</option>
+			<option value="edit">Edit</option>
+			<option value="manage">Manage</option> 
+			<option value="view">View</option>
+		</param>
+		<param type="acosection" name="groups" label="Groups">
+			<option value="access">Add</option>
+			<option value="allow">Allow</option> 
+			<option value="approve">Approve</option> 
+			<option value="delete">Delete</option>
+			<option value="edit">Edit</option>
+			<option value="manage">Manage</option> 
+			<option value="view">View</option>
+		</param>
+		<param type="acosection" name="articles" label="Articles">
+			<option value="access">Add</option>
+			<option value="allow">Allow</option> 
+			<option value="approve">Approve</option> 
+			<option value="delete">Delete</option>
+			<option value="edit">Edit</option>
+			<option value="manage">Manage</option> 
+			<option value="view">View</option>
+		</param>
+		<param type="acosection" name="discussions" label="Discussions">
+			<option value="access">Add</option>
+			<option value="allow">Allow</option> 
+			<option value="approve">Approve</option> 
+			<option value="delete">Delete</option>
+			<option value="edit">Edit</option>
+			<option value="manage">Manage</option> 
+			<option value="view">View</option>
+		</param>
+	</params>
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
 	<params group="administrator">

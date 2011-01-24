@@ -39,18 +39,20 @@ class TuiyoControllerCommunityManagement extends JController{
 	
 	public function editpermissions(){
 		
-		$view = $this->getView("tuiyo", "html");
-
+		$view 	= $this->getView("tuiyo", "html");
+		$cView 	= $this->getView("community", "html");
+		
 		$tabgroup  = array( 
-			"_autocenter" => array(
+			"_roles" => array(
 				_("Permission Groups") 		=> "&action=groups", //Determine which tab is active by comparing referers
-				_("Generic Roles")		=> "&action=create",
-				_("Assign Roles")			=> "&action=roles",
+				_("Predefined Sections")	=> "&action=levels",
+				_("Permission Roles")		=> "&action=roles",
 			 )
 		);
 		$view->addTabGroup( $tabgroup  );
+		$page 	= $cView->permissionrolesmanager( $this->getModel("permissions"));
 
-        $view->display("Permission Manager", '_autocenter');
+        $view->display($page, '_roles');
 	}
 	
 	public function filemanager(){
