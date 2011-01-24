@@ -45,7 +45,7 @@ class TuiyoControllerCommunityManagement extends JController{
 		$tabgroup  = array( 
 			"_roles" => array(
 				_("Permission Groups") 		=> "&action=groups", //Determine which tab is active by comparing referers
-				_("Predefined Sections")	=> "&action=levels",
+				_("Predefined Actions")		=> "&action=levels",
 				_("Permission Roles")		=> "&action=roles",
 			 )
 		);

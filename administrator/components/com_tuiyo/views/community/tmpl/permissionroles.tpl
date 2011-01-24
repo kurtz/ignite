@@ -13,7 +13,7 @@
 				        <div class="tuiyoTableRow" style="padding: 4px 0">
 				        	<div class="tuiyoTableCell" style="width: 35%">Select Group to Edit Role</div>
 				            <div class="tuiyoTableCell" style="width: 65%">
-				            	<select class="TuiyoFormDropDown" name="gid" style="margin-bottom: 30px">
+				            	<select class="TuiyoFormDropDown" name="gid" style="margin-bottom: 35px">
 									<option value="28">Root User Group</option>
 									<?php displayNodeSelectOptions( $arogroups , $arogroupid )?>
 								</select>
@@ -21,9 +21,55 @@
 				            </div>
 				            <div class="tuiyoClearFloat"></div>
 				        </div>
+						
+						
+							
+						<!--Add the permission Headers -->
+						<div style="padding: 5px 0pt;" class="windowTitleBar fieldListItem">
+				            <div style="width: 15%; float:left;" class="tuiyoTableCelle" align="center"><a href="#">Toggle All</a>  </div>
+							<?php foreach($acosections as $node) : ?>
+				         		<div style="width: 10%; float:left;" class="tuiyoTableCelle" align="center"><?php echo $node['name'] ?></div> <!---//delete -->
+							<?php endforeach; ?>
+				         	<div class="tuiyoClearFloat"></div>
+				        </div>
 				
-				
-						<h3 style="margin-bottom: 15px"><?php echo _('Edit Permission and Roles') ?></h3>
+						<?php foreach($services as $p):  
+						
+								$pluginXML = new TuiyoParameter();
+								
+								$pluginXML->loadSetupFile( TUIYO_PLUGINS.DS.$p['serviceID'].DS.'plugin.xml' );
+								
+								$pluginXMLGroup = $pluginXML->getParams('params', 'acl');
+								
+								foreach( (array)$pluginXMLGroup as $key=>$aco ) :
+								
+								if(empty($aco)){
+									continue;
+								}
+								
+								$acoName 	 = $aco[3];
+								$acoSection = explode( ',' , $aco[4] ); //Dont ask ME :-)
+								$acoSection = array_map('trim',$acoSection);
+								
+							?>
+							
+							<!--Add the permission Headers -->
+							<div style="padding: 5px 0pt;" class="tuiyoTableRow fieldListItem">
+					            <div style="width: 15%; float:left; padding: 4px 0;" class="tuiyoTableCelle"><img src="<?php echo $p['serviceLivePath'].'/'.$p['serviceID']  ?>-16x16.png" style="margin-bottom: -4px"><a href="#"> <?php echo sprintf( _('%s'), ucfirst($acoName) ); ?></a></div>
+								<?php foreach($acosections as $node) : ?>
+					         		<div style="width: 10%; float:left;" class="tuiyoTableCelle" align="center">
+										<?php if(in_array($node['value'], $acoSection)) :?>
+											<input type="checkbox" name="<?php echo $node['name'] ?>" />
+										<?php else : ?>
+											&nbsp;
+										<?php endif; ?>
+									</div> <!---//delete -->
+								<?php endforeach; ?>
+					         	<div class="tuiyoClearFloat"></div>
+					        </div>
+							<?php endforeach ?>
+						<?php endforeach ?>
+					
 							
 							
 				        <div class="tuiyoTableRow" style="padding: 4px 0">

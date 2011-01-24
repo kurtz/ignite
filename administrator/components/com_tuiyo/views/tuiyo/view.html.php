@@ -451,7 +451,7 @@ class TuiyoViewTuiyo extends JView
 					$sections[] = $section;
 				}
 				$tmplVars["elements"] = $sections;
-				$tmplVars["plugins"]  = $appModel->getAllSystemPlugins(services , true , true );
+				$tmplVars["plugins"]  = $appModel->getAllSystemPlugins('services' , true , true );
 			break;
 		}
 		

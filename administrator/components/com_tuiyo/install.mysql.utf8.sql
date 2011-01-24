@@ -449,7 +449,7 @@ CREATE TABLE `#__core_acl_acl` (
 --
 
 CREATE TABLE `#__core_acl_acl_sections` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(230) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
   `name` varchar(230) NOT NULL,
@@ -497,7 +497,7 @@ CREATE TABLE `#__core_acl_aco_map` (
 --
 
 CREATE TABLE `#__core_acl_aco_sections` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(230) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
   `name` varchar(230) NOT NULL,
@@ -550,3 +550,13 @@ CREATE TABLE `#__core_acl_aro_groups_map` (
 -- Table structure for table `#__core_acl_groups_axo_map`
 --
 -- --------------------------------------------------------
+--
+-- Dumping data for table `#__core_acl_aco_sections`
+--
+
+INSERT INTO `#__core_acl_aco_sections` VALUES(1, 'access', 10, 'Access', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(2, 'view', 10, 'View', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(3, 'edit', 10, 'Edit', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(4, 'manage', 10, 'Manage', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(5, 'delete', 10, 'Delete', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(6, 'create', 10, 'Create', 0);

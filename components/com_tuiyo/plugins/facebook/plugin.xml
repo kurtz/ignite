@@ -11,6 +11,13 @@
 	<description>Connect and share status updates between facebook and your profile</description>
 
 	<params group="plugin"></params>
+	
+	<params group="acl" default="">
+		<param name="service" label="Add Facebook" default="access" />
+		<param name="command" label="Post to Facebook" default="access" />
+		<param name="application" label="FB Application" default="access, view, read, create, moderate" />
+	</params>
+	
 	<params group="privacy">
 		<param type="privacyel" name="viewFacebookFeed" label="Can View facebook feed"/>
 		<param type="privacyel" name="viewFacebookProfilePicture" label="View facebook Profile Pic" />

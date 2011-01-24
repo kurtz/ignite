@@ -84,19 +84,109 @@ class TuiyoModelPermissions extends JModel{
   		return $nodes;
     }
 
-	
-	
+	public function getObjectSections($type="aco"){
+		
+		$dbo = $this->_db;
+		$ACL = JFactory::getACL();
+		
+		switch( strtolower(trim($type))){
+			case 'aco':
+		        $objectType = 'aco';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'aco_sections';
+		        break;
+		    case 'aro':
+		        $objectType = 'aro';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'aro_sections';
+		        break;
+		    case 'axo':
+		        $objectType = 'axo';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'axo_sections';
+		        break;
+		    case 'acl':
+		        $objectType = 'acl';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'acl_sections';
+		        break;
+		    default:
+		        JError::raiserError( "ERROR: Must select an object type<br>\n");
+		        jexit();
+		        break;
+		}
+		$query = "SELECT id , name, value FROM $objectSectionsTable";
+		$dbo->setQuery( $query );
+		
+		$sections = $dbo->loadAssocList();
+		
+		return $sections;
+		
+	}
+
+	function editObjectSections( $sectionName, $sectionValue, $sectionID = 0, $sectionType = "ACO" , $delete = false  ){
+		//TODO Only by superadministrator
+		$ACL = JFactory::getACL();
+		//Switch the section Type;
+		switch( strtolower(trim($sectionType))){
+			case 'aco':
+		        $objectType = 'aco';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'aco_sections';
+		        break;
+		    case 'aro':
+		        $objectType = 'aro';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'aro_sections';
+		        break;
+		    case 'axo':
+		        $objectType = 'axo';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'axo_sections';
+		        break;
+		    case 'acl':
+		        $objectType = 'acl';
+				$objectSectionsTable = $ACL->_db_table_prefix . 'acl_sections';
+		        break;
+		    default:
+		        JError::raiserError( "ERROR: Must select an object type<br>\n");
+		        jexit();
+		        break;
+		}
+		if( !is_int($sectionID) || is_null($sectionID) ){
+			$ACL->debug_text("del_object_section(), edit_object_section(): Section ID ($sectionID) is empty, this is required");
+			return false;
+		}
+		
+		if($delete && $sectionID > 0){
+			$ACL->del_object_section($sectionID, $objectType, TRUE);
+			return true;
+		}
+		//Just modify or insert new sections
+		$ACL->debug_text("Submit!!");
+
+        //Update section?
+		if($sectionID>0){
+            $ACL->edit_object_section($sectionID, $sectionName, $sectionValue, 10 ,0,$objecType );
+			return true;
+		}else{
+			//We are inserting a new obect Section;
+			if (!empty($sectionName) AND !empty($sectionValue) ) {
+                $objectSectionId = $ACL->add_object_section($sectionName, $sectionValue, 10, 0, $objectType);
+                $ACL->debug_text("Section ID: $objectSectionId");
+				return true;
+           }else{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	function deleteThenRestructureGroups($groupID, $reparentChildren=TRUE, $groupType='ARO') {
 		//Only by superadministrator
 		$ACL = JFactory::getACL();
-		
+	
 		switch( strtolower( trim($groupType) ) ) {
 			case 'axo':
 				$groupType = 'axo';
-				$table = 	$ACL->_db_table_prefix .'axo_groups';
+				$table 		= 	$ACL->_db_table_prefix .'axo_groups';
 				$groupsMapTable = 	$ACL->_db_table_prefix .'axo_groups_map';
 				$groupsObjectMapTable = $ACL->_db_table_prefix .'groups_axo_map';
 				break;
+			
 			default:
 				$groupType = 'aro';
 				$table = 	$ACL->_db_table_prefix .'aro_groups';

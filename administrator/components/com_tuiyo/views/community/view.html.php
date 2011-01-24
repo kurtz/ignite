@@ -149,6 +149,8 @@ class TuiyoViewCommunity extends JView{
 	public function permissionrolesmanager( $pModel ){
 		
 		$action 	= JRequest::getVar("action", null);
+		$plugins	= TuiyoLoader::model("applications", true);
+		
 		$TMPL 		= $GLOBALS["API"]->get("document");
 		$tmplVars 		= array(
 			"styleDir"	=>$livestyle,
@@ -158,14 +160,18 @@ class TuiyoViewCommunity extends JView{
 		
 		switch($action):
 			case "levels":
+				$tmplVars["acosections"] = $pModel->getObjectSections();
 				$tmplFile = "permissionlevels";
 			break;
 			case "roles":
+				TuiyoLoader::helper("parameter");
 				$groupID 	= JRequest::getInt("gid", 18, '', 'int');
 				
-				$groupTree 	= $pModel->getPermissionGroupTree();
+				$tmplVars['services'] 	= $plugins->getAllSystemPlugins('services' , true , true );
+				$tmplVars["acosections"] = $pModel->getObjectSections();
 				$tmplVars["arogroupid"] = (int)$groupID;
-				$tmplVars["arogroups"] 	= $groupTree;
+				$tmplVars["arogroups"] 	= $pModel->getPermissionGroupTree();
+				
 				$tmplFile = "permissionroles";
 			break;
 			case "groups":

@@ -12,6 +12,12 @@
 
 	<params group="profilepicture"></params>
 	
+	<params group="acl" default="">
+		<param name="service" label="Add Twitter" default="access" />
+		<param name="command" label="Post to Twitter" default="access" />
+		<param name="application" label="Application" default="access, view, read, create, moderate" />
+	</params>
+	
 	<params group="administrator">
 			<param type="text" class="TuiyoFormText" name="twitterCallback" label="Twitter Callback URL"  description="Visit developers.twitter.com for more details" />
 			<param type="text" class="TuiyoFormText" name="twitterConsumerKey" label="Twitter Consumer Key"  description="Visit developers.twitter.com for more details" />

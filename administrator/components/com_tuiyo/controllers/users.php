@@ -230,9 +230,44 @@ class TuiyoControllerUsers extends JController
 		}
 	}
 	
+	public function savePermissionObectSection(){
+		
+		global $mainframe;
+
+		JRequest::checkToken() or jexit( 'Invalid Token' );
+		
+		$sid 			= JRequest::getInt('sid', 0, '', 'int' );
+		$sName 			= JRequest::getVar('name', null , '');
+		$sValue 		= JRequest::getVar('value', $sName , '');
+		$dValue 		= JRequest::getVar('delete', null );
+		
+		$redirect 		= TUIYO_INDEX.'&context=communityManagement&do=editpermissions&action=levels';
+		$pModel 		= $this->getModel("permissions");
+		
+		$sectionID 		= intval( $sid );
+		$sectionName 	= trim( $sName );
+		$sectionValue 	= strtolower( str_replace( array(" ","(",")","-","&","%",",","#" ), "", $sValue ) );
+		
+		$msg			= "";
+		$msgType		= "";
+		
+		if( !empty($sectionValue) && !empty($sectionName) ){				
+			if( $pModel->editObjectSections( (string)$sectionName, (string)$sectionValue,  (int)$sectionID ) ){
+				$msg = _("Successfully modified the ACO sections map");
+			}								
+		}else{
+			$msg = _("Section Values and Section Names are required for this task");
+			$msgType = "error";
+		}
+
+		$this->setRedirect( $redirect, $msg , $msgType);
+		$this->redirect();
+	}
+	
 	public function removePermissionGroup(){
 		
 		$gid 			= JRequest::getInt('gid', null, '', 'int' );
+		
 		$redirect 		= TUIYO_INDEX.'&context=communityManagement&do=editpermissions';
 		$pModel 		= $this->getModel("permissions");
 		

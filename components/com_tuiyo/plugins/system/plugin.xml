@@ -8,73 +8,24 @@
 	<authorEmail>admin@tuiyo.co.uk</authorEmail>
 	<authorUrl>www.tuiyo.co.uk</authorUrl>
 	<version>1.0.0</version>
-	<description>System service and  Jommla</description>
+	<description>System service and Jommla</description>
 	<params group="plugin">
 		<param name="username" type="text" default="" label="Username"  />
 		<param name="password" type="password" default="" label="Password"  />
 	</params>
-	<params group="acl">
-		<param type="acosection" name="moderator" label="Moderator Panel">
-			<option value="access">Add</option>
-			<option value="allow">Allow</option> 
-			<option value="approve">Approve</option> 
-			<option value="delete">Delete</option>
-			<option value="edit">Edit</option>
-			<option value="manage">Manage</option> 
-			<option value="view">View</option>   
-		</param>
-		<param type="acosection" name="chat" label="Chat">
-			<option value="access">Add</option>
-			<option value="allow">Allow</option> 
-			<option value="approve">Approve</option> 
-			<option value="delete">Delete</option>
-			<option value="edit">Edit</option>
-			<option value="manage">Manage</option> 
-			<option value="view">View</option>
-		</param>
-		<param type="acosection" name="photo" label="Photos">
-			<option value="access">Add</option>
-			<option value="allow">Allow</option> 
-			<option value="approve">Approve</option> 
-			<option value="delete">Delete</option>
-			<option value="edit">Edit</option>
-			<option value="manage">Manage</option> 
-			<option value="view">View</option>
-		</param>
-		<param type="acosection" name="groups" label="Groups">
-			<option value="access">Add</option>
-			<option value="allow">Allow</option> 
-			<option value="approve">Approve</option> 
-			<option value="delete">Delete</option>
-			<option value="edit">Edit</option>
-			<option value="manage">Manage</option> 
-			<option value="view">View</option>
-		</param>
-		<param type="acosection" name="articles" label="Articles">
-			<option value="access">Add</option>
-			<option value="allow">Allow</option> 
-			<option value="approve">Approve</option> 
-			<option value="delete">Delete</option>
-			<option value="edit">Edit</option>
-			<option value="manage">Manage</option> 
-			<option value="view">View</option>
-		</param>
-		<param type="acosection" name="discussions" label="Discussions">
-			<option value="access">Add</option>
-			<option value="allow">Allow</option> 
-			<option value="approve">Approve</option> 
-			<option value="delete">Delete</option>
-			<option value="edit">Edit</option>
-			<option value="manage">Manage</option> 
-			<option value="view">View</option>
-		</param>
+	<params group="acl" default="">
+		<param name="groups" label="Groups" default="access, delete, edit,  manage, moderate, view" />
+		<param name="photos"  default="access, delete, edit, manage, view, moderate" label="Photos"/>
+		<param name="chat" label="Chat Room" default="access,  delete, edit, manage, view, moderate, create" />
+		<param name="discussions" label="Discussions" default="access, delete, edit, manage, view, create, moderate" />
+		<param name="articles" label="Articles" default="access, delete, edit, manage, view, read, create, moderate" />
 	</params>
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
 	<params group="administrator">
 		<param type="text" class="TuiyoFormText" name="opentokAPIKey" label="OpenTok API key" default="" />
 		<param type="text" class="TuiyoFormText" name="opentokAPISecret" label="OpenTok API Secret" default="" />
-		<param type="text" class="TuiyoFormText" name="updateServer" label="Update Server" default="http://update.tuiyo.co.uk" />
+		<param type="text" class="TuiyoFormText" name="updateServer" label="System Update Server" default="http://update.tuiyo.co.uk" />
 		<param type="list" class="TuiyoFormDropDown" name="updateSatus" label="Update Development Status" default="stable">
 			<option value="nightly">Nightly</option>
 			<option value="alpha">Alpha</option>
