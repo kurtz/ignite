@@ -188,7 +188,11 @@ class TuiyoViewTuiyo extends JView
 				$tmplFile = "statistics";
 			break;
 			case "rss":
-				$tmplFile = "newsupdates";
+			
+				$tmplVars['twitterURL'] 	= "http://twitter.com/statuses/user_timeline/85208578.rss";
+				$tmplVars['developerURL'] 	= "http://github.com/Tuiyo/ignite/commits/master.atom";
+				 
+				$tmplFile  = "newsupdates";
 			break;
 			case "controlpanel":
 				//Get All Macros;
