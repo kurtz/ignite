@@ -81,7 +81,7 @@
 		if(inChatRoom){
 			
 			$("#userActivityStream").TuiyoStream();
-			$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID});
+			$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID, forceTag:chatRoomID});
 			
 			//Update the timer every
 			$(":range").rangeinput();
@@ -89,7 +89,7 @@
 			$("input.range").bind("change",function(e){
 				//alert($(this).val());
 				//$("#userActivityStream").TuiyoStream();
-				$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID});
+				$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID,forceTag:chatRoomID});
 			})
 			
 			var apiKey = inChatRoom; 

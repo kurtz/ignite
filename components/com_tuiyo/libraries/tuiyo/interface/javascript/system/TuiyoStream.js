@@ -968,6 +968,18 @@
 					}
 					
 					//return false;
+					if(settings.forceTag){
+						var strSearch = eval('/'+settings.forceTag+'/'),
+							text 	  = $("#ptext").val(),
+							strTagged = text.search(strSearch);
+							
+							if(strTagged !=-1){
+								text = text;
+							}else{
+								text = text + " #"+settings.forceTag;
+								$("#ptext").val( text );
+							}
+					}
 					
 					if(text.length < 1) return;
 					if(!findCommand(text)){
