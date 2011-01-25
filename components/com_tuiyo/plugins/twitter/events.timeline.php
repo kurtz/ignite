@@ -85,6 +85,9 @@ class TuiyoPluginTwitterTimeline extends TuiyoEventsListener{
 		
 		foreach($content as $i=>$tweet){
 			$statusUpdateTime  = $tweet->created_at;
+			if(empty($tweet->text)){
+				continue;
+			}
 			$statusUpdate = array(
 				"ptext"	=> $tweet->text,
 				"source"=> "twitter",
