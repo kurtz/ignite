@@ -531,6 +531,7 @@ class TuiyoModelTimeline extends JModel{
 			trigger_error( $table->getError() , E_USER_ERROR );
 			return false;
 		}
+
 		$table->isPublic = $isPublic ;
 		
 		//NOTIFY ALL SHAREWITH USERS // NOT GROUPS

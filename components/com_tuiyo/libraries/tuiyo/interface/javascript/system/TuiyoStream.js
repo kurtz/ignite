@@ -972,7 +972,6 @@
 						var strSearch = eval('/'+settings.forceTag+'/'),
 							text 	  = $("#ptext").val(),
 							strTagged = text.search(strSearch);
-							
 							if(strTagged !=-1){
 								text = text;
 							}else{

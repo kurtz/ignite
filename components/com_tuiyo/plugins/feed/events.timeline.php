@@ -24,37 +24,83 @@ class TuiyoPluginFeedTimeline extends TuiyoEventsListener{
 	 *  
 	 */
 	public function onTimelineLoad(){}
-	public function onAfterTimelineLoad( $args = null){
+	public function onAfterTimelineLoad( $args = null){}
+	
+	public function onGetTimelineData(){
 		
 		$aModel 	= TuiyoLoader::model("applications" , true );
+		$tModel 	= TuiyoLoader::model("timeline", true );
 		$aUser		= TuiyoAPI::get("user", null);
 		$aDocument  = TuiyoAPI::get("document", null);
-		$aXMLParser = new JSimpleXML();
 		
 		//Get the parameters of a single user application/service
 		$aParams 	= $aModel->getSingleUserPlugin($aUser->id , "feed" );
 		
+		if(!is_object($aParams)){
+			return true; //So it does not fail everyone
+		}
+		
+		
 		//get the feedURl
-		//$feedURL 	= $aParams->get("feedURL", null);
-		//$feedData   = TuiyoAPI::getURL( $feedURL );
+		$feedURL 	= $aParams->get("feedURL", null);
+		$lastupdate = $aParams->get("lastupdated");
+		$feedData   = JFactory::getXMLParser("rss", array("rssUrl"=>$feedURL));
 		
-		//$tempfilename = TUIYO_CACHE.DS.date("YmdHis")."feed.xml";
-		//$tempFeed 	  = fopen($tempfilename, 'w') ;
+		if(empty($feedData)){
+			return true; //We could not pull the feeds;
+		}
+		$newupdate 	= $lastupdate;
+		//$lastupdate = !empty($lastupdate) ? $lastupdate : 0 ;
+		$feedItems  = $feedData->get_items();
+		$i 			= 0;
 		
-		//fwrite($tempFeed , trim($feedData));
-		//fclose($tempFeed);
+		//print_R($feedItems);
 		
-	
 		
-		//echo $tempfilename;
+		foreach($feedItems as $feedItem){
+			
+			//Date
+			$date 	= $feedItem->get_date('Y-m-d H:i:s');
+			
+			//just store the feed in an object here;
 
-		//$feedXML 	= @$aXMLParser->loadFile($tempfilename);
+			if((int)strtotime($date) <= (int)$lastupdate){
+				//echo (int)$lastupdate." vs ".(int)strtotime($date)."<br />";
+				continue;
+			}
+			
+			
+			if((int)strtotime($date) > (int)$newupdate){
+				//$lastupdate = strtotime($date);
+				$newupdate  = strtotime( $date );
+			}
+			$feed 	= $feedItem->get_feed();
+			
+			//Data
+			$text 	= '';
+			$text  .= '<a href="'.$feedItem->get_link().'">'.$feedItem->get_title()."</a>";
+			$text  .= (strlen($feedItem->get_description()) ? ' '. substr( $feedItem->get_description() , 0 , 190 )."..." : '');
+			$link   = $feedItem->get_link();
+			if(empty($text) || empty($link)) continue;
+			
+			$statusUpdate = array(
+				"ptext"	=> $text,
+				"source"=> "feed",
+				"sharewith"=>array("p00"),
+				"embedable"=>"",
+				"type"=>"rss"
+			);
+			$i++;
+			//echo (int)strtotime($date)."<br />" ;
+			$tModel->setStatus( $aUser->id, $statusUpdate, "rss", array(), $date );
+			
+		}
+		if($i>0){
+			//echo $newupdate;
+			$aModel->setUserPluginLastUpdateID($aUser->id, "feed", $newupdate );
+		}
 		
-		//unlink($tempfilename);
-		//print_R($aXMLParser);
-		
-		
-		
+		return true;
 	}
 	public function onBeforeTimelineLoad(){}
 	public function onAddToTimelineForm(){}
