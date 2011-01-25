@@ -8,13 +8,20 @@
 					<div class="splash-box-body">
 						<p><?php echo $this->settings->get('siteDescription')?></p>
 					</div>
-					<?php if($this->user->joomla->get("guess")) : ?>
+					<?php if($this->user->joomla->get("guest")) : ?>
 					<div class="splash-box-footer tuiyoTable">
 						<div class="tuiyoTableRow">
 							<div class="tuiyoTableCell" style="width: 100%"><button id="signInBtn">Sign-In</button><button id="signUpBtn">Create Account</button></div>
 							<div class="tuiyoTableClearFloat" style="clear:both"></div>
 						</div>
 					</div>
+					<?php else: ?>
+						<div class="splash-box-footer tuiyoTable">
+							<div class="tuiyoTableRow">
+								<div class="tuiyoTableCell" style="width: 100%"><button id="signOutBtn">Log-Out</button></div>
+								<div class="tuiyoTableClearFloat" style="clear:both"></div>
+							</div>
+						</div>
 					<?php endif; ?>
 				</div>
 				<?php echo $this->activity ?> 

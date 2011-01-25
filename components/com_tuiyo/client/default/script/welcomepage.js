@@ -36,6 +36,11 @@
 		$("#signUpBtn").bind('click',function(){
 			$.facebox({div:"#loginPageCreate"})
 		});
+		$("#signOutBtn").bind('click',function(){
+			$.post('index.php?option=com_user&task=logout&return=',{ }, function(response){
+				window.location.reload( );
+			});
+		});
 		$("#userActivityStream").TuiyoStream();
 		$("#userActivityStream").TuiyoStreamLoad();	
 	});
