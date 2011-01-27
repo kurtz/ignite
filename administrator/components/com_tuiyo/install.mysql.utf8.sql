@@ -401,6 +401,7 @@ CREATE TABLE  `#__tuiyo_widgets` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `#__tuiyo_chat_rooms`;
 CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
@@ -411,6 +412,7 @@ CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms` (
   KEY `UNIQUE2` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
 
+DROP TABLE IF EXISTS `#__tuiyo_chat_rooms_users`;
 CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms_users` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) CHARACTER SET latin1 NOT NULL,
@@ -421,14 +423,8 @@ CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms_users` (
   KEY `UNIQUE` (`userid`,`room`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acl`
---
-
-CREATE TABLE `#__core_acl_acl` (
+DROP TABLE IF EXISTS `#__core_acl_acl`
+CREATE TABLE IF NOT EXISTS `#__core_acl_acl` (
   `id` int(11) NOT NULL DEFAULT '0',
   `section_value` varchar(230) NOT NULL DEFAULT 'system',
   `allow` int(11) NOT NULL DEFAULT '0',
@@ -442,13 +438,8 @@ CREATE TABLE `#__core_acl_acl` (
   KEY `updated_date_acl` (`updated_date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
--- --------------------------------------------------------
-
---
--- Table structure for table `acl_sections`
---
-
-CREATE TABLE `#__core_acl_acl_sections` (
+DROP TABLE IF EXISTS `#__core_acl_acl_sections`
+CREATE TABLE IF NOT EXISTS `#__core_acl_acl_sections` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(230) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
@@ -459,13 +450,8 @@ CREATE TABLE `#__core_acl_acl_sections` (
   KEY `hidden_acl_sections` (`hidden`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
--- --------------------------------------------------------
-
---
--- Table structure for table `aco`
---
-
-CREATE TABLE `#__core_acl_aco` (
+DROP TABLE IF EXISTS `#__core_acl_aco`
+CREATE TABLE IF NOT EXISTS `#__core_acl_aco` (
   `id` int(11) NOT NULL DEFAULT '0',
   `section_value` varchar(240) NOT NULL DEFAULT '0',
   `value` varchar(240) NOT NULL,
@@ -477,26 +463,16 @@ CREATE TABLE `#__core_acl_aco` (
   KEY `hidden_aco` (`hidden`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
--- --------------------------------------------------------
-
---
--- Table structure for table `aco_map`
---
-
-CREATE TABLE `#__core_acl_aco_map` (
+DROP TABLE IF EXISTS `#__core_acl_aco_map`
+CREATE TABLE IF NOT EXISTS `#__core_acl_aco_map` (
   `acl_id` int(11) NOT NULL DEFAULT '0',
   `section_value` varchar(230) NOT NULL DEFAULT '0',
   `value` varchar(230) NOT NULL,
   PRIMARY KEY (`acl_id`,`section_value`,`value`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
--- --------------------------------------------------------
-
---
--- Table structure for table `aco_sections`
---
-
-CREATE TABLE `#__core_acl_aco_sections` (
+DROP TABLE IF EXISTS `#__core_acl_aco_sections`
+CREATE TABLE IF NOT EXISTS `#__core_acl_aco_sections` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(230) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
@@ -507,52 +483,12 @@ CREATE TABLE `#__core_acl_aco_sections` (
   KEY `hidden_aco_sections` (`hidden`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
--- --------------------------------------------------------
---
--- ALREADY IN JOOMLA CORE
---
--- TABLE structure for table `#__core_acl_aro` 
--- 
--- Table structure for table `#__core_acl_aro_groups`
---
--- Table structure for table `#__core_acl_groups_aro_map`
---
--- Table structure for table `#__core_acl_aro_sections`
---
--- Table structure for table `#__core_acl_aro_map`
---
--- -------------------------------------------------------
-
---
--- Table structure for table `#__core_acl_aro_groups_map`
---
-
-CREATE TABLE `#__core_acl_aro_groups_map` (
+DROP TABLE IF EXISTS `#__core_acl_aro_groups_map`
+CREATE TABLE IF NOT EXISTS `#__core_acl_aro_groups_map` (
   `acl_id` int(11) NOT NULL DEFAULT '0',
   `group_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`acl_id`,`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
-
--- --------------------------------------------------------
---
--- TWO DIMENSIONAL PERMISSION CONTROL DOES NOT NEED EXTENSION OBJECTS
---
--- Table structure for table `#__core_acl_axo`
---
--- Table structure for table `#__core_acl_axo_groups`
---
--- Table structure for table `#__core_acl_axo_groups_map`
---
--- Table structure for table `#__core_acl_axo_map`
---
--- Table structure for table `#__core_acl_axo_sections`
---
--- Table structure for table `#__core_acl_groups_axo_map`
---
--- --------------------------------------------------------
---
--- Dumping data for table `#__core_acl_aco_sections`
---
 
 INSERT INTO `#__core_acl_aco_sections` VALUES(1, 'access', 10, 'Access', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(2, 'view', 10, 'View', 0);
@@ -560,3 +496,4 @@ INSERT INTO `#__core_acl_aco_sections` VALUES(3, 'edit', 10, 'Edit', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(4, 'manage', 10, 'Manage', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(5, 'delete', 10, 'Delete', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(6, 'create', 10, 'Create', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(5, 'moderate', 10, 'Delete', 0);
