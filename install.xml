@@ -44,8 +44,21 @@
         </uninstall>
  
         <!-- Site Main File Copy Section -->
-        <files folder="components">
-        	<folder>com_tuiyo</folder>
+        <files folder="components/com_tuiyo">
+			<filename>favicon.png</filename>
+			<filename>index.html</filename>
+			<filename>router.php</filename>
+			<filename>router_old.php</filename>
+			<filename>tuiyo.php</filename>
+        	<folder>client</folder>
+			<folder>controllers</folder>
+			<folder>files</folder>
+			<folder>helpers</folder>
+			<folder>libraries</folder>
+			<folder>locale</folder>
+			<folder>models</folder>
+			<folder>plugins</folder>
+			<folder>views</folder>
         </files>
  
         <!-- Site Main Language File Copy Section 
@@ -71,8 +84,23 @@
                 <!-- Note the folder attribute: This attribute describes the folder
                         to copy FROM in the package to install therefore files copied
                         in this section are copied from /admin/ in the package -->
-                <files folder="administrator">
-                	<folder>components/com_tuiyo</folder>
+                <files folder="administrator/components/com_tuiyo">
+					<filename>favicon.png</filename>
+					<filename>index.html</filename>
+					<filename>install.mysql.nonutf8.sql</filename>
+					<filename>install.mysql.utf8.sql</filename>
+					<filename>install.xml</filename>
+					<filename>tuiyo.php</filename>
+					<filename>tuiyo.xml</filename>
+					<filename>uninstall.mysql.nonutf8.sql</filename>
+					<filename>uninstall.mysql.utf8.sql</filename>
+					<filename>uninstall.php</filename>
+					<folder>config</folder>
+					<folder>controllers</folder>
+					<folder>macros</folder>
+					<folder>models</folder>
+					<folder>style</folder>
+					<folder>views</folder>
                 </files>
  
                 <!-- Administration Language File Copy Section 
