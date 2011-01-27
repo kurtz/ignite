@@ -61,12 +61,17 @@ class TuiyoEventsListener{
 		$events->onGetTimelineData   	= new TuiyoDelegate( $this, "onGetTimelineData" );
 		
 		/**
-		 * Login Event Handlers		
+		 * Authentication Event Handlers		
 		 */
 		$events->onLogInDraw			= new TuiyoDelegate($this, "onLogInDraw");
 		$events->onLoggedIn				= new TuiyoDelegate($this, "onLoggedIn");
 		$events->onLoggedOut			= new TuiyoDelegate($this, "onLoggedOut");
 		$events->onLogInFail			= new TuiyoDelegate($this, "onLogInFail");
+		
+		/**
+		 * Connections Events
+		 */
+		$events->onConnectionsView 		= new TuiyoDelegate($this, "onConnectionsView");
 
 		
 		/**

@@ -46,6 +46,7 @@ require_once (TUIYO_PATH.DS.'helpers'.DS.'initiate.php' );
 $START 			=& TuiyoInitiate::start() ;
 $DOCU			=& $GLOBALS['API']->get('document');
 
+
 // Require specific controller if requested
 require_once TUIYO_ADMIN_PATH.DS.'controllers'.DS.'tuiyo.php';
 
@@ -77,4 +78,13 @@ $controller->execute( JRequest::getVar( 'do' ) );
 $GLOBALS['mainframe']->setPageTitle( _("Tuiyo | Administrator Panel") );
 
 // Redirect if set by the controller
+/**
+ * Redirect if specified
+ */
+$DOCU->finishBuild();
 $controller->redirect();
+
+/**
+ * Close the TuiYo pInterface
+ */
+TuiyoAPI::close();

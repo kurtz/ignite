@@ -207,6 +207,8 @@ class TuiyoInitiate{
 			"profile"  => array(),
 		    "messages" => array(),
 			"administrator"=>array(),
+			"connections"=>array(),
+			"authentication"=>array()
 		);
 		
 		foreach($services as $service){
@@ -216,6 +218,7 @@ class TuiyoInitiate{
 			$messages 		= TUIYO_PLUGINS.DS.$service.DS."events.messages.php";
 			$administrator 	= TUIYO_PLUGINS.DS.$service.DS."events.administrator.php";
 			$authentication = TUIYO_PLUGINS.DS.$service.DS."events.authentication.php";
+			$connections 	= TUIYO_PLUGINS.DS.$service.DS."events.connections.php";
 			
 			//Plugins
 			if( file_exists($timeline) ){
@@ -232,6 +235,10 @@ class TuiyoInitiate{
 			//Messafes
 			if( file_exists($messages)){
 				$groups['messages'][$service]=$messages;
+			}
+			//Connections
+			if( file_exists($connections)){
+				$groups['connections'][$service]=$connections;
 			}
 			//Authentication
 			if( file_exists($authentication)){

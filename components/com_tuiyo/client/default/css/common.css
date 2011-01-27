@@ -19,7 +19,7 @@ form.TuiyoForm,form{}
 .TuiyoForm input.TuiyoFormText:focus{background-color:#F0FFFD;border:1px solid #C4DAF1}
 .TuiyoForm select.TuiyoFormDropDown{border:1px solid #ccc;padding:4px;line-height:100%}
 .TuiyoForm select.TuiyoFormDropDown option{padding:2px 0 0 2px;}
-.TuiyoForm button, button{font-size:12px !important;background:#19558D none 0 0 scroll repeat-x;-moz-border-radius:3px;border-radius:3px;-webkit-border-radius:3px;border:none;color:#fff;font-weight:bold;padding:6px 14px;cursor:pointer;}
+.TuiyoForm button, button, a.button{font-size:12px !important;background:#19558D none 0 0 scroll repeat-x;-moz-border-radius:3px;border-radius:3px;-webkit-border-radius:3px;border:none;color:#fff;font-weight:bold;padding:6px 14px;cursor:pointer; text-decoration: none}
 .TuiyoForm textarea.TuiyoFormTextArea{border:1px solid #ccc;padding:4px;width:98%;min-height:30px;line-height:150%;margin-bottom:8px}
 .TuiyoAvatar{padding:1px;/*border:1px solid #ccc*/}
 .publisherButton{background:transparent url(../images/homepagePublisherTabBG.png) repeat-x scroll 0 0;border:1px solid #CCCCCC;cursor:pointer;display:inline;line-height:29px;margin-right:-1px;min-height:25px;padding:5px;}
@@ -97,8 +97,8 @@ div.activityStreamItemMainBody div.private{background:none no-repeat scroll 2px 
 div.activityStreamItemActivityBody div.public,
 div.activityStreamItemMainBody div.public{background:none no-repeat scroll 2px 48%}
 .activityStreamItem a.activityProfile{background:#DFFFDF none no-repeat 1% 55% scroll;padding:0 3px}
-#streamPagination{padding:7px;background:transparent url(../images/ajaxmore.png) 0 0 repeat-x scroll;border:1px solid #e1e1e1;cursor:pointer;margin-bottom:14px;display:none}
-#streamPagination a{font-weight:bold}
+#streamPagination, .bigPagination{padding:7px;background:transparent url(../images/ajaxmore.png) 0 0 repeat-x scroll;border:1px solid #e1e1e1;cursor:pointer;margin-bottom:14px;display:none}
+#streamPagination a, .bigPagination a{font-weight:bold}
 div.windowOverlay{background:#000 none repeat fixed 0 0;position:fixed;top:0;right:0 ;left:0;bottom:0;min-height:200px;z-index:2000;opacity:0.2;filter:alpha(opacity = 20);display:none}
 .col1img{margin-right:-1px;padding:2px;position:relative;width:9% !important;}
 .col2body{padding-bottom:8px;padding-left:10px;width:88% !important;}

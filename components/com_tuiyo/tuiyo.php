@@ -40,6 +40,7 @@ require_once (TUIYO_PATH.DS.'helpers'.DS.'initiate.php' );
  */
 $START 			=& TuiyoInitiate::start();
 
+
 /**
  * Add required Response Elements
  */

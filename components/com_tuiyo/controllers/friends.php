@@ -46,6 +46,9 @@ class TuiyoControllerFriends extends JController
         TuiyoControllerCore::init();
         //Joomla controller
         parent::__construct();
+        
+        //Prepare connection plugins
+        TuiyoEventLoader::preparePlugins( "connections" );
     }
     /**
      * Method to display the view

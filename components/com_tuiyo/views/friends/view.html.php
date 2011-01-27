@@ -37,6 +37,7 @@ class TuiyoViewFriends extends JView
 	{
 		
 		$doc  	= JFactory::getDocument();
+		$user	= JFactory::getUser();
 		
 		$style 	= TUIYO_LIVE_PATH.'/client/default/';
 		$this->assignRef( 'livestyle',	$style );
@@ -45,6 +46,12 @@ class TuiyoViewFriends extends JView
         $pt 	= &$GLOBALS['mainframe']->setPageTitle( _("Friends manager") );
         
 	    $bc->addItem( _("Friends manager") );
+	    
+	    $gModel 	= TuiyoLoader::model("groups", true);
+	    $myGroups 	= $gModel->getUserGroups( $user->id ) ;
+	    
+	    
+	    $this->assignRef("groups", $myGroups);
      
 		//styles
 		$doc->addStyleSheet(TUIYO_LIVE_PATH.'/client/default/css/friendspage.css');

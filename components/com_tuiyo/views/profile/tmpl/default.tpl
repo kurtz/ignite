@@ -1,3 +1,4 @@
+<div class="reporter"><jdoc:include type="message" /></div>
 <div class="tuiyoTable">
 	<div class="tuiyoTableRow">
 		<div class="tuiyoTableCell" style="width: 50%">
