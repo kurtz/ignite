@@ -453,8 +453,8 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_acl_sections` (
 DROP TABLE IF EXISTS `#__core_acl_aco`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aco` (
   `id` int(11) NOT NULL DEFAULT '0',
-  `section_value` varchar(240) NOT NULL DEFAULT '0',
-  `value` varchar(240) NOT NULL,
+  `section_value` varchar(220) NOT NULL DEFAULT '0',
+  `value` varchar(220) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `hidden` int(11) NOT NULL DEFAULT '0',
@@ -466,17 +466,17 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_aco` (
 DROP TABLE IF EXISTS `#__core_acl_aco_map`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aco_map` (
   `acl_id` int(11) NOT NULL DEFAULT '0',
-  `section_value` varchar(230) NOT NULL DEFAULT '0',
-  `value` varchar(230) NOT NULL,
+  `section_value` varchar(220) NOT NULL DEFAULT '0',
+  `value` varchar(220) NOT NULL,
   PRIMARY KEY (`acl_id`,`section_value`,`value`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
 DROP TABLE IF EXISTS `#__core_acl_aco_sections`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aco_sections` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `value` varchar(230) NOT NULL,
+  `value` varchar(220) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(230) NOT NULL,
+  `name` varchar(220) NOT NULL,
   `hidden` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `value_aco_sections` (`value`),
