@@ -2,7 +2,7 @@
 <!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
 <install type="component" version="1.5.0">
         <!--  The extension commercial name: make it different form others at JED http://extensions.joomla.org/-->
-        <name>Tuiyo (Ignite) for Joomla</name>
+        <name>tuiyo</name>
         <!-- The following elements are optional and free of formatting constraints --> 
         <!-- Original creation date. Recommended: YYYY-MM-DD -->
         <creationDate>2010-12-27</creationDate>
