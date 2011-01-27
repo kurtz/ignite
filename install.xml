@@ -17,7 +17,7 @@
         <releaseDate>2010-12-27</releaseDate>
         <!--  Type of release: Bug fix, Security Fix, Minor update, Major update -->
         <releaseType>Major update</releaseType>
-        <downloadUrl>https://github.com/Tuiyo/ignite/tarball/master</downloadUrl>
+        <downloadUrl>https://github.com/Tuiyo/ignite/zipball/master</downloadUrl>
         <!-- The description is optional and defaults to the name -->
         <description>Tuiyo™ is a social networking component for Joomla!, comprising of all the main features you'd expect of a social network, including extensive user management tools, user profiles, user relationship management and idea sharing. All these and lots more, provide your site members useful tools for better interaction</description>
  
@@ -32,16 +32,14 @@
         <!-- Install Database Section -->
         <install>
                 <sql>
-                    <file driver="mysql" charset="utf8">administrator/components/com_tuiyo/install.mysql.utf8.sql</file>
-                    <file driver="mysql">administrator/components/com_tuiyo/install.mysql.nonutf8.sql</file>
+                    <file driver="mysql" charset="utf8">install.mysql.utf8.sql</file>
                 </sql>
         </install>
  
         <!-- Uninstall Database Section -->
         <uninstall>
                 <sql>
-                    <file driver="mysql" charset="utf8">administrator/components/com_tuiyo/uninstall.mysql.utf8.sql</file>
-                    <file driver="mysql">administrator/components/com_tuiyo/uninstall.mysql.nonutf8.sql</file>
+                    <file driver="mysql" charset="utf8">uninstall.mysql.utf8.sql</file>
                 </sql>
         </uninstall>
  
