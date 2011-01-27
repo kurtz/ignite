@@ -423,7 +423,7 @@ CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms_users` (
   KEY `UNIQUE` (`userid`,`room`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
 
-DROP TABLE IF EXISTS `#__core_acl_acl`
+DROP TABLE IF EXISTS `#__core_acl_acl`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_acl` (
   `id` int(11) NOT NULL DEFAULT '0',
   `section_value` varchar(230) NOT NULL DEFAULT 'system',
@@ -438,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_acl` (
   KEY `updated_date_acl` (`updated_date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
-DROP TABLE IF EXISTS `#__core_acl_acl_sections`
+DROP TABLE IF EXISTS `#__core_acl_acl_sections`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_acl_sections` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(230) NOT NULL,
@@ -450,7 +450,7 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_acl_sections` (
   KEY `hidden_acl_sections` (`hidden`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
-DROP TABLE IF EXISTS `#__core_acl_aco`
+DROP TABLE IF EXISTS `#__core_acl_aco`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aco` (
   `id` int(11) NOT NULL DEFAULT '0',
   `section_value` varchar(240) NOT NULL DEFAULT '0',
@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_aco` (
   KEY `hidden_aco` (`hidden`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
-DROP TABLE IF EXISTS `#__core_acl_aco_map`
+DROP TABLE IF EXISTS `#__core_acl_aco_map`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aco_map` (
   `acl_id` int(11) NOT NULL DEFAULT '0',
   `section_value` varchar(230) NOT NULL DEFAULT '0',
@@ -471,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_aco_map` (
   PRIMARY KEY (`acl_id`,`section_value`,`value`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
-DROP TABLE IF EXISTS `#__core_acl_aco_sections`
+DROP TABLE IF EXISTS `#__core_acl_aco_sections`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aco_sections` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(230) NOT NULL,
@@ -483,7 +483,7 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_aco_sections` (
   KEY `hidden_aco_sections` (`hidden`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT="added by com_tuiyo";
 
-DROP TABLE IF EXISTS `#__core_acl_aro_groups_map`
+DROP TABLE IF EXISTS `#__core_acl_aro_groups_map`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_aro_groups_map` (
   `acl_id` int(11) NOT NULL DEFAULT '0',
   `group_id` int(11) NOT NULL DEFAULT '0',
