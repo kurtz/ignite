@@ -496,4 +496,4 @@ INSERT INTO `#__core_acl_aco_sections` VALUES(3, 'edit', 10, 'Edit', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(4, 'manage', 10, 'Manage', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(5, 'delete', 10, 'Delete', 0);
 INSERT INTO `#__core_acl_aco_sections` VALUES(6, 'create', 10, 'Create', 0);
-INSERT INTO `#__core_acl_aco_sections` VALUES(5, 'moderate', 10, 'Delete', 0);
+INSERT INTO `#__core_acl_aco_sections` VALUES(7, 'moderate', 10, 'Delete', 0);
