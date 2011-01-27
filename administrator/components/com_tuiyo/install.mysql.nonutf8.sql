@@ -426,7 +426,7 @@ CREATE TABLE IF NOT EXISTS `#__tuiyo_chat_rooms_users` (
 DROP TABLE IF EXISTS `#__core_acl_acl`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_acl` (
   `id` int(11) NOT NULL DEFAULT '0',
-  `section_value` varchar(230) NOT NULL DEFAULT 'system',
+  `section_value` varchar(220) NOT NULL DEFAULT 'system',
   `allow` int(11) NOT NULL DEFAULT '0',
   `enabled` int(11) NOT NULL DEFAULT '0',
   `return_value` text,
@@ -441,9 +441,9 @@ CREATE TABLE IF NOT EXISTS `#__core_acl_acl` (
 DROP TABLE IF EXISTS `#__core_acl_acl_sections`;
 CREATE TABLE IF NOT EXISTS `#__core_acl_acl_sections` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `value` varchar(230) NOT NULL,
+  `value` varchar(220) NOT NULL,
   `order_value` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(230) NOT NULL,
+  `name` varchar(220) NOT NULL,
   `hidden` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `value_acl_sections` (`value`),
