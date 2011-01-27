@@ -78,7 +78,7 @@
  
                 <!-- Administration Menu Section -->
                 <!-- Name to display at the component menu. Should be the same as the extension commercial name -->
-                <menu img="components/com_tuiyo/client/default/icons/alpha.png">Tuiyo 2.0 Alpha</menu>
+                <menu img="components/com_tuiyo/favicon.png">Tuiyo 2.0 Alpha</menu>
  
                 <!-- Administration Main File Copy Section -->
                 <!-- Note the folder attribute: This attribute describes the folder
