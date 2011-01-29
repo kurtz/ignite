@@ -543,6 +543,9 @@
 				}
  			};
 		return {
+			clearInterval: function(){
+				clearInterval(intervalCounter);
+			},
 			load: function( opt ){		
 				settings = $.extend({}, defaults, opt||{});
 		
@@ -1052,6 +1055,7 @@
 	}();
 	$.fn.extend({
 		TuiyoStream : TuiyoStream.init,
+		TuiyoStreamClear : TuiyoStream.clearInterval,
 		TuiyoStreamLoad : TuiyoStream.load
 	});
 	$(document).ready(function(){

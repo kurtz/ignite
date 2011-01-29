@@ -527,6 +527,10 @@ class TuiyoModelTimeline extends JModel{
 		$table->source   = isset($source) ? $source : "web";
 		$table->inreplyto= 0 ; 
 		
+		if(strtolower($table->type) =="private"){
+			$table->state = 0;
+		}
+		
 		if(!$table->store()){
 			trigger_error( $table->getError() , E_USER_ERROR );
 			return false;

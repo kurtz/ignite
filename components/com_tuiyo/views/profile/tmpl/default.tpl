@@ -199,40 +199,6 @@
                         <div style="clear: both"></div>	
                     </div>
                 </div> 
-				<!--Send a Private Message--> 
-            	<div class="dashBoardWidget">
-                	<div class="dashBoardWidgetBodySubHead">Leave a private message for <?php echo $this->thatuser->name ; ?></div>
-                    <div class="dashBoardWidgetBody">
-                        <?php if($this->thisuser->joomla->get('guest') ) : ;?>
-					        <div class="TuiyoNotification TuiyoError"><?php echo _('You need to be logged in to send a private message' ); ?></div>
-					    <?php else : ?>
-					    <form class="TuiyoForm" name="TuiyoMessageSend" id="TuiyoMessageSend" action="<?php echo JRoute::_('index.php?option=com_tuiyo'); ?>" method="post">
-					        <div id="composeArea" class="tuiyoTable">             
-					            <div class="tuiyoTableRow" style="margin: 1px; font-weight: 500; margin-bottom: 5px">
-					               <input name="messageSubject" id="messageSubject" value="Subject" style="border: 1px solid #ccc; padding: 5px; width: 98%;" />
-					            </div> 
-					            <div class="tuiyoTableRow" style="margin: 1px; font-weight: 500; margin-bottom: 5px">
-					                    <textarea id="newMessageText" class="TuiyoFormTextArea wysiwyg" name="newMessageText" style="padding: 5px; width: 98%">Message</textarea>                     
-					            </div>                                                     
-					        </div>
-					        <input type="hidden" name="sendTo[]" id="sendToUsers" value="<?php echo $this->thatuser->id ?>"   />
-					        <input type="hidden" name="do" value="sendMessage" />
-					        <input type="hidden" name="view" value="messages" />
-					        <input type="hidden" name="user_id_from" value="<?php echo $this->thisuser->id ?>" />
-					        <?php echo JHTML::_('form.token') ;?>
-	    					<div class="dashboardWidgetFooter tuiyoTable" >
-		                    	<div class="tuiyoTableRow">
-		                    		<div class="tuiyoTableCell" style="width: 50%"><a>Go to Messages</a></div>
-		                    		<div class="tuiyoTableCell" style="width: 50%" align="right">
-		                    			<button type="submit" style="margin: 5px 0"><?php echo _('Send Message' ); ?></button>
-									</div>
-		                    		<div style="clear: both"></div>
-		                    	</div>
-		                    </div>					        
-					    </form>
-					    <?php endif; ?>
-                    </div>
-                </div>                 
 			</div>
 		</div>
 		<div style="clear:both"></div>

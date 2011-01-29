@@ -19,7 +19,7 @@
                     	<div class="TuiyoNotification TuiyoAttention"><?php echo _('This user does not have any friends'); ?></div> 
                     <?php endif;?>
                         
-                    <?php foreach((array)$this->friends as $friend) :  ?>     
+                    <?php foreach((array)$this->friends as $friend) : ?>     
                          <div class="memberListItem" style="margin: 0; padding: 10px 0; border-bottom: 1px solid #eee">
                         	<div class="tuiyoTableCell" style="width: 18%">
                         		<a  href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;view=profile&amp;do=view&user='.$friend->username )  ?>" class="miniprofile" rel="<?php echo $friend->username ?>">
@@ -28,7 +28,7 @@
                         	</div>
                         	<div class="tuiyoTableCell" style="width: 82%; position:relative">
                         		<a  href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;view=profile&amp;do=view&user='.$friend->username )  ?>"><strong><?php echo $friend->name ?></strong></a> <span style="font-style:italics"><?php echo $friend->username ?></span>
-                        		<a style="position: absolute; top: 10px; right: 5px" href="<?php echo JRoute::_(TUIYO_INDEX.'&amp;view=friends&amp;do=remove&amp;pid='.$friend->id, true ) ?>" class="button" title="<?php echo _('Remote Friend') ?>" style="position: absolute; top: 0; right: -6px;"><?php echo _('Unfollow') ?></a>
+                        		<a style="position: absolute; top: 10px; right: 5px" href="<?php echo JRoute::_(TUIYO_INDEX.'&amp;view=friends&amp;do=remove&amp;pid='.$friend->userID, true ) ?>" class="button" title="<?php echo _('Remote Friend') ?>" style="position: absolute; top: 0; right: -6px;"><?php echo _('Unfollow') ?></a>
                         	</div>
                         	<div class="tuiyoClearFloat"></div>
                         </div>  

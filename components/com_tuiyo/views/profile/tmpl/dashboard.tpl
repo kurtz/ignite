@@ -1,32 +1,32 @@
 <div class="notificationMainPage pageElLeft" style="display: none">
- 			<!--Inbox-->
-           <div class="dashBoardWidget" id="notificationsWidget">
-                <div class="dashBoardWidgetBodySubHead"><?php echo _('Lastest Notifications'); ?></div>
-                    <div class="dashBoardWidgetBody">
-                    <div class="tuiyoTable">
-                        <?php if( count((array)$notices) < 1 ) :?>
-                            <div class="TuiyoNotification TuiyoAttention"><?php echo _('There are no new notices at this time'); ?></div> 
-                            <?php endif; ?>
-                        <?php foreach((array)$notices as $notice) : ?>
-                        
-                        <div class="tuiyoTableRow <?php echo(($notice->status < 1)? 'unread' : null ); ?> profileNoticeItem">
-                            <div class="tuiyoTableCell" style="width: 95%">
-                            <a href="<?php echo JRoute::_(TUIYO_INDEX.'&controller=notifications&do=view&id='.$notice->id ); ?>">
-                                <span><?php echo TuiyoTimer::diff( strtotime($notice->noticetime) ) ?></span>
-                               </a>
-                               <span><?php echo preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$1<a href="'.JRoute::_(TUIYO_INDEX.'&view=profile&do=view').'&user=$2">@$2</a>', $notice->title ); ?></span>
-                               </div>
-                               <div class="tuiyoTableCell" style="width: 5%">
-                               <a href="<?php echo JRoute::_(TUIYO_INDEX.'&controller=notifications&do=remove&id='.$notice->id ); ?>" class="removelink" style="float: right">&nbsp;</a>
-                               </div>
-                            <div class="tuiyoClearFloat"></div>
-                            </div>
-                            <?php endforeach; ?>
-                        </div>
-                        
-                        <!--<div class="notificationsListPages" style="border-top: 2px solid #ddd;"><?php echo $pages ?></div>-->                                      
-                    </div>
-                </div> 
+	<!--Inbox-->
+	<div class="dashBoardWidget" id="notificationsWidget">
+	     <div class="dashBoardWidgetBodySubHead"><?php echo _('Lastest Notifications'); ?></div>
+	         <div class="dashBoardWidgetBody">
+	         <div class="tuiyoTable">
+	             <?php if( count((array)$notices) < 1 ) :?>
+	                 <div class="TuiyoNotification TuiyoAttention"><?php echo _('There are no new notices at this time'); ?></div> 
+	                 <?php endif; ?>
+	             <?php foreach((array)$notices as $notice) : ?>
+             
+	             <div class="tuiyoTableRow <?php echo(($notice->status < 1)? 'unread' : null ); ?> profileNoticeItem">
+	                 <div class="tuiyoTableCell" style="width: 95%">
+	                 <a href="<?php echo JRoute::_(TUIYO_INDEX.'&controller=notifications&do=view&id='.$notice->id ); ?>">
+	                     <span><?php echo TuiyoTimer::diff( strtotime($notice->noticetime) ) ?></span>
+	                    </a>
+	                    <span><?php echo preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$1<a href="'.JRoute::_(TUIYO_INDEX.'&view=profile&do=view').'&user=$2">@$2</a>', $notice->title ); ?></span>
+	                    </div>
+	                    <div class="tuiyoTableCell" style="width: 5%">
+	                    <a href="<?php echo JRoute::_(TUIYO_INDEX.'&controller=notifications&do=remove&id='.$notice->id ); ?>" class="removelink" style="float: right">&nbsp;</a>
+	                    </div>
+	                 <div class="tuiyoClearFloat"></div>
+	                 </div>
+	                 <?php endforeach; ?>
+	             </div>
+             
+	             <!--<div class="notificationsListPages" style="border-top: 2px solid #ddd;"><?php echo $pages ?></div>-->                                      
+	         </div>
+	     </div> 
 </div>
 <div class="searchMainPage pageElLeft" id="SearchPage" style="display: none">
 	<div class="TuiyoNotification TuiyoInformation">Results will be displayed here</div>

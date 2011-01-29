@@ -59,7 +59,7 @@ class TuiyoControllerNotifications extends JController
 		
 		$model 		= $this->getModel("notifications");
 		$notice 	= $model->loadNotice( (int)$nID , $user->id );
-		$redirect 	= !empty($notice->link) ? JRoute::_($notice->link) : JRoute::_( TUIYO_INDEX.'&view=profile&do=homepage');
+		$redirect 	= !empty($notice->link) ? JRoute::_($notice->link, false) : JRoute::_( TUIYO_INDEX.'&view=profile&do=homepage', false);
 			
 		//Redirect to the profile LINK
 		$mainframe->redirect( $redirect   );	

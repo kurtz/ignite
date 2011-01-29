@@ -56,6 +56,7 @@ class TuiyoViewMessages extends JView
 		$livestyle = TUIYO_LIVE_PATH.'/client/default/';	
 
 		$pModel 		= TuiyoLoader::model("applications", true);
+		$nModel 		= TuiyoLoader::model("notifications", true);
 		$plugins		= $pModel->getAllSystemPlugins("services", false); 
 		
 		$tmplPath 		= TUIYO_VIEWS.DS."profile".DS."tmpl" ;
@@ -70,7 +71,11 @@ class TuiyoViewMessages extends JView
 		
 		$this->assignRef("activity", $activity );
 		
+		$notices 	= $nModel->getAllNotifications( $user->id );
+		$pages		= $nModel->getState( 'pagination' );
 		
+		$this->assignRef('notices', $notices);
+		$this->assignRef('pages', $pages);
 		$this->assignRef('livestyle', $livestyle );
 		$this->assignRef('user', $user );
 
