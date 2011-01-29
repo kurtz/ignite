@@ -48,9 +48,28 @@ class TuiyoViewMessages extends JView
 		
 		//styles
 		$doc->addCSS(TUIYO_STYLEDIR.'/css/messages.css');
-		$doc->addJS(TUIYO_STYLEDIR.'/script/messages.js');	
+		$doc->addJS(TUIYO_STYLEDIR.'/script/messages.js');
+		$doc->addJS( TUIYO_STREAM );
+		$doc->addJS( TUIYO_OEMBED );
+		$doc->addJS( TUIYO_JS.'/includes/tools/rangeinput.min.js');	
 		
-		$livestyle = TUIYO_LIVE_PATH.'/client/default/';		
+		$livestyle = TUIYO_LIVE_PATH.'/client/default/';	
+
+		$pModel 		= TuiyoLoader::model("applications", true);
+		$plugins		= $pModel->getAllSystemPlugins("services", false); 
+		
+		$tmplPath 		= TUIYO_VIEWS.DS."profile".DS."tmpl" ;
+		$tmplVars 		= array(
+			"styleDir"	=>TUIYO_STYLEDIR,
+			"user"		=>$user,
+			"sharewith" =>array("p00"=>"@everyone"),
+		    "plugins"   => $plugins,
+			"canPost"	=>(!$user->joomla->get('guest') ) ? 1 : 0 			
+		);
+		$activity 		= $doc->parseTmpl("activity" , $tmplPath , $tmplVars);
+		
+		$this->assignRef("activity", $activity );
+		
 		
 		$this->assignRef('livestyle', $livestyle );
 		$this->assignRef('user', $user );

@@ -11,6 +11,15 @@
 				doMessageFunction($(this));
 			});
 		});
+		$("#userActivityStream").TuiyoStream();
+		$("#userActivityStream").TuiyoStreamLoad();
+		$(":range").rangeinput();
+		//$("input.range").tooltip();
+		$("input.range").bind("change",function(e){
+			//alert($(this).val());
+			//$("#userActivityStream").TuiyoStream();
+			$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val()});
+		});
 		$(".wysiwyg").wysiwyg();
 		$('a[rel=submit]').bind('click',  function(){
 			if($("#messageSubject, #newMessageText").val() === "") 

@@ -20,6 +20,8 @@
 		
 	};
 	$(document).ready(function(){
+		//Update the timer every
+		
 		$("ul#settingsTabs li").each(function(k){
 			$(this).click(function(f){
 				f.preventDefault();

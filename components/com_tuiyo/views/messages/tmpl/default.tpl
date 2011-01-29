@@ -2,10 +2,27 @@
 	<div class="tuiyoTableRow">
 		<div class="tuiyoTableCell" style="width: 50%">
 			<div class="tuiyoColumn" id="tuiyoColumn1Pad">
-			
+				<div class="pagePublisherTabs">
+	                <ul class="publisherTabItems" id="publisherHp1">	                    
+	                  	<li style="padding: 0pt 20px;" class="current" id="timelineReload"><a href="#"><span><?php echo _('Private Messages')?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" id="timeline"><a href="#"><span><?php echo _('Live Updates')?></span></a></li>
+	                </ul>
+	             	<div class="tuiyoClearFloat"></div>
+	             </div>
+             	<div class="pageEl" style="display: none; margin-bottom: 10px">
+					<input type="range" name="updateterval" min="0" step="5" max="100" value="0" />
+					<div class="tooltip">Update every x seconds</div>
+					<div class="tuiyoClearFloat" style="clear:both;"></div>
+				</div>
+				<?php echo $this->activity ?>
+                 
+			</div>
+		</div>
+		<div class="tuiyoTableCell" style="width: 50%">
+			<div class="tuiyoColumn" id="tuiyoColumn2Pad">
 				<!--Inbox-->
            		<div class="dashBoardWidget" id="inboxWidget">
-                	<div class="dashBoardWidgetBodySubHead"><?php echo _('Lastest Messages'); ?></div>
+                	<div class="dashBoardWidgetBodySubHead"><?php echo _('Lastest Notifications'); ?></div>
                     <div class="dashBoardWidgetBody">
 						<!--message Lists-->
                         <div class="messageBoxListItems">
@@ -140,12 +157,7 @@
 	                    </div>					
 					</div>
                 </div> 
-                 
-			</div>
-		</div>
-		<div class="tuiyoTableCell" style="width: 50%">
-			<div class="tuiyoColumn" id="tuiyoColumn2Pad">
-			
+                
 				<!--Inbox-->
            		<div class="dashBoardWidget" id="inboxWidget">
                 	<div class="dashBoardWidgetBodySubHead"><?php echo _('Compose new message'); ?></div>
