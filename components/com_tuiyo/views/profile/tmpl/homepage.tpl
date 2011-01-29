@@ -4,9 +4,9 @@
 			<div class="tuiyoColumn" id="tuiyoColumn1Pad">
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems" id="publisherHp1">	                    
-	                  	<li style="padding: 0pt 20px;" class="current" id="timelineReload"><a href="#"><span><?php echo _('Coffe Room')?></span></a></li>
-	                  	<li style="padding: 0pt 20px;" id="timelineMentions"><a href="#"><span><?php echo sprintf('@%s' , $this->user->username)?></span></a></li>
-	                  	<li style="padding: 0pt 20px;" id="timeline"><a href="#"><span><?php echo _('Timeline')?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" class="current" id="timelineReload" option="" optionvalue=""><a href="#"><span><?php echo _('@everyone')?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" id="timelineMentions" option="mention" optionvalue="<?php echo $this->user->username ?>"><a href="#"><span><?php echo sprintf('@%s (mentioned)' , $this->user->username)?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" id="timeline" option="usertimeline" optionvalue="<?php echo $this->user->id ?>"><a href="#"><span><?php echo _('Profile')?></span></a></li>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>
 	             </div>

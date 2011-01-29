@@ -41,7 +41,22 @@
 	                e.preventDefault();
 	                $("ul#publisherHp1 li.current").removeClass('current');
 	                $(this).addClass('current');
-	                doFunction($(this));
+					var options = {};
+					var option 	= $(this).attr("option").toString(),
+						value 	= $(this).attr("optionvalue").toString()
+					;
+					switch(option){
+						case "usertimeline":
+							options = {usertimeline: value }
+						break;
+						case "mention":
+							//alert(value);
+						 	options = {mention: value}
+						break;
+					}
+					 
+	                $("#userActivityStream").html('<img src="components/com_tuiyo/client/default/images/loading2.gif" style="margin-top: 8px" />' );
+	                $("#userActivityStream").TuiyoStreamLoad(options);
 	            });
 	        });
 			$("ul#publisherHp2 li").each(function(i) {

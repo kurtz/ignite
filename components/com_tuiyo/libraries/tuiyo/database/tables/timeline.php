@@ -116,11 +116,16 @@ class TuiyoTableTimeline extends JTable{
 		
 		//CHANNEL SPECIFIC?
 		$channel 	= JRequest::getString("channel", null);
+		$mention 	= JRequest::getString("mention", null);
 		$sinceID	= JRequest::getVar("sinceid" , 0 , "default", int);
 		
 		$channel	= (!empty($channel) ) 
 					? "\nAND t.tags LIKE ".$dbo->quote("%".$channel."%") 
 					: null;
+
+		$mention	= (!empty($mention) ) 
+							? "\nAND t.mentions LIKE ".$dbo->quote("%\"".$mention."\"%") 
+							: null;
 		
 		$inReplyTo 	= (!empty($storyID)&&(int)$storyID > 0) 
 					? "\nAND t.inreplyto=".$dbo->Quote( (int)$storyID ) 
@@ -157,6 +162,7 @@ class TuiyoTableTimeline extends JTable{
 				. $filterType
 				. $sourceType
 				. $channel
+				. $mention
 				. ( !is_null($statusID)? $statusID : $inReplyTo.$userID.$isPublic.$groupID )
 				. $order
 				;

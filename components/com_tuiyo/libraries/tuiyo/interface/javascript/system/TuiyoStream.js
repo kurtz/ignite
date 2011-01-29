@@ -554,10 +554,19 @@
 				var channel     = "";
 				var source		= "";
 				var realtime    = "";
-							
-				if(typeof profile !== 'undefined'){
-					addQuery = "&do=getUserTimeline&ps=1&pid="+profile+( (typeof sid!== 'undefined')? "&sid="+sid:"" );
+				var mention		= "";
+				
+				if(typeof profile !== 'undefined' || typeof settings.usertimeline !=='undefined'){
+					
+					var profileID =  (typeof profile !== 'undefined')?profile:settings.usertimeline;
+					addQuery = "&do=getUserTimeline&ps=1&pid="+profileID+( (typeof sid!== 'undefined')? "&sid="+sid:"" );
 				}
+				
+				if(typeof settings.mention !=='undefined'){
+					//alert(settings.mention);
+					mention = "&mention="+settings.mention
+				}
+				
 				if(typeof group !== 'undefined'){
 					addQuery = "&do=getGroupTimeline&ps=1&gid="+group;
 				}
@@ -591,7 +600,7 @@
 					}
 				}
 				
-				$.getJSON($.TuiyoDefines.get("siteIndex")+'?'+$('meta[name=_token]').attr("content")+'=1' + addQuery+filter+source+channel+realtime+"&controller=timeline&format=json" ,
+				$.getJSON($.TuiyoDefines.get("siteIndex")+'?'+$('meta[name=_token]').attr("content")+'=1' + addQuery+filter+source+channel+realtime+mention+"&controller=timeline&format=json" ,
 					{"option":"com_tuiyo", "controller":"timeline", "paginate" : settings.paginateItems, "limitstart": settings.limitstart,
 					 "userID": (!settings.userID)? $.TuiyoDefines.get('userid'):settings.userID, "format":"json"   },
 					function(inResponse){						
