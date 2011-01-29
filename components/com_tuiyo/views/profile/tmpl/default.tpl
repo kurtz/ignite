@@ -105,10 +105,10 @@
       
         		<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems">
-	                    <li style="padding: 0pt 20px;" id="viewCatNew"><a href="#"><span><?php echo _('Questions')?></span></a></li>
-	                  	<li style="padding: 0pt 20px;" id="viewCatDirs"><a href="#"><span><?php echo _('Ideas')?></span></a></li>
-						<li style="padding: 0pt 20px;" id="viewCatAttr"><a href="#"><span><?php echo _('Opinions')?></span></a></li>  
-	                  	<li style="padding: 0pt 20px;" id="viewCatExplorer"><a href="#"><span><?php echo _('Compliments')?></span></a></li>
+	                    <li style="padding: 0pt 20px;" id="viewCatNew" type="question"><a href="#"><span><?php echo _('Questions')?></span></a></li>
+	                  	<li style="padding: 0pt 20px;" id="viewCatDirs" type="idea"><a href="#"><span><?php echo _('Ideas')?></span></a></li>
+						<li style="padding: 0pt 20px;" id="viewCatAttr" type="opinion"><a href="#"><span><?php echo _('Opinions')?></span></a></li>  
+	                  	<li style="padding: 0pt 20px;" id="viewCatExplorer" type="compliment"><a href="#"><span><?php echo _('Compliments')?></span></a></li>
 	                  	<li style="padding: 0pt 20px;" class="current" id="viewCatExplorer"><a href="#"><span><?php echo _('Wall')?></span></a></li>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>

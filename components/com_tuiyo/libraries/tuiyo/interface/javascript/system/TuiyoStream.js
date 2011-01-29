@@ -743,6 +743,7 @@
 				$("a[rel=filterNewsFeed]").toggle(function(e){
 					e.preventDefault();
 					$('.statusToolEl').hide();
+					$('.publisher').hide();
 					$('.timelineFilters').show();
 				},function(e){
 					e.preventDefault();
@@ -753,6 +754,10 @@
 					$('.statusToolEl').hide();
 					$('.publisher').show();
 					$('#activityUpdateTools').show();
+				});
+				$("span.shareWith").bind('click',function(e){
+					e.preventDefault();
+					$(this).remove();
 				});
 				$("a[rel=shareLocation]").bind('click',function(e){
 					e.preventDefault();
