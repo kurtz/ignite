@@ -90,7 +90,7 @@
 				//alert($(this).val());
 				//$("#userActivityStream").TuiyoStream();
 				$("#userActivityStream").TuiyoStreamLoad({realTime:true, loadInterval: $("input.range").val(),channel:chatRoomID,forceTag:chatRoomID});
-			})
+			});
 			
 			var apiKey = inChatRoom; 
 			var sessionId = $('meta[name="opentoksessionid"]').attr("content"); 

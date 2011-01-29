@@ -235,7 +235,7 @@ class SystemServiceController Extends TuiyoControllerServices{
 			$opentokAPI 	= new OpenTokSDK($opentokConfig->API_KEY, $opentokConfig->API_SECRET);
 	        $opentokSession = $opentokAPI->create_session( $_SERVER["REMOTE_ADDR"] ,
 				array(
-					//SessionPropertyConstants::MULTIPLEXER_NUMOUTPUTSTREAMS=>10,
+					SessionPropertyConstants::MULTIPLEXER_NUMOUTPUTSTREAMS=>10,
 			        //SessionPropertyConstants::ECHOSUPPRESSION_ENABLED=>"true",
 			        //SessionPropertyConstants::MULTIPLEXER_SWITCHTYPE=>1,
 			        //SessionPropertyConstants::MULTIPLEXER_SWITCHTIMEOUT=>5000

@@ -193,7 +193,9 @@ class TuiyoViewProfile extends JView
 			);
 		}
 		
-		$plugins	= $model->getAllUserPlugins($this->thatsuser->id, "services", false); 
+		$plugins	= $model->getAllUserPlugins( $this->thatuser->id, "services", false); 
+		
+		//print_R($plugins);
 		
 		$tmplPath 		= TUIYO_VIEWS.DS."profile".DS."tmpl" ;
 		$tmplVars 		= array(

@@ -115,9 +115,9 @@ class TuiyoControllerWelcome extends JController{
 				$inviteeE = $iObject->email ;
 			
 			}
-			$view->assignRef( 	"inviteCode", $invite );
-			$view->assignRef(   "inviteeName" , $inviteeN );
-			$view->assignRef(   "inviteeEmail" ,  $inviteeE  );
+			$view->assignRef( "inviteCode", $invite );
+			$view->assignRef( "inviteeName" , $inviteeN );
+			$view->assignRef( "inviteeEmail" ,  $inviteeE  );
 			
 		endif;
 		

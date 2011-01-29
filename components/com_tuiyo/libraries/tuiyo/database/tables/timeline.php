@@ -154,14 +154,17 @@ class TuiyoTableTimeline extends JTable{
 				. "\nLEFT JOIN #__tuiyo_timelinetmpl s ON t.template = s.ID"
 				. "\nLEFT JOIN #__users u  ON t.userID = u.id"
 				. "\nWHERE t.state='1' AND t.ID > {$sinceID}"
-				. ( !is_null($statusID)? $statusID : $inReplyTo.$userID.$isPublic.$groupID )
 				. $filterType
 				. $sourceType
 				. $channel
+				. ( !is_null($statusID)? $statusID : $inReplyTo.$userID.$isPublic.$groupID )
 				. $order
 				;
 				
 		$dbo->setQuery( $query , $limitstart , $limit );
+		
+		//echo $dbo->getQuery();
+		
 		$rows = $dbo->loadObjectList( );
 		
 		//echo $dbo->getQuery();
@@ -169,6 +172,7 @@ class TuiyoTableTimeline extends JTable{
 		$dbo->setQuery('SELECT FOUND_ROWS();'); 
 		
 		$rows = (array)$rows;
+		
 		return array_reverse($rows);
 	}
 	

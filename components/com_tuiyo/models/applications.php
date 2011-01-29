@@ -123,6 +123,8 @@ class TuiyoModelApplications extends JModel{
 		$table 		=& TuiyoLoader::table("userplugins" , true );
 		$plugins 	= $table->loadUserPlugins( $userID, $incParams );
 		
+		//print_R($plugins);
+		
 		$_plugins		= array();
 		$_pluginsSpec 	= array();
 		

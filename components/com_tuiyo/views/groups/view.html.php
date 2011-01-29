@@ -51,6 +51,7 @@ class TuiyoViewGroups extends JView
         $doc->addJS( TUIYO_LIVE_PATH.'/client/default/script/groupspage.js' );
         $doc->addJS( TUIYO_STREAM );
 		$doc->addJS( TUIYO_OEMBED );
+		
         
         $pModel 		= TuiyoLoader::model("applications", true);
 		$plugins		= $pModel->getAllSystemPlugins("services", false); 

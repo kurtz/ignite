@@ -3,10 +3,10 @@
 		var 
 			layoutData = [], 
 			settings = {
-				widgetContext 	: ".widgetWallAColumns",
-				widgetBox		: ".tuiyoWidget",
-				widgetColumns 	: ".widgetColumn",
-				widgetHandle 	: ".tuiyoWidgetHead",
+				widgetContext 	: $(".widgetWallAColumns"),
+				widgetBox		: $(".tuiyoWidget"),
+				widgetColumns 	: $(".widgetColumn"),
+				widgetHandle 	: $(".tuiyoWidgetHead"),
 				widgetDefColor 	: "red"
 			},
 			widgetTemplate = function( widget ){
@@ -63,7 +63,9 @@
 			getWidgetSetting = function( widgetID ){},
 			makeWidgetSortable = function( settings ){
 				//settings = TuiyoWidget.settings;
-				$(settings.widgetBox).find(settings.widgetHandle).css({
+				alert('start making sortable');
+				alert(settings.toString());
+				$(".tuiyoWidget").find(".tuiyoWidgetHead").css({
 					cursor: 'move'
 				}).mousedown(function (e) {
 					$(this).parent().css({
@@ -74,10 +76,10 @@
 						$(this).parent().css({width:''});
 					}
 				});
-			   $(settings.widgetColumns).sortable({	    
-			        items: $(settings.widgetBox),
-			        connectWith: $(settings.widgetColumns),
-			        handle: settings.widgetHandle,
+			   $(".widgetColumn").sortable({	    
+			        items: $(".tuiyoWidget"),
+			        connectWith: ".widgetColumn",
+			        handle: ".widgetHead",
 			        placeholder: 'widgetPlaceholder',
 			        forcePlaceholderSize: true,
 			        revert: 200,
@@ -89,7 +91,7 @@
 			        },
 			        stop: function (e,ui) {
 			            $(ui.item).css({width:''}).removeClass('dragging');
-			            $(settings.widgetColumns).sortable('enable');
+			            $(".widgetColumn").sortable('enable');
 			        }
 			    });			
 			},
@@ -239,7 +241,7 @@
 									.bind("widgetStart", function(){
 										widgetStartEvent(  widgetObj )
 									}).trigger("widgetStart");
-									TuiyoWidget.widgetTize();
+									TuiyoWidget.widgetTize( settings );
 									
 									$("div.widgetWallsettingsBox").slideUp( "slow" );
 								})								
@@ -273,7 +275,7 @@
 						$('<div class="tuiyoClearFloat" >').appendTo($("#widgetWallAColumns"));
 						$(".tuiyoWidget").trigger("widgetStart");
 					
-						TuiyoWidget.widgetTize();
+						TuiyoWidget.widgetTize( settings );
 					}).appendDom([
 						{tagName:'a',className:'closeTab', innerHTML:'close Tab', click:function(){
 							var selfA = $(this);
@@ -297,7 +299,7 @@
 			getLayoutData : function(){ return layoutData; },
 			setLayoutData : function( data ){ layoutData = data },
 			getSettings : function(){return settings; },
-			widgetTize: function(){
+			widgetTize: function( settings ){
 				makeWidgetSortable( settings );
 				addWidgetControls( settings );
 				addWidgetJqueryJs( settings );

@@ -3,7 +3,7 @@ table {border-collapse:collapse;border-spacing:0;}
 
 /* Main Layout */
 html {height:100%;margin-bottom:1px;}
-body {background-color: #f1f1f1; background-repeat: repeat; font:62.5%/1.2 Kalinga, 'Segoe UI', 'Lucida Grande', sans-serif ,Helvetica, Arial, sans-serif;color:#555; }
+body {background-color: #f1f1f1; background-repeat: repeat; font:62.5%/1.2 'Lucida Grande', 'Segoe UI', Kalinga, sans-serif ,Helvetica, Arial, sans-serif;color:#555; }
 h1,h2,h3,h4,.componentheading {font-weight:bold;margin:25px 0;}
 h1,.componentheading {font-size:180%;}
 h2 {font-size:150%;}
