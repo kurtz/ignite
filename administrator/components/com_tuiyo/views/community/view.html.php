@@ -114,6 +114,39 @@ class TuiyoViewCommunity extends JView{
 		
 	}
 	
+	public function getFileManagerPage(){
+		
+		$action 	= JRequest::getVar("action", null);
+		$TMPL 		= $GLOBALS["API"]->get("document");
+
+		$tmplVars 		= array(
+			"styleDir"	=>$livestyle,
+			"livePath"	=>TUIYO_LIVE_PATH,
+			"iconPath" 	=>TUIYO_LIVE_PATH.'/client/default/',
+			"users"		=>$userListData 
+		);
+		
+		switch($action):
+			case "lists":
+				$tmplFile = "filemanager";
+			break;
+			case "pending":
+				$tmplFile = "filemanager";
+			break;
+			case "warning":
+			default:
+				$tmplVars["reports"] = array();
+				$tmplFile = "filemanager";
+			break;
+		endswitch;
+		
+		$tmplPath 		= JPATH_COMPONENT_ADMINISTRATOR.DS."views".DS."community".DS."tmpl" ;
+		$tmplData 	    = $TMPL->parseTmpl($tmplFile , $tmplPath , $tmplVars);	
+		
+		return $tmplData;	
+		
+	}
+	
 	public function moderatorPanel( $userReports ){
 		
 		$action 	= JRequest::getVar("action", null);

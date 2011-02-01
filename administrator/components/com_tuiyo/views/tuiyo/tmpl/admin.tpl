@@ -30,10 +30,20 @@
         <div id="main">
             <div id="sidebar">
                 <div class="section">
-                    <h3>System Mode</h3>
-                    <p>Put your website in development mode (offline) for maintainance</p>
 					<h3>Members Online</h3>
-					<p>There are currently no members online</p>
+					<?php if( count((array)$usersonline) < 1 ) :?>
+                           <div class="TuiyoNotification TuiyoAttention"><?php echo _('A list of the recent people to visit your profile will be displayed here '); ?></div> 
+                       <?php endif; $loaded = array(); ?>
+                       <?php foreach((array)$usersonline as $visitor) : $visitor->API =& TuiyoAPI::get("user" , (int)$visitor->userid ); if(in_array($visitor->userid, $loaded)){ continue; } ?>
+                          <div align="center" title="<?php echo $visitor->API->name ?> visited <?php echo TuiyoTimer::diff( strtotime($visitor->date) ) ?>" 
+                          		class="friendListItem" style="width:35px; float: left; padding: 1px; margin: 2px; height:35px">
+                               <a href="<?php echo JRoute::_( JURI::root().'index.php?option=com_tuiyo&amp;view=profile&amp;do=view&user='.$visitor->API->username )  ?>">
+                                   <img class="TuiyoUserAvatar" src="<?php echo $visitor->API->getUserAvatar( (int)$visitor->userid )->thumb35 ?>" 
+                                        style="border:1px solid #ccc; padding:2px;">
+                               </a>
+                           </div>  
+                       <?php $loaded[]=$visitor->userid; endforeach ; ?>
+					<div class="tuiyoClearFloat"></div>
                 </div>                                             
             </div>
             <div id="page">

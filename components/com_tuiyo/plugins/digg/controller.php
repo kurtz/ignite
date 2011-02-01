@@ -64,6 +64,13 @@ class DiggServiceController Extends TuiyoControllerServices{
 	 	
 	}	
 	
+	public function display(){
+		
+		global $mainframe;
+		
+		$mainframe->redirect( TUIYO_INDEX , _("The Digg plugin does not have an applicaiton front-end"));
+	}
+	
 	/**
 	 * (non-PHPdoc)
 	 * @see components/com_tuiyo/controllers/TuiyoControllerServices::add()

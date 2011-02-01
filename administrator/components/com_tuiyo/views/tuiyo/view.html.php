@@ -170,8 +170,18 @@ class TuiyoViewTuiyo extends JView
 		}
 		$longVersion	= $version->getLongVersion();
 		
+		$dbo			= JFactory::getDBO();
+		$query  		= 'SELECT username, time, userid, usertype, client_id'
+		. ' FROM #__session'
+		. ' WHERE userid != 0'
+		. ' ORDER BY usertype, username'
+		;
+		$dbo->setQuery( $query );
+		$usersonline 	= $dbo->loadObjectList();
+		
 
 		$tmplVars 		= array(
+			"usersonline"=>$usersonline,
 			"apps"		=>$APPS,
 			"styleDir"	=>TUIYO_STYLEDIR,
 			"user"		=>$USER,

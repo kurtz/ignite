@@ -439,8 +439,13 @@ class TuiyoControllerSystemTools extends JController
         /** Do something majical **/
 
         $form = $view->showBugReportForm();
-
-        $view->display( $form);
+		$tabgroup  = array( 
+			"_bugreporter" => array(
+				_("Report Bugs") 		=> "", //Determine which tab is active by comparing referers
+			 )
+		);
+		$view->addTabGroup( $tabgroup );
+        $view->display( $form , "_bugreporter");
     }
 
     /**

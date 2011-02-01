@@ -57,7 +57,8 @@ class TuiyoControllerCommunityManagement extends JController{
 	
 	public function filemanager(){
 		
-		$view = $this->getView("tuiyo", "html");
+		$view 	= $this->getView("tuiyo", "html");
+		$cview 	= $this->getView("community", "html");
 
 		$tabgroup  = array( 
 			"_autocenter" => array(
@@ -67,8 +68,9 @@ class TuiyoControllerCommunityManagement extends JController{
 			 )
 		);
 		$view->addTabGroup( $tabgroup  );
+		$page = $cview->getFileManagerPage();
 
-        $view->display("File Manager", '_autocenter');
+        $view->display($page, '_autocenter');
 	}
 
 	
