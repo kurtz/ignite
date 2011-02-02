@@ -9,7 +9,9 @@
 	<authorUrl>www.tuiyo.co.uk</authorUrl>
 	<version>1.0.0</version>
 	<description>Add a custom Feed to your Tuiyo timeline</description>
-
+	<params group="acl" default="">
+		<param name="service" label="Add Feeds" default="access" />
+	</params>
 	<params group="plugin">
 		<param name="feedURL" type="text" default="" label="Feed URL" />
 	</params>

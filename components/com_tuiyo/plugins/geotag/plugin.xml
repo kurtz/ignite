@@ -13,6 +13,9 @@
 		<param name="username" type="text" default="" label="Username"  />
 		<param name="password" type="password" default="" label="Password"  />
 	</params>
+		<params group="acl" default="">
+		<param name="service" label="Add Geotag" default="access" />
+	</params>
 	<params group="privacy"></params>
 	<params group="profilepicture"></params>
 </install>

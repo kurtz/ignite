@@ -9,6 +9,9 @@
 	<authorUrl>www.tuiyo.co.uk</authorUrl>
 	<version>1.0.0</version>
 	<description>Fireeagle &amp; Tuiyo </description>
+	<params group="acl" default="">
+		<param name="service" label="Add Fireeagle" default="access" />
+	</params>
 	<params group="plugin">
 		<param name="username" type="text" default="" label="Username"  />
 		<param name="password" type="password" default="" label="Password"  />
