@@ -47,8 +47,7 @@
 			<div class="tuiyoColumn" id="tuiyoColumn2Pad">
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems">
-	                    <li style="padding: 0pt 18px;" type="community" class="current"><a href="#"><span><?php echo _('Article Comments')?></span></a></li>
-	                    <li style="padding: 0pt 20px; opacity: 0.3" type="personal" ><a href="#"><span><?php echo _('Community Wall')?></span></a></li>
+	                    <li style="padding: 0pt 18px;" type="community" class="current"><a href="#"><span><?php echo _('Article Discussion')?></span></a></li>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>
 	             </div>

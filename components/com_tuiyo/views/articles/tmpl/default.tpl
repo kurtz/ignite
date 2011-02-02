@@ -2,12 +2,24 @@
 	<div class="tuiyoTableRow">
 		<div class="tuiyoTableCell" style="width: 50%">
 			<div class="tuiyoColumn" id="tuiyoColumn1Pad">
-			
+	
+			    <div class="pagePublisherTabs">
+	                <ul class="publisherTabItems">
+	                    <li style="padding: 0pt 20px;" type="personal" class="current"><a href="#"><span><?php echo _('Timeline')?></span></a></li>
+						<li style="padding: 0pt 20px;" type="personalArticles"><a href="#" ><span><?php echo _('My Articles')?></span></a></li> 
+	                </ul>
+	             	<div class="tuiyoClearFloat"></div>
+	             </div>
+	             <div class="reporter"><jdoc:include type="message" /></div>
+				<?php echo $this->activity ?>
+				
+			</div>
+		</div>
+		<div class="tuiyoTableCell" style="width: 50%">
+			<div class="tuiyoColumn" id="tuiyoColumn2Pad">
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems" id="tabs1publisher">
-	                    <li style="padding: 0pt 20px; position:relative" type="BrowseCategories"><a href="#"><span><?php echo _('Categories')?></span></a><div class="articleCatFilter"><?php displayAttributeNodeRow( $this->categories, 0 ) ?></div></li>
-	                  	<li style="padding: 0pt 18px;" type="communityArticles" class="current"><a href="#"><span><?php echo _('Community Articles')?></span></a></li>
-						<li style="padding: 0pt 20px;" type="personalArticles"><a href="#" ><span><?php echo _('My Articles')?></span></a></li>  
+	                    <li style="padding: 0pt 20px; position:relative" type="BrowseCategories"><a href="#"><span><?php echo _('Categories')?></span></a><div class="articleCatFilter"><?php displayAttributeNodeRow( $this->categories, 0 ) ?></div></li> 
 	                  	<li style="padding: 0pt 20px;" type="composeNewArticle"><a href="#"><span><?php echo _('Write New')?></span></a></li>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>
@@ -163,20 +175,6 @@
 				    </form> 
 				    <?php endif; ?>
 			    </div>
-			    
-			</div>
-		</div>
-		<div class="tuiyoTableCell" style="width: 50%">
-			<div class="tuiyoColumn" id="tuiyoColumn2Pad">
-				<div class="pagePublisherTabs">
-	                <ul class="publisherTabItems">
-	                    <li style="padding: 0pt 18px; opacity: 0.3" type="community"><a href="#"><span><?php echo _('Article Comments')?></span></a></li>
-	                    <li style="padding: 0pt 20px;" type="personal" class="current"><a href="#"><span><?php echo _('Community Wall')?></span></a></li>
-	                </ul>
-	             	<div class="tuiyoClearFloat"></div>
-	             </div>
-	             <div class="reporter"><jdoc:include type="message" /></div>
-				<?php echo $this->activity ?>
 			</div>
 		</div>
 		<div style="clear:both"></div>
