@@ -148,6 +148,7 @@
                                 </a>
                             </div>
                         </div>
+                        <!--  
                          <div style="float: left;">
                             <div class="icon" align="center" title="<?php echo _('Your say' ) ;?>">
                                  <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;view=discussions')  ?>">
@@ -155,7 +156,7 @@
                                     <span><?php echo _('Discussion'); ?></span>
                                 </a>
                             </div>
-                        </div> 
+                        </div> -->
                        	<?php foreach($plugins as $p) :?>
 	                       	<div style="float: left;">
 	                            <div class="icon" align="center" title="<?php echo ucfirst($p); ?>">

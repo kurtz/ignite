@@ -5,8 +5,6 @@
 				<div class="pagePublisherTabs">
 	                <ul class="publisherTabItems">	                    
 	                  	<li style="padding: 0pt 20px;" class="current" id="communityTimeLine"><a href="#"><span><?php echo _('Timeline')?></span></a></li>
-	                  	<li style="padding: 0pt 20px;" id="communityTimeLine"><a href="#"><span><?php echo _('Community')?></span></a></li>
-	                  	<li style="padding: 0pt 20px;" id="communityTimeLine"><a href="#"><span><?php echo _('Friends')?></span></a></li>
 	                  	<li style="padding: 0pt 20px;" id="slideShow"><a href="#"><span><?php echo _('Slideshow')?></span></a><span class="commentCount" id="slideShowCount" style="display:none">1 of 10</span></li>
 	                </ul>
 	             	<div class="tuiyoClearFloat"></div>
@@ -15,7 +13,7 @@
 				 <div class="slideShow pageEl" style="display: none">
 				 	<div id="slideshowScreen">
 				 		<div class="slideshowScreenPad" style="position:relative">
-				 			<div class="slideShowImage" ><img align="middle" id="slideshowImageSrc" src="http://localhost/joomla/components/com_tuiyo/files/photos/63/63_IMG_0003.JPG" /></div>
+				 			<div class="slideShowImage" ><img align="middle" id="slideshowImageSrc" /></div>
 							<div class="xhrOverlay"><?php echo _('Loading Images'); ?></div>
 							<div class="slideShowTools">
 								<div class="slideShowToolsControls tuiyoTableRow" align="center" style="width: 101%">
