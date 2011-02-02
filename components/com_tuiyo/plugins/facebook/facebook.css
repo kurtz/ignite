@@ -1,0 +1,9 @@
+div.pagePublisherTabsFB{background: #3b5998 url(connect/facebook-logo.gif) no-repeat scroll 0 80%; padding-left: 100px; padding-top: 5px; border-bottom:1px solid #1D4088}
+ul.publisherTabItemsFB li{background:#627AAD none repeat-x scroll 0 0;border:1px solid #1D4088;cursor:pointer;display:inline;float:left;line-height:29px;margin-bottom:-3px;margin-right:1px !important;padding:0 12px 0 6px; color: #fff}
+ul.publisherTabItemsFB li.current{background:#fff;border-bottom:1px solid #fff; margin-bottom: -1px}
+ul.publisherTabItemsFB li:hover{background-color:#FEF4E7;border:1px solid #1D4088}
+ul.publisherTabItemsFB li img{margin-bottom:-3px;padding-right:2px;}
+ul.publisherTabItemsFB{margin:5px;/*margin-right:15px*/}
+ul.publisherTabItemsFB li a{text-decoration:none; color: #fff}
+ul.publisherTabItemsFB li:hover a,
+ul.publisherTabItemsFB li.current a{color: #356AA0}

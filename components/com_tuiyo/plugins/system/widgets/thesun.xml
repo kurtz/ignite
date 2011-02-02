@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget version="1.0.0">
+	<widgetdata>
+		<data name="author" content="Livingstone Fultang" />
+		<data name="email" content="livingstone@drstonyhills.com" />
+		<data name="website" content="http://www.addictinggames.com" />
+		<data name="description" content="News from the sun" />
+		<data name="version" content="1.0.1" />
+		<data name="keywords" content="news, gossip, feeds" />
+		<data name="screenshot" content="components/com_tuiyo/plugins/system/widgets/thesun/thesun64.png" />
+		<data name="autorefresh" content="10" />
+		<data name="allowmultiple" content="true" />
+		<data content="components/com_tuiyo/plugins/system/widgets/thesun/thesun16.png" name="icon/favicon" />
+		<data content="components/com_tuiyo/plugins/system/widgets/thesun/thesun48.png" name="icon/rich" />
+		<data content="The sun" name="title" />
+	</widgetdata>
+	<widgetparams>
+		<param name="limit" type="range" label="Number of items to display" defaultValue="10" step="1" min="1" max="25" />
+		<param name="search" type="hidden" defaultValue="" label="Search Field Value" />
+	  	<param name="category" type="list" label="Category" defaultValue="1st" onchange="refresh">
+		  <option value="all" label="all" />
+		  <option value="1st" label="First category" />
+		  <option value="2nd" label="Second category" />
+		  <option value="3rd" label="Third category" />
+		</param>		  
+	</widgetparams>
+	<widgetstyle></widgetstyle>
+	<widgetbody>
+		<![CDATA[ <div style="background: #BA2825; margin: -10px -8px 4px;">
+			<div style="margin: 5px 5px"><a href="http://www.ew.com" target="_blank" rel="nofollow">
+				<img src="components/com_tuiyo/plugins/system/widgets/thesun/logo.png"/></a>
+			</div>
+			<span><div style="padding: 0 8px; text-align: right; font-family: arial,sans-serif; font-size: 90%; color: #fff;" class="thesunLastUpdate"></div></span>
+		</div>
+		<table cellspacing="0" cellpadding="0" class="main_table" width="100%">
+		    <tbody><tr><div class="thesunItems" style="padding-top: 5px"></div></tr></tbody>
+		</table>]]>
+	</widgetbody>
+	<widgetevents>
+		<onload><![CDATA[ 
+			//Get the Top Stories;
+			$("div.thesunLastUpdate").text( $.getTuiyoDate() );
+			$.getFeed({
+			   url: 'http://www.thesun.co.uk/sol/homepage/feeds/rss/article312900.ece',
+			   success: function(feed) {
+				   $.each(feed.items, function(s, story){
+				        if(s<5){ 
+					   		$( $("div#"+widget.id).find("div.thesunItems") ).appendDom([
+								{tagName:'div', style:'margin-bottom: 0px', className:'tuiyoTable', childNodes:[
+									{tagName:'div', className:'tuiyoTableRow', childNodes:[
+										{tagName:'div', className:'tuiyoTableCell', style:'width: 100%', childNodes:[
+											{tagName:'a', style:'display: block; color:#BA2825; font-size-adjust: none; line-height: 18px; padding-top: 0pt; padding-right: 0pt; padding-left: 6px; text-decoration: none; font-size: 17px; font-weight: bold;', 'innerHTML': story.title , 'href':story.link, 'target':'_blank' },
+											{tagName:'p', innerHTML: story.description, 'style':'margin-left:5px' }
+										]},
+										{tagName:'div', className:'tuiyoClearFloat'}
+									]}
+								]}
+							]);
+						}else{
+							return;
+						}	
+				   });
+			   }
+			});  
+		]]></onload>
+		<onedit><![CDATA[
+		    alert('i Am editing' );
+		 	alert( $(this).attr('id') );
+		]]></onedit>
+	</widgetevents>
+</widget>
+
+ 

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  <?xml-stylesheet type="text/xsl" href="tuiyoWidget.xsl" ?> for testing purposes only -->
+<widget version="1.0.0">
+	<widgetdata>
+		<data name="author" content="Livingstone Fultang" />
+		<data name="email" content="livingstone@drstonyhills.com" />
+		<data name="website" content="www.drstonyhills.com" />
+		<data name="description" content="A widget to grab digg news content" />
+		<data name="version" content="1.0.1" />
+		<data name="keywords" content="news, feeds, feed" />
+		<data name="screenshot" content="components/com_tuiyo/plugins/digg/widgets/digg/digg64.png" />
+		<data name="autorefresh" content="10" />
+		<data name="allowmultiple" content="true" />
+		<data content="components/com_tuiyo/plugins/digg/widgets/digg/digg16.png" name="icon/favicon" />
+		<data content="components/com_tuiyo/plugins/digg/widgets/digg/digg48.png" name="icon/rich" />
+		<data content="The Digg homepage" name="title" />
+	</widgetdata>
+	<widgetparams>
+		<param name="limit" type="range" label="Number of items to display" defaultValue="10" step="1" min="1" max="25" />
+		<param name="search" type="hidden" defaultValue="" label="Search Field Value" />
+	  	<param name="category" type="list" label="Category" defaultValue="1st" onchange="refresh">
+		  <option value="all" label="all" />
+		  <option value="1st" label="First category" />
+		  <option value="2nd" label="Second category" />
+		  <option value="3rd" label="Third category" />
+		</param>		  
+	</widgetparams>
+	<widgetbody>
+		<![CDATA[ <div style="background: #fff; ">
+			<div style="margin: 5px;"><a href="http://www.ew.com" target="_blank" rel="nofollow"><img src="components/com_tuiyo/plugins/digg/widgets/digg/logo.png"/></a></div>
+		     
+		</div>
+		<table cellspacing="0" cellpadding="0" class="main_table" width="100%">
+		    <tbody><tr><div class="diggItems" style="padding-top: 5px"></div></tr></tbody>
+		</table>]]>
+	</widgetbody>
+	<widgetevents>
+		<onload><![CDATA[ 
+			//Get the Top Stories;
+			$.getFeed({
+			   url: 'http://feeds.digg.com/digg/popular.rss',
+			   success: function(feed) {
+				   $.each(feed.items, function(s, story){
+				        if(s<5){ 
+							var diggCount = story.store.find("digg\\:diggCount").eq(0).text();
+							var diggComments = story.store.find("digg\\:commentCount").eq(0).text();
+							//alert( diggCount );
+					   		$( $("div#"+widget.id).find("div.diggItems") ).appendDom([
+								{tagName:'div', style:'border-bottom: 1px solid #e1e1e1', className:'tuiyoTable', childNodes:[
+									{tagName:'div', className:'tuiyoTableRow', style:'min-height: 40px', childNodes:[
+										{tagName:'div', className:'tuiyoTableCell', style:'width: 10%', childNodes:[
+											{tagName:'div', style:'margin: 4px; text-align:center; width: 22px; padding: 11px; background:#FFF7C6; -moz-border-radius: 7px; -webkit-border-radius: 7px; min-height: 20px ', childNodes:[
+												{tagName:'a', href:story.link, 'target':'_blank', style:'color: #A46926;', innerHTML: diggCount} 
+											]}
+										]},
+										{tagName:'div', className:'tuiyoTableCell', style:'width: 10%', childNodes:[
+											{tagName:'img', src:$(story.mthumbnail).attr("url"), width: '43',height: '43', style:'margin: 4px'}
+										]},
+										{tagName:'div', className:'tuiyoTableCell', style:'width: 80%', childNodes:[
+											{tagName:'a', style:'padding-left: 6px; padding-top: 5px; text-decoration: none; font-size: 14px;', 'innerHTML': story.title , 'href':story.link, 'target':'_blank' },
+											{tagName:'br'},
+											{tagName:'a',style:'padding-left: 25px; font-size: 12px; color: #313131; background: url(components/com_tuiyo/widgets/digg/cmts.png) no-repeat scroll 6% 50%', href:story.link, innerHTML: diggComments+' comments'}
+										]},
+										{tagName:'div', className:'tuiyoClearFloat'}
+									]}
+								]}
+							]);
+						}else{
+							return;
+						}	
+				   });
+			   }
+			});  
+		]]></onload>
+		<onedit><![CDATA[
+		    alert('i Am editing' );
+		 	alert( $(this).attr('id') );
+		]]></onedit>
+	</widgetevents>
+</widget>

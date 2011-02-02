@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  <?xml-stylesheet type="text/xsl" href="tuiyoWidget.xsl" ?> for testing purposes only -->
+<widget version="1.0.0">
+	<widgetdata>
+		<data name="author" content="Livingstone Fultang" />
+		<data name="email" content="livingstone@drstonyhills.com" />
+		<data name="website" content="www.drstonyhills.com" />
+		<data name="description" content="Top stories from the new york times" />
+		<data name="version" content="1.0.1" />
+		<data name="keywords" content="news, rss feeds" />
+		<data name="screenshot" content="components/com_tuiyo/plugins/system/widgets/nyt/nyt64.png" />
+		<data name="autorefresh" content="10" />
+		<data name="allowmultiple" content="true" />
+		<data content="components/com_tuiyo/plugins/system/widgets/nyt/nyt16.png" name="icon/favicon" />
+		<data content="components/com_tuiyo/plugins/system/widgets/nyt/nyt48.png" name="icon/rich" />
+		<data content="The NewYork Times" name="title" />
+	</widgetdata>
+	<widgetparams>
+		<param name="limit" type="range" label="Number of items to display" defaultValue="10" step="1" min="1" max="25" />
+		<param name="search" type="hidden" defaultValue="" label="Search Field Value" />
+	  	<param name="category" type="list" label="Category" defaultValue="1st" onchange="refresh">
+		  <option value="all" label="all" />
+		  <option value="1st" label="First category" />
+		  <option value="2nd" label="Second category" />
+		  <option value="3rd" label="Third category" />
+		</param>		  
+	</widgetparams>
+	<widgetbody>
+		<![CDATA[<div style="border-bottom: 1px solid rgb(203, 203, 203); padding: 4px 0pt 2px; text-align: center;">
+			<a href="http://www.nytimes.com" target="_blank" rel="nofollow">
+		    	<img src="http://graphics8.nytimes.com/images/misc/nyt_logo_stacked.gif" title="New York Times" alt="New York Times" style="border: 0pt none ;"/>
+		    </a>
+		</div>
+		<div style="border-bottom: 2px solid black; padding: 3px 0pt; text-align: center;">
+			<span style="font-size: 12px; line-height: 15px;" class="nytLastUpdate"></spa>
+		</div>
+		<div class="myNYTTuiyo">
+			<table cellspacing="0" cellpadding="0" class="content" style="margin-top: 4px;" width="100%">
+		    	<tbody><tr>
+					<td class="nytItems" width="80%" style="border-right: 1px solid rgb(203, 203, 203); padding: 0pt 6px; vertical-align: top; margin-top: 4px;"></td>
+					<td class="nytVideos" width="20%" style="padding: 0pt 0pt 0pt 7px; vertical-align: top;"></td>
+				</tr></tbody>
+		    </table>
+		</div>]]>
+	</widgetbody>
+	<widgetevents>
+		<onload><![CDATA[ 
+			//Ajax to get Data('load Event'); 
+			$("span.nytLastUpdate").text( $.getTuiyoDate() );
+			$.getFeed({
+			   	url: 'http://www.nytimes.com/services/xml/rss/nyt/GlobalHome.xml',
+			   	success: function(feed){
+			   		$.each(feed.items, function(s, story){
+						if(s<2){
+							$( $("div#"+widget.id).find(".nytItems") ).appendDom([
+								{tagName:'h3',style:'margin: 5px 0pt 0pt; font-size: 20px; line-height: 23px;', childNodes:[
+									{tagName:'a',innerHTML:story.title,style:'font-weight: normal;font-family:Georgia,"Times New Roman",Times,serif;', href:story.link}
+								]},
+								{tagName:'h6', innerHTML:story.dcreator, style:'color: rgb(128, 128, 128); font-family: Arial,Helvetica,sans-serif; font-size: 10px; font-weight: normal; line-height: 12px; margin-top: 2px; margin-bottom: 2px;'},
+								{tagName:'p', className:'nytItemP', innerHTML:story.description, style:"margin: 0pt; color: rgb(51, 51, 51); font-size: 12px; line-height: 15px;" }
+							]);
+						}else{
+						   if(s>2 && s<15){
+								$( $("div#"+widget.id).find(".nytItems") ).appendDom([
+									{tagName:'h6',style:'margin: 5px 0pt 0pt; font-size: 11px; line-height: 23px; border-top: 1px solid #ccc', childNodes:[
+										{tagName:'a',innerHTML:story.title,style:'font-weight: normal;font-family:Georgia,"Times New Roman",Times,serif;', href:story.link}
+									]},
+								]);
+						  }
+						}
+					});
+					$(".nytItemP").find("img").remove();	
+			   	}
+			});
+			
+			//Get VideoReports
+			$.getFeed({
+				url:'http://video.nytimes.com/video/playlist/latest-video/1194811622182/index.html?rss=1',
+				success:function(feed){
+					$.each(feed.items, function(v, video){
+						if(v<4){
+						   // alert($(video.mthumbnail));
+							$( $("div#"+widget.id).find(".nytVideos") ).appendDom([
+								{tagName:'div', align:'center', childNodes:[
+									{tagName:'img', src: $(video.mthumbnail).attr("url") },
+									{tagName:'h5',style:'margin: 0pt 0pt 10px; font-size: 12px; line-height: 15px; font-weight: normal; clear: both;', childNodes:[
+										{tagName:'a', innerHTML:video.title, style:'color: rgb(0, 66, 118); text-decoration: none;', href:video.link }
+									]}
+								]}
+							]);
+						}else{
+							return false;
+						}
+					});
+				}
+			}); 
+		]]></onload>
+		<onedit><![CDATA[
+		    alert('i Am editing' );
+		 	alert( $(this).attr('id') );
+		]]></onedit>
+	</widgetevents>
+</widget>

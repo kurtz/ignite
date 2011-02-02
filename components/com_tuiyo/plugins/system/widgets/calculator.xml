@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  <?xml-stylesheet type="text/xsl" href="tuiyoWidget.xsl" ?> for testing purposes only -->
+<widget version="1.0.0">
+	<widgetdata>
+		<data name="author" content="Livingstone Fultang" />
+		<data name="email" content="livingstone@drstonyhills.com" />
+		<data name="website" content="www.drstonyhills.com" />
+		<data name="description" content="A simple calculator widget" />
+		<data name="version" content="1.0.1" />
+		<data name="keywords" content="news, feeds, feed" />
+		<data name="screenshot" content="components/com_tuiyo/plugins/system/widgets/calculator/calculator64.png" />
+		<data name="autorefresh" content="10" />
+		<data name="allowmultiple" content="true" />
+		<data content="components/com_tuiyo/plugins/system/widgets/calculator/calculator16.png" name="icon/favicon" />
+		<data content="components/com_tuiyo/plugins/system/widgets/calculator/calculator48.png" name="icon/rich" />
+		<data content="My Calculator" name="title" />
+	</widgetdata>
+	<widgetparams>
+		<param name="limit" type="range" label="Number of items to display" defaultValue="10" step="1" min="1" max="25" />
+		<param name="search" type="hidden" defaultValue="" label="Search Field Value" />
+	  	<param name="category" type="list" label="Category" defaultValue="1st" onchange="refresh">
+		  <option value="all" label="all" />
+		  <option value="1st" label="First category" />
+		  <option value="2nd" label="Second category" />
+		  <option value="3rd" label="Third category" />
+		</param>		  
+	</widgetparams>
+	<widgetbody><![CDATA[
+		Calculator
+	]]></widgetbody>
+	<widgetevents>
+		<onload><![CDATA[ 
+			
+		]]></onload>
+		<onedit><![CDATA[
+		    alert('i Am editing' );
+		 	alert( $(this).attr('id') );
+		]]></onedit>
+	</widgetevents>
+</widget>

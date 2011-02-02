@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  <?xml-stylesheet type="text/xsl" href="tuiyoWidget.xsl" ?> for testing purposes only -->
+<widget version="1.0.0">
+	<widgetdata>
+		<data name="author" content="Livingstone Fultang" />
+		<data name="email" content="livingstone@drstonyhills.com" />
+		<data name="website" content="http://www.addictinggames.com" />
+		<data name="description" content="Palisade G2 is an addictive flash game" />
+		<data name="version" content="1.0.1" />
+		<data name="keywords" content="games, entertainment, fun" />
+		<data name="screenshot" content="components/com_tuiyo/plugins/system/widgets/palisadeg2/palisadeg264.png" />
+		<data name="autorefresh" content="10" />
+		<data name="allowmultiple" content="true" />
+		<data content="components/com_tuiyo/plugins/system/widgets/palisadeg2/palisadeg216.png" name="icon/favicon" />
+		<data content="components/com_tuiyo/plugins/system/widgets/palisadeg2/palisadeg248.png" name="icon/rich" />
+		<data content="Plisadeg2" name="title" />
+	</widgetdata>
+	<widgetparams>
+	  	<param name="widgetStyle" type="list" label="Widget style" defaultValue="metal">
+		  <option value="metal" label="Metalic" />
+		</param>		  
+	</widgetparams>
+	<widgetbody><![CDATA[
+		<object width="100%" height="400">
+			<embed src='http://www.addictinggames.com/D78AQSAKQLQWI9/6120.swf' type='application/x-shockwave-flash' width='100%' height='400'></embed>
+		</object>
+		<div algin="center" style="text-align: center;"><a href='http://www.addictinggames.com' target='_blank' title='Play Games'>Play Games at AddictingGames</a><div>
+	]]></widgetbody>
+	<widgetevents>
+		<onload><![CDATA[ ]]></onload>
+		<onedit><![CDATA[
+		    //alert('i Am editing' );
+		 	//alert( $(this).attr('id') );
+		]]></onedit>
+		<onrefresh><![CDATA[ ]]></onrefresh>
+		<onclose><![CDATA[ ]]></onclose>		
+	</widgetevents>
+</widget>
+
+ 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget version="1.0.0">
+	<widgetdata>
+		<data name="author" content="Livingstone Fultang" />
+		<data name="email" content="livingstone@drstonyhills.com" />
+		<data name="website" content="http://www.addictinggames.com" />
+		<data name="description" content="Current news from the Wall Street Journal" />
+		<data name="version" content="1.0.1" />
+		<data name="keywords" content="news, stories, business" />
+		<data name="screenshot" content="components/com_tuiyo/plugins/system/widgets/wsj/wsj64.png" />
+		<data name="autorefresh" content="10" />
+		<data name="allowmultiple" content="true" />
+		<data content="components/com_tuiyo/plugins/system/widgets/wsj/wsj16.png" name="icon/favicon" />
+		<data content="components/com_tuiyo/plugins/system/widgets/wsj/wsj48.png" name="icon/rich" />
+		<data content="WSJ Top stories" name="title" />
+	</widgetdata>
+	<widgetparams>
+		<param name="limit" type="range" label="Number of items to display" defaultValue="10" step="1" min="1" max="25" />
+		<param name="search" type="hidden" defaultValue="" label="Search Field Value" />
+	  	<param name="category" type="list" label="Category" defaultValue="1st" onchange="refresh">
+		  <option value="all" label="all" />
+		  <option value="1st" label="First category" />
+		  <option value="2nd" label="Second category" />
+		  <option value="3rd" label="Third category" />
+		</param>		  
+	</widgetparams>
+	<widgetstyle></widgetstyle>
+	<widgetbody>
+		<![CDATA[ <div style="border-top: 0px solid rgb(180, 157, 73);">
+			<span>
+				<div style="padding: 2px 0pt 2px 5px; text-align: left; font-family: arial,sans-serif; font-size: 90%; color: rgb(153, 153, 153);" class="wsjLastUpdate"></div>
+	        </span>
+			<div style="margin: 5px 5px 0pt;"><a href="http://online.wsj.com/public/us" target="_blank" rel="nofollow">
+				<img src="http://online.wsj.com/img/myYahooWSJlogo.gif"/></a>
+			</div>
+			<table cellspacing="0" cellpadding="0" class="main_table" width="100%">
+			    <tbody><tr>
+		            <td width="60%" valign="top" style="padding: 5px 10px 5px 5px;" rowspan="2">
+						<div style="border-top: 4px solid rgb(193, 211, 224); padding: 6px 0pt 8px 6px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 16px; line-height: 18px; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(66, 66, 66); margin-top: 10px;">
+                        	Top and Recent Stories
+                    	</div>
+						<div class="wsjItems"></div>					
+					</td>
+		            <td width="40%" valign="top" style="padding: 5px;">
+						<div style="border-top: 4px solid rgb(193, 211, 224); padding: 6px 0pt 8px 6px; font-family: Arial,Helvetica,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 16px; line-height: 18px; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(66, 66, 66); margin-top: 10px;">
+	                        Older stories
+	                    </div>
+						<div class="wsjItemsOlder"></div>
+                    </td>
+		        </tr><tr>
+		            <td valign="top" align="center"></td>
+		        </tr></tbody>
+			</table>				
+		</div>]]>
+	</widgetbody>
+	<widgetevents>
+		<onload><![CDATA[ 
+			//Get the Top Stories;
+			$("div.wsjLastUpdate").text( $.getTuiyoDate() );
+			$.getFeed({
+			   url: 'http://online.wsj.com/xml/rss/3_7481.xml',
+			   success: function(feed) {
+				   $.each(feed.items, function(s, story){
+				        if(s<5){ 
+					   		$( $("div#"+widget.id).find("div.wsjItems") ).appendDom([
+								{tagName:'div', style:'border-bottom: 1px dashed #ccc; margin-bottom: 8px', childNodes:[
+									{tagName:'h4', childNodes:[
+										{tagName:'a', style:'color:#093D72; display:block; font-weight:normal; font-family:Georgia,"Times New Roman",Times,serif; font-size:16px;font-size-adjust:none;line-height:18px; padding:0 0 4px 6px;text-decoration:none;', 'innerHTML': story.title , 'href':story.link, 'target':'_blank' }
+									]},
+									{tagName:'p', innerHTML: story.description, 'style':'margin-left:5px' }
+								]}
+							]);
+							}else{
+								$( $("div#"+widget.id).find("div.wsjItemsOlder") ).appendDom([
+									{tagName:'div', style:'border-bottom: 1px dashed #ccc; margin-bottom: 3px', childNodes:[
+										{tagName:'h4', childNodes:[
+											{tagName:'a', style:'color:#093D72; display:block; font-weight:normal; font-family:Georgia,"Times New Roman",Times,serif; font-size:16px;font-size-adjust:none;line-height:18px; padding:0 0 4px 6px;text-decoration:none;', 'innerHTML': story.title , 'href':story.link, 'target':'_blank' }
+										]},
+									]}
+								]);
+							}	
+				   });
+			   }
+			});  
+		]]></onload>
+		<onedit><![CDATA[ ]]></onedit>
+		<onrefresh><![CDATA[ ]]></onrefresh>
+		<onclose><![CDATA[ ]]></onclose>
+	</widgetevents>
+</widget>
