@@ -1,6 +1,6 @@
 <div class="windowOverlay">&nbsp;</div>
 <?php if((int)$canPost !== 0 ) : TuiyoEventLoader::preparePlugins("timeline" );  ?>
-	<?php $document = TuiyoAPI::get("document",null); ?>
+	<?php $document = TuiyoAPI::get("document",null); $globalCfg = TuiyoParameter::load("global"); ?>
     <form name="TuiyoStreamUpdate" id="TuiyoStreamUpdate" action="<?php echo( JURI::root().TUIYO_INDEX.'&format=json'); ?>" class="TuiyoForm" method="post">
         <div class="homepagePublisherContainer">
             <div class="statusTools" style="">
@@ -90,7 +90,7 @@
 			        </div>
 				</div>
 	            <div class="tuiyoTableCell" style="width: 18%" align="right">
-	            	<input type="text" class="pchars" name="pchars" style="padding: 8px 0" id="pchars" disabled="disabled" readonly="readonly" value="140" /> 
+	            	<input type="text" class="pchars" name="pchars" style="padding: 8px 0" id="pchars" disabled="disabled" readonly="readonly" value="<?php echo $globalCfg->get("siteUpdateMaxLength", 140) ?>" /> 
 	            </div>
 	            <div class="tuiyoTableCell" style="width: 15%; margin: 3px 0" align="right">
 	            	<button type="submit"><?php echo _('Update')?></button>

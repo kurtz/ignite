@@ -45,25 +45,25 @@
                                    var self = $(this);
                                    var token = $("meta[name=_token]").attr("content") ;
                                    $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':+1, token:'1' }, 
+                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':+1, token:'1'}, 
                                        function(inResponse){
                                     	   $("div#s"+activity.id ).find("a.votes").trigger( "click" );
                                            var divBox = $("div#s"+activity.id ).find("div.likes:eq(0)");
                                            
-                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , activity.id) );
+                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic}] , activity.id) );
                                        },
                                    'json');
-                               } },
+                               }},
                                {tagName:'a', className:'voteDisLike', href:'#', style:'', innerHTML:$.gt.gettext(' dislike '), click:function(e){
                                    e.preventDefault();
                                    var self = $(this);
                                    var token = $("meta[name=_token]").attr("content") ;
                                    $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':-1 , token:'1' }, 
+                                       {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': activity.id , 'svt':-1 , token:'1'}, 
                                        function(inResponse){
                                     	   $("div#s"+activity.id ).find("a.votes").trigger( "click" );
                                            var divBox = $("div#s"+activity.id ).find("div.dlikes:eq(0)");
-                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , activity.id ) );
+                                           $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic}] , activity.id ) );
                                        },
                                    'json');                                        
                                }},
@@ -73,7 +73,7 @@
                                    $("div.commenterDiv").remove();
                                    $( $('<div class="stupidInternetExplorer"></div>').appendDom([
                                        {tagName:'div', className:'commenterDiv', childNodes:[
-                                           { tagName:'form', name:'commentForm'+activity.id, id:'commentForm'+activity.id, action:'index.php', 
+                                           {tagName:'form', name:'commentForm'+activity.id, id:'commentForm'+activity.id, action:'index.php', 
                                              method:'post', className:'TuiyoForm commentForm', submit:function(s){
                                                s.preventDefault();
                                                var text = $('#commentTextArea'+activity.id).val();
@@ -105,13 +105,13 @@
                                                ,'json');
                                                
                                            },childNodes:[
-                                               {tagName:'input', type:'hidden', name:'option', value:'com_tuiyo' },
-                                               {tagName:'input', type:'hidden', value:'timeline', name:'controller' },
-                                               {tagName:'input', type:'hidden', name:'do', value:'addComment' },
-                                               {tagName:'input', type:'hidden', name:'format', value:'json' },
-                                               {tagName:'input', type:'hidden', value:'1', name:$('meta[name=_token]').attr("content") },
-                                               {tagName:'input', type:'hidden', value:$.TuiyoDefines.get('userid') , name:'userid' },
-                                               {tagName:'input', type:'hidden', value:''+activity.id , name: 'inreplyto' },
+                                               {tagName:'input', type:'hidden', name:'option', value:'com_tuiyo'},
+                                               {tagName:'input', type:'hidden', value:'timeline', name:'controller'},
+                                               {tagName:'input', type:'hidden', name:'do', value:'addComment'},
+                                               {tagName:'input', type:'hidden', name:'format', value:'json'},
+                                               {tagName:'input', type:'hidden', value:'1', name:$('meta[name=_token]').attr("content")},
+                                               {tagName:'input', type:'hidden', value:$.TuiyoDefines.get('userid') , name:'userid'},
+                                               {tagName:'input', type:'hidden', value:''+activity.id , name: 'inreplyto'},
                                                
                                                {tagName: 'div', className:'tuiyoTable', childNodes:[
                                                    {tagName: 'div', className:'tuiyoTableRow', style:'width: 86%', childNodes:[
@@ -145,15 +145,15 @@
                                    if(!activity.candelete) return false;
                                    p.preventDefault();
                                    $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                       {'do':'delActivity', 'format':'json', 'controller':'timeline', 'id': activity.id }, 
+                                       {'do':'delActivity', 'format':'json', 'controller':'timeline', 'id': activity.id}, 
                                        function(inResponse){
                                            $("#s"+activity.id).fadeOut("slow");
                                        },
                                    'json');
                                }}
                            ]},                             
-                           {tagName: 'div',className: 'activityBodyText',innerHTML: activity.bodytext },
-                           {tagName: 'div', innerHTML: activity.body },
+                           {tagName: 'div',className: 'activityBodyText',innerHTML: activity.bodytext},
+                           {tagName: 'div', innerHTML: activity.body},
                            {tagName: 'div',className: 'bodyDescr' + ( (activity.isPublic > 0)?' public ': ' private ' ), title: ( (activity.isPublic > 0)? $.gt.gettext('This entry is Public'): $.gt.gettext('This entry is Private') ), childNodes:[
                                {tagName:'span', className:'descrInfo', innerHTML: ' By '},
                                {tagName:'a', href: $.TuiyoDefines.get("profilelink")+'&user='+activity.username, innerHTML:'<span>'+activity.username+' </span>'},
@@ -173,7 +173,7 @@
                                }},         
                            ]}
                        ]},
-                       {tagName:'div', className:'activityStreamItemComments', innerHTML:'' }
+                       {tagName:'div', className:'activityStreamItemComments', innerHTML:''}
                    ]}, 
                    {tagName: 'div',className: 'tuiyoClearFloat'}
                ]}              
@@ -182,7 +182,7 @@
 			commentFormTmpl = function( status ){
 				var tmpl = 
 				[{tagName:'div', className:'commenterDiv', childNodes:[
-					{ tagName:'form', name:'commentForm'+status.statusID, id:'commentForm'+status.statusID, action:'index.php', 
+					{tagName:'form', name:'commentForm'+status.statusID, id:'commentForm'+status.statusID, action:'index.php', 
 					  method:'post', className:'TuiyoForm commentForm', submit:function(s){
 						s.preventDefault();
 						var text = $('#commentTextArea'+status.statusID).val();
@@ -212,13 +212,13 @@
 						,'json');
 						
 					},childNodes:[
-					    {tagName:'input', type:'hidden', name:'option', value:'com_tuiyo' },
-						{tagName:'input', type:'hidden', value:'timeline', name:'controller' },
-						{tagName:'input', type:'hidden', name:'do', value:'addComment' },
-						{tagName:'input', type:'hidden', name:'format', value:'json' },
-						{tagName:'input', type:'hidden', value:'1', name:$('meta[name=_token]').attr("content") },
-						{tagName:'input', type:'hidden', value:$.TuiyoDefines.get('userid') , name:'userid' },
-						{tagName:'input', type:'hidden', value:''+status.statusID , name: 'inreplyto' },
+					    {tagName:'input', type:'hidden', name:'option', value:'com_tuiyo'},
+						{tagName:'input', type:'hidden', value:'timeline', name:'controller'},
+						{tagName:'input', type:'hidden', name:'do', value:'addComment'},
+						{tagName:'input', type:'hidden', name:'format', value:'json'},
+						{tagName:'input', type:'hidden', value:'1', name:$('meta[name=_token]').attr("content")},
+						{tagName:'input', type:'hidden', value:$.TuiyoDefines.get('userid') , name:'userid'},
+						{tagName:'input', type:'hidden', value:''+status.statusID , name: 'inreplyto'},
 						
 						{tagName: 'div', className:'tuiyoTable', childNodes:[
 							{tagName: 'div', className:'tuiyoTableRow', childNodes:[
@@ -244,7 +244,7 @@
 					{tagName:'div', className:'tuiyoTableRow', childNodes:[{tagName:'div', className:'tuiyoTableCell'},
 						{tagName:'div', className:'tuiyoTableCell', style:'width: 10%', childNodes:[
 							{tagName:'div', className:'activityStreamItemUserImage36', childNodes:[
-								{tagName:'img', width:'35', style:'width: 35px; height: 35px', src: comment.userPic }
+								{tagName:'img', width:'35', style:'width: 35px; height: 35px', src: comment.userPic}
 							]}
 						]},
 						{tagName:'div', className:'tuiyoTableCell', style:'width: 85%', childNodes:[
@@ -252,14 +252,14 @@
 								innerHTML: '<strong><a href="'+$.TuiyoDefines.get("profilelink")+'&user='+comment.username+'">'
 									+comment.username+'</a> '
 										+comment.statusTime+'</strong> : '
-											+comment.bodyText }
+											+comment.bodyText}
 						]},
 						{tagName:'div', className:'tuiyoTableCell', style:'width: 4%; padding-top: 8px;', align:'center', childNodes:[
 							{tagName:'a', href:'#', rel:'ccommentdel', click:function(c){
 								c.preventDefault();
 								$("#c"+comment.statusID).css("opacity", "0.2");
 								$.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-									{'do':'delComment', 'format':'json', 'controller':'timeline', 'id': comment.statusID }, 
+									{'do':'delComment', 'format':'json', 'controller':'timeline', 'id': comment.statusID}, 
 									function(inResponse){
 										$("#c"+comment.statusID).fadeOut("slow");
 									},
@@ -287,25 +287,25 @@
                                         var self = $(this);
                                         var token = $("meta[name=_token]").attr("content") ;
                                         $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':+1, token:'1' }, 
+                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':+1, token:'1'}, 
                                             function(inResponse){
                                             	$("div#s"+status.statusID ).find("a.votes").trigger( "click" );
                                                 var divBox = $("div#s"+status.statusID ).find("div.likes:eq(0)");
                                                 
-                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , status.statusID ) );
+                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic}] , status.statusID ) );
                                             },
                                         'json');
-                                    } },
+                                    }},
                                     {tagName:'a', className:'voteDisLike', href:'#', style:'', innerHTML:$.gt.gettext(' dislike'), click:function(e){
                                         e.preventDefault();
                                         var self = $(this);
                                         var token = $("meta[name=_token]").attr("content") ;
                                         $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':-1 , token:'1' }, 
+                                            {'do':'addVote', 'format':'json', 'controller':'timeline', 'sid': status.statusID , 'svt':-1 , token:'1'}, 
                                             function(inResponse){
                                             	$("div#s"+status.statusID ).find("a.votes").trigger( "click" );
                                                 var divBox = $("div#s"+status.statusID ).find("div.dlikes:eq(0)");
-                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic }] , status.statusID ) );
+                                                $(divBox).appendDom( voterLinks([{"userID":inResponse.userID, "userPic":inResponse.userPic}] , status.statusID ) );
                                             },
                                         'json');                                        
                                     }},
@@ -315,7 +315,7 @@
                                         $("div.commenterDiv").remove();
                                         $( $('<div class="stupidInternetExplorer"></div>').appendDom([
                                             {tagName:'div', className:'commenterDiv', childNodes:[
-                                                { tagName:'form', name:'commentForm'+status.statusID, id:'commentForm'+status.statusID, action:'index.php', 
+                                                {tagName:'form', name:'commentForm'+status.statusID, id:'commentForm'+status.statusID, action:'index.php', 
                                                   method:'post', className:'TuiyoForm commentForm', submit:function(s){
                                                     s.preventDefault();
                                                     var text = $('#commentTextArea'+status.statusID).val();
@@ -346,13 +346,13 @@
                                                     ,'json');
                                                     
                                                 },childNodes:[
-                                                    {tagName:'input', type:'hidden', name:'option', value:'com_tuiyo' },
-                                                    {tagName:'input', type:'hidden', value:'timeline', name:'controller' },
-                                                    {tagName:'input', type:'hidden', name:'do', value:'addComment' },
-                                                    {tagName:'input', type:'hidden', name:'format', value:'json' },
-                                                    {tagName:'input', type:'hidden', value:'1', name:$('meta[name=_token]').attr("content") },
-                                                    {tagName:'input', type:'hidden', value:$.TuiyoDefines.get('userid') , name:'userid' },
-                                                    {tagName:'input', type:'hidden', value:''+status.statusID , name: 'inreplyto' },
+                                                    {tagName:'input', type:'hidden', name:'option', value:'com_tuiyo'},
+                                                    {tagName:'input', type:'hidden', value:'timeline', name:'controller'},
+                                                    {tagName:'input', type:'hidden', name:'do', value:'addComment'},
+                                                    {tagName:'input', type:'hidden', name:'format', value:'json'},
+                                                    {tagName:'input', type:'hidden', value:'1', name:$('meta[name=_token]').attr("content")},
+                                                    {tagName:'input', type:'hidden', value:$.TuiyoDefines.get('userid') , name:'userid'},
+                                                    {tagName:'input', type:'hidden', value:''+status.statusID , name: 'inreplyto'},
                                                     
                                                     {tagName: 'div', className:'tuiyoTable', childNodes:[
                                                         {tagName: 'div', className:'tuiyoTableRow', style:'width: 86%', childNodes:[
@@ -393,14 +393,14 @@
                                         p.preventDefault();
                                         $("#s"+status.statusID).css("opacity", "0.2");
                                         $.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-                                            {'do':'delActivity', 'format':'json', 'controller':'timeline', 'id': status.statusID }, 
+                                            {'do':'delActivity', 'format':'json', 'controller':'timeline', 'id': status.statusID}, 
                                             function(inResponse){
                                                 $("#s"+status.statusID).fadeOut("slow");
                                             },
                                         'json');
                                     }}
                                 ]},                         
-                                {tagName: 'div', className: 'bodyText', innerHTML: status.bodyText },
+                                {tagName: 'div', className: 'bodyText', innerHTML: status.bodyText},
                                 {tagName: 'div',className: 'bodyAttachmentPlaceHolder', style:"display: none; cursor: pointer", innerHTML: $.gt.gettext('view attachement')}, 
                                 {tagName: 'div',className: 'bodyDescr' + ( (status.data.isPublic > 0)?' public ': ' private ' ), title: ( (status.data.isPublic > 0)? $.gt.gettext('This entry is Public'): $.gt.gettext('This entry is Private') ), childNodes:[
                                     {tagName:'span', className:'descrInfo', innerHTML: ' By '},
@@ -421,7 +421,7 @@
                                     }}
                                 ]}
                             ]},
-                            {tagName:'div', className:'activityStreamItemComments', innerHTML:'' }
+                            {tagName:'div', className:'activityStreamItemComments', innerHTML:''}
                         ]},
                         {tagName: 'div',className: 'tuiyoClearFloat'}
                     ]}
@@ -433,7 +433,7 @@
 				for(i=0; i<users.length; i++){
 					voterImgs[i] = {tagName:'div', style:'; float:left;width: 38px; height: 38px', childNodes:[
 						{tagName:'a', href: $.TuiyoDefines.get('profilelink')+'&pid='+users[i].userID, childNodes:[
-							{tagName:'img', style:'padding: 2px', src: users[i].userPic }
+							{tagName:'img', style:'padding: 2px', src: users[i].userPic}
 						]}
 					]} ;
 					if(parseInt(users[i].userID) === parseInt( $.TuiyoDefines.get("userid") )  ){
@@ -443,7 +443,7 @@
 							var token = $("meta[name=_token]").attr("content") ;
 							e.preventDefault();
 							$.post('index.php?option=com_tuiyo&'+$("meta[name=_token]").attr("content")+'=1',
-								{'do':'removeVote', 'format':'json', 'controller':'timeline', 'sid': statusID , 'svt':0 , token:'1' }, 
+								{'do':'removeVote', 'format':'json', 'controller':'timeline', 'sid': statusID , 'svt':0 , token:'1'}, 
 								function(inResponse){
 									$(self).parent().remove();
 								},
@@ -496,13 +496,13 @@
 								runPlugin(command[1])
 							}) ;
 							loadedPlugins[command[1]] = $("#plugin-"+[command[1] ]).val();
-						}else{ runPlugin( command[1]); } return true;
-					} else { return false }
+						}else{runPlugin( command[1]);}return true;
+					} else {return false}
 				}
 			},
 			runPlugin = function( plugin ){
 				$("#psubmit").attr('disabled' , true );
-				$("#TuiyoStreamUpdate").trigger( plugin ); return false;
+				$("#TuiyoStreamUpdate").trigger( plugin );return false;
 			},
 			showReport 	= function(report, reportType){
 				if(typeof reportType ==='undefined') reportType = 'message';
@@ -528,7 +528,7 @@
 				
 				if (linked) {
 					if (linked.length > 0) {
-						if( $.fn.oembed.isAvailable( linked[0] ) ){return linked[0];}else{ return null; }
+						if( $.fn.oembed.isAvailable( linked[0] ) ){return linked[0];}else{return null;}
 					} else {
 						return null;
 					}
@@ -538,8 +538,8 @@
  				var text = $('#'+textFieldId).val();
  				var textLength = text.length;
  				if (textLength > limit) {			
- 					$('#'+ textFieldId).val(text.substr(0, limit)); return false;
- 				}else { $('#'+ infoBox).val( (limit - textLength) ); return true; 
+ 					$('#'+ textFieldId).val(text.substr(0, limit));return false;
+ 				}else {$('#'+ infoBox).val( (limit - textLength) );return true; 
 				}
  			};
 		return {
@@ -598,14 +598,14 @@
 						if(settings.sinceID>0){
 							settings.clearPrevious = false;
 						}else{
-							intervalCounter=setInterval(function(){ TuiyoStream.load( settings ) }, settings.loadInterval*1000)
+							intervalCounter=setInterval(function(){TuiyoStream.load( settings )}, settings.loadInterval*1000)
 						}
 					}
 				}
 				
 				$.getJSON($.TuiyoDefines.get("siteIndex")+'?'+$('meta[name=_token]').attr("content")+'=1' + addQuery+filter+source+channel+realtime+mention+"&controller=timeline&format=json" ,
 					{"option":"com_tuiyo", "controller":"timeline", "paginate" : settings.paginateItems, "limitstart": settings.limitstart,
-					 "userID": (!settings.userID)? $.TuiyoDefines.get('userid'):settings.userID, "format":"json"   },
+					 "userID": (!settings.userID)? $.TuiyoDefines.get('userid'):settings.userID, "format":"json"},
 					function(inResponse){						
 						//$("#ptext").val("");
 						$("#psubmit").attr('disabled' , true );
@@ -866,7 +866,7 @@
 					var $value = $(this).val();
 					//alert( $value );
 					$("#userActivityStream").html('<img src="components/com_tuiyo/client/default/images/loading2.gif" style="margin-top: 8px" />' );
-                    $("#userActivityStream").TuiyoStreamLoad({source: $value });
+                    $("#userActivityStream").TuiyoStreamLoad({source: $value});
 				});
 				
 				$(".sharePrivacy a[rel=addParticipant]").bind("click", function(e){
@@ -914,8 +914,8 @@
 											}
 										}}
 									]},
-									{tagName:'div',className:'tuiyoTableCell', style:'width: 90%; padding-left: 5px', innerHTML: suggested.rName },
-									{tagName:'div', className:'tuiyoClearFloat' }
+									{tagName:'div',className:'tuiyoTableCell', style:'width: 90%; padding-left: 5px', innerHTML: suggested.rName},
+									{tagName:'div', className:'tuiyoClearFloat'}
 								]).appendTo( $(rslt) );
 								
 							});
@@ -957,7 +957,8 @@
 				
 				$("#ptext").bind("keyup", function(){
 					var text = $(this).val(),
-					    provider = getProviderLink( text );
+					    provider = getProviderLink( text ),
+                                                      nLimit     = $.TuiyoDefines.get("siteupdatelimit");
 					if(provider){
 						//alert( provider );
 						$("div#embedable").oembed( provider , settings.attachmentCnfg );
@@ -965,13 +966,14 @@
 					}else{
 						$("div#embedable").hide();
 					}
-					limitChars('ptext', 140, 'pchars');
+					limitChars('ptext', nLimit, 'pchars');
 				});
 				$("#"+settings.postFormId).submit(function(e){
 					e.preventDefault();
-					var text = $('#ptext').val();
+					var text = $('#ptext').val(),
+                                                  nLimit     = $.TuiyoDefines.get("siteupdatelimit");
 					
-					if(!limitChars('ptext', 140, 'pchars') ) return false;
+					if(!limitChars('ptext', nLimit, 'pchars') ) return false;
 					
 					var statusHasProvider = getProviderLink( text );
 					
