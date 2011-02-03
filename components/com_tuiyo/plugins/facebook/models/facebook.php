@@ -46,8 +46,7 @@ class FacebookServiceModelFacebook Extends JModel{
 		$table->name 		= "facebook";
 		$table->type 		= "service";
 		$table->userid		= (int)$userid;
-		$table->privacy 	= '%p00%';
-		$table->lastupdated = date('Y-m-d');
+		$table->privacy               = '%p00%';
 		
 		//get parameters;
 		$registry	= new JRegistry();
