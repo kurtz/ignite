@@ -35,7 +35,7 @@ class TuiyoPluginDiggTimeline extends TuiyoEventsListener {
         $aModel = TuiyoLoader::model("applications", true);
         $tModel = TuiyoLoader::model("timeline", true);
         $aUser = TuiyoAPI::get("user", null);
-        $aDocument = TuiyoAPI::get("document", null);
+
 
         //Get the parameters of a single user application/service
         $aParams = $aModel->getSingleUserPlugin($aUser->id, "digg");
@@ -53,7 +53,7 @@ class TuiyoPluginDiggTimeline extends TuiyoEventsListener {
         }
         $feedURL = "http://digg.com/" . $diggUsername . ".rss";
 
-        $lastupdate = $aParams->get("lastupdated");
+        $lastupdate = $aParams->get("lastupdated", 0);
         $feedData = JFactory::getXMLParser("rss", array("rssUrl" => $feedURL));
 
         if (empty($feedData)) {
@@ -103,12 +103,13 @@ class TuiyoPluginDiggTimeline extends TuiyoEventsListener {
                 "type" => "diggrss"
             );
             $i++;
+            
             //echo (int)strtotime($date)."<br />" ;
-            //$tModel->setStatus( $aUser->id, $statusUpdate, "rss", array(), $date );
+            $tModel->setStatus( $aUser->id, $statusUpdate, "diggrss", array(), $date );
         }
         if ($i > 0) {
             //echo $newupdate;
-            $aModel->setUserPluginLastUpdateID($aUser->id, "feed", $newupdate);
+            $aModel->setUserPluginLastUpdateID($aUser->id, "digg", $newupdate);
         }
 
         return true;
