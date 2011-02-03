@@ -13,9 +13,8 @@
 	<params group="plugin"></params>
 	
 	<params group="acl" default="">
-		<param name="service" label="Add Facebook" default="access" />
+		<param name="service" label="Add Facebook" default="access, read, moderate" />
 		<param name="command" label="Post to Facebook" default="access" />
-		<param name="application" label="FB Application" default="access, view, read, create, moderate" />
 	</params>
 	
 	<params group="privacy">

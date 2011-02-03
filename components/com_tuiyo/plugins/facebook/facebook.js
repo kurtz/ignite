@@ -26,7 +26,9 @@
 					FB.login(function(response){
 						if(response.session){
 							var $form =  $("form[name=facebookInstallerForm]");
+							alert(FB.getSession().access_token);
 							$('<input type="hidden" name="params[fbid]" value="'+FB.getSession().uid+'" />').appendTo( $("form[name=facebookInstallerForm]") );
+							$('<input type="hidden" name="params[access_token]" value="'+response.session.access_token+'" />').appendTo( $("form[name=facebookInstallerForm]") );
 							$.post($form.attr('action'), $form.serialize(),function(jsonResponse){
 								if(jsonResponse.code !== 200){ alert('Could not add the Facebook Service') 
 									}else{

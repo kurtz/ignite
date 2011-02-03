@@ -57,6 +57,50 @@ class FacebookServiceController Extends TuiyoControllerServices{
 		$this->globalCfg = $globalCfg;
 	}
 	
+	public function display(){
+		
+		$aModel 	= TuiyoLoader::model("applications" , true );
+		$tModel 	= TuiyoLoader::model("timeline", true );
+		$aUser		= TuiyoAPI::get("user", null);
+		$aDocument  = TuiyoAPI::get("document", null);
+		$view 		= $this->getView("facebook", "html");
+		
+		//Get the parameters of a single user application/service
+		$aParams 	= $aModel->getSingleUserPlugin($aUser->id , "facebook" );
+		$fbid 		= $aParams->get('fbid');
+		
+		if(!is_object($aParams) || empty($fbid)){
+			$this->setRedirect( TUIYO_INDEX );
+			$this->redirect(); //
+			return true; //So it does not fail everyone
+		}
+		
+		$facebook = new Facebook(array(
+			'appId'  => $aParams->get('siteFBAppId'),
+			'secret' => $aParams->get('siteFBSecret'),
+			'cookie' => true,
+			'domain' => 'localhost.dev'
+		));
+		
+		Facebook::$CURL_OPTS[CURLOPT_CAINFO] = TUIYO_PLUGINS.DS.'facebook'.DS.'connect'.DS."cacert.pem" ;
+		
+		$accessToken = $aParams->get('access_token');
+		 
+		try {
+			$fbuser = $facebook->api("/".$fbid, 'get', array("access_token"=>$accessToken) );
+		    $data 	= $facebook->api("/".$fbid."/feed", 'get', array("access_token"=>$accessToken) );
+		    
+		    $view->assignRef("fbuser", $fbuser);
+		    $view->assignRef("data", $data);
+		    
+		    
+		    return $view->display();
+		    
+		} catch (FacebookApiException $e) {
+		    JError::raiseError($e);
+		}
+	}
+	
 	public function getAppKey(){
 		$auth 	= TuiyoAPI::get( 'authentication' );		//Must be loggedIN
 		$auth->requireAuthentication();
@@ -113,6 +157,8 @@ class FacebookServiceController Extends TuiyoControllerServices{
 		
 		$model		= &$this->getModel("facebook" );
 		$view		= &$this->getView("facebook", "json");
+		
+		//wee need to capture the authorization code?
 		
 		$resp = array(
 			"code" 	=> 505, 

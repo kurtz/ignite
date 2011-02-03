@@ -58,41 +58,35 @@
 		$("#userActivityStream").TuiyoStreamLoad();
 	});
 })(jQuery);
-
-
 (function($){
-	var TuiyoAvatar = function(){
-		return {
-			init : function( groupID ){
-				var self = $(this) ;
-				var form = $(this).parent('form');
-				var AsyncPath = $.TuiyoDefines.get("interfaceIncPath") + "/asyncupload/";
-				
-				//Hide the submit button if we are using ajax
-				$("#uploadImage").hide();
-				
-				$.getScript( AsyncPath + 'swfupload.js', function(){
-					$.getJSON('index.php?'+$.TuiyoDefines.get("token")+"=1",
-		                {'option': 'com_tuiyo', 'do': 'getSessionId', 'controller': 'resources', 'format': 'json'},
-	            		function(resource){
-							$.getScript( AsyncPath + 'asyncupload.js', function(){
-								$(self).makeAsyncUploader({
-						            upload_url: $.TuiyoDefines.get("componentIndex")+"&controller=resources&do=uploadResources&format=json&resourceType=gavatar&groupID="+groupID,
-									post_params: resource.post , 
-									//debug: true,
-									file_size_limit : "5 MB",
-									file_types : "*.jpg; *.jpeg; *.png; *.gif;*.JPEG;*.PNG;*.GIF",																	
-						            flash_url: AsyncPath+'swfupload.swf',
-						            button_image_url: AsyncPath+'blankButton.png'
-						        });
-							})
-						},
-					"json");
+	$.fn.TuiyoAvatar = function(groupID){
+		return this.each(function(groupID){
+			var
+			$self 			= $(this), 
+			$token 			= $.TuiyoDefines.get("token") ,
+			$tuiyoAyncPath 	= $.TuiyoDefines.get("interfaceIncPath") + "/asyncupload/";
+			$("#uploadImage").hide();
+			$.getScript( $tuiyoAyncPath+'swfuploaderrorhandlers.js', function(){
+			$.getScript( $tuiyoAyncPath+'swfuploadfileprogress.js', function(){
+			$.getScript( $tuiyoAyncPath+'swfuploadqueue.js', function(){
+			$.getScript( $tuiyoAyncPath+'swfupload.js', function(){
+				$.getJSON('index.php?'+$token+"=1",{'option': 'com_tuiyo', 'do': 'getSessionId', 'controller': 'resources', 'format': 'json'},function(resource){
+					$.getScript( $tuiyoAyncPath+'asyncupload.js', function(){		
+						$($self).makeAsyncUploader({
+				            upload_url: $.TuiyoDefines.get("componentIndex")+"&controller=resources&do=uploadResources&format=json&resourceType=gavatar&groupID="+groupID+"&jsid="+resource.sid+"&jsname="+resource.sname,
+							post_params: resource.post, 
+							debug: false,
+							file_size_limit : "15 MB",
+							file_types : "*.jpg; *.jpeg; *.png; *.gif;*.JPEG;*.PNG;*.GIF",																	
+				            flash_url: $tuiyoAyncPath+'swfupload.swf',
+				            button_image_url: $tuiyoAyncPath+'blankButton.png'
+				        });
+					});
 				});
-			}
-		}
-	}();
-	$.fn.extend({
-		TuiyoAvatar : TuiyoAvatar.init
-	})
+			});
+			});
+			});
+			});
+		});
+	}
 })(jQuery);

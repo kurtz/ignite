@@ -562,6 +562,7 @@ class Facebook
    * @throws FacebookApiException
    */
   protected function _oauthRequest($url, $params) {
+  	
     if (!isset($params['access_token'])) {
       $params['access_token'] = $this->getAccessToken();
     }
@@ -591,7 +592,7 @@ class Facebook
     }
 
     $opts = self::$CURL_OPTS;
-    $opts[CURLOPT_SSL_VERIFYPEER] = false;
+    $opts[CURLOPT_SSL_VERIFYPEER] = true;
     
     if ($this->useFileUploadSupport()) {
       $opts[CURLOPT_POSTFIELDS] = $params;

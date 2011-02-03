@@ -210,15 +210,20 @@ class TuiyoModelWidgets extends JModel{
 		
 		$appModel 		= TuiyoLoader::model("applications", true);
 		$sysPlugins		= $appModel->getAllUserPlugins($user->id, "services", false);
+		$sysPlugins 	= array_merge($sysPlugins, array("system"));
 		
 		$widgetData  	= array();
 		$widgetFiles 	= array();
 		
 		foreach($sysPlugins as $plugin){
 			//If the plugin has a widget file;
-			$widgetFile = TUIYO_PLUGINS.DS.$plugin.DS.'widget.xml';
-			if(file_exists($widgetFile)){
-				$widgetFiles[] = $widgetFile;
+			$widgetFlder= TUIYO_PLUGINS.DS.$plugin.DS.'widgets';
+			$_widgetFiles= JFolder::files($widgetFlder, ".xml", false, true);
+			
+			foreach($_widgetFiles as $widgetFile){
+				if(file_exists($widgetFile)){
+					$widgetFiles[] = $widgetFile;
+				}
 			}
 		}
 		

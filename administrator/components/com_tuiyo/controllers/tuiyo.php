@@ -47,6 +47,9 @@ class TuiyoControllerTuiyo extends JController
 	 
 	 public function addNewCategory(){
 	 	
+	 	// Check for request forgeries
+		JRequest::checkToken() or jexit( 'Invalid Token' );
+		
 	 	$model 		= TuiyoLoader::model("categories", true);
 	 	$data  		= JRequest::get( "post" );
     	$referer	= JRequest::getVar( "HTTP_REFERER" , null, "SERVER" );//Referer
@@ -55,15 +58,40 @@ class TuiyoControllerTuiyo extends JController
 		$msg 		= "Category data saved successfully";
 		$mType		= "notice";
  
+		if(empty($data['cattitle'])||empty($data['catslug'])){
+			$this->setRedirect($referer, _("Title and slug cannot be empty"), "error" );
+    		$this->redirect();
+		}
+		//Add the category
 	 	if(!$model->addCategory( $data ) ){
 			$msg 	= "Could not save category data";
 			$mType	= "error";
 		}
 	 	
 	 	$this->setRedirect($referer, $msg, $mType );
-    	$this->redirect();
-	 	
+    	$this->redirect();	
 	 }
+	 
+	 
+	 public function removeCategory(){
+	 	
+	 	$model 		= TuiyoLoader::model("categories", true);
+	 	$catID  	= JRequest::getInt( "catid", null, '', 'int' );
+    	$referer	= JRequest::getVar( "HTTP_REFERER" , null, "SERVER" );//Referer
+    	
+    	//Notice messages;	
+		$msg 		= "Category data successfully deleted";
+		$mType		= "notice";
+ 
+	 	if(!$model->removeCategory( (int)$catID ) ){
+			$msg 	= "Could not remove category data";
+			$mType	= "error";
+		}
+	 	
+	 	$this->setRedirect($referer, $msg, $mType );
+    	$this->redirect();	
+	 }
+	
 	
 	 
 	/**

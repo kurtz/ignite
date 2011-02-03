@@ -59,7 +59,7 @@ class TuiyoModelCategories extends JModel{
    		
    		$catTree->title			= trim( $data['cattitle'] );
    		$catTree->parent		= (int)$data['catpid'];
-   		$catTree->slug			= trim( $data['catslug'] );
+   		$catTree->slug			= strtolower( str_replace(array(" ","(",")","&","%",",","#" ), "-", trim( $data['catslug'] ) ) );
    		$catTree->creator		= (int)$catCreator->id ;
    		$catTree->description 	= trim($data['catdescription']);
    		$catTree->dateadded		= date('Y-m-d H:is');
@@ -72,6 +72,24 @@ class TuiyoModelCategories extends JModel{
 			return false;
 		}
    		
+		//Restructure the Tree;
+		$catTree->restructureTree();
+   		
+   		return true;
+   	}
+   	
+   	public function removeCategory( $catid ){
+   		
+   		$catTree 		= TuiyoLoader::table("categories" , true);
+   		
+   		if(empty($catid)){
+   			return false;
+   		}
+
+		if(!$catTree->deleteCategory( (int)$catid )){
+			JError::raiseError(TUIYO_SERVER_ERROR, $catTree->getError());
+			return false;
+		}
 		//Restructure the Tree;
 		$catTree->restructureTree();
    		

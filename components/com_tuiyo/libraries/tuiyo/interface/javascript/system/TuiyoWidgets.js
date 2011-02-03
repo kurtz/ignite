@@ -3,10 +3,10 @@
 		var 
 			layoutData = [], 
 			settings = {
-				widgetContext 	: $(".widgetWallAColumns"),
-				widgetBox		: $(".tuiyoWidget"),
-				widgetColumns 	: $(".widgetColumn"),
-				widgetHandle 	: $(".tuiyoWidgetHead"),
+				widgetContext 	: ".widgetWallAColumns",
+				widgetBox		: ".tuiyoWidget",
+				widgetColumns 	: ".widgetColumn",
+				widgetHandle 	: ".tuiyoWidgetHead",
 				widgetDefColor 	: "red"
 			},
 			widgetTemplate = function( widget ){
@@ -14,7 +14,7 @@
 				return $("<div class=\"tuiyoWidget\">").appendDom([
 					{tagName:'div', className:'tuiyoWidgetHead', childNodes:[
 						{tagName:'a', className:'collapse', href:'#', innerHTML:'collapse'},
-						{tagName:'strong', style:'font-size:13px', innerHTML: widget.title },
+						{tagName:'h3', innerHTML: widget.title },
 						{tagName:'a', className:'remove', href:'#', innerHTML:'remove'},
 						{tagName:'a', className:'edit', href:'#', innerHTML:'edit'},
 						{tagName:'div', className:'tuiyoClearFloat'}
@@ -63,9 +63,7 @@
 			getWidgetSetting = function( widgetID ){},
 			makeWidgetSortable = function( settings ){
 				//settings = TuiyoWidget.settings;
-				alert('start making sortable');
-				alert(settings.toString());
-				$(".tuiyoWidget").find(".tuiyoWidgetHead").css({
+				$(settings.widgetBox).find( settings.widgetHandle ).css({
 					cursor: 'move'
 				}).mousedown(function (e) {
 					$(this).parent().css({
@@ -76,10 +74,10 @@
 						$(this).parent().css({width:''});
 					}
 				});
-			   $(".widgetColumn").sortable({	    
-			        items: $(".tuiyoWidget"),
-			        connectWith: ".widgetColumn",
-			        handle: ".widgetHead",
+			   $(settings.widgetColumns).sortable({	    
+			        items: $(settings.widgetBox),
+			        connectWith: $(settings.widgetColumns),
+			        handle: settings.widgetHandle,
 			        placeholder: 'widgetPlaceholder',
 			        forcePlaceholderSize: true,
 			        revert: 200,
@@ -91,7 +89,7 @@
 			        },
 			        stop: function (e,ui) {
 			            $(ui.item).css({width:''}).removeClass('dragging');
-			            $(".widgetColumn").sortable('enable');
+			            $(settings.widgetColumns).sortable('enable');
 			        }
 			    });			
 			},
@@ -137,7 +135,6 @@
 					return widgetRegisterEvents(widget, $.data(document, widget.id) );
 				}
 				else {
-					//alert(widget.url);
 					$.ajax({
 						type: "GET",
 						url: widget.url,
@@ -185,6 +182,7 @@
 			widgetOnClose = function(wID, wData){},
 			widgetOnLoad = function(wID, wData){},			
 			widgetRegisterEvents = function(widget, wData){	
+				TuiyoWidget.widgetTize();
 				$("div#"+widget.id).find('.tuiyoWidgetContent').html( wData.widgetBody );
 				$.each( wData.wEvents , function(key, val){
 					$("div#"+widget.id).bind(key, function(){
@@ -224,27 +222,31 @@
 								$("#closeContentPanel").unbind("click").bind("click", function(e){
 									e.preventDefault(); $("div.widgetWallsettingsBox").slideUp( "slow" );
 								});
-								$("a.addWidget").unbind("click").bind("click", function(e){
-									
-									var selfA		= $(this);
-									var widgetXML 	= $(selfA).attr("rel" );
-									var widgetTitle = $(selfA).attr("title" ); 
-									var widgetObj 	= {'id':"w12314", 'title':widgetTitle, 'color': settings.widgetDefColor , 'url': widgetXML , params:{} } ;
-									
-									//Add this widget to the first column
-									layoutData[0].data[0].widgetData[layoutData[0].data[0].widgetData.length] = widgetObj ;	
-									
-									$( widgetTemplate( widgetObj ) )
-									.appendTo( $("div.widgetColumn:first") )
-									.addClass( widgetObj.color+"Widget" )
-									.attr("id",  widgetObj.id )
-									.bind("widgetStart", function(){
-										widgetStartEvent(  widgetObj )
-									}).trigger("widgetStart");
-									TuiyoWidget.widgetTize( settings );
-									
-									$("div.widgetWallsettingsBox").slideUp( "slow" );
-								})								
+								
+								$.each( $("a.addWidget"), function(t, widgetTab){
+									//alert( $(widgetTab).attr("rel") );
+									$(widgetTab).unbind("click").bind("click", function(e){
+										
+										var selfA		= $(this);
+										var widgetXML 	= $(selfA).attr("rel" );
+										var widgetTitle = $(selfA).attr("title" ); 
+										var widgetObj 	= {'id':"w"+widgetTitle.split(' ').join(''), 'title':widgetTitle, 'color': settings.widgetDefColor , 'url': widgetXML , params:{} } ;
+										
+										//Add this widget to the first column
+										//layoutData[0].data[0].widgetData[layoutData[0].data[0].widgetData.length] = widgetObj ;	
+										
+										$( widgetTemplate( widgetObj ) )
+										.appendTo( $("div.widgetColumn:first") )
+										.addClass( widgetObj.color+"Widget" )
+										.attr("id",  widgetObj.id )
+										.bind("widgetStart", function(){
+											widgetStartEvent(  widgetObj );
+										}).trigger("widgetStart");
+										
+										
+										$("div.widgetWallsettingsBox").slideUp( "slow" );
+									});	
+								});
 								loaded = true;
 							} 
 						, 'json');
@@ -268,14 +270,15 @@
 								if(typeof widget == 'undefined') return
 								$( widgetTemplate( widget ) ).appendTo( $("div#"+column.id) ).addClass( widget.color+"Widget" ).attr("id", widget.id )
 								.bind("widgetStart", function(){
-									widgetStartEvent(widget)
+									widgetStartEvent(widget);
+									TuiyoWidget.widgetTize();
 								});
 							})
 						});
 						$('<div class="tuiyoClearFloat" >').appendTo($("#widgetWallAColumns"));
 						$(".tuiyoWidget").trigger("widgetStart");
 					
-						TuiyoWidget.widgetTize( settings );
+						
 					}).appendDom([
 						{tagName:'a',className:'closeTab', innerHTML:'close Tab', click:function(){
 							var selfA = $(this);
@@ -299,7 +302,8 @@
 			getLayoutData : function(){ return layoutData; },
 			setLayoutData : function( data ){ layoutData = data },
 			getSettings : function(){return settings; },
-			widgetTize: function( settings ){
+			widgetTize: function(){
+				
 				makeWidgetSortable( settings );
 				addWidgetControls( settings );
 				addWidgetJqueryJs( settings );

@@ -6,14 +6,14 @@
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=editpermissions' );?>">Permission &amp; Roles</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&amp;do=getGroups' );?>">Member Groups</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&do=moderator' );?>">Moderation Queue</a></li>
-			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=languagemgr' ); ?>">Language Manager</a></li>						
+			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=languagemgr' ); ?>">Language Manager</a></li>
+			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&do=filemanager' );?>">File Manager</a></li>						
 		</ul>
 	</li>
     <li class="parent"><a href="#">Resources</a>
 		<ul class="child1">
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&do=moderator&action=announcements' );?>">Announcements</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=statistics' ); ?>">Community Statistics</a></li>
-			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=communityManagement&do=filemanager' );?>">File Manager</a></li>
 			<li><a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=reportBug' ); ?>">Bug Reports</a></li>
 		</ul>
 	</li>

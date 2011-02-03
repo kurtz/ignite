@@ -459,7 +459,7 @@
 				if(text.search(new RegExp(/<\/a>/i)) > -1){
 					return text;
 				}
-		        var regExp = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
+		        var regExp = /(\s(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
 		        var linked = text.replace(regExp, "<a class=\"linker\" href=\"$1\">$1</a>");
 				return linked;
 			},

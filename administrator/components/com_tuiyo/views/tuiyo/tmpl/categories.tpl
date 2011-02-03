@@ -46,11 +46,11 @@ function displayNodeRow( $nodes, $index = 0 ){
             	<?php for($i=0; $i<$index+1; $i++) :?><a class="indenter">a</a><a href="#"><?php endfor; echo $node['title']; ?></a> 
             </div> <!---//user name -->
         	<div style="width: 10%;" class="tuiyoTableCell"><a href="#"><?php echo $node['slug']?></a></div> <!---//user email -->
-          	<div style="width: 25%; overflow: hidden" class="tuiyoTableCell"><nobr><?php echo $node['description']?></nobr></div> <!---//permission level -->
+          	<div style="width: 25%; overflow: hidden" class="tuiyoTableCell"><nobr><?php echo !empty($node['description'])?$node['description']:"&nbsp;"; ?></nobr></div> <!---//permission level -->
       		<div style="width: 5%;" class="tuiyoTableCell iText <?php if((int)$node["status"] > 0):?> tick <?php else:?> notick <?php endif; ?>" align="center">&nbsp;</div> <!---//Edit -->
-         	<div style="width: 5%;" class="tuiyoTableCell" align="center"><?php echo $node['id']?></div> <!---//delete -->
+         	<div style="width: 5%;" class="tuiyoTableCell" align="center"><?php echo $node['id'] ?></div> <!---//delete -->
           	<div style="width: 5%;" class="tuiyoTableCell" align="center"><?php echo $node['creator']?></div> <!---//Active -->
-         	<div style="width: 6%;" class="tuiyoTableCell clickToRemove iText">&nbsp;</div>
+         	<div style="width: 6%;" class="tuiyoTableCell"><a href="<?php echo JRoute::_(TUIYO_INDEX.'&context=tuiyo&do=removecategory&catid='.$node['id']); ?>" class="iText">remove</a></div>
          	<div class="tuiyoClearFloat"></div>
         </div>
         

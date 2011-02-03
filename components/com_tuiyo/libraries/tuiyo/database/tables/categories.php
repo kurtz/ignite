@@ -62,9 +62,27 @@ class TuiyoTableCategories extends JTable{
 		parent::__construct("#__tuiyo_categories" , "id", $db );
 	}
 	
-	public function deteleCategory( $catID ){
+	public function deleteCategory( $catID ){
 		
-		
+		$dbo	=& $this->_db;
+		//1. Check if it has children;
+		$sql   		= "SELECT * as children FROM #__tuiyo_categories node WHERE parent=".$dbo->Quote( (int)$catID ); 
+	
+   		$dbo->setQuery( $sql );
+   		$children 	= $dbo->loadAssocList();
+   		$failed 	= array( );
+   		if(sizeof($children)>0){
+   			foreach( $children as $key=>$child){
+   				if(!$this->deleteCategory( (int)$child["id"])){
+   					$failed[] = $child["id"];
+   				}
+   			}
+   		}
+   		$this->load( $catID );
+   		if(!$this->delete($catID)){
+   			return false;
+   		}
+   		return true;
 	}
 	
 	

@@ -21,6 +21,6 @@
 		});
 		$(".wysiwyg").wysiwyg();
 		$("#userActivityStream").TuiyoStream();
-		$("#userActivityStream").TuiyoStreamLoad();	
+		$("#userActivityStream").TuiyoStreamLoad({filter:'article'});	
 	})
 })(jQuery);
