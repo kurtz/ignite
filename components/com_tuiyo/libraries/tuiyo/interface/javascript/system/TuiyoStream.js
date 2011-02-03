@@ -522,8 +522,8 @@
 				})
 			};
 			getProviderLink = function(text){
-				
-				var regExp = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
+				//return text;
+				var regExp = /(\s(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
 		        var linked = text.match( regExp );
 				
 				if (linked) {
