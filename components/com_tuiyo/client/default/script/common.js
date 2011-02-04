@@ -17,7 +17,29 @@
 /**
  * All Common Initiators
  */
-(function($){})(jQuery);
+(function($){
+    $(document).ready(function(){
+        $.each( $('.fixScrollTop'), function(i, el){
+        
+        var $fixScrollTop       = $(el).offset().top - parseFloat($(el).css('marginTop')),
+            $fixScrollTopWidth  = $(el).width(),
+            $fixScrollTopHeight = $(el).height();
+            
+        $(window).scroll(function () {
+           var y = $(this).scrollTop();
+            // whether that's below the form
+            if (y >= $fixScrollTop) {
+              // if so, ad the fixed class
+              $(el).addClass('fixed').width($fixScrollTopWidth).height($fixScrollTopHeight);
+            } else {
+              // otherwise remove it
+              $(el).removeClass('fixed');
+            }
+        });
+        });
+ 
+    });
+})(jQuery);
 
 /**
  * Returns a simple Date

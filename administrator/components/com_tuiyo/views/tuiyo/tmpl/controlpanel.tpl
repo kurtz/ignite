@@ -58,14 +58,6 @@
                     </div>
                 </div>
 
-				 <div style="float: left;">
-                    <div class="icon" align="center" title="<?php echo _('Check for updates' ) ;?>">
-                         <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;view=articles')  ?>">
-                            <img alt="#phts"  src="<?php echo $styleDir ?>/images/macros.png" align="middle"  /> 
-                            <span><?php echo _('Updates'); ?></span>
-                        </a>
-                    </div>
-                </div>
                  <div style="float: left;">
                     <div class="icon" align="center" title="<?php echo _('Change the global settings of your site' ) ;?>">
                          <a href="<?php echo JRoute::_( TUIYO_INDEX.'&amp;context=SystemTools&amp;do=globalConfig')  ?>">

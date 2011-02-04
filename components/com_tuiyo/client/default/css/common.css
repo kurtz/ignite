@@ -1,5 +1,6 @@
 /* CSS Document */
 a,div#step1{cursor:pointer}
+.fixed{position:fixed; top:0}
 #TuiyoBackground{float:left;height:100% !important;/*margin-top:43px;*/ position:absolute;width:100%;z-index:-100000;border-top:42px solid transparent}
 .colorPick{max-width:110px;min-height:20px;border:3px solid #000;line-height:20px;cursor:pointer;text-transform:uppercase;}
 .splash-box{background:whiteSmoke none repeat scroll 0px 0px;border:1px solid #D8DFEA;margin-bottom:15px;min-height:55px;padding:10px;}
