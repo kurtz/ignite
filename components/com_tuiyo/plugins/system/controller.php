@@ -233,7 +233,7 @@ class SystemServiceController Extends TuiyoControllerServices{
 			
 			$opentokConfig 	= new API_Config;
 			$opentokAPI 	= new OpenTokSDK($opentokConfig->API_KEY, $opentokConfig->API_SECRET);
-	        $opentokSession = $opentokAPI->create_session( $_SERVER["REMOTE_ADDR"] ,
+                                $opentokSession = $opentokAPI->create_session( $_SERVER["REMOTE_ADDR"] ,
 				array(
 					SessionPropertyConstants::MULTIPLEXER_NUMOUTPUTSTREAMS=>10,
 			        //SessionPropertyConstants::ECHOSUPPRESSION_ENABLED=>"true",
@@ -244,10 +244,10 @@ class SystemServiceController Extends TuiyoControllerServices{
 			$opentokSessionId = isset($chatRoomObj[0]->datafile) ? $chatRoomObj[0]->datafile : $opentokSession->getSessionId(); 
 			$document->addJS("http://staging.tokbox.com/v0.91/js/TB.min.js");
 			
-			$mainframe->addMetaTag( "opentokAPIKey", 	$opentokConfig->API_KEY );
-			$mainframe->addMetaTag( "chatRoomID", 	$chatRoomObj[0]->name );
-			$mainframe->addMetaTag( "opentokSessionID", $opentokSessionId );
-			$mainframe->addMetaTag( "opentokSessionToken", $opentokAPI->generate_token() );
+			$document->addMetaTag( "opentokAPIKey", 	$opentokConfig->API_KEY );
+			$document->addMetaTag( "chatRoomID", 	$chatRoomObj[0]->name );
+			$document->addMetaTag( "opentokSessionID", $opentokSessionId );
+			$document->addMetaTag( "opentokSessionToken", $opentokAPI->generate_token() );
 			
 			
 	

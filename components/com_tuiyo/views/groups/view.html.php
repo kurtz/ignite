@@ -88,8 +88,8 @@ class TuiyoViewGroups extends JView
 	{	
 		$styleDir 	= TUIYO_LIVE_PATH.'/client/default/';
 				
-		$doc		= $GLOBALS['API']->get("document", null);
-		$pt 		= $GLOBALS['mainframe']->setPageTitle( _("Community groups")." | ".$this->group->gName );
+		$doc		= TuiyoAPI::get("document", null);
+		$pt 		= $doc->setPageTitle( _("Community groups")." | ".$this->group->gName );
 		
 		$tmplPath 	= TUIYO_VIEWS.DS."groups".DS."tmpl" ;
 		$tmplVars 		= array(
@@ -102,7 +102,7 @@ class TuiyoViewGroups extends JView
 		
 		if($this->group->gType == "public" || $this->group->isMember ){
 			
-			$GLOBALS['mainframe']->addMetaTag( "gid" , $this->group->groupID );
+			$doc->addMetaTag( "gid" , $this->group->groupID );
 			
 			$doc->addJS( TUIYO_OEMBED );
 			$doc->addJS( TUIYO_STREAM );		

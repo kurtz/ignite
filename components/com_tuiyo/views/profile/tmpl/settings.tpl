@@ -71,28 +71,13 @@
 		                            </div>
 		                            <div class="tuiyoClearFloat"></div>
 		                        </div>
-		                     
-		                        <div class="tuiyoTableRow" style="margin-top: 8px">
-		                            <div class="tuiyoTableCell" style="width: 35%; padding: 4px 0">&nbsp;</div>
-		                            <div class="tuiyoTableCell" style="width: 65%">
-		                                <input type="checkbox" name="suspendUser" id="suspendUser" class="TuiyoFormCheckBox" />
-		                                <i><a  href="#" style="font-weight: normal"><?php echo _('Suspend my account' ); ?></a></i>
-		                            </div>
-		                            <div class="tuiyoClearFloat"></div>
-		                        </div>
-		                        <div class="tuiyoTableRow" style="margin-top: 8px">
-		                            <div class="tuiyoTableCell" style="width: 35%; padding: 4px 0">&nbsp;</div>
-		                            <div class="tuiyoTableCell" style="width: 65%">
-		                                <input type="checkbox" name="deleteUser" id="deleteUser" class="TuiyoFormCheckBox" />
-		                                <i><a href="#" style="font-weight: normal"><?php echo _('Delete my account' ); ?></a></i>
-		                            </div>
-		                            <div class="tuiyoClearFloat"></div>
-		                        </div>                         
+		                                       
 		                        <div class="tuiyoTableRow" style="margin-top: 8px">
 		                            <div class="tuiyoTableCell" style="width: 35%; padding: 4px 0"></div>
 		                            <div class="tuiyoTableCell" style="width: 65%">
 		                                <button class="TuiyoFormButton1" id="submitUserData" name="submitUserData" type="submit" ><?php echo _('Update Account' ) ;?></button>
-		                            </div>
+                                                    <a href="#" class="button"><?php echo _('Delete my account') ?></a>
+                                                </div>
 		                            <div class="tuiyoClearFloat"></div>
 		                        </div>         
 		                    </fieldset>

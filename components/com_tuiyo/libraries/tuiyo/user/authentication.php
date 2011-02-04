@@ -177,8 +177,8 @@
 	 */
 	public function requireAuthentication($method = "post")
 	{ 		
-		$SERVER	    = &JRequest::get( 'server' );
-		$user 		= &$GLOBALS['API']->get("user" );
+		$SERVER	  = &JRequest::get( 'server' );
+		$user 	  = &$GLOBALS['API']->get("user" );
 		$mainframe  = &$GLOBALS['mainframe'];
 
 		//if user is guest		 

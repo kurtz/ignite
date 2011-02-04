@@ -179,7 +179,7 @@ class TuiyoTableTimeline extends JTable{
 		
 		$rows = (array)$rows;
 		
-		return array_reverse($rows);
+		return $rows;
 	}
 	
 	/**

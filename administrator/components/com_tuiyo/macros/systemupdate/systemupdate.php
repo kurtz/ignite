@@ -77,7 +77,7 @@ class TuiyoMacroSystemUpdate {
                     return true;
                 }else{
                     echo _("Downloading Update file from <strong>$versionDldURL</strong>....") . "<br /><div id='processmessages'></div>";
-                    $mainframe->addMetaTag("_nextstep", 1);
+                    $document->addMetaTag("_nextstep", 1);
                     $document->addJS('components/com_tuiyo/macros/systemupdate/systemupdate.js');   
                 }
             break;

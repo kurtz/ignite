@@ -54,6 +54,7 @@ class TuiyoDocument extends TuiyoResponse {
     public function getDocument() {
         return self::$_jDOC;
     }
+   
 
     /**
      * TuiyoDocument::getDocumentBody()
@@ -317,7 +318,8 @@ class TuiyoDocument extends TuiyoResponse {
      * @return
      */
     public function setPageTitle($title = '', $overWrite = TRUE) {
-        
+        $document = JFactory::getDocument();
+        $document->setTitle( $title );
     }
 
     /**
@@ -326,7 +328,8 @@ class TuiyoDocument extends TuiyoResponse {
      * @return
      */
     public function getPageTitle() {
-        
+        $document = JFactory::getDocument();
+        return $document->getTitle();
     }
 
     /**
@@ -421,7 +424,7 @@ class TuiyoDocument extends TuiyoResponse {
     public function finishBuild() {
 
         global $mainframe;
-
+        TuiyoLoader::helper("parameter");
 
         $userData = TuiyoAPI::get("user");
         $profile = TuiyoUser::getUserFromRequest();
@@ -434,17 +437,26 @@ class TuiyoDocument extends TuiyoResponse {
         if (file_exists($userStyle) && is_file($userStyle) && is_readable($userStyle)) {
 
             $content = file_get_contents($userStyle);
-            $params = new JParameter($content);
+            $params = new TuiyoParameter($content);
             $session = JSession::getInstance('none', array());
 
             $session->set("TUIYO_STYLE", $params);
         }
 
         //User Avatar
-        $mainframe->addMetaTag("thumb70", $userData->getUserAvatar()->thumb70);
-        $mainframe->addMetaTag("thumb35", $userData->getUserAvatar()->thumb35);
+        self::addMetaTag("thumb70", $userData->getUserAvatar()->thumb70);
+        self::addMetaTag("thumb35", $userData->getUserAvatar()->thumb35);
     }
-
+    
+    public function addMetaTag($name, $content){
+        $document=& JFactory::getDocument();
+        $document->setMetadata($name, $content);
+    }
+    
+    public function addCustomHeadTag(){
+        
+    }
+        
     /**
      * TuiyoDocument::addJSDefines()
      * 
@@ -484,7 +496,7 @@ class TuiyoDocument extends TuiyoResponse {
         $doc->addScript($TuiyoDefineFileL);
 
         //Add secured data in metaTags
-        $GLOBALS['mainframe']->addMetaTag("_token", JUTility::getToken());
+        self::addMetaTag("_token", JUTility::getToken());
         //$GLOBALS['mainframe']->addMetaTag( "_token" , JUTility::getToken() );
         //Search URL
         $hashURL = JRoute::_("index.php?option=com_search&amp;view=search&amp;task=find"
@@ -493,8 +505,8 @@ class TuiyoDocument extends TuiyoResponse {
 
         $chatURL = JRoute::_(TUIYO_INDEX . "&amp;view=services&amp;service=system&amp;do=chatbox");
 
-        $GLOBALS['mainframe']->addMetaTag("_searchurl", $hashURL);
-        $GLOBALS['mainframe']->addMetaTag("_chaturl", $chatURL);
+        self::addMetaTag("_searchurl", $hashURL);
+        self::addMetaTag("_chaturl", $chatURL);
 
         return true;
     }
