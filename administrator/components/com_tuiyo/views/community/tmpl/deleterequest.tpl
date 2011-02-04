@@ -7,9 +7,9 @@
                 <strong>Profile Delete Requests</strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
-				<div class="tuiyoTable">
-					Members  requesting a profile deletion
-				</div>
+                <div class="tuiyoTable">
+		<?php echo $lists ?>
+                </div>
             </div>            
        </div>
     </div>

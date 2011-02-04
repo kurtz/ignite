@@ -1,3 +1,4 @@
+<?php defined('TUIYO_EXECUTE') || die; ?>
 <div class="tuiyoTable">
 	<div class="tuiyoTableRow">
 		<div class="tuiyoTableCell" style="width: 50%">

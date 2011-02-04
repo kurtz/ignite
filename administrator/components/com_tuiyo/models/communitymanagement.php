@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ******************************************************************
  * Class/Object for the Tuiyo platform                           *
@@ -13,14 +14,14 @@
  * @package   : tuiyo                                               *
  * ******************************************************************
  */
- /**
+/**
  * no direct access
  */
 defined('TUIYO_EXECUTE') || die('Restricted access');
 /**
  * joomla MOdel
  */
-jimport( 'joomla.application.component.model' );
+jimport('joomla.application.component.model');
 
 /**
  * TuiyoModelCommunityManagement
@@ -31,75 +32,102 @@ jimport( 'joomla.application.component.model' );
  * @version $Id$
  * @access public
  */
-class TuiyoModelCommunityManagement extends JModel{
-	
-	/**
-	 * TuiyoModelCommunityManagement::getUsers()
-	 * 
-	 * @param mixed $limitTo
-	 * @param bool $join
-	 * @return
-	 */
-	public function getUsers( $limitTo = array() , $join = true ){
-		
-		$dbo	= &$this->_db;		
-		$ltfu	= (empty($limitTo))? "*" : $this->_ltf( $limitTo , true );
-		$joiner = ($join) ? "\nRIGHT JOIN #__tuiyo_users p on u.id = p.userID " : null; 
-		
-		$query 	= "SELECT $ltfu FROM #__users u"
-				. $joiner
-				;
-				
-		$dbo->setQuery( $query );
-		
-		//echo $dbo->getQuery();
-		
-		$rows 	=  $dbo->loadAssocList( );
-		
-		return $rows;
-		
-	}
-	
-	/**
-	 * TuiyoModelCommunityManagement::_ltf()
-	 * 
-	 * @param mixed $arrayFields
-	 * @param bool $prefix
-	 * @param mixed $prefixKey
-	 * @return
-	 */
-	private function _ltf( $arrayFields, $prefix = false, $prefixKey = null){
-		
-		if($prefix){
-			$array2string	= array();
-			
-			foreach($arrayFields as $key=>$field){
-				if(!is_int($key)){
-					if(is_array($field)){
-						foreach($field as $k=>$f ){
-							$array2string[] = $key.".".$f ;
-						}
-					}
-				}
-			}
-			$arrayFields 	= $array2string ;	
-		}
-		$string = implode(",", $arrayFields );
-		
-		return $string;
-	}
-	
-	
-	public function getUniqueUser( $userID ){}
-	
-	public function getProfiles( $limitTo = array() ){}
-	
-	public function getUniqueProfile( ){}
-	
-	public function applyBlock( $userID ){}
-	
-	public function applyDelete( $userID ){}
-	
-	public function getUsersReports(){}
-	
+class TuiyoModelCommunityManagement extends JModel {
+
+    /**
+     * TuiyoModelCommunityManagement::getUsers()
+     * 
+     * @param mixed $limitTo
+     * @param bool $join
+     * @return
+     */
+    public function getUsers($limitTo = array(), $join = true) {
+
+        $dbo = &$this->_db;
+        $ltfu = (empty($limitTo)) ? "*" : $this->_ltf($limitTo, true);
+        $joiner = ($join) ? "\nRIGHT JOIN #__tuiyo_users p on u.id = p.userID " : null;
+
+        $query = "SELECT $ltfu FROM #__users u"
+                . $joiner
+        ;
+
+        $dbo->setQuery($query);
+
+        //echo $dbo->getQuery();
+
+        $rows = $dbo->loadAssocList();
+
+        return $rows;
+    }
+    
+    public function getUserBucketList(){
+        
+        $dbo = &$this->_db;
+        
+        $query = "SELECT u.*, p.* FROM #__users u"
+                . "\nLEFT JOIN #__tuiyo_users p on u.id = p.userID "
+                . "\nWHERE p.suspended = '3'"
+        ;
+        $dbo->setQuery($query);
+
+        //echo $dbo->getQuery();
+
+        $rows = $dbo->loadAssocList();
+
+        return (array)$rows; 
+    }
+
+    /**
+     * TuiyoModelCommunityManagement::_ltf()
+     * 
+     * @param mixed $arrayFields
+     * @param bool $prefix
+     * @param mixed $prefixKey
+     * @return
+     */
+    private function _ltf($arrayFields, $prefix = false, $prefixKey = null) {
+
+        if ($prefix) {
+            $array2string = array();
+
+            foreach ($arrayFields as $key => $field) {
+                if (!is_int($key)) {
+                    if (is_array($field)) {
+                        foreach ($field as $k => $f) {
+                            $array2string[] = $key . "." . $f;
+                        }
+                    }
+                }
+            }
+            $arrayFields = $array2string;
+        }
+        $string = implode(",", $arrayFields);
+
+        return $string;
+    }
+
+    public function getUniqueUser($userID) {
+        
+    }
+
+    public function getProfiles($limitTo = array()) {
+        
+    }
+
+    public function getUniqueProfile() {
+        
+    }
+
+    public function applyBlock($userID) {
+        
+    }
+
+    public function applyDelete($userID) {
+        
+    }
+
+    public function getUsersReports() {
+        
+    }
+
 }

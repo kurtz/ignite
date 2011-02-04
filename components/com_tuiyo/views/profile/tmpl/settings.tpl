@@ -76,7 +76,11 @@
 		                            <div class="tuiyoTableCell" style="width: 35%; padding: 4px 0"></div>
 		                            <div class="tuiyoTableCell" style="width: 65%">
 		                                <button class="TuiyoFormButton1" id="submitUserData" name="submitUserData" type="submit" ><?php echo _('Update Account' ) ;?></button>
-                                                    <a href="#" class="button"><?php echo _('Delete my account') ?></a>
+                                                <?php if( (int)$this->user->get('suspended') < 1): ?> 
+                                                    <a href="<?php echo JRoute::_(TUIYO_INDEX.'&view=profile&do=deletemyaccount'); ?>" class="button"><?php echo _('Delete my account') ?></a>
+                                                <?php else: ?> 
+                                                    <div class="TuiyoNotification TuiyoAttention" style="margin-top: 10px">Your profile is pending deletion. To cancel this delete request <a href="<?php echo JRoute::_(TUIYO_INDEX.'&view=profile&do=undodeletemyaccount'); ?>">click here</a></div>
+                                                <?php endif; ?>
                                                 </div>
 		                            <div class="tuiyoClearFloat"></div>
 		                        </div>         

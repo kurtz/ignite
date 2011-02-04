@@ -55,6 +55,32 @@ class TuiyoControllerProfile extends JController {
         //Parent constructor or break
         parent::__construct();
     }
+    
+    public function undodeletemyaccount(){
+        $message = _("Your profile will no longer be deleted (upon your request), by our moderator");
+        return $this->deletemyaccount( true,  $message);
+    }
+    
+    public function deletemyaccount( $revert = false , $message=null ){
+       
+        $model      = TuiyoLoader::model("profile", true);
+        $auth       = TuiyoAPI::get("authentication");
+        $redirect   = JRoute::_(TUIYO_INDEX . "&amp;view=profile&do=settings");
+        
+        //Must be authenticated;
+        $auth->requireAuthentication();
+
+        //Message
+        $message    = empty ($message) ? _("Your profile is now listed for deletion, and will be deleted by our moderators. If you change your mind you can undo this action from your profile account settings") : $message;
+        $user       = TuiyoAPI::get("user", null);
+        
+        if(!$model->markForDeletion( $user->id , $revert )){
+            $message = _("An error occured whilst listing your profile changing");
+        }
+        
+        $this->setRedirect($redirect, $message );
+        $this->redirect(); 
+    }
 
     /**
      * TuiyoControllerProfile::display()
