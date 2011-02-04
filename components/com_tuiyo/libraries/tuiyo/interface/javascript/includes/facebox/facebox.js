@@ -106,11 +106,15 @@
       $('#facebox .content').empty()
       $('#facebox .body').children().hide().end().
         append('<div class="loading"><img src="'+$.facebox.settings.loadingImage+'"/></div>')
-
+      
+      var iTop  = iBottom = getPageScroll()[1] + (getPageHeight() / 5) ;
+      var iLeft = iRight  =  $(window).width() / 2 - 405 ;
+      
       $('#facebox').css({
-        top:	getPageScroll()[1] + (getPageHeight() / 5),
-        left:	$(window).width() / 2 - 205
-      }).show()
+        top: iTop,
+        left:iLeft
+      }).show();
+      
 
       $(document).bind('keydown.facebox', function(e) {
         if (e.keyCode == 27) $.facebox.close()
@@ -260,7 +264,7 @@
   }
 
   function fillFaceboxFromAjax(href, klass) {
-    $.get(href, function(data) { $.facebox.reveal(data, klass) })
+    $.get(href, function(data) {$.facebox.reveal(data, klass)})
   }
 
   function skipOverlay() {
@@ -275,7 +279,7 @@
 
     $('#facebox_overlay').hide().addClass("facebox_overlayBG")
       .css('opacity', $.facebox.settings.opacity)
-      .click(function() { $(document).trigger('close.facebox') })
+      .click(function() {$(document).trigger('close.facebox')})
       .fadeIn(200)
     return false
   }

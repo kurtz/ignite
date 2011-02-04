@@ -396,6 +396,7 @@ class TuiyoModelTimeline extends JModel {
      */
     public function getComments($storyID) {
 
+        TuiyoLoader::helper( "smileys" );
         $user = TuiyoAPI::get("user", null);
         $table = TuiyoLoader::table("timeline");
         $comments = array();
@@ -408,7 +409,7 @@ class TuiyoModelTimeline extends JModel {
 
             $comment->datetime = TuiyoTimer::diff(strtotime($comment->datetime));
             $comment->id = (int) $comment->id;
-            $comment->bodytext = strval($comment->bodytext); //No HTML unless defined in template
+            $comment->bodytext = TuiyoSmileys::parse( strval($comment->bodytext) ); //No HTML unless defined in template
             $comment->userpic = TuiyoUser::getUserAvatar($comment->userid, "thumb35");
             $comment->source = (empty($comment->source)) ? "web" : $comment->source;
 

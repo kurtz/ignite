@@ -1,0 +1,15 @@
+*{margin:0; padding:0}
+*
+:focus, :active{outline:0}
+html{min-height:100%}
+body.contentpane{font-family:"Lucida Grande",Kalinga,Segoe UI,sans-serif; font-size:0.8em; line-height: 1.5em ; margin:0px; color:#555555 !important; min-height:100%; background:#fff none repeat-y scroll 0 0}
+body.contentpane a{color:#356AA0; text-decoration:none}
+body.contentpane div.header{ line-height: 0.6em}
+img{border:0}
+h1{float:left; margin:20px 0 50px; font-size:4em}
+h2{font-size:2.4em; font-weight:normal; margin:0 0 20px}
+h2 a:hover, .contentheading a:hover{background:#356AA0; color:#fff}
+.hr{color:#ccc}
+ul{line-height:24px; margin-left:16px}
+p{margin:5px 0 15px; line-height:1.6em}
+

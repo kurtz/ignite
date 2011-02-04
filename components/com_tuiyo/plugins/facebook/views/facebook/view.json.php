@@ -39,6 +39,7 @@ class FacebookServiceViewFacebook extends TuiyoViewServices{
     function encode($jdata)
     {
         echo json_encode($jdata);
+        jexit(0);
     }
 	
 }

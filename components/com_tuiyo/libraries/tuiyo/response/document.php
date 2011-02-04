@@ -467,8 +467,8 @@ class TuiyoDocument extends TuiyoResponse {
         );
 
         $TuiyoDefines = $this->parseTmpl("TuiyoDefines", TUIYO_SYSTEM_JS, $headData, "js");
-        $TuiyoDefineFile = JPATH_CACHE . DS . "js.defines." . JFactory::getUser()->id . ".js";
-        $TuiyoDefineFileL = JURI::root() . "cache/js.defines." . JFactory::getUser()->id . ".js";
+        $TuiyoDefineFile = TUIYO_CACHE .DS. "js.defines." . JFactory::getUser()->id . ".js";
+        $TuiyoDefineFileL = "cache/js.defines." . JFactory::getUser()->id . ".js";
 
         $TuiyoDefinneFileH = fopen($TuiyoDefineFile, 'w');
 
