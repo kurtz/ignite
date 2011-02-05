@@ -315,9 +315,10 @@ class TuiyoControllerProfile extends JController {
         //Request authentication
         $auth->requireAuthentication("request");
         $user = $API->get('user', null);
+        $document = $API->get('document');
 
         $bc = &$mainframe->getPathway();
-        $pt = &$mainframe->setPageTitle(sprintf(_("%s | Homepage"), $API->get('user')->name));
+        $pt = &$document->setPageTitle(sprintf(_("%s | Homepage"), $API->get('user')->name));
 
 
         $view->setLayoutExt('tpl');
