@@ -181,6 +181,7 @@ class TuiyoControllerResources extends JController{
 		
 		$auth	= TuiyoAPI::get('authentication');
 		$user 	= TuiyoAPI::get('user', null);
+                    $document = TuiyoAPI::get('document');
 		
 		$view 	= $this->getView("profile" , "html" );
 		$model  = $this->getModel("resources");
@@ -195,7 +196,7 @@ class TuiyoControllerResources extends JController{
 		$view->assignRef( "user" ,  $user);
 		$view->assignRef( "pagination" , $pages );
 		
-		$system->setPageTitle( _("Members Lists") );
+		$document->setPageTitle( _("Members Lists") );
 		$system->getPathway()->addItem( _("Members")  );
 		
 		return $view->displayMembersList( $members );

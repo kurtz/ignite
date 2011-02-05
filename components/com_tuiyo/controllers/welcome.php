@@ -66,14 +66,15 @@ class TuiyoControllerWelcome extends JController {
      * @return void
      */
     public function display($tpl=null) {
-        $user = $GLOBALS['API']->get('user', null);
+        $user       = $GLOBALS['API']->get('user', null);
+        $document   = TuiyoAPI::get("document") ;
         $mainframe = $GLOBALS['mainframe'];
 
         $view = $this->getView('welcome', 'html');
 
         $livestyle = TUIYO_LIVE_PATH . '/client/default/';
 
-        $GLOBALS['mainframe']->setPageTitle(sprintf(_("Welcome %s"), $user->name));
+        $document->setPageTitle(sprintf(_("Welcome %s"), $user->name));
 
         $view->assignRef('loggedIn', $user->isUserLoggedIn());
         $view->assignRef('livestyle', $livestyle);

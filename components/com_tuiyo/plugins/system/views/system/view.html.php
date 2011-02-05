@@ -73,7 +73,7 @@ class SystemServiceViewSystem extends TuiyoViewServices
 		//$document->addJS(TUIYO_JS.'/includes/tools/tooltip.min.js');
 
 		
-		$GLOBALS['mainframe']->setPageTitle( _("Live Chat") );
+		$document->setPageTitle( _("Live Chat") );
 		$this->assignRef("activity", $activity );
 		
 		parent::display( $tpl );

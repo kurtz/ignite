@@ -179,7 +179,7 @@ class TuiyoViewWelcome extends JView {
 
         //Default bc;
         $bc = &$GLOBALS['mainframe']->getPathway();
-        $pt = &$GLOBALS['mainframe']->setPageTitle(_("Help and Support"));
+        $pt = &$doc->setPageTitle(_("Help and Support"));
 
         $bc->addItem(_("Help and support"));
 

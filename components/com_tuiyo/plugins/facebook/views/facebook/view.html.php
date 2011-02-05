@@ -57,7 +57,7 @@ class FacebookServiceViewFacebook extends TuiyoViewServices{
 		$document->addJS(TUIYO_LIVE_PATH.'/plugins/facebook/facebook-view.js');
 
 		
-		$GLOBALS['mainframe']->setPageTitle( _("Facebook | Connect with Tuiyo&trade;") );
+		$document->setPageTitle( _("Facebook | Connect with Tuiyo&trade;") );
 		
 		$this->assignRef("user", $user);
 		$this->assignRef("activity", $activity );

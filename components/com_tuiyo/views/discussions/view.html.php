@@ -44,7 +44,7 @@ class TuiyoViewDiscussions extends JView
 		$user	  = $GLOBALS['API']->get('user', null);
 		
 		$GLOBALS['mainframe']->getPathway()->addItem( _("Discussions Boards") );
-		$GLOBALS['mainframe']->setPageTitle( _("Discussion Boards") );
+		$document->setPageTitle( _("Discussion Boards") );
   	
 		
 		

@@ -42,7 +42,7 @@ class TuiyoViewPhotos extends JView
 		$doc  		= &$API->get("document");
 		$bc   		= &$mainframe->getPathway();
 		$user		= &$API->get("user", null);
- 		$pt 		= &$mainframe->setPageTitle( _("Photos gallery") );
+ 		$pt 		= &$doc->setPageTitle( _("Photos gallery") );
  		$plugModel 	= &TuiyoLoader::model('applications'  , true);
  					
 		$bc->addItem( $user->name  );

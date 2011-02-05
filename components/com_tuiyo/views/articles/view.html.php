@@ -44,7 +44,7 @@ class TuiyoViewArticles extends JView
 		$model 	= TuiyoLoader::model("articles", true);
 		
 		$GLOBALS['mainframe']->getPathway()->addItem( _("Articles") );
-		$GLOBALS['mainframe']->setPageTitle( _("Articles") );
+		$document->setPageTitle( _("Articles") );
   	
 		//styles
 		//$document->addCSS(TUIYO_STYLEDIR.'/css/articles.css');
@@ -117,7 +117,7 @@ class TuiyoViewArticles extends JView
 		$this->assignRef("article", $article );
 		
 		$GLOBALS['mainframe']->getPathway()->addItem( _("Articles") );
-		$GLOBALS['mainframe']->setPageTitle( $article['story']->posttitle );
+		$document->setPageTitle( $article['story']->posttitle );
 		
 		$this->assignRef("activity", $activity );
 		$this->setLayout("read");

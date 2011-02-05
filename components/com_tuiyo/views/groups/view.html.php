@@ -42,7 +42,7 @@ class TuiyoViewGroups extends JView
 		$doc		= $GLOBALS['API']->get("document" );
 		$user		= $GLOBALS['API']->get("user", null);
  		$bc 		= $GLOBALS['mainframe']->getPathway();
- 		$pt 		= $GLOBALS['mainframe']->setPageTitle( _("Community groups") );
+ 		$pt 		= $doc->setPageTitle( _("Community groups") );
  		$styleDir 	= TUIYO_LIVE_PATH.'/client/default/';
  		
 		$bc->addItem( $user->name );

@@ -42,7 +42,7 @@ class TuiyoViewMessages extends JView
 		$user 	= &$GLOBALS['API']->get("user", null);
 		$doc	= &$GLOBALS['API']->get("document", null);  		//$auth->requireAuthentication( "method" );
 		$bc 	= &$GLOBALS['mainframe']->getPathway();
-  		$pt 	= &$GLOBALS['mainframe']->setPageTitle( _("Messages and notifications") );
+  		$pt 	= &$doc->setPageTitle( _("Messages and notifications") );
   		
 		$bc->addItem( _("Message and Notifications") );
 		
@@ -93,7 +93,7 @@ class TuiyoViewMessages extends JView
 		$user	= &$GLOBALS['API']->get("user", null);
 		//Default bc;
   		$bc 	= &$GLOBALS['mainframe']->getPathway();
-  		$pt 	= &$GLOBALS['mainframe']->setPageTitle( "Address book" );
+  		$pt 	= &$doc->setPageTitle( "Address book" );
 		    		
         $bc->addItem( "Address Book" );
 		//styles Sheets
@@ -124,7 +124,7 @@ class TuiyoViewMessages extends JView
 		
 		//Default bc;
   		$bc 	= &$GLOBALS['mainframe']->getPathway();
-  		$pt 	= &$GLOBALS['mainframe']->setPageTitle( _("Online Calendar") );
+  		$pt 	= &$doc->setPageTitle( _("Online Calendar") );
   		
   		//Build Calendar
   		$defaultM 	= date("n");
@@ -193,7 +193,7 @@ class TuiyoViewMessages extends JView
 		
 		//Default bc;
   		$bc 	= &$GLOBALS['mainframe']->getPathway();
-  		$pt 	= &$GLOBALS['mainframe']->setPageTitle( _("Agenda of Events") );
+  		$pt 	= &$doc->setPageTitle( _("Agenda of Events") );
   		
   		$defaultM 	= date("n");
 		$defaultY 	= date("Y");
