@@ -108,8 +108,8 @@ class TuiyoControllerCommunityManagement extends JController{
 		$tabgroup  = array( 
 			"_users" => array(
 				_("Active Members") 	=> "", //Determine which tab is active by comparing referers
-				_("All Members") 	=> "&action=systemusers", //Determine which tab is active by comparing referers
-				_("Member Delete Request")		=> "&action=bucketlist",
+				_("In-Active Members") 	=> "&action=systemusers", //Determine which tab is active by comparing referers
+				_("Suspend or Delete")		=> "&action=bucketlist",
 				_("Create New Users")	=> "&action=create",
 				_("Reports")			=> "&action=reports"
 			 )

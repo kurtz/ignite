@@ -62,16 +62,19 @@ class TuiyoViewCommunity extends JView {
                 $mainframe->redirect($refer);
                 break;
             case "bucketlist":
+ 
                 $cModel             = new TuiyoModelCommunityManagement();
                 $bucketlist         = $cModel->getUserBucketList();
                 $tmplVars["lists"]  = $this->buildUserList(false, $bucketlist , true );
                 $tmplFile = "deleterequest";
                 break;
             case "systemusers":
+               
                 $tmplVars["lists"] = $this->buildUserList();
                 $tmplFile = "default";
                 break;
             default:
+
                 $tmplVars["lists"] = $this->buildUserList(true);
                 $tmplFile = "default";
                 break;
@@ -90,7 +93,6 @@ class TuiyoViewCommunity extends JView {
         if (empty($userListData)&&!$allowEmpty) {
             $fields = array(
                 "u" => array("id", "name", "email", "username", "gid", "lastVisitDate")
-                    //"p"=>array("profileId", "dateCreated", "sex",  "suspended")
             );
             if ($activeOnly) {
                 $fields["p"] = array("profileId", "dateCreated", "sex", "suspended");
@@ -107,6 +109,9 @@ class TuiyoViewCommunity extends JView {
             "iconPath" => TUIYO_LIVE_PATH . '/client/default/',
             "users" => $userListData
         );
+        
+        $pModel = &JModel::getInstance("permissions", "TuiyoModel", array());
+        $tmplVars['arogroups'] = $pModel->getPermissionGroupTree();
 
         $tmplPath = JPATH_COMPONENT_ADMINISTRATOR . DS . "views" . DS . "community" . DS . "tmpl";
         $tmplData = $TMPL->parseTmpl("list", $tmplPath, $tmplVars);

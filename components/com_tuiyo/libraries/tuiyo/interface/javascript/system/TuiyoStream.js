@@ -1238,8 +1238,10 @@
                         }
                     }
                 }
+                
+                var getTimelineURL = (settings.requestURL) ? settings.requestURL : $.TuiyoDefines.get("siteIndex") + '?' + $('meta[name=_token]').attr("content") + '=1' + addQuery + filter + source + channel + realtime + mention + "&controller=timeline&format=json";
 
-                $.getJSON($.TuiyoDefines.get("siteIndex") + '?' + $('meta[name=_token]').attr("content") + '=1' + addQuery + filter + source + channel + realtime + mention + "&controller=timeline&format=json", {
+                $.getJSON( getTimelineURL, {
                     "option": "com_tuiyo",
                     "controller": "timeline",
                     "paginate": settings.paginateItems,
@@ -1253,8 +1255,9 @@
                     if (settings.clearPrevious) {
                         $("#userActivityStream").empty();
                     }
+                    
                     if (inResponse.data.length > 0) {
-
+                        
                         //Determine the last loaded item;
                         var lastItem = inResponse.data[0]; //Sounds illogical but actually because the object is flipped on the server, the first item, is actually the last
                         settings.sinceID = lastItem.id;
@@ -1266,8 +1269,6 @@
                             text = findMentions(text);
                             text = findSearchLinks(text);
                             //text 	 = findEmoticons( text );
-
-
                             //if type is activity;
                             if (story.itemType === "activity") {
                                 story.bodytext = text;
@@ -1383,7 +1384,8 @@
                                 $(self).TuiyoStreamLoad({
                                     clearPrevious: false,
                                     limitstart: parseInt(offset + limit),
-                                    appendNew : true
+                                    appendNew : true,
+                                    requestURL : getTimelineURL
                                 });
 
                             })

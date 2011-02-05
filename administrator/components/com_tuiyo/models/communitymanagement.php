@@ -45,7 +45,9 @@ class TuiyoModelCommunityManagement extends JModel {
 
         $dbo = &$this->_db;
         $ltfu = (empty($limitTo)) ? "*" : $this->_ltf($limitTo, true);
-        $joiner = ($join) ? "\nRIGHT JOIN #__tuiyo_users p on u.id = p.userID " : null;
+        $joiner = ($join) 
+                ? "\nRIGHT JOIN #__tuiyo_users p on u.id = p.userID " 
+                : "\nWHERE NOT EXISTS( SELECT 1 FROM #__tuiyo_users p where p.userID = u.id )";
 
         $query = "SELECT $ltfu FROM #__users u"
                 . $joiner
