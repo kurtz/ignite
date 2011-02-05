@@ -61,7 +61,6 @@ $ctrller		= (is_null($ctrller)   ) ? "core": $ctrller  ;
 /**
  * Proxy mode calls made here
  */
- 
 
 /**
  * Application/Core/System/Resource ?

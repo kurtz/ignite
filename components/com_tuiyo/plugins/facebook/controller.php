@@ -49,11 +49,11 @@ class FacebookServiceController Extends TuiyoControllerServices {
         $globalCfg = TuiyoParameter::load("global");
 
         $this->fbConnect = new Facebook(
-          array(
-            'appId'     => $globalCfg->get("siteFBAppId"),
-            'secret'    => $globalCfg->get("siteFBAppSecret"),
-            'cookie'    => true,
-        ));
+                        array(
+                            'appId' => $globalCfg->get("siteFBAppId"),
+                            'secret' => $globalCfg->get("siteFBAppSecret"),
+                            'cookie' => true,
+                ));
         //parent::__construct();
 
         $this->globalCfg = $globalCfg;
@@ -65,7 +65,7 @@ class FacebookServiceController Extends TuiyoControllerServices {
         $tModel = TuiyoLoader::model("timeline", true);
         $aUser = TuiyoAPI::get("user", null);
         $aDocument = TuiyoAPI::get("document", null);
-        
+
         $view = $this->getView("facebook", "html");
 
         //Get the parameters of a single user application/service
@@ -91,11 +91,10 @@ class FacebookServiceController Extends TuiyoControllerServices {
 
         try {
             $fbuser = $facebook->api("/" . $fbid, 'get', array("access_token" => $accessToken));
-            $data = $facebook->api("/" . $fbid . "/posts", 'get', array("access_token" => $accessToken));
+            $data = $facebook->api("/" . $fbid . "/feed", 'get', array("access_token" => $accessToken));
 
             $view->assignRef("fbuser", $fbuser);
             $view->assignRef("data", $data);
-
 
             return $view->display();
         } catch (FacebookApiException $e) {
