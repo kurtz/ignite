@@ -102,7 +102,7 @@ class TuiyoViewWelcome extends JView {
      */
     public function showAuthPage() {
         $tmpl = $GLOBALS['API']->get("document");
-        $params = $GLOBALS['API']->get("params");
+
         $user = $GLOBALS['API']->get('user');
         $joomla = $GLOBALS['mainframe'];
 
@@ -112,7 +112,8 @@ class TuiyoViewWelcome extends JView {
         $uConfig = &JComponentHelper::getParams('com_users');
 
         //Load Tuiyo System Params
-        $params->loadParams("system.global");
+        TuiyoLoader::helper("parameter");
+        $params   = TuiyoParameter::load("global");
 
         //Allow registration or invite?
         $enableReg = (bool) $params->get("siteAllowRegistration", FALSE);
@@ -131,7 +132,7 @@ class TuiyoViewWelcome extends JView {
         $this->assignRef("user", $user);
         $this->assignRef("style", $stylePt);
 
-        $joomla->setPageTitle(_("Welcome | Authentication"));
+        $tmpl->setPageTitle(_("Welcome | Authentication"));
 
         $tmpl->addCSS(TUIYO_LIVE_PATH . '/client/default/css/loginpage.css');
         $tmpl->addJS(TUIYO_LIVE_PATH . '/client/default/script/loginpage.js');

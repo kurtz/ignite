@@ -85,14 +85,14 @@ class TuiyoControllerWelcome extends JController {
     }
 
     public function auth() {
-        JRequest::setVar("tmpl", "component");
+        //JRequest::setVar("tmpl", "component");
 
         $user = $GLOBALS['API']->get('user', null);
         $mainframe = $GLOBALS['mainframe'];
 
         //If user is not guest send back to homepage
         if (!$user->joomla->get('guest')) {
-            $mainframe->redirect(JRoute::_(TUIYO_INDEX . "&amp;view=welcome", FALSE));
+            $mainframe->redirect(JRoute::_(TUIYO_INDEX . "&view=welcome"));
             return false;
         }
 
