@@ -453,8 +453,12 @@ class TuiyoDocument extends TuiyoResponse {
         $document->setMetadata($name, $content);
     }
     
-    public function addCustomHeadTag(){
-        
+    public function addCustomHeadTag( $tagHTML ){
+        $document =& JFactory::getDocument();
+        if(get_class($document)=="JDocumentHTML"){
+            $document->addCustomTag( $tagHTML );
+            return true;
+        }
     }
         
     /**

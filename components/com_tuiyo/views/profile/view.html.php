@@ -159,7 +159,7 @@ class TuiyoViewProfile extends JView
 		$tModel	 	= TuiyoLoader::model("timeline" , true );		
 		
 		$bc   		= $GLOBALS['mainframe']->getPathway();
-		$GLOBALS['mainframe']->setPageTitle( sprintf(  _("%s | Profile"), $this->thatuser->name ) );
+		$tdoc->setPageTitle( sprintf(  _("%s | Profile"), $this->thatuser->name ) );
 		
 		$bc->addItem( $this->thatuser->name );
 		
@@ -242,7 +242,7 @@ class TuiyoViewProfile extends JView
 		$generatedTag = '<link '.$attribs.' />';
 		//Trigger after profileDraw Events
 	
-		$GLOBALS["mainframe"]->addCustomHeadTag( $generatedTag );
+		$tdoc->addCustomHeadTag( $generatedTag );
 		$GLOBALS["events"]->trigger( "onAfterProfileDraw" );
 	}
 	
@@ -263,7 +263,7 @@ class TuiyoViewProfile extends JView
 		$document = $GLOBALS['API']->get('document', null);
 		
 		$GLOBALS['mainframe']->getPathway()->addItem( $this->user->name . ' - Settings' );
-		$GLOBALS['mainframe']->setPageTitle( sprintf(  _("%s | Configuration Page"), $this->user->name ) );
+		$document->setPageTitle( sprintf(  _("%s | Configuration Page"), $this->user->name ) );
 		
 		$document->addJS( TUIYO_LIVE_PATH.'/client/default/script/settings.js' );
 		
@@ -280,8 +280,10 @@ class TuiyoViewProfile extends JView
 	
 	public function filemanager( $tpl ){
 		
+                    $document = $GLOBALS['API']->get('document', null);
+              
 		$GLOBALS['mainframe']->getPathway()->addItem( $this->user->name . ' - File Manager' );
-		$GLOBALS['mainframe']->setPageTitle( sprintf(  _("%s | File Manager"), $this->user->name ) );
+		$document->setPageTitle( sprintf(  _("%s | File Manager"), $this->user->name ) );
 		
 		$this->setLayoutExt('tpl');
 		$this->setLayout('filemanager');
