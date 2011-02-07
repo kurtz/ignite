@@ -32,7 +32,7 @@ class TuiyoModelStatistics extends JModel {
     
     public function getNewMemberCountByDate(){
         //stats only for the last 6 months!
-        $sixmonths  = strtotime("6 months ago");
+        $sixmonths  = strtotime("3 months ago");
         $after      = date("Y-m-d H:i:s", $sixmonths) ;
         
         $dbo        = $this->_db;
@@ -52,9 +52,65 @@ class TuiyoModelStatistics extends JModel {
         );
         $now     = time();
      
-        $n     = 183 ; //183 days = 6 months
+        $n     = 92 ; //183 days = 6 months
         
-        for($i=$n;$i>0;$i--){
+        for($i=$n;$i>=0;$i--){
+            $seconds = $i*86400;
+            $xpoint  =  date("Y-m-d", ($now-$seconds) ) ;
+            $points[$xpoint] = 0;
+        }
+ 
+        $xy    = array();
+        foreach($rawdata as $value){
+            $xy [$value['x']] = (int)$value['y'];
+        }
+      
+        $xplot = $xy+$points;
+        $xplotk = ksort($xplot);
+      
+        foreach($xplot as $key=>$value){
+            $x = strtotime( $key." UTC")*1000;
+            $y = $value;
+            $data[] = array(
+              $x,$y  
+            );
+        }
+        
+        $date =  json_encode($data);
+        
+        unset($xplot);
+        unset($rawdata);
+        unset($xy);
+        unset($data);
+        
+        return $date;
+    }
+    
+    public function getStatusUpdateCountByDate(){
+          //stats only for the last 6 months!
+        $sixmonths  = strtotime("3 months ago");
+        $after      = date("Y-m-d H:i:s", $sixmonths) ;
+        
+        $dbo        = $this->_db;
+        $query      = "SELECT COUNT( * ) as y,  DATE(datetime) as x FROM  `#__tuiyo_timeline`"
+                    . "\nWHERE `datetime` > ".$dbo->Quote($after)
+                    . "\nGROUP BY x"
+        ;
+        
+        $dbo->setQuery( $query );
+        $rawdata    = $dbo->loadAssocList();
+        $data       = array(
+            array((int)$sixmonths * 1000 , 0 )
+        );
+        
+        $points = array(
+            
+        );
+        $now     = time();
+     
+        $n     = 92 ; //183 days = 6 months
+        
+        for($i=$n;$i>=0;$i--){
             $seconds = $i*86400;
             $xpoint  =  date("Y-m-d", ($now-$seconds) ) ;
             $points[$xpoint] = 0;

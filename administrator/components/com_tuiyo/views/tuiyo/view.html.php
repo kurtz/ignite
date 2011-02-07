@@ -234,6 +234,8 @@ class TuiyoViewTuiyo extends JView {
                 $tmplVars["a"]      = '[]';
                 
                 $tmplVars["b"]      = $sModel->getNewMemberCountByDate();
+                $tmplVars["c"]      = '[]';
+                $tmplVars["d"]      = $sModel->getStatusUpdateCountByDate();
                 
                 $tmplVars["macros"] = JFolder::folders(TUIYO_MACROS);
 
