@@ -411,14 +411,15 @@ class TuiyoDocument extends TuiyoResponse {
         $doc->addJS(TUIYO_JS_COMMON);
 
         $doc->addHeadJS(TUIYO_FACEBOX_INIT);
-        //$doc->addScriptDeclaration( TUIYO_JQUERY_COMPAT );
 
         $doc->addCSS(TUIYO_CSS_COMMON);
         $doc->addCSS(TUIYO_FACEBOX_CSS);
     }
 
     public function addHeadJS($string, $type ="text/javascript") {
-        return JFactory::getDocument()->addScriptDeclaration($content, $type);
+        $document = JFactory::getDocument();
+        $document->addScriptDeclaration($string, $type);
+        return;
     }
 
     public function finishBuild() {

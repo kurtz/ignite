@@ -249,7 +249,7 @@ class TuiyoViewTuiyo extends JView {
         $tplData = (!is_null($tpl)) ? $tpl : $TMPL->parseTmpl($tmplFile, $tmplPath, $tmplVars);
 
         $tmplVars["adminPage"] = $tplData;
-
+        $TMPL->addHeadJS(TUIYO_FACEBOX_INIT);
         $content = $TMPL->parseTmpl("admin", $tmplPath, $tmplVars);
 
         $header = $DOCU->getHeadData();

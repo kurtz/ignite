@@ -134,7 +134,7 @@
  define('TUIYO_JS_COMMON',		TUIYO_LIVE_PATH.'/client/default/script/common.js');
  
  define('TUIYO_JQUERY_COMPAT' , 'var Tuiyo = jQuery.noConflict();');
- define('TUIYO_FACEBOX_INIT' ,	"jQuery(document).ready(function($){\n\t$('a[rel*=facebox]').facebox()\n});" );
+ define('TUIYO_FACEBOX_INIT' , "jQuery(document).ready(function($){\n\t$('a[rel*=facebox]').facebox()\n});" );
 /**
  *  Allow Execution of Component File
  */
