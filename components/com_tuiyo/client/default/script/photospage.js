@@ -86,7 +86,7 @@
                         var bgImg = $("img#slideshowImageSrc").removeAttr("width").removeAttr("height").css({width: "", height: "" , top:"", left:""});
                         
                         var bgImgSrc = bgImg.attr("src");
-                            bgImg.attr("src","").attr("src", bgImgSrc);
+                            //bgImg.attr("src","").attr("src", bgImgSrc);
                         
                         var imgwidth = bgImg.width();
                         var imgheight = bgImg.height();
