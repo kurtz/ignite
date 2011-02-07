@@ -67,10 +67,10 @@
 (function($){
       $.getUrlParam = function(name , url){
 	  		
-		  var URLstring = (typeof(url)!=='undefined')?url:window.location.href ;
-	      var urlParams = new RegExp('[\\?&]' + name + '=([^&#]*)').exec( URLstring );
-		  
-	      return urlParams[1] || 0;
+	var URLstring = (typeof(url)!=='undefined')?url:window.location.href ;
+	var urlParams = new RegExp('[\\?&]' + name + '=([^&#]*)').exec( URLstring );
+                    
+          return ( urlParams) ?  urlParams[1] : 0;
       }
 })(jQuery);
 

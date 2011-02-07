@@ -103,7 +103,10 @@ class TuiyoPluginFeedTimeline extends TuiyoEventsListener {
             //echo $newupdate;
             $aModel->setUserPluginLastUpdateID($aUser->id, "feed", $newupdate);
         }
-
+        unset($aParams);
+        unset($aModel);
+        unset($aUser);
+        unset($tModel);
         return true;
     }
 

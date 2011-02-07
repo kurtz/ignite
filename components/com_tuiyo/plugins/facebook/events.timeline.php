@@ -115,6 +115,12 @@ class TuiyoPluginFacebookTimeline extends TuiyoEventsListener {
             
             $passed = true;
             
+                    unset($aParams);
+        unset($aModel);
+        unset($aUser);
+        unset($tModel);
+        unset($fbid);
+            
         } catch (FacebookApiException $e) {
            // JError::raiseError($e);
             //No need to stop other plugins from running

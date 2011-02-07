@@ -1,6 +1,6 @@
 <?php  defined('TUIYO_EXECUTE' ) || die; ?>
 <form name="photoOrganizer" class="TuiyoForm" method="post" id="photoOrganizer">
-    <div class="photosPageBigScreen tuiyoTable" style="min-height: 100px; width: 501px">
+    <div class="photosPageBigScreen tuiyoTable" style="min-height: 100px; width: 545px">
     	<div class="reporter"></div>
     	<div class="tuiyoTableHeaderRow">
         	<div class="tuiyoTableCell" style="padding: 4px; width: 50%" align="left">
@@ -16,10 +16,10 @@
             	<button type="button" id="modifyAlbum"><?php echo _('Modify') ;?></button>
             </div>
             <div class="tuiyoTableCell" style="padding: 4px; width: 10%" align="left">
-            	<button type="button" id="deleteAlbum"><?php echo _('Delete') ;?></button>
+            	<button type="button" id="deleteAlbum" style="margin-left: 20px"><?php echo _('Delete') ;?></button>
             </div>
             <div class="tuiyoTableCell" style="padding: 4px; width: 20%" align="left">
-            	<button type="submit"><?php echo _('Save Album') ;?></button>
+            	<button type="submit" style="margin-left: 40px"><?php echo _('Save') ;?></button>
             </div>
             <div class="tuiyoClearFloat"></div>
         </div>

@@ -4,7 +4,7 @@
         <div class="window" style="background: #fff">
             <div class="windowTitleBar">
                 <img src="<?php echo $iconPath ?>/icons/appengine_16.png" alt="hpact16" style="cursor: pointer" />
-                <strong><?php echo _('Welcome to the Tuiyo Administrator Panel'); ?></strong>
+                <strong><?php echo _('Recent activity'); ?></strong>
             </div>
             <div class="windowBody" style="padding: 18px; margin-top: 5px;">
         		<div class="tuiyoTable">

@@ -106,6 +106,10 @@ class TuiyoPluginTwitterTimeline extends TuiyoEventsListener {
         if (isset($pulledIDs[0])) {
             return $aModel->setUserPluginLastUpdateID($aUser->id, "twitter", $pulledIDs[0]);
         }
+        unset($aParams);
+        unset($aModel);
+        unset($aUser);
+        unset($tModel);
     }
 
     /**
